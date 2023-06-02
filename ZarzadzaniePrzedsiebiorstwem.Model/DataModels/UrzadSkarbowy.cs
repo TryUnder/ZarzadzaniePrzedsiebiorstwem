@@ -5,6 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels {
-	internal class UrzadSkarbowy {
+	public class UrzadSkarbowy {
+		public int Id { get; set; }
+
+		public string Nazwa { get; set; }
+		public int KodUs { get; set; }
+		public string Adres { get; set; }
+		public string RachunekBankowy { get; set; }
 	}
 }

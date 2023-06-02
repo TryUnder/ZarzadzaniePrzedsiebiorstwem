@@ -20,7 +20,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels
         public string RachunekBankowy { get; set; } = null!;
         public FormaPrawna FormaPrawna { get; set; }
 
-        public virtual UrzadSkarbowy UrzadSkarbowy { get; set; }
+        public virtual UrzadSkarbowy UrzadSkarbowy { get; set; } = null!;
         public int UrzadSkarbowyId { get; set; }
     }
 }

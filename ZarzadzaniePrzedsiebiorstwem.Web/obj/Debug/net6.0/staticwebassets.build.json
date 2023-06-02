@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dCS5Be80DQXfFNqiQK9lxdfbJx7Wc9zCsElyq+lRkiE=",
+  "Hash": "V4+p/KonhOeITcsDnDFEuwH1T6Od9Wfs4Xy0sy6P/iw=",
   "Source": "ZarzadzaniePrzedsiebiorstwem.Web",
   "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\bulma.sass"
+    },
+    {
+      "Identity": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\basicStyling.css",
+      "SourceId": "ZarzadzaniePrzedsiebiorstwem.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\",
+      "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
+      "RelativePath": "css/basicStyling.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\basicStyling.css"
     },
     {
       "Identity": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\bulma.css",

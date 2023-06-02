@@ -1,11 +1,35 @@
-﻿<section class="hero" style = "background-color: hsl(217, 71%, 41%)">
+﻿<section class="hero is-white is-fullheight-with-navbar block">
 	<div class="hero-head">
-		<nav class="navbar">
-			<div class="container" style="text-align: center; justify-content: center; display: flex;">
-				<div class="navbar-item" >
-					<p class="is-size-3" style ="color:white">
-						Zarządzanie Przedsiębiorstwem
-					</p>
+		<nav class="navbar card">
+			<div class="container">
+				<div class="navbar-brand is-size-4">
+					<div class="navbar-item">
+						<a class="navbar-item">Magenary</a>
+					</div>
+					<span class="navbar-burger" data-target="navbarMenuHeroB">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+				</div>
+				<div id="navbarMenuHeroB" class="navbar-menu is-active">
+					<div class="navbar-end">
+						<div class="navbar-item">
+							<a id="najedz" class="button is-active">
+								Zaloguj
+							</a>
+						</div>
+						<div class="navbar-item">
+							<a id="najedz" class="button is-active">
+								Zarejestruj
+							</a>
+						</div>
+						<div class="navbar-item">
+							<a id="najedz" class="button is-active" asp-controller="Home" asp-action="Index">
+								Home
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</nav>

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZarzadzaniePrzedsiebiorstwe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZarzadzaniePrzedsiebiorstwem.DAL", "..\ZarzadzaniePrzedsiebiorstwem.DAL\ZarzadzaniePrzedsiebiorstwem.DAL.csproj", "{18380468-8673-4623-BAA9-9B33A34B2756}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZarzadzaniePrzedsiebiorstwem.Services", "..\ZarzadzaniePrzedsiebiorstwem.Services\ZarzadzaniePrzedsiebiorstwem.Services.csproj", "{D12D8453-75EE-4FFE-B209-969A25E1DC08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{18380468-8673-4623-BAA9-9B33A34B2756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18380468-8673-4623-BAA9-9B33A34B2756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18380468-8673-4623-BAA9-9B33A34B2756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D12D8453-75EE-4FFE-B209-969A25E1DC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12D8453-75EE-4FFE-B209-969A25E1DC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12D8453-75EE-4FFE-B209-969A25E1DC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12D8453-75EE-4FFE-B209-969A25E1DC08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

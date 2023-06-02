@@ -1,11 +1,68 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "ZarzadzaniePrzedsiebiorstwem.DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ZarzadzaniePrzedsiebiorstwem.DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZarzadzaniePrzedsiebiorstwem.DAL.dll": {}
+        }
+      },
+      "ZarzadzaniePrzedsiebiorstwem.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ZarzadzaniePrzedsiebiorstwem.Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZarzadzaniePrzedsiebiorstwem.Model.dll": {}
+        }
+      },
+      "ZarzadzaniePrzedsiebiorstwem.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ZarzadzaniePrzedsiebiorstwem.ViewModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ZarzadzaniePrzedsiebiorstwem.ViewModels.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ZarzadzaniePrzedsiebiorstwem.DAL/1.0.0": {
+      "type": "project",
+      "path": "../ZarzadzaniePrzedsiebiorstwem.DAL/ZarzadzaniePrzedsiebiorstwem.DAL.csproj",
+      "msbuildProject": "../ZarzadzaniePrzedsiebiorstwem.DAL/ZarzadzaniePrzedsiebiorstwem.DAL.csproj"
+    },
+    "ZarzadzaniePrzedsiebiorstwem.Model/1.0.0": {
+      "type": "project",
+      "path": "../ZarzadzaniePrzedsiebiorstwem.Model/ZarzadzaniePrzedsiebiorstwem.Model.csproj",
+      "msbuildProject": "../ZarzadzaniePrzedsiebiorstwem.Model/ZarzadzaniePrzedsiebiorstwem.Model.csproj"
+    },
+    "ZarzadzaniePrzedsiebiorstwem.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../ZarzadzaniePrzedsiebiorstwem.ViewModels/ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj",
+      "msbuildProject": "../ZarzadzaniePrzedsiebiorstwem.ViewModels/ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "ZarzadzaniePrzedsiebiorstwem.DAL >= 1.0.0",
+      "ZarzadzaniePrzedsiebiorstwem.Model >= 1.0.0",
+      "ZarzadzaniePrzedsiebiorstwem.ViewModels >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Hubert\\.nuget\\packages\\": {},
@@ -38,7 +95,17 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj": {
+              "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj"
+            },
+            "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj": {
+              "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj"
+            },
+            "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.ViewModels\\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj": {
+              "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.ViewModels\\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

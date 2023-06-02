@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ZarzadzaniePrzedsiebiorstwem.DAL\ZarzadzaniePrzedsiebiorstwem.DAL.csproj" />
+    <ProjectReference Include="..\ZarzadzaniePrzedsiebiorstwem.Model\ZarzadzaniePrzedsiebiorstwem.Model.csproj" />
+    <ProjectReference Include="..\ZarzadzaniePrzedsiebiorstwem.ViewModels\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

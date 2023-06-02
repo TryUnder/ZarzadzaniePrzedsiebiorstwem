@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ZarzadzaniePrzedsiebiorstwem.DAL\ZarzadzaniePrzedsiebiorstwem.DAL.csproj" />
     <ProjectReference Include="..\ZarzadzaniePrzedsiebiorstwem.Model\ZarzadzaniePrzedsiebiorstwem.Model.csproj" />
     <ProjectReference Include="..\ZarzadzaniePrzedsiebiorstwem.Services\ZarzadzaniePrzedsiebiorstwem.Services.csproj" />

@@ -20,4 +20,8 @@
     <ProjectReference Include="..\ZarzadzaniePrzedsiebiorstwem.ViewModels\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

@@ -8,12 +8,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels {
 	public class Pracownik {
 		public int Id { get; set; }
 
-		public string ImieNazwisko { get; set; }
-		public string Pesel { get; set; }
-		public string MiejsceUrodzenia { get; set; }
+		public string ImieNazwisko { get; set; } = null!;
+		public string Pesel { get; set; } = null!;
+		public string MiejsceUrodzenia { get; set; } = null!;
 		public DateTime DataUrodzenia { get; set; }
 
-		public virtual UrzadSkarbowy UrzadSkarbowy { get; set; }
+		public virtual UrzadSkarbowy UrzadSkarbowy { get; set; } = null!;
 		public int UrzadSkarbowyId { get; set; }
 	}
 }

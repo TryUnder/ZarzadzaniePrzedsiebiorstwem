@@ -10,16 +10,15 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels
     {
         public int Id { get; set; }
 
-        public string NazwaSkrocona { get; set; }
-        public string NazwaPelna { get; set; }
-        public string NIP { get; set; }
-        public string REGON { get; set; }
-        public string daneAdresowe { get; set; }
-        public string PowiatGmina { get; set; }
-        public string Wojewodztwo { get; set; }
-        public string RachunekBankowy { get; set; }
+        public string? NazwaSkrocona { get; set; }
+        public string NazwaPelna { get; set; } = null!;
+        public string NIP { get; set; } = null!;
+        public string REGON { get; set; } = null!;
+        public string daneAdresowe { get; set; } = null!;
+        public string? PowiatGmina { get; set; }
+        public string Wojewodztwo { get; set; } = null!;
+        public string RachunekBankowy { get; set; } = null!;
         public FormaPrawna FormaPrawna { get; set; }
-        public UrzadSkarbowy UrzadSkarbowy { get; set; }
 
         public virtual UrzadSkarbowy UrzadSkarbowy { get; set; }
         public int UrzadSkarbowyId { get; set; }

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ZarzadzaniePrzedsiebiorstwem.DAL/1.0.0": {
+        "dependencies": {
+          "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0"
+        },
+        "runtime": {
+          "ZarzadzaniePrzedsiebiorstwem.DAL.dll": {}
+        }
+      },
+      "ZarzadzaniePrzedsiebiorstwem.Model/1.0.0": {
+        "runtime": {
+          "ZarzadzaniePrzedsiebiorstwem.Model.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ZarzadzaniePrzedsiebiorstwem.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ZarzadzaniePrzedsiebiorstwem.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

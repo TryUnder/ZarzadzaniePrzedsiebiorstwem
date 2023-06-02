@@ -1,0 +1,80 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ZarzadzaniePrzedsiebiorstwem.Web/1.0.0": {
+        "dependencies": {
+          "ZarzadzaniePrzedsiebiorstwem.DAL": "1.0.0",
+          "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0",
+          "ZarzadzaniePrzedsiebiorstwem.Services": "1.0.0",
+          "ZarzadzaniePrzedsiebiorstwem.ViewModels": "1.0.0"
+        },
+        "runtime": {
+          "ZarzadzaniePrzedsiebiorstwem.Web.dll": {}
+        }
+      },
+      "ZarzadzaniePrzedsiebiorstwem.DAL/1.0.0": {
+        "dependencies": {
+          "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0"
+        },
+        "runtime": {
+          "ZarzadzaniePrzedsiebiorstwem.DAL.dll": {}
+        }
+      },
+      "ZarzadzaniePrzedsiebiorstwem.Model/1.0.0": {
+        "runtime": {
+          "ZarzadzaniePrzedsiebiorstwem.Model.dll": {}
+        }
+      },
+      "ZarzadzaniePrzedsiebiorstwem.Services/1.0.0": {
+        "dependencies": {
+          "ZarzadzaniePrzedsiebiorstwem.DAL": "1.0.0",
+          "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0",
+          "ZarzadzaniePrzedsiebiorstwem.ViewModels": "1.0.0"
+        },
+        "runtime": {
+          "ZarzadzaniePrzedsiebiorstwem.Services.dll": {}
+        }
+      },
+      "ZarzadzaniePrzedsiebiorstwem.ViewModels/1.0.0": {
+        "dependencies": {
+          "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0"
+        },
+        "runtime": {
+          "ZarzadzaniePrzedsiebiorstwem.ViewModels.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ZarzadzaniePrzedsiebiorstwem.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ZarzadzaniePrzedsiebiorstwem.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ZarzadzaniePrzedsiebiorstwem.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ZarzadzaniePrzedsiebiorstwem.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ZarzadzaniePrzedsiebiorstwem.ViewModels/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

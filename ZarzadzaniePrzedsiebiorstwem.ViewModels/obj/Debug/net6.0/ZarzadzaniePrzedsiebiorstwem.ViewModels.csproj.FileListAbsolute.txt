@@ -1,0 +1,15 @@
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.deps.json
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.dll
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.pdb
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.dll
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.pdb
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj.AssemblyReference.cache
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.AssemblyInfoInputs.cache
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.AssemblyInfo.cs
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj.CoreCompileInputs.cache
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj.CopyComplete
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.dll
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\refint\ZarzadzaniePrzedsiebiorstwem.ViewModels.dll
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.ViewModels.pdb
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.ViewModels\obj\Debug\net6.0\ref\ZarzadzaniePrzedsiebiorstwem.ViewModels.dll

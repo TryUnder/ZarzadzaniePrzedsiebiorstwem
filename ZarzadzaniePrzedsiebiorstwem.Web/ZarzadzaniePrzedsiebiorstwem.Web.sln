@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZarzadzaniePrzedsiebiorstwe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZarzadzaniePrzedsiebiorstwem.Services", "..\ZarzadzaniePrzedsiebiorstwem.Services\ZarzadzaniePrzedsiebiorstwem.Services.csproj", "{D12D8453-75EE-4FFE-B209-969A25E1DC08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZarzadzaniePrzedsiebiorstwem.ViewModels", "..\ZarzadzaniePrzedsiebiorstwem.ViewModels\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj", "{0EF6CFD3-93CC-4450-9A46-2D5DA9F459D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D12D8453-75EE-4FFE-B209-969A25E1DC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D12D8453-75EE-4FFE-B209-969A25E1DC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D12D8453-75EE-4FFE-B209-969A25E1DC08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EF6CFD3-93CC-4450-9A46-2D5DA9F459D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EF6CFD3-93CC-4450-9A46-2D5DA9F459D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EF6CFD3-93CC-4450-9A46-2D5DA9F459D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EF6CFD3-93CC-4450-9A46-2D5DA9F459D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,6 +18,10 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels
         public string PowiatGmina { get; set; }
         public string Wojewodztwo { get; set; }
         public string RachunekBankowy { get; set; }
+        public FormaPrawna FormaPrawna { get; set; }
+        public UrzadSkarbowy UrzadSkarbowy { get; set; }
 
+        public virtual UrzadSkarbowy UrzadSkarbowy { get; set; }
+        public int UrzadSkarbowyId { get; set; }
     }
 }

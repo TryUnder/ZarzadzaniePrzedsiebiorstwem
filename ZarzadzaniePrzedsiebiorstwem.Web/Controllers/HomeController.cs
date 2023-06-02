@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using ZarzadzaniePrzedsiebiorstwem.Web.Models;
+using ZarzadzaniePrzedsiebiorstwem.Model;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 	public class HomeController : Controller {
@@ -18,9 +18,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 			return View();
 		}
 
+		/*
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error() {
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+		*/
 	}
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ZarzadzaniePrzedsiebiorstwem.DAL.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 

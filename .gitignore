@@ -21,3 +21,8 @@
 /ZarzadzaniePrzedsiebiorstwem.Web/.vs/ZarzadzaniePrzedsiebiorstwem.Web/v17/.suo
 /ZarzadzaniePrzedsiebiorstwem.Model/ZarzadzaniePrzedsiebiorstwem.Model.csproj
 *.vsidx
+*.dll
+*.json
+*.pdb
+*.cache
+*.csproj

@@ -1,19 +1,35 @@
-﻿<style>
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
+
+<style>
     section.section {
         margin-top: 0;
         padding-top: 1.5rem;
         margin-bottom: 0;
         padding-bottom: 1.5rem;
         height: calc(100vh - 3rem);
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background: linear-gradient(120deg, #00D1B2, #FFFFFF);
     }
 </style>
 
 <section class="section">
-    <form>
-        xx
+    <div class="message is-primary">
+        <p class="has-text-centered">Wprowadź dane do rejestracji w serwisie</p>
+    </div>
+    <form asp-controller="User" asp-action="RegisterAccount" method="post">
+        <div class="field">
+            <label asp-for="Login" class="label">Login</label>
+            <div class="control">
+                <input asp-for="Login" class="input is-medium is-fullwidth" type="text" placeholder="Login" />
+            </div>
+        </div>
+       
+        <div class="field">
+            <label asp-for="Haslo" class="label">Hasło</label>
+            <div class="control">
+                <input asp-for="Haslo" class="input is-medium is-fullwidth" type="text" placeholder="Haslo" />
+            </div>
+        </div>
+
+        <button type="submit" class="button">Zarejestruj</button>
     </form>
 </section>

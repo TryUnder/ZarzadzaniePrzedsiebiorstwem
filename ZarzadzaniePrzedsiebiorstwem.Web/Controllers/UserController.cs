@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
     public class UserController : Controller {
@@ -8,6 +9,10 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 
         public IActionResult WidokRejestracji() {
             return View("WidokRejestracji");
+        }
+
+        [HttpPost] public IActionResult RegisterAccount(User user) {
+            return RedirectToAction("RegisteredAccount", "User");
         }
     }
 }

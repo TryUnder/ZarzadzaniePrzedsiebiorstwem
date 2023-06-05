@@ -8,7 +8,8 @@ using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Interfaces {
     public interface IUserService {
         User RegisterAccount(User user);
+        string? GetSessionIdFromCookie();
         void LoginUser(User user);
-        void LogoutUser(User user);
+        void LogoutUser();
     }
 }

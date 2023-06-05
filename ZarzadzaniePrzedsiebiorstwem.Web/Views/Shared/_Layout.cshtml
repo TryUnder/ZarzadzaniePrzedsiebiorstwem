@@ -1,5 +1,4 @@
-﻿﻿
-<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
 	<meta charset="utf-8" />
@@ -43,17 +42,23 @@
 									Zarejestruj
 								</a>
 							</div>
-
+							@{
+								var sessionId = Context.Request.Cookies["SessionId"];
+							}
 							<div class="navbar-item">
-								<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokLogowania">
-									Zaloguj
-								</a>
+								@if (string.IsNullOrEmpty(sessionId)) {
+									<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokLogowania">
+										Zaloguj
+									</a>
+								}
 							</div>
 
 							<div class="navbar-item">
-								<a id="najedz" class="button is-active" asp-controller="User" asp-action="Wyloguj">
-									Wyloguj
-								</a>
+								@if (!string.IsNullOrEmpty(sessionId)) {
+									<a id="najedz" class="button is-active" asp-controller="User" asp-action="Wyloguj">
+										Wyloguj
+									</a>
+								}
 							</div>
 
 							<div class="navbar-item">

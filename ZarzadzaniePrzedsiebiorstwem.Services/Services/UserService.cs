@@ -34,7 +34,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
                 : JsonConvert.DeserializeObject<List<User>>(userIdsString);
         }
 
-        public void UpdateSession(User user) {
+        public string? GetSessionIdFromCookie() {
+            return _httpContextAccessor.HttpContext.Request.Cookies["SessionId"];
+        }
+
+        private void UpdateSession(User user) {
             
             var userList = GetUserListFromSession();
             if (userList.Any(u => u.Id == user.Id)) {
@@ -49,7 +53,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 
                 _httpContextAccessor.HttpContext.Response.Cookies.Append("SessionId", sessionId, cookieOptions);
             }
-            Console.WriteLine(string.Join(", ", userList));
         }
 
         public User RegisterAccount(User user) {
@@ -81,7 +84,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
                     throw new Exception("Podane hasło jest nieprawidłowe");
                 }
 
-                var sessionId = _httpContextAccessor.HttpContext.Request.Cookies["SessionId"];
+                var sessionId = GetSessionIdFromCookie();
 
                 if (!string.IsNullOrEmpty(sessionId)) {
                     throw new Exception("Inny użytkownik jest już zalogowany na tym komputerze");
@@ -95,8 +98,16 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
             }
         }
 
-        public void LogoutUser(User user) {
-
+        public void LogoutUser() {
+            try {
+                var sessionId = GetSessionIdFromCookie();
+                if (!string.IsNullOrEmpty(sessionId)) {
+                    _httpContextAccessor.HttpContext.Response.Cookies.Delete("SessionId");
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

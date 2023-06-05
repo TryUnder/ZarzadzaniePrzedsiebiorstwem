@@ -29,8 +29,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Wyloguj(User user) {
-            _userService.LoginUser(user);
+        public IActionResult Wyloguj() {
+            var sessionId = _userService.GetSessionIdFromCookie();
+            if (!string.IsNullOrEmpty(sessionId)) {
+                _userService.LogoutUser();
+            }
             return RedirectToAction("Index", "Home");
         }
     }

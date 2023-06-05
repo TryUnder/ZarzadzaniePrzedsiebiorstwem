@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 using ZarzadzaniePrzedsiebiorstwem.Services.Interfaces;
 using ZarzadzaniePrzedsiebiorstwem.DAL.EF;
+using Microsoft.AspNetCore.Http;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
     public class UserService : BaseService, IUserService {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ISession _session;
 
-        public UserService(MyDbContext dbContext) : base(dbContext) { }
+        public UserService(MyDbContext dbContext, IHttpContextAccessor httpContextAccessor) : base(dbContext) { 
+            _httpContextAccessor = httpContextAccessor;
+            _session = _httpContextAccessor.HttpContext.Session;
+        }
 
         public User RegisterAccount(User user) {
             try {
@@ -41,8 +47,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
                     throw new Exception("Podane hasło jest nieprawidłowe");
                 }
 
+                _session.Set("UserId", Encoding.UTF8.GetBytes(existingUser.Id.ToString()));
+                _session.Set("UserName", Encoding.UTF8.GetBytes(existingUser.Login));
 
-                //tutaj bedzie ustawienie sesji dla zalogowanego uzytkownika
             } catch (Exception e) {
                 Console.WriteLine(e);
                 throw;

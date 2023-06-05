@@ -5,10 +5,10 @@ using ZarzadzaniePrzedsiebiorstwem.Services.Interfaces;
 namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
     public class UserController : Controller {
 
-        private readonly IUserService _registerAccount;
+        private readonly IUserService _userService;
 
-        public UserController(IUserService registerAccount) {
-            _registerAccount = registerAccount;
+        public UserController(IUserService userService) {
+            _userService = userService;
         }
 
         public IActionResult WidokRejestracji() {
@@ -16,7 +16,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
         }
 
         [HttpPost] public IActionResult RegisterAccount(User user) {
-            var autor = _registerAccount.RegisterAccount(user);
+            var autor = _userService.RegisterAccount(user);
             return View("ZarejestrowanyUzytkownik", autor);
         }
 
@@ -24,8 +24,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             return View("WidokLogowania");
         }
 
-        //[HttpPost] public IActionResult LoginUser(User user) {
-
-        //}
+        [HttpPost] public IActionResult LoginUser(User user) {
+            _userService.LoginUser(user);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

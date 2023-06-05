@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Interfaces {
-    public interface IRegisterAccount {
+    public interface IUserService {
         User RegisterAccount(User user);
+        void LoginUser(User user);
     }
 }

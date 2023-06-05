@@ -1,0 +1,33 @@
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
+
+<style>
+	section.section {
+		margin-top: 0;
+		padding-top: 1.5rem;
+		margin-bottom: 0;
+		padding-bottom: 1.5rem;
+		height: calc(100vh - 3rem);
+		background: linear-gradient(120deg, #00D1B2, #FFFFFF);
+	}
+</style>
+
+<section class="section">
+	<div class="message is-primary">
+		<p class="has-text-centered">Wprowadź dane do logowania w serwisie</p>
+	</div>
+		<form asp-controller="User" asp-action="LoginUser" method="post">
+			<div class="field">
+				<label asp-for="Login" class="label">Login</label>
+				<input asp-for="Login" class="input is-medium is-fullwidth" type="text" placeholder="Login" />
+			</div>
+
+			<div class="field">
+				<label asp-for="Haslo" class="label">Hasło</label>
+				<input asp-for="Haslo" class="input is-medium is-fullwidth" type="text" placeholder="Haslo" />
+			</div>
+
+			<div class="field">
+				<button type="submit" class="button">Zaloguj</button>
+			</div>
+		</form>
+</section>

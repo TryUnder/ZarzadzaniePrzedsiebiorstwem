@@ -18,18 +18,16 @@
     <form asp-controller="User" asp-action="RegisterAccount" method="post">
         <div class="field">
             <label asp-for="Login" class="label">Login</label>
-            <div class="control">
-                <input asp-for="Login" class="input is-medium is-fullwidth" type="text" placeholder="Login" />
-            </div>
+            <input asp-for="Login" class="input is-medium is-fullwidth" type="text" placeholder="Login" />
         </div>
        
         <div class="field">
             <label asp-for="Haslo" class="label">Hasło</label>
-            <div class="control">
-                <input asp-for="Haslo" class="input is-medium is-fullwidth" type="text" placeholder="Haslo" />
-            </div>
+            <input asp-for="Haslo" class="input is-medium is-fullwidth" type="text" placeholder="Haslo" />
         </div>
 
-        <button type="submit" class="button">Zarejestruj</button>
+        <div class="field">
+            <button type="submit" class="button">Zarejestruj</button>
+        </div>
     </form>
 </section>

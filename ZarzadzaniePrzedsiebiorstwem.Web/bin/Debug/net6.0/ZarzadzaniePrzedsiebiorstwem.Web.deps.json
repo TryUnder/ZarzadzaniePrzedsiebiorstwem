@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "ZarzadzaniePrzedsiebiorstwem.Web/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "6.0.16",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.16",
           "ZarzadzaniePrzedsiebiorstwem.DAL": "1.0.0",
           "ZarzadzaniePrzedsiebiorstwem.Model": "1.0.0",

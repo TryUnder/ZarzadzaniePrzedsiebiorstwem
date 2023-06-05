@@ -29,15 +29,20 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 
         public void LoginUser(User user) {
             try {
-                if (!_dbContext.User!.Any(u => u.Login == user.Login)) {
+                var existingUser = _dbContext.User.FirstOrDefault(u => u.Login == user.Login);
+
+                if (existingUser == null) {
                     throw new Exception("Użytkownik o podanym loginie nie istnieje");
                 }
 
-                if (!_dbContext.User!.Where(u => u.Login == user.Login).Any(u => u.Haslo == user.Haslo)) {
-                    Console.WriteLine("Podałeś złe hasło");
-                } else {
-                    //tutaj bedzie ustawienie sesji dla zalogowanego uzytkownika
+                bool isPasswordValid = existingUser.Haslo == user.Haslo;
+
+                if (!isPasswordValid) {
+                    throw new Exception("Podane hasło jest nieprawidłowe");
                 }
+
+
+                //tutaj bedzie ustawienie sesji dla zalogowanego uzytkownika
             } catch (Exception e) {
                 Console.WriteLine(e);
                 throw;

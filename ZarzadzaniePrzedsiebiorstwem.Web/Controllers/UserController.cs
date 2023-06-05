@@ -23,5 +23,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
         public IActionResult WidokLogowania() {
             return View("WidokLogowania");
         }
+
+        //[HttpPost] public IActionResult LoginUser(User user) {
+
+        //}
     }
 }

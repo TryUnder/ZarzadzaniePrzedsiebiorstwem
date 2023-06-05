@@ -15,30 +15,41 @@ using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
     public class UserService : BaseService, IUserService {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ISession _session;
+        private ISession _session => _httpContextAccessor.HttpContext.Session;
 
         public UserService(MyDbContext dbContext, IHttpContextAccessor httpContextAccessor) : base(dbContext) { 
             _httpContextAccessor = httpContextAccessor;
-            _session = _httpContextAccessor.HttpContext.Session;
+        }
+
+        private List<User>? GetUserListFromSession() {
+            var userIdsBytes = _session.Get("UserIds");
+
+            if (userIdsBytes == null) {
+                return new List<User>();
+            }
+
+            var userIdsString = Encoding.UTF8.GetString(userIdsBytes);
+
+            return string.IsNullOrEmpty(userIdsString) ? new List<User>()
+                : JsonConvert.DeserializeObject<List<User>>(userIdsString);
         }
 
         public void UpdateSession(User user) {
-            var userIdsBytes = _session.Get("UserIds");
-            List<int>? userIds = userIdsBytes != null
-                ? JsonConvert.DeserializeObject<List<int>>(Encoding.UTF8.GetString(userIdsBytes))
-                : new List<int>();
-            if (userIds.Any(id => user.Id == id)) {
+            
+            var userList = GetUserListFromSession();
+            if (userList.Any(u => u.Id == user.Id)) {
                 throw new Exception("Użytkownik jest już zalogowany");
             } else {
-                userIds.Add(user.Id);
-                _session.Set("UserIds", Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(userIds)));
+                var sessionId = Guid.NewGuid().ToString();
+                userList.Add(user);
+                _session.SetString("UserIds", JsonConvert.SerializeObject(userList));
                 var cookieOptions = new CookieOptions {
                     Expires = DateTime.Now.AddMinutes(30)
                 };
 
-                _httpContextAccessor.HttpContext.Response.Cookies.Append("LoginCookie", user.Id.ToString(), cookieOptions);
+                _httpContextAccessor.HttpContext.Response.Cookies.Append("SessionId", sessionId, cookieOptions);
             }
-            Console.WriteLine(string.Join(", ", userIds));
+            Console.WriteLine(string.Join(", ", userList));
         }
 
         public User RegisterAccount(User user) {
@@ -70,12 +81,22 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
                     throw new Exception("Podane hasło jest nieprawidłowe");
                 }
 
+                var sessionId = _httpContextAccessor.HttpContext.Request.Cookies["SessionId"];
+
+                if (!string.IsNullOrEmpty(sessionId)) {
+                    throw new Exception("Inny użytkownik jest już zalogowany na tym komputerze");
+                }
+
                 UpdateSession(existingUser);
 
             } catch (Exception e) {
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public void LogoutUser(User user) {
+
         }
     }
 }

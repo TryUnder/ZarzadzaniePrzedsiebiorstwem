@@ -81,3 +81,4 @@ D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\M
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\Newtonsoft.Json.dll

@@ -28,5 +28,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             _userService.LoginUser(user);
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult 
     }
 }

@@ -9,5 +9,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Interfaces {
     public interface IUserService {
         User RegisterAccount(User user);
         void LoginUser(User user);
+        void LogoutUser(User user);
     }
 }

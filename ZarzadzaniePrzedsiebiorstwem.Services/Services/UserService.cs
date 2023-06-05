@@ -32,6 +32,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
             } else {
                 userIds.Add(user.Id);
                 _session.Set("UserIds", Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(userIds)));
+                var cookieOptions = new CookieOptions {
+                    Expires = DateTime.Now.AddMinutes(30)
+                };
+
+                _httpContextAccessor.HttpContext.Response.Cookies.Append("LoginCookie", user.Id.ToString(), cookieOptions);
             }
             Console.WriteLine(string.Join(", ", userIds));
         }

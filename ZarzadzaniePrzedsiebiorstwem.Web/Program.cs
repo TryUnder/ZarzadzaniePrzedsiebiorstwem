@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ZarzadzaniePrzedsiebiorstwem.DAL.EF;
+using ZarzadzaniePrzedsiebiorstwem.Services.Interfaces;
+using ZarzadzaniePrzedsiebiorstwem.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("MyConnection");
 builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer(connectionString));
+builder.Services.AddScoped<IRegisterAccount, RegisterAccountService>();
 
 var app = builder.Build();
 

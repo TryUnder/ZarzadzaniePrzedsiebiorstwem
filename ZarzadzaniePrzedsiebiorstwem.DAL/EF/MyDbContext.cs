@@ -25,7 +25,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			base.OnModelCreating(modelBuilder);
-
 		}
 
 	}

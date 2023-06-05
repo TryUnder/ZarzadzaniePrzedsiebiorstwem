@@ -50,11 +50,7 @@
 									<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokLogowania">
 										Zaloguj
 									</a>
-								}
-							</div>
-
-							<div class="navbar-item">
-								@if (!string.IsNullOrEmpty(sessionId)) {
+								} else {
 									<a id="najedz" class="button is-active" asp-controller="User" asp-action="Wyloguj">
 										Wyloguj
 									</a>

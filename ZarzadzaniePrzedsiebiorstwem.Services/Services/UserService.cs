@@ -13,101 +13,116 @@ using Newtonsoft.Json;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
-    public class UserService : BaseService, IUserService {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private ISession _session => _httpContextAccessor.HttpContext.Session;
+	public class UserService : BaseService, IUserService {
+		private readonly IHttpContextAccessor _httpContextAccessor;
+		private ISession _session => _httpContextAccessor.HttpContext.Session;
 
-        public UserService(MyDbContext dbContext, IHttpContextAccessor httpContextAccessor) : base(dbContext) { 
-            _httpContextAccessor = httpContextAccessor;
-        }
+		public UserService(MyDbContext dbContext, IHttpContextAccessor httpContextAccessor) : base(dbContext) {
+			_httpContextAccessor = httpContextAccessor;
+		}
 
-        private List<User>? GetUserListFromSession() {
-            var userIdsBytes = _session.Get("UserIds");
+		private List<User>? GetUserListFromSession() {
+			var userIdsBytes = _session.Get("UserIds");
 
-            if (userIdsBytes == null) {
-                return new List<User>();
-            }
+			if (userIdsBytes == null) {
+				return new List<User>();
+			}
 
-            var userIdsString = Encoding.UTF8.GetString(userIdsBytes);
+			var userIdsString = Encoding.UTF8.GetString(userIdsBytes);
 
-            return string.IsNullOrEmpty(userIdsString) ? new List<User>()
-                : JsonConvert.DeserializeObject<List<User>>(userIdsString);
-        }
+			return string.IsNullOrEmpty(userIdsString) ? new List<User>()
+				: JsonConvert.DeserializeObject<List<User>>(userIdsString);
+		}
 
-        public string? GetSessionIdFromCookie() {
-            return _httpContextAccessor.HttpContext.Request.Cookies["SessionId"];
-        }
+		public string? GetSessionIdFromCookie() {
+			return _httpContextAccessor.HttpContext.Request.Cookies["LoginCookie"];
+		}
 
-        private void UpdateSession(User user) {
-            
-            var userList = GetUserListFromSession();
-            if (userList.Any(u => u.Id == user.Id)) {
-                throw new Exception("Użytkownik jest już zalogowany");
-            } else {
-                var sessionId = Guid.NewGuid().ToString();
-                userList.Add(user);
-                _session.SetString("UserIds", JsonConvert.SerializeObject(userList));
-                var cookieOptions = new CookieOptions {
-                    Expires = DateTime.Now.AddMinutes(30)
-                };
+		private void UpdateSession(User user) {
+			var userList = GetUserListFromSession();
+			var existingUser = userList.FirstOrDefault(u => u.Login == user.Login);
 
-                _httpContextAccessor.HttpContext.Response.Cookies.Append("SessionId", sessionId, cookieOptions);
-            }
-        }
+			if (existingUser != null) {
+				var sessionId = GetSessionIdFromCookie();
+				if (sessionId != null && existingUser.Id.ToString() == sessionId) {
+					var userIndex = userList.FindIndex(u => u.Login == user.Login);
+					userList[userIndex] = user;
+					_session.SetString("UserIds", JsonConvert.SerializeObject(userList));
+				} else {
+					throw new Exception("Inny użytkownik jest już zalogowany na tym komputerze");
+				}
+			} else {
+				var sessionId = Guid.NewGuid().ToString();
+				userList.Add(user);
+				_session.SetString("UserIds", JsonConvert.SerializeObject(userList));
+				var cookieOptions = new CookieOptions {
+					Expires = DateTime.Now.AddMinutes(30)
+				};
 
-        public User RegisterAccount(User user) {
-            try {
-                if (_dbContext.User!.Any(u => u.Login == user.Login)) {
-                    throw new Exception("Użytkownik o podanym loginie już istnieje");
-                } else {
-                    _dbContext.User!.Add(user);
-                    _dbContext.SaveChanges();
-                }
-                return user;
-            } catch (Exception e) {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
+				_httpContextAccessor.HttpContext.Response.Cookies.Append("LoginCookie", user.Id.ToString(), cookieOptions);
+			}
+		}
 
-        public void LoginUser(User user) {
-            try {
-                var existingUser = _dbContext.User.FirstOrDefault(u => u.Login == user.Login);
+		public User RegisterAccount(User user) {
+			try {
+				if (_dbContext.User!.Any(u => u.Login == user.Login)) {
+					throw new Exception("Użytkownik o podanym loginie już istnieje");
+				} else {
+					_dbContext.User!.Add(user);
+					_dbContext.SaveChanges();
+				}
+				return user;
+			} catch (Exception e) {
+				Console.WriteLine(e);
+				throw;
+			}
+		}
 
-                if (existingUser == null) {
-                    throw new Exception("Użytkownik o podanym loginie nie istnieje");
-                }
+		public void LoginUser(User user) {
+			try {
+				var existingUser = _dbContext.User.FirstOrDefault(u => u.Login == user.Login);
 
-                bool isPasswordValid = existingUser.Haslo == user.Haslo;
+				if (existingUser == null) {
+					throw new Exception("Użytkownik o podanym loginie nie istnieje");
+				}
 
-                if (!isPasswordValid) {
-                    throw new Exception("Podane hasło jest nieprawidłowe");
-                }
+				bool isPasswordValid = existingUser.Haslo == user.Haslo;
 
-                var sessionId = GetSessionIdFromCookie();
+				if (!isPasswordValid) {
+					throw new Exception("Podane hasło jest nieprawidłowe");
+				}
 
-                if (!string.IsNullOrEmpty(sessionId)) {
-                    throw new Exception("Inny użytkownik jest już zalogowany na tym komputerze");
-                }
+				var sessionId = GetSessionIdFromCookie();
 
-                UpdateSession(existingUser);
+				if (!string.IsNullOrEmpty(sessionId)) {
+					throw new Exception("Inny użytkownik jest już zalogowany na tym komputerze");
+				}
 
-            } catch (Exception e) {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
+				UpdateSession(existingUser);
 
-        public void LogoutUser() {
-            try {
-                var sessionId = GetSessionIdFromCookie();
-                if (!string.IsNullOrEmpty(sessionId)) {
-                    _httpContextAccessor.HttpContext.Response.Cookies.Delete("SessionId");
-                }
-            } catch (Exception e) {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-    }
+			} catch (Exception e) {
+				Console.WriteLine(e);
+				throw;
+			}
+		}
+
+		public void LogoutUser() {
+			try {
+				var userList = GetUserListFromSession();
+				var sessionId = GetSessionIdFromCookie();
+		
+				if (!string.IsNullOrEmpty(sessionId)) {
+					var loggedUser = userList.FirstOrDefault(u => u.Id.ToString() == sessionId);
+					if (loggedUser != null) {
+						userList.Remove(loggedUser);
+						_session.SetString("UserIds", JsonConvert.SerializeObject(userList));
+					}
+					_httpContextAccessor.HttpContext.Response.Cookies.Delete("LoginCookie");
+				}
+				_httpContextAccessor.HttpContext.Response.Cookies.Delete("LoginCookie");
+			} catch (Exception e) {
+				Console.WriteLine(e);
+				throw;
+			}
+	}	}
 }

@@ -1,4 +1,5 @@
-﻿﻿<!DOCTYPE html>
+﻿@inject ZarzadzaniePrzedsiebiorstwem.Services.Interfaces.IUserService _userService
+<!DOCTYPE html>
 <html lang="pl">
 <head>
 	<meta charset="utf-8" />
@@ -37,25 +38,28 @@
 					</div>
 					<div id="navbarMenuHeroB" class="navbar-menu is-active">
 						<div class="navbar-end">
-							<div class="navbar-item">
-								<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokRejestracji">
-									Zarejestruj
-								</a>
-							</div>
 							@{
-								var sessionId = Context.Request.Cookies["SessionId"];
-							}
-							<div class="navbar-item">
-								@if (string.IsNullOrEmpty(sessionId)) {
-									<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokLogowania">
-										Zaloguj
-									</a>
+								string sessionId = @_userService.GetSessionIdFromCookie();
+
+								if (!string.IsNullOrEmpty(sessionId)) {
+									<div class="navbar-item">
+										<a id="najedz" class="button is-active" asp-controller="User" asp-action="Wyloguj">
+											Wyloguj
+										</a>
+									</div>
 								} else {
-									<a id="najedz" class="button is-active" asp-controller="User" asp-action="Wyloguj">
-										Wyloguj
-									</a>
+									<div class="navbar-item">
+										<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokRejestracji">
+											Zarejestruj
+										</a>
+									</div>
+									<div class="navbar-item">
+										<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokLogowania">
+											Zaloguj
+										</a>
+									</div>
 								}
-							</div>
+							}
 
 							<div class="navbar-item">
 								<a id="najedz" class="button is-active" asp-controller="Home" asp-action="Index">

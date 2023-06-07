@@ -1,4 +1,5 @@
 ﻿@inject ZarzadzaniePrzedsiebiorstwem.Services.Interfaces.IUserService _userService
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -8,6 +9,7 @@
 	<link rel="stylesheet" href="~/ZarzadzaniePrzedsiebiorstwem.Web.styles.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/css/bulma.min.css" />
 	<link rel="stylesheet" href="~/css/basicStyling.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>ZarzadzaniePrzedsiebiorstwem</title>
 
@@ -17,6 +19,49 @@
 			margin: 0;
 			padding: 0;
 		}
+
+		.hero-head {
+			background: linear-gradient(120deg, #00D1B2, #FFFFFF);
+		}
+
+		.navbar-brand {
+			color: #FFF;
+			font-size: 24px;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		.navbar-burger span {
+			background-color: #FFF;
+		}
+
+		.navbar-menu {
+			background-color: transparent;
+		}
+
+		.navbar-item a.button {
+			border-color: #FFF;
+		}
+
+		.navbar-item a.button.is-active {
+				background-color: transparent;
+				color: #FFF;
+		}
+		
+		.hero-foot {
+			background: linear-gradient(120deg, #00D1B2, #FFFFFF);
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.tabs {
+			background-color: transparent;
+		}
+
+		.has-text-link li {
+			color: #3273dc;
+		}
 	</style>
 
 </head>
@@ -24,11 +69,11 @@
 
 	<section class="hero is-white">
 		<div class="hero-head">
-			<nav class="navbar card" style="background: LINEAR-GRADIENT(120DEG, #00D1B2, #FFFFFF)">
+			<nav class="navbar card">
 				<div class="container">
-					<div class="navbar-brand is-size-4">
+					<div class="navbar-brand">
 						<div class="navbar-item">
-							<a class="navbar-item">Magenary</a>
+							<a href="#" class="navbar-item">Magenary</a>
 						</div>
 						<span class="navbar-burger" data-target="navbarMenuHeroB">
 							<span></span>
@@ -36,7 +81,7 @@
 							<span></span>
 						</span>
 					</div>
-					<div id="navbarMenuHeroB" class="navbar-menu is-active">
+					<div id="navbarMenuHeroB" class="navbar-menu">
 						<div class="navbar-end">
 							@{
 								string sessionId = @_userService.GetSessionIdFromCookie();
@@ -73,11 +118,31 @@
 		</div>
 	</section>
 
-
 	<section class="section">
 		<div class="container">
 			@RenderBody()
 		</div>
 	</section>
+
+	<div class="hero-foot">
+		<nav class="tabs">
+			<div class="container has-text-link">
+				<ul>
+					<li>
+						<a><i class="fab fa-github"></i></a>
+					</li>
+					<li>
+						<a><i class="fab fa-facebook"></i></a>
+					</li>
+					<li>
+						<a><i class="fab fa-instagram"></i></a>
+					</li>
+					<li>
+						<a><i class="fab fa-twitter"></i></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 </body>
 </html>

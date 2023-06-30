@@ -29,7 +29,6 @@ D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\s
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\staticwebassets.pack.json
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\staticwebassets.build.json
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\staticwebassets.development.json
-D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\scopedcss\bundle\ZarzadzaniePrzedsiebiorstwem.Web.styles.css
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\scopedcss\projectbundle\ZarzadzaniePrzedsiebiorstwem.Web.bundle.scp.css
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Web.csproj.CopyComplete
@@ -82,3 +81,4 @@ D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\M
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css

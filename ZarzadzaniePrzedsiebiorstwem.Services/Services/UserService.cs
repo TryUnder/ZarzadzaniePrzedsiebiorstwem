@@ -106,7 +106,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 			}
 		}
 
-		public void LogoutUser() {
+		public User LogoutUser() {
 			try {
 				var userList = GetUserListFromSession();
 				var sessionId = GetSessionIdFromCookie();
@@ -118,11 +118,14 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 						_session.SetString("UserIds", JsonConvert.SerializeObject(userList));
 					}
 					_httpContextAccessor.HttpContext.Response.Cookies.Delete("LoginCookie");
+					return loggedUser;
 				}
 				_httpContextAccessor.HttpContext.Response.Cookies.Delete("LoginCookie");
 			} catch (Exception e) {
 				Console.WriteLine(e);
 				throw;
 			}
-	}	}
+			return null;
+		}
+	}
 }

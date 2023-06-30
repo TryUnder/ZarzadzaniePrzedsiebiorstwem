@@ -29,12 +29,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 		[HttpPost]
 		public IActionResult LoginUser(User user) {
 			_userService.LoginUser(user);
-			return RedirectToAction("Index", "Home");
+			return View("WidokAutoryzowany", user);
 		}
 
 		public IActionResult Wyloguj() {
-			_userService.LogoutUser();
-			return View("WidokWylogowania");
+			User loggedUser = _userService.LogoutUser();
+			return View("WidokWylogowania", loggedUser);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿@inject ZarzadzaniePrzedsiebiorstwem.Services.Interfaces.IUserService _userService
-
+@using Microsoft.AspNetCore.Http
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -21,7 +21,9 @@
 		}
 
 		.hero-head {
-			background: linear-gradient(120deg, #00D1B2, #FFFFFF);
+			background-color: #8EC5FC;
+			background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
 		}
 
 		.navbar-brand {
@@ -49,7 +51,9 @@
 		}
 		
 		.hero-foot {
-			background: linear-gradient(120deg, #00D1B2, #FFFFFF);
+			background-color: #8EC5FC;
+			background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
 			position: fixed;
 			bottom: 0;
 			width: 100%;
@@ -63,7 +67,6 @@
 			color: #3273dc;
 		}
 	</style>
-
 </head>
 <body>
 
@@ -73,7 +76,7 @@
 				<div class="container">
 					<div class="navbar-brand">
 						<div class="navbar-item">
-							<a href="#" class="navbar-item">Magenary</a>
+							<a href="#" class="button is-active">Magenary</a>
 						</div>
 						<span class="navbar-burger" data-target="navbarMenuHeroB">
 							<span></span>
@@ -84,7 +87,7 @@
 					<div id="navbarMenuHeroB" class="navbar-menu">
 						<div class="navbar-end">
 							@{
-								string sessionId = @_userService.GetSessionIdFromCookie();
+								string? sessionId = @_userService.GetSessionIdFromCookie();
 
 								if (!string.IsNullOrEmpty(sessionId)) {
 									<div class="navbar-item">

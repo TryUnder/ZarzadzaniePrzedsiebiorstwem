@@ -112,6 +112,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<int>("UrzadSkarbowyId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Wojewodztwo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -123,6 +126,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("UrzadSkarbowyId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Przedsiebiorstwo");
                 });
@@ -174,7 +179,15 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("UrzadSkarbowy");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

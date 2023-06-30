@@ -77,7 +77,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     Wojewodztwo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RachunekBankowy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FormaPrawna = table.Column<int>(type: "int", nullable: false),
-                    UrzadSkarbowyId = table.Column<int>(type: "int", nullable: false)
+                    UrzadSkarbowyId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,6 +87,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                         name: "FK_Przedsiebiorstwo_UrzadSkarbowy_UrzadSkarbowyId",
                         column: x => x.UrzadSkarbowyId,
                         principalTable: "UrzadSkarbowy",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Przedsiebiorstwo_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -99,6 +106,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                 name: "IX_Przedsiebiorstwo_UrzadSkarbowyId",
                 table: "Przedsiebiorstwo",
                 column: "UrzadSkarbowyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Przedsiebiorstwo_UserId",
+                table: "Przedsiebiorstwo",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -110,10 +122,10 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                 name: "Przedsiebiorstwo");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "UrzadSkarbowy");
 
             migrationBuilder.DropTable(
-                name: "UrzadSkarbowy");
+                name: "User");
         }
     }
 }

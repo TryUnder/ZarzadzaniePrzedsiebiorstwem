@@ -10,6 +10,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Interfaces {
         User RegisterAccount(User user);
         string? GetSessionIdFromCookie();
         void LoginUser(User user);
-        void LogoutUser();
+        User LogoutUser();
     }
 }

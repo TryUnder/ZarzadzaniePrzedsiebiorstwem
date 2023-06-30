@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels
 {
@@ -22,5 +23,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels
 
         public virtual UrzadSkarbowy UrzadSkarbowy { get; set; } = null!;
         public int UrzadSkarbowyId { get; set; }
+
+        public virtual User User { get; set; } = null!;
+        public int UserId { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿@inject ZarzadzaniePrzedsiebiorstwem.Services.Interfaces.IUserService _userService
 @using Microsoft.AspNetCore.Http
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -12,7 +13,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>ZarzadzaniePrzedsiebiorstwem</title>
-
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<style>
 		html,
 		body {
@@ -86,33 +88,8 @@
 					</div>
 					<div id="navbarMenuHeroB" class="navbar-menu">
 						<div class="navbar-end">
-							@{
-								string? sessionId = @_userService.GetSessionIdFromCookie();
-
-								if (!string.IsNullOrEmpty(sessionId)) {
-									<div class="navbar-item">
-										<a id="najedz" class="button is-active" asp-controller="User" asp-action="Wyloguj">
-											Wyloguj
-										</a>
-									</div>
-								} else {
-									<div class="navbar-item">
-										<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokRejestracji">
-											Zarejestruj
-										</a>
-									</div>
-									<div class="navbar-item">
-										<a id="najedz" class="button is-active" asp-controller="User" asp-action="WidokLogowania">
-											Zaloguj
-										</a>
-									</div>
-								}
-							}
-
-							<div class="navbar-item">
-								<a id="najedz" class="button is-active" asp-controller="Home" asp-action="Index">
-									Home
-								</a>
+							<div id="authenticationStatusContainer">
+								@await Html.PartialAsync("_AuthenticationStatus");
 							</div>
 						</div>
 					</div>
@@ -148,4 +125,19 @@
 		</nav>
 	</div>
 </body>
+
+<script>
+	$(document).ready(function () {
+		setInterval(function () {
+			$.ajax({
+				url: '/Shared/AuthenticationStatus', // Twoja ścieżka do akcji kontrolera obsługującej część widoku
+				type: 'GET',
+				success: function (result) {
+					$('#authenticationStatusContainer').html(result);
+				}
+			});
+		}, 5000); // Odświeżanie co 5 sekund (zmień wartość według potrzeb)
+	});
+</script>
+
 </html>

@@ -24,6 +24,9 @@ builder.Services.AddSession(options => {
 });
 
 var app = builder.Build();
+//var kestrelConfig = builder.Configuration.GetSection("Kestrel");
+//var port = kestrelConfig.GetValue<int>("EndPoints:Http:Port");
+
 
 /*
  Configure the HTTP request pipeline.
@@ -47,5 +50,4 @@ app.Run();
 */
 
 app.MapDefaultControllerRoute();
-
 app.Run();

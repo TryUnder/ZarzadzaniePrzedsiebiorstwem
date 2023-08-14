@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAUL9KwgS9SkWl1/uLaWTAEwAAAAACAAAAAAAQZgAAAAEAACAAAACbNIF5vWf2UYgskwwiuoeENGfydhB8yXO8mmNk2vn4ZQAAAAAOgAAAAAIAACAAAACX6weIyMiuOAR2WrxwdE9SXnCND4Kfvyg4g5M9pQg6JYAAAAAQcWcV7ewlVAIYCsv4mQ5eClHM0dzkgb/jB0TF7y//CHIsPT5e215d2un/K2GiGDB90oGuT6fBQpjpHzo+O1pWT3IgW/9vptstQysD9jVbExqng8MmJMLKSba8Y6Mi5LHyyz4ZMD2hn4h41FmYz98342L5ZnYaD1Bb7yV6QhVNn0AAAABxgnEe8Y66vhvnbFqm37jWKEvRbOW22YkOhQdxk55OJBhuqy+hHxWXNEDxOKdUORmMTuwVb96ULc9HP+DRgtFO</EncryptedPassword>
+    <History>True|2023-08-14T21:32:27.4887699Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AZURE_SQL_CONNECTIONSTRING">
+      <Value>Data Source=tcp:bazaprzedsiebiorstwa.database.windows.net,1433%3bInitial Catalog=MagenaryDB%3bUser Id=sotoran%40bazaprzedsiebiorstwa%3bPassword=lewsonik61!A</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="MyConnection">
+      <Value>Data Source=tcp:bazaprzedsiebiorstwa.database.windows.net,1433%3bInitial Catalog=MagenaryDB%3bUser Id=sotoran%40bazaprzedsiebiorstwa%3bPassword=lewsonik61!A</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="ZarzadzaniePrzedsiebiorstwem.DAL.EF.MyDbContext">
+      <Value>Data Source=tcp:bazaprzedsiebiorstwa.database.windows.net,1433%3bInitial Catalog=MagenaryDB%3bUser Id=sotoran%40bazaprzedsiebiorstwa%3bPassword=lewsonik61!A</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

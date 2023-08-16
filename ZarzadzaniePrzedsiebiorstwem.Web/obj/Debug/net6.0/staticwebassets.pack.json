@@ -45,8 +45,16 @@
       "PackagePath": "staticwebassets\\css\\bulma.min.css"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\deleteWelcomeMessage.js",
+      "PackagePath": "staticwebassets\\css\\deleteWelcomeMessage.js"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\verticalPanelScript.js",
+      "PackagePath": "staticwebassets\\css\\verticalPanelScript.js"
     },
     {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\favicon.ico",

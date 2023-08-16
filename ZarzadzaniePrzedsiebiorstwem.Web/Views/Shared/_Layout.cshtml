@@ -78,7 +78,7 @@
 				<div class="container">
 					<div class="navbar-brand">
 						<div class="navbar-item">
-							<a href="#" class="button is-active">Magenary</a>
+							<a id="logoColour" class="button is-active">Magenary</a>
 						</div>
 						<span class="navbar-burger" data-target="navbarMenuHeroB">
 							<span></span>
@@ -130,13 +130,13 @@
 	$(document).ready(function () {
 		setInterval(function () {
 			$.ajax({
-				url: '/Shared/AuthenticationStatus', // Twoja ścieżka do akcji kontrolera obsługującej część widoku
+				url: '/Shared/AuthenticationStatus',
 				type: 'GET',
 				success: function (result) {
 					$('#authenticationStatusContainer').html(result);
 				}
 			});
-		}, 1000); // Odświeżanie co 1 sekunde (zmień wartość według potrzeb)
+		}, 1000); 
 	});
 </script>
 

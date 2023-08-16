@@ -18,16 +18,17 @@
     /* Styl dla pionowego panelu */
     .vertical-panel {
         position: fixed;
-        top: 5.5rem;
+        top: 5.5rem; /* Ustaw początkową wartość top */
         left: 0;
         width: 12%;
         height: 100%;
-        background-color: rgba(142, 197, 252, 0.0); 
+        background-color: rgba(142, 197, 252, 0.0);
         padding: 1rem;
         display: flex;
         flex-direction: column;
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 10px;
+        transition: top 0.3s ease-in-out; /* Dodaj przejście animacji */
     }
 
         /* Styl dla linków w pionowym panelu */
@@ -61,10 +62,13 @@
                 padding: 10px;
             }
 
+    .vertical-panel-hidden {
+        top: 0;
+    }
 </style>
 
 <section class="section">
-    <div class="has-text-centered">
+    <div id="loginSuccessMessage" class="has-text-centered">
         Zostałeś pomyślnie zalogowany: @Model.Login
     </div>
 
@@ -74,3 +78,6 @@
         <a id="najedz" href="#" class="is-active button">Przycisk 3</a>
     </div>
 </section>
+
+<script src="~/css/verticalPanelScript.js"></script>
+<script src="~/css/deleteWelcomeMessage.js"></script>

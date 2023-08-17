@@ -16,12 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Company/AddCompanyView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxBZGRDb21wYW55Vmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/PartialVertical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGlhbFZlcnRpY2FsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/Components/LoginComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTG9naW5Db21wb25lbnRcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/Error.cshtml]

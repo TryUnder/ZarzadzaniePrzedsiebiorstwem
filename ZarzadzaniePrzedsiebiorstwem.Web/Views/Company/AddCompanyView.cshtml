@@ -2,3 +2,29 @@
 
 @await Component.InvokeAsync("LoginComponent", new { User = Model })
 @Html.Partial("PartialVertical")
+
+<style>
+    section.section {
+        margin-top: 0;
+        padding-top: 1.5rem;
+        margin-bottom: 0;
+        padding-bottom: 1.5rem;
+        margin-left: 50px;
+    }
+</style>
+
+<section class="section">
+    <div class="message-header is-primary">
+        <p class="has-text-centered">Wprowadź dane do rejestracji przedsiębiorstwa</p>
+    </div>
+    <form asp-controller="User" asp-action="RegisterAccount" method="post">
+        <div class="field">
+            <label asp-for="Login" class="label">Pełna Nazwa Przedsiębiorstwa</label>
+            <input asp-for="Login" class="input is-medium is-fullwidth" type="text" placeholder="Login" />
+        </div>
+
+        <div class="field">
+            <button type="submit" class="button">Zarejestruj</button>
+        </div>
+    </form>
+</section>

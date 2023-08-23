@@ -11,8 +11,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             this.userService = userService;
         }
 
-        public IActionResult AddCompanyView(int id) { 
-            System.Console.WriteLine("Id: ", id);
+        public IActionResult AddCompanyView() { 
             return View("AddCompanyView");
         }
     }

@@ -61,19 +61,18 @@
         top: 0;
     }
 </style>
-test
+
 <section class="section">
     <div id="loginSuccessMessage" class="has-text-centered">
         @await Component.InvokeAsync("LoginComponent", Model)
     </div>
-    
+
     <div class="vertical-panel">
-        test
-        <a id="najedz" class="is-active button" asp-controller="Company" asp-action="AddCompanyView" asp-route-id="@Model.Id">Dodaj przedsiębiorstwo</a>
+        <a id="najedz" class="is-active button" asp-controller="Company" asp-action="AddCompanyView">Dodaj przedsiębiorstwo</a>
         <a id="najedz" class="is-active button">Przycisk 2</a>
         <a id="najedz" class="is-active button">Przycisk 3</a>
     </div>
 </section>
-test
+
 <script src="~/css/verticalPanelScript.js"></script>
 <script src="~/css/deleteWelcomeMessage.js"></script>

@@ -41,7 +41,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 		private void UpdateSession(User user) {
 			var userList = GetUserListFromSession();
 			var existingUser = userList.FirstOrDefault(u => u.Login == user.Login);
-
+			
 			if (existingUser != null) {
 				var sessionId = GetSessionIdFromCookie();
 				if (sessionId != null && existingUser.Id.ToString() == sessionId) {
@@ -78,6 +78,14 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 			}
 		}
 
+		public int GetUserIdByLogin(User user) {
+			var users = _dbContext.User!.ToList();
+			int userId = users.Where(u => u.Login == user.Login)
+							  .Select(u => u.Id)
+							  .FirstOrDefault();
+			return userId;
+		}
+
 		public void LoginUser(User user) {
 			try {
 				var existingUser = _dbContext.User.FirstOrDefault(u => u.Login == user.Login);
@@ -91,6 +99,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 				if (!isPasswordValid) {
 					throw new Exception("Podane hasło jest nieprawidłowe");
 				}
+				
+				user.Id = GetUserIdByLogin(user);
 
 				var sessionId = GetSessionIdFromCookie();
 

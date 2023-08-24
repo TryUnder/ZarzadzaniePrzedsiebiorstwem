@@ -1,6 +1,5 @@
-﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
+﻿@model ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels.AddCompanyViewModel
 
-@await Component.InvokeAsync("LoginComponent", new { User = Model })
 @Html.Partial("PartialVertical")
 
 <style>
@@ -17,14 +16,53 @@
     <div class="message-header is-primary">
         <p class="has-text-centered">Wprowadź dane do rejestracji przedsiębiorstwa</p>
     </div>
-    <form asp-controller="User" asp-action="RegisterAccount" method="post">
+    <form asp-controller="Company" asp-action="RegisterCompany" method="post">
         <div class="field">
-            <label asp-for="Login" class="label">Pełna Nazwa Przedsiębiorstwa</label>
-            <input asp-for="Login" class="input is-medium is-fullwidth" type="text" placeholder="Login" />
+            <label asp-for="Przedsiebiorstwo.NazwaPelna" class="label">Pełna Nazwa Przedsiębiorstwa</label>
+            <input asp-for="Przedsiebiorstwo.NazwaPelna" class="input is-medium is-fullwidth" type="text" />
         </div>
 
         <div class="field">
-            <button type="submit" class="button">Zarejestruj</button>
+            <label asp-for="Przedsiebiorstwo.NazwaSkrocona" class="label">Skrócona Nazwa Przedsiębiorstwa</label>
+            <input asp-for="Przedsiebiorstwo.NazwaSkrocona" class="input is-medium is-fullwidth" type="text" />
+        </div>
+
+        <div class="field">
+            <label asp-for="Przedsiebiorstwo.NIP" class="label">NIP</label>
+            <input asp-fot="Przedsiebiorstwo.NIP" class="input is-medium is-fullwidth" type="text" />
+        </div>
+
+        <div class="field">
+			<label asp-for="Przedsiebiorstwo.REGON" class="label">REGON</label>
+			<input asp-for="Przedsiebiorstwo.REGON" class="input is-medium is-fullwidth" type="text" />
+        </div>
+
+        <div class="field">
+            <label asp-for="Przedsiebiorstwo.daneAdresowe" class="label">Dane Adresowe</label>
+            <input asp-for="Przedsiebiorstwo.daneAdresowe" class="input is-medium is-fullwidth" />
+        </div>
+
+        <div class="field">
+            <label asp-for="Przedsiebiorstwo.Wojewodztwo" class="label">Województwo</label>
+            <input asp-for="Przedsiebiorstwo.Wojewodztwo" class="input is-medium is-fullwidth" />
+        </div>
+
+        <div class="field">
+            <label asp-for="Przedsiebiorstwo.RachunekBankowy" class="label">Rachunek Bankowy</label>
+            <input asp-for="Przedsiebiorstwo.RachunekBankowy" class="input is-medium is-fullwidth" />
+        </div>
+
+        <div>
+           <label asp-for="Przedsiebiorstwo.FormaPrawna" class="label">Forma Prawna</label>
+           <select asp-for="Przedsiebiorstwo.FormaPrawna" class="input is-medium">
+               <option disabled selected>Proszę wybrać opcje</option>
+               <option value="JednoosobowaDzialalnosc">Jednoosobowa działalność gospodarcza</option>
+               <option value="SpolkaCywilna">Spółka cywilna</option>
+           </select>
+        </div>
+
+        <div>
+            <button type="submit" class="button is-info is-outlined is-medium">Zarejestruj</button>
         </div>
     </form>
 </section>

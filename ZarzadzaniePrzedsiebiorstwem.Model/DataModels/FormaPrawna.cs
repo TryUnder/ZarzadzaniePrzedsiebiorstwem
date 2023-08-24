@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels {
 	public enum FormaPrawna {
+		Prosze_Wybrac,
 		JednoosobowaDzialalnosc,
 		SpolkaCywilna,
 		SpolkaJawna,

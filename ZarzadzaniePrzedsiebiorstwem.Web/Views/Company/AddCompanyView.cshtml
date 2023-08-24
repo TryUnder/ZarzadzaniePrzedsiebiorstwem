@@ -5,7 +5,7 @@
 <style>
     section.section {
         margin-top: 0;
-        padding-top: 1.5rem;
+        padding-top: 0;
         margin-bottom: 0;
         padding-bottom: 1.5rem;
         margin-left: 50px;
@@ -29,7 +29,7 @@
 
         <div class="field">
             <label asp-for="Przedsiebiorstwo.NIP" class="label">NIP</label>
-            <input asp-fot="Przedsiebiorstwo.NIP" class="input is-medium is-fullwidth" type="text" />
+            <input asp-for="Przedsiebiorstwo.NIP" class="input is-medium is-fullwidth" type="text" />
         </div>
 
         <div class="field">
@@ -40,6 +40,11 @@
         <div class="field">
             <label asp-for="Przedsiebiorstwo.daneAdresowe" class="label">Dane Adresowe</label>
             <input asp-for="Przedsiebiorstwo.daneAdresowe" class="input is-medium is-fullwidth" />
+        </div>
+
+        <div class="field">
+            <label asp-for="Przedsiebiorstwo.PowiatGmina" class="label">Powiat/Gmina</label>
+            <input asp-for="Przedsiebiorstwo.PowiatGmina" class="input is-medium is-fullwidth" placeholder="Opcjonalne"/>
         </div>
 
         <div class="field">
@@ -55,13 +60,13 @@
         <div>
            <label asp-for="Przedsiebiorstwo.FormaPrawna" class="label">Forma Prawna</label>
            <select asp-for="Przedsiebiorstwo.FormaPrawna" class="input is-medium">
-               <option disabled selected>Proszę wybrać opcje</option>
+               <option value="ProszeWybrac" disabled selected>Proszę wybrać opcje</option>
                <option value="JednoosobowaDzialalnosc">Jednoosobowa działalność gospodarcza</option>
                <option value="SpolkaCywilna">Spółka cywilna</option>
            </select>
         </div>
 
-        <div>
+        <div style="padding-top: 30px;">
             <button type="submit" class="button is-info is-outlined is-medium">Zarejestruj</button>
         </div>
     </form>

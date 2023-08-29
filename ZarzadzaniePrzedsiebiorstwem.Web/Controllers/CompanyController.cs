@@ -46,10 +46,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
                 User = user,
                 UserId = addCompanyViewModel.Przedsiebiorstwo.Id,
             };
-
+            addCompanyViewModel.Przedsiebiorstwo.User = user;
+            addCompanyViewModel.User = user;
             _userService.RegisterCompany(newCompany);
 
-            return View("Views/Przedsiebiorstwo/CompanyDashboard.cshtml", addCompanyViewModel);
+            return View("Views/Company/CompanyDashboard.cshtml", addCompanyViewModel);
         }
 
         public IActionResult ViewSettings(int id) {

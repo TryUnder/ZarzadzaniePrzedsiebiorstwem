@@ -13,7 +13,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 
 		public virtual DbSet<Przedsiebiorstwo> Przedsiebiorstwo { get; set; }
 		public virtual DbSet<Pracownik> Pracownik { get; set; }
-		public virtual DbSet<UrzadSkarbowy> UrzadSkarbowy { get; set; }
 		public virtual DbSet<User> User { get; set; }
 
 		public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }

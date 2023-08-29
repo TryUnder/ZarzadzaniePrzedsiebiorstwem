@@ -1,78 +1,80 @@
-﻿<style>
-    section.section {
-        margin-top: 0;
-        padding-top: 1.5rem;
-        margin-bottom: 0;
-        padding-bottom: 1.5rem;
-    }
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User 
 
-    .has-text-centered {
-        text-align: center;
-    }
-
-    /* Styl dla pionowego panelu */
-    .vertical-panel {
-        position: fixed;
-        top: 5.5rem; /* Ustaw początkową wartość top */
-        left: 0;
-        width: 12%;
-        height: 100%;
-        background-color: rgba(142, 197, 252, 0.0);
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        transition: top 0.3s ease-in-out; /* Dodaj przejście animacji */
-    }
-
-        /* Styl dla linków w pionowym panelu */
-        .vertical-panel a {
-            color: #fff;
-            text-decoration: none;
-            margin-bottom: 10px;
-            padding: 10px;
+<style>
+        section.section {
+            margin-top: 0;
+            padding-top: 1.5rem;
+            margin-bottom: 0;
+            padding-bottom: 1.5rem;
         }
 
-            /* Styl dla aktywnego linku w pionowym panelu */
-            .vertical-panel a.is-active {
-                font-weight: bold;
-            }
-
-        .vertical-panel .button {
-            margin-bottom: 15px;
-            border: 1px solid #fff; /* Białe obramowanie */
-            background-color: transparent; /* Przezroczyste tło */
-            color: #fff; /* Kolor tekstu */
-            padding: 12px;
-            font-size: 11px;
-            height: 50px
+        .has-text-centered {
+            text-align: center;
         }
 
-            /* Styl dla aktywnego przycisku w pionowym panelu */
-            .vertical-panel .button.is-active {
-                background-color: transparent;
-                border-color: #fff; /* Białe obramowanie */
-                color: #fff; /* Kolor tekstu */
+        /* Styl dla pionowego panelu */
+        .vertical-panel  {
+            position: fixed;
+            top: 5.5rem; /* Ustaw początkową wartość top */
+            left: 0;
+            width: 12%;
+            height: 100%;
+            background-color: rgba(142, 197, 252, 0.0);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            transition: top 0.3s ease-in-out; /* Dodaj przejście animacji */
+        }
+
+            /* Styl dla linków w pionowym panelu */
+            .vertical-panel a {
+                color: #fff;
+                text-decoration: none;
+                margin-bottom: 10px;
                 padding: 10px;
             }
 
-    .vertical-panel-hidden {
-        top: 0;
-    }
-</style>
+                /* Styl dla aktywnego linku w pionowym panelu */
+                .vertical-panel a.is-active {
+                    font-weight: bold;
+                }
 
-<section class="section">
-    <div id="loginSuccessMessage" class="has-text-centered">
-        @await Component.InvokeAsync("LoginComponent", Model)
-    </div>
+            .vertical-panel .button {
+                margin-bottom: 15px;
+                border: 1px solid #fff; /* Białe obramowanie */
+                background-color: transparent; /* Przezroczyste tło */
+                color: #fff; /* Kolor tekstu */
+                padding: 12px;
+                font-size: 11px;
+                height: 50px
+            }
 
-    <div class="vertical-panel">
-        <a id="najedz" class="is-active button" asp-controller="Company" asp-action="AddCompanyView">Dodaj przedsiębiorstwo</a>
-        <a id="najedz" class="is-active button">Przycisk 2</a>
-        <a id="najedz" class="is-active button">Przycisk 3</a>
-    </div>
-</section>
+                /* Styl dla aktywnego przycisku w pionowym panelu */
+                .vertical-panel .button.is-active {
+                    background-color: transparent;
+                    border-color: #fff; /* Białe obramowanie */
+                    color: #fff; /* Kolor tekstu */
+                    padding: 10px;
+                }
 
-<script src="~/css/verticalPanelScript.js"></script>
-<script src="~/css/deleteWelcomeMessage.js"></script>
+        .vertical-panel-hidden {
+            top: 0;
+        }
+    </style>
+    <section class="section">
+        <div id="loginSuccessMessage" class="has-text-centered">
+            @await Component.InvokeAsync("LoginComponent", Model)
+        </div>
+
+        <div class="vertical-panel">
+            <a id="najedz" class="is-active button" asp-controller="Company" asp-action="ViewDashboard" asp-route-id="@Model.Id">Panel główny</a>
+            <a id="najedz" class="is-active button" asp-controller="Company" asp-action="AddCompanyView" asp-route-id="@Model.Id">Dodaj przedsiębiorstwo</a>
+            <a id="najedz" class="is-active button" asp-controller="Company" asp-action="ViewSettings" asp-route-id="@Model.Id">Ustawienia</a>
+            <a id="najedz" class="is-active button">Przycisk 3</a>
+        </div>
+    </section>
+
+    <script src="~/css/verticalPanelScript.js"></script>
+    <script src="~/css/deleteWelcomeMessage.js"></script>

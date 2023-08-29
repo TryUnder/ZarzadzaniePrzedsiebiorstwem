@@ -71,8 +71,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UrzadSkarbowyId");
-
                     b.ToTable("Pracownik");
                 });
 
@@ -109,9 +107,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UrzadSkarbowyId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -125,67 +120,18 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UrzadSkarbowyId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Przedsiebiorstwo");
                 });
 
-            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.UrzadSkarbowy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Adres")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("KodUs")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nazwa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RachunekBankowy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UrzadSkarbowy");
-                });
-
-            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Pracownik", b =>
-                {
-                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.UrzadSkarbowy", "UrzadSkarbowy")
-                        .WithMany()
-                        .HasForeignKey("UrzadSkarbowyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UrzadSkarbowy");
-                });
-
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Przedsiebiorstwo", b =>
                 {
-                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.UrzadSkarbowy", "UrzadSkarbowy")
-                        .WithMany()
-                        .HasForeignKey("UrzadSkarbowyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("UrzadSkarbowy");
 
                     b.Navigation("User");
                 });

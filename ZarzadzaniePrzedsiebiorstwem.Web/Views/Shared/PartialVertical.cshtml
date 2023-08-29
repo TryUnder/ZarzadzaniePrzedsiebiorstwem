@@ -1,4 +1,6 @@
-﻿<style>
+﻿@model ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels.AddCompanyViewModel
+
+<style>
     section.section {
         margin-top: 0;
         padding-top: 1.5rem;
@@ -61,15 +63,14 @@
         top: 0;
     }
 </style>
-
 <section class="section">
     <div id="loginSuccessMessage" class="has-text-centered">
-        @await Component.InvokeAsync("LoginComponent", Model)
+        @await Component.InvokeAsync("LoginComponent", Model.User)
     </div>
 
     <div class="vertical-panel">
-        <a id="najedz" class="is-active button" asp-controller="Company" asp-action="AddCompanyView">Dodaj przedsiębiorstwo</a>
-        <a id="najedz" class="is-active button">Przycisk 2</a>
+        <a id="najedz" class="is-active button" asp-controller="Company" asp-action="AddCompanyView" asp-route-id="@Model.User.Id">Dodaj przedsiębiorstwo</a>
+        <a id="najedz" class="is-active button" asp-controller="Company" asp-action="ViewSettings" asp-route-id="@Model.User.Id">Ustawienia</a>
         <a id="najedz" class="is-active button">Przycisk 3</a>
     </div>
 </section>

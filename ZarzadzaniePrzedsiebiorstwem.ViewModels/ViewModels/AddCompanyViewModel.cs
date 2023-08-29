@@ -13,4 +13,5 @@ namespace ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels
         public User User { get; set; }
         public Przedsiebiorstwo Przedsiebiorstwo { get; set; }
     }
+
 }

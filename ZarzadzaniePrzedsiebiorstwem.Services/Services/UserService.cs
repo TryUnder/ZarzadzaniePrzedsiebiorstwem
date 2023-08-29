@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Http.Extensions;
 using System.Text.Json;
 using Newtonsoft.Json;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
+using ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels;
+using ZarzadzaniePrzedsiebiorstwem.Model.DataModels;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 	public class UserService : BaseService, IUserService {
@@ -36,6 +38,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 
 		public string? GetSessionIdFromCookie() {
 			return _httpContextAccessor.HttpContext.Request.Cookies["LoginCookie"];
+		}
+
+		public User GetUserFromId(int id) {
+			var userEntity = _dbContext.User!.FirstOrDefault(u => u.Id == id);
+			return userEntity;
 		}
 
 		private void UpdateSession(User user) {
@@ -76,6 +83,20 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 				Console.WriteLine(e);
 				throw;
 			}
+		}
+
+		public void RegisterCompany(Przedsiebiorstwo company) {
+			try {
+				if (_dbContext.Przedsiebiorstwo!.Any(p => p.UserId == company.UserId)) {
+					throw new Exception("Użytkownik już ma przypisane przedsiębiorstwo");
+				} else {
+					_dbContext.Przedsiebiorstwo!.Add(company);
+					_dbContext.SaveChanges();
+				}
+			} catch (Exception e) {
+                Console.WriteLine(e);
+                throw;
+            }
 		}
 
 		public int GetUserIdByLogin(User user) {

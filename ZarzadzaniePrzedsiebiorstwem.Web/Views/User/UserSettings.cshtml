@@ -1,0 +1,87 @@
+﻿@model ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels.AddCompanyViewModel
+
+@Html.Partial("~/Views/PartialVertical.cshtml", Model.User)
+
+<style>
+    .hero.is-gradient {
+        background-color: transparent;
+        opacity: 0.9; /* Przeźroczystość tła */
+        color: #fff; /* Kolor tekstu */
+    }
+
+    /* Dodaj ostylowanie dla kontenera napisu */
+    .hero-title-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 12%);
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.2); /* Przeźroczysty kolor tła */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    /* Dostosuj style pól i przycisków */
+    .field label.label {
+        color: #3273dc;
+    }
+
+    .button.is-info {
+        background-color: #3273dc;
+        border-color: #3273dc;
+    }
+
+        .button.is-info:hover {
+            background-color: #2768c5;
+            border-color: #2768c5;
+        }
+</style>
+
+<section class="hero is-gradient">
+    <div class="hero-body">
+        <div class="container">
+            <div class="hero-title-container">
+                <h1 class="title">Admin Panel</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section" style="position: absolute;
+left: 50%;
+transform: translateX(-50%);
+width: calc(100% - 12%);">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half">
+                <h2 class="subtitle">Dane Użytkownika</h2>
+                <div class="field">
+                    <label class="label">Login</label>
+                    <p class="control">
+                        <input class="input" type="text" value="example_user" disabled />
+                    </p>
+                </div>
+                <div class="field">
+                    <label class="label">Hasło</label>
+                    <p class="control">
+                        <input class="input" type="password" value="********" disabled />
+                    </p>
+                </div>
+                <!-- -->
+                <button class="button is-info">Edytuj Dane Użytkownika</button>
+            </div>
+            <div class="column is-half">
+                <h2 class="subtitle">Dane Przedsiębiorstwa</h2>
+                <div class="field">
+                    <label class="label">Nazwa Skrócona</label>
+                    <p class="control">
+                        <input class="input" type="text" value="Company A" disabled />
+                    </p>
+                </div>
+                <!-- -->
+                <button class="button is-info">Edytuj Dane Przedsiębiorstwa</button>
+            </div>
+        </div>
+    </div>
+</section>

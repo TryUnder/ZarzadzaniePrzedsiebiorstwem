@@ -11,8 +11,8 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
 builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPrzedsiebiorstwoService, PrzedsiebiorstwoService>();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {
 	options.Cookie.Name = "MySessionCookie";

@@ -63,7 +63,18 @@
                <option value="ProszeWybrac" disabled selected>Proszę wybrać opcje</option>
                <option value="JednoosobowaDzialalnosc">Jednoosobowa działalność gospodarcza</option>
                <option value="SpolkaCywilna">Spółka cywilna</option>
+               <option value="SpolkaJawna">Spółka jawna</option>
+               <option value="SpolkaPartnerska">Spółka partnerska</option>
+               <option value="SpolkaKomandytowa">Spółka komandytowa</option>
+               <option value="SpolkaKomenadytowoAkcyjna">Spółka komandytowo-akcyjna</option>
+               <option value="SpolkaZOgraniczonaOdpowiedzialnoscia">Spółka z ograniczoną odpowiedzialnością</option>
+               <option value="SpolkaAkcyjna">Spółka akcyjna</option>
            </select>
+        </div>
+
+       
+        <div>
+            <input type="hidden" asp-for="Przedsiebiorstwo.UserId" value="@Model.User.Id" />
         </div>
 
         <div style="padding-top: 30px;">

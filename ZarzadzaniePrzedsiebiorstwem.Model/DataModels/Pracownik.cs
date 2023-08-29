@@ -13,7 +13,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels {
 		public string MiejsceUrodzenia { get; set; } = null!;
 		public DateTime DataUrodzenia { get; set; }
 
-		public virtual UrzadSkarbowy UrzadSkarbowy { get; set; } = null!;
 		public int UrzadSkarbowyId { get; set; }
 	}
 }

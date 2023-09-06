@@ -33,55 +33,319 @@
         border-color: #3273dc;
     }
 
-        .button.is-info:hover {
-            background-color: #2768c5;
-            border-color: #2768c5;
-        }
+    .button.is-info:hover {
+        background-color: #2768c5;
+        border-color: #2768c5;
+     }
+
+     .label_container {
+        color: #3273dc;
+        display: flex;
+        align-items: center;
+     }
+
 </style>
 
-<section class="hero is-gradient">
+<section class="hero is-gradient" style="padding-top:5px;">
     <div class="hero-body">
         <div class="container">
-            <div class="hero-title-container">
+            <div class="hero-title-container" style="top: -100px;">
                 <h1 class="title">Admin Panel</h1>
             </div>
         </div>
     </div>
 </section>
-<section class="section" style="position: absolute;
-left: 50%;
-transform: translateX(-50%);
-width: calc(100% - 12%);">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-half">
-                <h2 class="subtitle">Dane Użytkownika</h2>
-                <div class="field">
-                    <label class="label">Login</label>
-                    <p class="control">
-                        <input class="input" type="text" value="example_user" disabled />
-                    </p>
+<form asp-controller="Company" asp-action="EditOrUpdateCompanyUser" method="post">
+    <section class="section" style="position: absolute; top: 60px; left: 50%; transform: translateX(-50%); width: calc(100% - 12%);">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-half">
+                    <h2 class="subtitle">Dane Użytkownika</h2>
+
+                    <!-- -->
+
+                        <input id="idInput" asp-for="@Model.User.Id" value="@Model.Przedsiebiorstwo.UserId" hidden/>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Login</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="loginToggle" type="checkbox" class="form-check-input user-toggle toggle-switch" data-input-id="loginInput" role="switch" style="float: right;"/>
+                                <span class="form-check-label" for="loginToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="loginInput" asp-for="@Model.User.Login" class="input" type="text" value="@Model.User.Login" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Hasło</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="hasloToggle" type="checkbox" class="form-check-input user-toggle toggle-switch" data-input-id="hasloInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="hasloToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="hasloInput" asp-for="@Model.User.Haslo" class="input" type="password" value="********" disabled />
+                        </p>
+                    </div>
+
+
+                    <!-- -->
+
+                    <button id="saveButtonUser" onclick="EditOrUpdateUser();" type="submit" class="button is-info" data-input-id="save-button" disabled>Edytuj Dane Użytkownika</button>
                 </div>
-                <div class="field">
-                    <label class="label">Hasło</label>
-                    <p class="control">
-                        <input class="input" type="password" value="********" disabled />
-                    </p>
+
+                    <!-- -->
+
+                
+
+                    <!-- -->
+
+                <div class="column is-half">
+                    <h2 class="subtitle">Dane Przedsiębiorstwa</h2>
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Nazwa Pełna</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="nazwaPelnaToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="nazwaPelnaInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="nazwaPelnaToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="nazwaPelnaInput" asp-for="@Model.Przedsiebiorstwo.NazwaPelna" class="input" type="text" value="@Model.Przedsiebiorstwo.NazwaPelna" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Nazwa Skrócona</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="nazwaSkroconaToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="nazwaSkroconaInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="nazwaSkroconaToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="nazwaSkroconaInput" asp-for="@Model.Przedsiebiorstwo.NazwaSkrocona" class="input" type="text" value="@Model.Przedsiebiorstwo.NazwaSkrocona" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>NIP</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="NIPToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="NIPInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="NIPToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="NIPInput" asp-for="@Model.Przedsiebiorstwo.NIP" class="input" type="text" value="@Model.Przedsiebiorstwo.NIP" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>REGON</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="REGONToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="REGONInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="REGONToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="REGONInput" asp-for="@Model.Przedsiebiorstwo.REGON" class="input" type="text" value="@Model.Przedsiebiorstwo.REGON" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Dane Adresowe</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="daneAdresoweToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="daneAdresoweInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="daneAdresoweToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="daneAdresoweInput" asp-for="@Model.Przedsiebiorstwo.daneAdresowe" class="input" type="text" value="@Model.Przedsiebiorstwo.daneAdresowe" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    @if(Model.Przedsiebiorstwo.PowiatGmina != null) {
+                        <div class="field">
+                            <div class="label label_container">
+                                <span>Powiat | Gmina</span>
+                                <label class="form-check form-switch" style="margin-left: auto;">
+                                    <input id="powiatGminaToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="powiatGminaInput" role="switch" style="float: right;" />
+                                    <span class="form-check-label" for="NIPToggle" style="margin-right: 40px;">Edytuj</span>
+                                </label>
+                            </div>
+                            <p class="control">
+                                <input id="powiatGminaInput" asp-for="@Model.Przedsiebiorstwo.PowiatGmina" class="input" type="text" value="@Model.Przedsiebiorstwo.PowiatGmina" disabled />
+                            </p>
+                        </div>
+                    }
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Województwo</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="wojewodztwoToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="wojewodztwoInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="wojewodztwoToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="wojewodztwoInput" asp-for="@Model.Przedsiebiorstwo.Wojewodztwo" class="input" type="text" value="@Model.Przedsiebiorstwo.Wojewodztwo" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Rachunek Bankowy</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="rachunekBankowyToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="rachunekBankowyInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="rachunekBankowyToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="rachunekBankowyInput" asp-for="@Model.Przedsiebiorstwo.RachunekBankowy" class="input" type="text" value="@Model.Przedsiebiorstwo.RachunekBankowy" disabled />
+                        </p>
+                    </div>
+
+                    <!-- -->
+
+                    <div class="field">
+                        <div class="label label_container">
+                            <span>Forma Prawna</span>
+                            <label class="form-check form-switch" style="margin-left: auto;">
+                                <input id="formaPrawnaToggle" type="checkbox" class="form-check-input company-toggle toggle-switch" data-input-id="formaPrawnaInput" role="switch" style="float: right;" />
+                                <span class="form-check-label" for="formaPrawnaToggle" style="margin-right: 40px;">Edytuj</span>
+                            </label>
+                        </div>
+                        <p class="control">
+                            <input id="formaPrawnaInput" asp-for="@Model.Przedsiebiorstwo.FormaPrawna" class="input" type="text" value="@Model.Przedsiebiorstwo.FormaPrawna" disabled />
+                        </p>
+                    </div>
+
+                    <button id="saveButtonCompany" onclick="EditOrUpdateCompany" type="submit" class="button is-info" disabled>Edytuj Dane Przedsiębiorstwa</button>
                 </div>
-                <!-- -->
-                <button class="button is-info">Edytuj Dane Użytkownika</button>
-            </div>
-            <div class="column is-half">
-                <h2 class="subtitle">Dane Przedsiębiorstwa</h2>
-                <div class="field">
-                    <label class="label">Nazwa Skrócona</label>
-                    <p class="control">
-                        <input class="input" type="text" value="Company A" disabled />
-                    </p>
-                </div>
-                <!-- -->
-                <button class="button is-info">Edytuj Dane Przedsiębiorstwa</button>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</form>
+
+<script>
+    const toggleSwitches = document.querySelectorAll('.toggle-switch');
+    toggleSwitches.forEach(toggleSwitch => {
+        const inputId = toggleSwitch.getAttribute("data-input-id");
+        const input = document.getElementById(inputId);
+        toggleSwitch.addEventListener('change', () => {
+            if (toggleSwitch.checked) {
+                input.disabled = false;
+            } else {
+                input.disabled = true;
+            }
+        });
+    });
+
+    const userToggleSwitches = document.querySelectorAll('.user-toggle');
+    const companyToggleSwitches = document.querySelectorAll('.company-toggle');
+    let toggleUserNumber = 0;
+
+    const saveButtonUser = document.getElementById('saveButtonUser');
+    const saveButtonCompany = document.getElementById('saveButtonCompany');
+    let toggleCompanyNumber = 0;
+
+    userToggleSwitches.forEach(userToggleSwitch => {
+        const toggleSwitchId = userToggleSwitch.getAttribute("data-input-id");
+        const input = document.getElementById(toggleSwitchId);
+        userToggleSwitch.addEventListener('change', () => {
+            if (userToggleSwitch.checked) {
+                toggleUserNumber++;
+			} else {
+                toggleUserNumber--;
+			}
+
+            if (toggleUserNumber > 0) {
+				saveButtonUser.disabled = false;
+			} else {
+				saveButtonUser.disabled = true;
+			}
+		});
+    });
+
+    companyToggleSwitches.forEach(companyToggleSwitch => {
+        const toggleSwitchId = companyToggleSwitch.getAttribute("data-input-id");
+        const input = document.getElementById(toggleSwitchId);
+        companyToggleSwitch.addEventListener('change', () => {
+            if (companyToggleSwitch.checked) {
+                toggleCompanyNumber++;
+            } else {
+                toggleCompanyNumber--;
+            }
+
+            if (toggleCompanyNumber > 0) {
+				saveButtonCompany.disabled = false;
+			} else {
+				saveButtonCompany.disabled = true;
+			}
+        });
+    });
+
+    function EditOrUpdateUser() {
+        const login = document.getElementById('loginInput');
+        const haslo = document.getElementById('hasloInput');
+        const UserId = @Model.Przedsiebiorstwo.UserId;
+        var addOrUpdateUser = {
+            Id : UserId,
+            Login: login.value,
+            Haslo: haslo.value
+        };
+        return addOrUpdateUser;
+    }
+
+    function AddOrUpdateCompany() {
+        const pelnaNazwaInput = document.getElementById('nazwaPelnaInput');
+        const nazwaSkroconaInput = document.getElementById('nazwaSkroconaInput');
+        const nipInput = document.getElementById('NIPInput');
+        const regonInput = document.getElementById('REGONInput');
+        const daneAdresoweInput = document.getElementById('daneAdresoweInput');
+        const powiatGminaInput = document.getElementById('powiatGminaInput');
+        const wojewodztwoInput = document.getElementById('wojewodztwoInput');
+        const rachunekBankowyInput = document.getElementById('rachunekBankowyInput');
+        const formaPrawnaInput = document.getElementById('formaPrawnaInput');
+
+        var addOrUpdateCompany = {
+			PelnaNazwa: pelnaNazwaInput.value,
+            NazwaSkrocona: nazwaSkroconaInput.value,
+            NIP: nipInput.value,
+            REGON: regonInput.value,
+            DaneAdresowe: daneAdresoweInput.value,
+            PowiatGmina: powiatGminaInput.value,
+            Wojewodztwo: wojewodztwoInput.value,
+            RachunekBankowy: rachunekBankowyInput.value,
+            FormaPrawna: formaPrawnaInput.value
+		};
+
+        return addOrUpdateCompany;
+    }
+
+</script>

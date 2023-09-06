@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\README.md"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\background_image.jpg",
+      "PackagePath": "staticwebassets\\background_image.jpg"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\bulma.sass",
       "PackagePath": "staticwebassets\\bulma.sass"
     },

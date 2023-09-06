@@ -1,7 +1,6 @@
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\bin\Release\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.deps.json
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\bin\Release\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.dll
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\bin\Release\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.pdb
-D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Release\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.csproj.AssemblyReference.cache
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Release\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.GeneratedMSBuildEditorConfig.editorconfig
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Release\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.AssemblyInfoInputs.cache
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Release\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.AssemblyInfo.cs

@@ -4,133 +4,143 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/ZarzadzaniePrzedsiebiorstwem.Web.styles.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/css/bulma.min.css" />
-	<link rel="stylesheet" href="~/css/basicStyling.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>ZarzadzaniePrzedsiebiorstwem</title>
-	
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<style>
-		html,
-		body {
-			margin: 0;
-			padding: 0;
-			background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-			min-height: 100vh;
-		}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/ZarzadzaniePrzedsiebiorstwem.Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bulma.min.css" />
+    <link rel="stylesheet" href="~/css/basicStyling.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZarzadzaniePrzedsiebiorstwem</title>
 
-		.navbar-brand {
-			color: #FFF;
-			font-size: 24px;
-			font-weight: bold;
-			text-decoration: none;
-		}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("https://lh3.googleusercontent.com/pw/AIL4fc-MISdQzTI0f1mCIWl1mO_t2x_zkjEimdmTb3vBrBTr3vGQE3775M9uk695OpqIy-Xatjai9HsqJzYiR-7sdrEOgzXvp5bnbIDYzFRS-SHUYw2ebfK1DU3bzC7C60Jh9kEZ7c4QowOgSp-yXRWr-IpdsLrq1xlySOYiiuTxY9Zfr6rlP87XEIJCTFIybU_SdLNjr8KlgFszMitgJta4XkjblLMG7p_RLnPy_hBdh48euqiQvD9G4zJzjoLjqHo9ZEsSbppqyTll8aTvMfIi7I0-Xw2BIjKIBqMix9BGwaolBH7S_tRcgyJmIKg1OkazkgfrkTEC75N2iX332TqsQ5-I3r4dhKJbBGCASUVg20pLV51mDKEtw7DObDmHkYBDsMBJXj4qbi470azrAOu1lfOMtrbis7p0MBrhWD14SiEl3UpngD8Zx2czAhcH1UXk2O-3m6Gti8x6VxxMx7kzdABHRAqoWU6fKxU1SpO6MxeottHTPrz8oXNnKK2tIwKfnmeS6B6pIfynG48w55cPAiPthnYJW7sSgNInPMiRH00wa8PCxs8gvZMrHjOT8BNeju8PyVSlkXRfubJR4c4JElv7SGnn8rN8jT6xjlqliY9x0G6y2kdyyn26ga7fiJuHCXF5cj40SytquBnDpI_o45gFC2INAFrmsMoEApwEK3gmc154jPBeZR1odZuu-ljRp2bOhVhhjBBoc497n_sQSIfUtRLq3kYhwXkv0nkb9slaxzUgMRyWUtsAFpY-Mq7LQvopaAxSM_xFAAyhyzVkTV8XJD4D2RDyUoHTS076FMvBqPXDCmnR49KmxijroggHgvDFbPvlrRToFWYbH7tdYpx3Wgc1hmlF3mKuKDYmEGaDHZCt2uTQPxlN7lkK7obB1_0tTZCLnmVfbNfzuO6zKWMn9WphLVFz9bKfBLOuNmV9ZqDnB9Gar-0hrTo=w1064-h798-s-no?authuser=0");
+            background-color: #dfd1e0;
+            background-repeat: repeat-x;
+            min-height: 100vh;
+        }
 
-		.navbar-burger span {
-			background-color: #FFF;
-		}
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1); /* Przeźroczysty biały kolor */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Lekki cień */
+        }
 
-		.navbar-menu {
-			background-color: transparent;
-		}
+        .navbar-brand {
+            color: #FFF;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-		.navbar-item a.button {
-			border-color: #FFF;
-		}
+        .navbar-burger span {
+            background-color: #FFF;
+        }
 
-		.navbar-item a.button.is-active {
-				background-color: transparent;
-				color: #FFF;
-		}
-		
-		.hero-foot {
-			position: fixed;
-			bottom: 0;
-			width: 100%;
-		}
+        .navbar-menu {
+            background-color: transparent;
+        }
 
-		.tabs {
-			background-color: transparent;
-		}
+        .navbar-item a.button {
+            border-color: #FFF;
+            background-color: transparent;
+            color: #FFF;
+        }
 
-		.has-text-link li {
-			color: #3273dc;
-		}
-	</style>
+            .navbar-item a.button.is-active {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: #FFF;
+            }
+
+        .hero-foot {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tabs {
+            background-color: transparent;
+        }
+
+        .has-text-link li {
+            color: #3273dc;
+        }
+    </style>
 </head>
 <body>
 
-	<section class="hero">
-		<div class="hero-head">
-			<nav class="navbar card">
-				<div class="container">
-					<div class="navbar-brand">
-						<div class="navbar-item">
-							<a id="logoColour" class="button is-active">Magenary</a>
-						</div>
-						<span class="navbar-burger" data-target="navbarMenuHeroB">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-					</div>
-					<div id="navbarMenuHeroB" class="navbar-menu">
-						<div class="navbar-end">
-							<div id="authenticationStatusContainer">
-								@await Html.PartialAsync("_AuthenticationStatus")
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
-	</section>
+    <section class="hero">
+        <div class="hero-head">
+            <nav class="navbar card">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <div class="navbar-item">
+                            <a id="logoColour" class="button is-active">Magenary</a>
+                        </div>
+                        <span class="navbar-burger" data-target="navbarMenuHeroB">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenuHeroB" class="navbar-menu">
+                        <div class="navbar-end">
+                            <div id="authenticationStatusContainer">
+                                @await Html.PartialAsync("_AuthenticationStatus")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
 
-	<section class="section">
-		<div class="container">
-			@RenderBody()
-		</div>
-	</section>
+    <section class="section">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </section>
 
-	<div class="hero-foot">
-		<nav class="tabs">
-			<div class="container has-text-link">
-				<ul>
-					<li>
-						<a><i class="fab fa-github"></i></a>
-					</li>
-					<li>
-						<a><i class="fab fa-facebook"></i></a>
-					</li>
-					<li>
-						<a><i class="fab fa-instagram"></i></a>
-					</li>
-					<li>
-						<a><i class="fab fa-twitter"></i></a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-	</div>
+    <div class="hero-foot">
+        <nav class="tabs">
+            <div class="container has-text-link">
+                <ul>
+                    <li>
+                        <a><i class="fab fa-github"></i></a>
+                    </li>
+                    <li>
+                        <a><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li>
+                        <a><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </body>
 
 <script>
-	$(document).ready(function () {
-		setInterval(function () {
-			$.ajax({
-				url: '/Shared/AuthenticationStatus',
-				type: 'GET',
-				success: function (result) {
-					$('#authenticationStatusContainer').html(result);
-				}
-			});
-		}, 1000); 
-	});
+    $(document).ready(function () {
+        setInterval(function () {
+            $.ajax({
+                url: '/Shared/AuthenticationStatus',
+                type: 'GET',
+                success: function (result) {
+                    $('#authenticationStatusContainer').html(result);
+                }
+            });
+        }, 1000);
+    });
 </script>
 
 </html>

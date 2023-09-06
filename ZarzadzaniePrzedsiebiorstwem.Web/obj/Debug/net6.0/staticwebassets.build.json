@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aMSk4TBu/UO2eYCck96dlY9OT5+voon1GNKRMeVH/C4=",
+  "Hash": "j3nfnHknDayLPfydv/ikzskYkdtH+DXE5brDr/cUoTc=",
   "Source": "ZarzadzaniePrzedsiebiorstwem.Web",
   "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ZarzadzaniePrzedsiebiorstwem.Web.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\background_image.jpg",
+      "SourceId": "ZarzadzaniePrzedsiebiorstwem.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\",
+      "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
+      "RelativePath": "background_image.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\background_image.jpg"
     },
     {
       "Identity": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\bulma.sass",

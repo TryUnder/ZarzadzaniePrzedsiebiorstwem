@@ -17,15 +17,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
         }
 
         public IActionResult AddCompanyView(int id) {
-
             var emptyCompany = new Przedsiebiorstwo();
             var user = _userService.GetUserFromId(id);
-            Console.WriteLine(user.Login);
             var addCompanyViewModel = new AddCompanyViewModel {
                 User = user,
                 Przedsiebiorstwo = emptyCompany
             };
-            Console.WriteLine(addCompanyViewModel.User.Haslo);
             return View("AddCompanyView", addCompanyViewModel);
         }
 
@@ -44,10 +41,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
                 RachunekBankowy = addCompanyViewModel.Przedsiebiorstwo.RachunekBankowy,
                 FormaPrawna = addCompanyViewModel.Przedsiebiorstwo.FormaPrawna,
                 User = user,
-                UserId = addCompanyViewModel.Przedsiebiorstwo.Id,
+                UserId = user.Id
             };
-            addCompanyViewModel.Przedsiebiorstwo.User = user;
+
             addCompanyViewModel.User = user;
+            addCompanyViewModel.Przedsiebiorstwo.User = user;
+            
             _userService.RegisterCompany(newCompany);
 
             return View("Views/Company/CompanyDashboard.cshtml", addCompanyViewModel);
@@ -70,6 +69,13 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 
         public IActionResult ViewDashboard(int id) {
             var user = _userService.GetUserFromId(id);
+            return View("Views/User/WidokAutoryzowany.cshtml", user);
+        }
+
+        [HttpPost]
+        public IActionResult EditOrUpdateCompanyUser(AddCompanyViewModel editOrUpdateCompanyUser) {
+            _przedsiebiorstwoService.EditOrUpdateCompanyUser(editOrUpdateCompanyUser);
+            var user = _userService.GetUserFromId(editOrUpdateCompanyUser.User.Id);
             return View("Views/User/WidokAutoryzowany.cshtml", user);
         }
     }

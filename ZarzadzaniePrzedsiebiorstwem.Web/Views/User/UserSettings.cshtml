@@ -17,8 +17,8 @@
         width: calc(100% - 12%);
         padding: 1rem;
         background-color: rgba(0, 0, 0, 0.2); /* Przeźroczysty kolor tła */
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         text-align: center;
         margin-bottom: 1rem;
     }
@@ -44,6 +44,30 @@
         align-items: center;
      }
 
+     span {
+        font-family: Verdana;
+        color: antiquewhite;
+     }
+
+     .subtitle{
+         font-weight: 700;
+         text-align: center;
+     }
+
+     .title {
+		 font-weight: 900;
+		 text-align: center;
+     }
+
+     .columns {
+        margin-top: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Cień */
+        border-radius: 20px;
+        padding: 20px;
+        height: 71vh;
+        overflow-y: auto;
+     }
+
 </style>
 
 <section class="hero is-gradient" style="padding-top:5px;">
@@ -55,6 +79,8 @@
         </div>
     </div>
 </section>
+
+
 <form asp-controller="Company" asp-action="EditOrUpdateCompanyUser" method="post">
     <section class="section" style="position: absolute; top: 60px; left: 50%; transform: translateX(-50%); width: calc(100% - 12%);">
         <div class="container">
@@ -64,7 +90,7 @@
 
                     <!-- -->
 
-                        <input id="idInput" asp-for="@Model.User.Id" value="@Model.Przedsiebiorstwo.UserId" hidden/>
+                    <input id="idInput" asp-for="@Model.User.Id" value="@Model.Przedsiebiorstwo.UserId" hidden/>
 
                     <!-- -->
 
@@ -101,10 +127,6 @@
 
                     <button id="saveButtonUser" onclick="EditOrUpdateUser();" type="submit" class="button is-info" data-input-id="save-button" disabled>Edytuj Dane Użytkownika</button>
                 </div>
-
-                    <!-- -->
-
-                
 
                     <!-- -->
 

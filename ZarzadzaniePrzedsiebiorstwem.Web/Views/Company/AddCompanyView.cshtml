@@ -10,6 +10,12 @@
         padding-bottom: 1.5rem;
         margin-left: 50px;
     }
+
+    p {
+        font-family: Verdana;
+        font-weight: 700;
+        color: antiquewhite;
+    }
 </style>
 
 <section class="section">
@@ -18,49 +24,49 @@
     </div>
     <form asp-controller="Company" asp-action="RegisterCompany" method="post">
         <div class="field">
-            <label asp-for="Przedsiebiorstwo.NazwaPelna" class="label">Pełna Nazwa Przedsiębiorstwa</label>
+            <label asp-for="Przedsiebiorstwo.NazwaPelna" class="label"><p>Pełna Nazwa Przedsiębiorstwa</p></label>
             <input asp-for="Przedsiebiorstwo.NazwaPelna" class="input is-medium is-fullwidth" type="text" />
         </div>
 
         <div class="field">
-            <label asp-for="Przedsiebiorstwo.NazwaSkrocona" class="label">Skrócona Nazwa Przedsiębiorstwa</label>
+            <label asp-for="Przedsiebiorstwo.NazwaSkrocona" class="label"><p>Skrócona Nazwa Przedsiębiorstwa</p></label>
             <input asp-for="Przedsiebiorstwo.NazwaSkrocona" class="input is-medium is-fullwidth" type="text" />
         </div>
 
         <div class="field">
-            <label asp-for="Przedsiebiorstwo.NIP" class="label">NIP</label>
+            <label asp-for="Przedsiebiorstwo.NIP" class="label"><p>NIP</p></label>
             <input asp-for="Przedsiebiorstwo.NIP" class="input is-medium is-fullwidth" type="text" />
         </div>
 
         <div class="field">
-			<label asp-for="Przedsiebiorstwo.REGON" class="label">REGON</label>
+            <label asp-for="Przedsiebiorstwo.REGON" class="label"><p>REGON</p></label>
 			<input asp-for="Przedsiebiorstwo.REGON" class="input is-medium is-fullwidth" type="text" />
         </div>
 
         <div class="field">
-            <label asp-for="Przedsiebiorstwo.daneAdresowe" class="label">Dane Adresowe</label>
+            <label asp-for="Przedsiebiorstwo.daneAdresowe" class="label"><p>Dane Adresowe</p></label>
             <input asp-for="Przedsiebiorstwo.daneAdresowe" class="input is-medium is-fullwidth" />
         </div>
 
         <div class="field">
-            <label asp-for="Przedsiebiorstwo.PowiatGmina" class="label">Powiat/Gmina</label>
+            <label asp-for="Przedsiebiorstwo.PowiatGmina" class="label"><p>Powiat/Gmina</p></label>
             <input asp-for="Przedsiebiorstwo.PowiatGmina" class="input is-medium is-fullwidth" placeholder="Opcjonalne"/>
         </div>
 
         <div class="field">
-            <label asp-for="Przedsiebiorstwo.Wojewodztwo" class="label">Województwo</label>
+            <label asp-for="Przedsiebiorstwo.Wojewodztwo" class="label"><p>Województwo</p></label>
             <input asp-for="Przedsiebiorstwo.Wojewodztwo" class="input is-medium is-fullwidth" />
         </div>
 
         <div class="field">
-            <label asp-for="Przedsiebiorstwo.RachunekBankowy" class="label">Rachunek Bankowy</label>
+            <label asp-for="Przedsiebiorstwo.RachunekBankowy" class="label"><p>Rachunek Bankowy</p></label>
             <input asp-for="Przedsiebiorstwo.RachunekBankowy" class="input is-medium is-fullwidth" />
-        </div>taki tr
+        </div>
 
         <div>
-           <label asp-for="Przedsiebiorstwo.FormaPrawna" class="label">Forma Prawna</label>
+            <label asp-for="Przedsiebiorstwo.FormaPrawna" class="label"><p>Forma Prawna</p></label>
            <select asp-for="Przedsiebiorstwo.FormaPrawna" class="input is-medium">
-               <option value="ProszeWybrac" disabled selected>Proszę wybrać opcje</option>
+                <option value="ProszeWybrac" disabled selected><p>Proszę wybrać opcje</option>
                <option value="JednoosobowaDzialalnosc">Jednoosobowa działalność gospodarcza</option>
                <option value="SpolkaCywilna">Spółka cywilna</option>
                <option value="SpolkaJawna">Spółka jawna</option>

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+var connectionString = builder.Configuration.GetConnectionString("MyConnection");
 builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPrzedsiebiorstwoService, PrzedsiebiorstwoService>();
@@ -38,7 +38,7 @@ if (!app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthorization();
+//app.UseAuthorization();
 app.UseSession();
 
 /*

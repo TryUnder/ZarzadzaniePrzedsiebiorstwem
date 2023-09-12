@@ -78,5 +78,10 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             var user = _userService.GetUserFromId(editOrUpdateCompanyUser.User.Id);
             return View("Views/User/WidokAutoryzowany.cshtml", user);
         }
+
+        public IActionResult Planning(int id) {
+            var user = _userService.GetUserFromId(id);
+            return View("Views/User/Planning.cshtml", user);
+        }
     }
 }

@@ -1,29 +1,212 @@
 ﻿<style>
-	section.section {
-		margin-top: 0;
-		padding-top: 1.5rem;
-		margin-bottom: 0;
-		padding-bottom: 1.5rem;
-		min-height: calc(100vh - 3rem);
-	}
+    section.section {
+        margin-top: 0;
+        padding-top: 1.5rem;
+        margin-bottom: 0;
+        padding-bottom: 1.5rem;
+        height: calc(100vh - 14vh);
+    }
+
+    .grid-container {
+        display: grid;
+        height: 100%;
+        grid-template-rows: 1fr 0.8fr auto 2fr;
+    }
+
+    .header-info {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        font-family: Verdana;
+        color: antiquewhite;
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    .content-description {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        font-family: Verdana;
+        color: antiquewhite;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    .grid-item-main-content {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        column-gap: 10px;
+    }
+
+    .grid-item-content-column {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        font-size: 24px;
+    }
+
+    .grid-item-content-column-checkbox {
+        display: inline;
+        top: 0;
+        left: 0;
+        margin-left: 5px;
+        aspect-ratio: 1;
+    }
+
+    .img-display {
+		display: block;
+		margin-top : 5px;
+		margin-left: 80px;
+    }
+
+    .img-display:hover {
+        animation: beat 0.5s infinite alternate;
+    }
+
+    @@keyframes beat {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.3);
+        }
+    }
+
+    .checkbox-description {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-top: 25px;
+        text-align: center;
+        font-family: Verdana;
+        color: antiquewhite;
+        font-size: 20px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    .grid-item-fourth-section {
+        margin-top: 30px;
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        align-items: center;
+    }
+
+    .circle {
+        margin: 0;
+        width: 50px;
+        height: 50px;
+        background-color: #3E6B73;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        color: antiquewhite;
+        font-size: 18px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+        margin-left: auto;
+    }
+
+    .grid-item-fourth-section-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 10px;
+    }
+
+    .grid-item-first {
+        justify-items: end;
+    }
+
+    .grid-item-second-par {
+        margin-left: 10px;
+        line-height: 50px;
+        font-family: Verdana;
+        color: antiquewhite;
+        font-size: 18px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+}
+
 </style>
 
 <section class="section">
-	<article class="message is-info">
-		<div class="message-header">
-			<p>Magenary</p>
-			<button class="delete" aria-label="delete"></button>
-		</div>
-		<div class="message-body has-text-centered">
-			Witaj! Czy kiedykolwiek zastanawiałeś się, jak usprawnić zarządzanie swoim małym przedsiębiorstwem? Wszyscy wiemy, że prowadzenie własnej firmy może być ekscytujące, ale też wymaga wielu wysiłków i odpowiedzialności. Na szczęście istnieje aplikacja, która może Ci w tym pomóc!
+    <div class="grid-container">
+        <div class="grid-item">
+            <p class="header-info">
+                Zarządzaj swoim przedsiębiorstwem
+            </p>
+            <p class="header-info">
+                w prosty i przejrzysty sposób
+            </p>
+        </div>
+        <div class="grid-item">
+            <p class="content-description">
+                Czym chciałbyś zarządzać w Magenary?
+            </p>
+        </div>
+        <div class="grid-item-main-content">
+            <div class="grid-item-content-column">
+                <div class="grid-item-content-column-checkbox">
+                    <i class="fa-solid fa-coins fa-xl img-display"></i>
+                </div>
+                <p class="checkbox-description">Analiza finansowa</p>
+            </div>
 
-			Nasza aplikacja do zarządzania małymi przedsiębiorstwami została stworzona specjalnie dla właścicieli firm takich jak Ty. Niezależnie od tego, czy prowadzisz sklep, restaurację, agencję kreatywną czy jakikolwiek inny rodzaj biznesu, nasza aplikacja oferuje narzędzia, które ułatwią Ci codzienne zadania i umożliwią efektywne zarządzanie.
+            <div class="grid-item-content-column">
+                <div class="grid-item-content-column-checkbox">
+                    <i class="fa-solid fa-file-invoice fa-xl img-display"></i>
+                </div>
+                <p class="checkbox-description">Fakturowanie i sprzedaż</p>
+            </div>
 
-			Dzięki naszej aplikacji będziesz mógł kontrolować zapasy, śledzić zamówienia, zarządzać harmonogramem pracowników, generować raporty finansowe i wiele więcej. Wszystko to w jednym miejscu, z łatwym i intuicyjnym interfejsem, który oszczędzi Twój czas i pozwoli skupić się na rozwijaniu swojego biznesu.
+            <div class="grid-item-content-column">
+                <div class="grid-item-content-column-checkbox">
+                    <i class="fa-solid fa-list-check fa-xl img-display"></i>
+                </div>
+                <p class="checkbox-description">Zarządzanie zadaniami</p>
+            </div>
 
-			Nie trać już więcej czasu na nieefektywne procesy zarządzania. Wypróbuj naszą aplikację do zarządzania małymi przedsiębiorstwami i zobacz, jak może ona przyczynić się do wzrostu Twojej firmy. Rozpocznij już dziś i ciesz się korzyściami, jakie niesie ze sobą efektywne zarządzanie!
-		</div>
-	</article>
+            <div class="grid-item-content-column">
+                <div class="grid-item-content-column-checkbox">
+                    <i class="fa-solid fa-chart-line fa-xl img-display"></i>
+                </div>
+                <p class="checkbox-description">Raporty i zestawienia</p>
+            </div>
+
+            <div class="grid-item-content-column">
+                <div class="grid-item-content-column-checkbox">
+					<i class="fa-solid fa-user-nurse fa-xl img-display"></i>
+                </div>
+                <p class="checkbox-description">HR</p>
+            </div>
+
+            <div class="grid-item-content-column">
+                <div class="grid-item-content-column-checkbox">
+                    <i class="fa-solid fa-network-wired fa-xl img-display"></i>
+                </div>
+                <p class="checkbox-description">Workflow i wiele więcej</p>
+            </div>
+        </div>
+        <div class="grid-item-fourth-section">
+            <div class="grid-item-fourth-section-grid">
+                <div class="grid-item-first">
+                    <div class="circle">1</div>
+                </div>
+                <p class="grid-item-second-par">Zarejestruj</p>
+            </div>
+            <div class="grid-item-fourth-section-grid">
+                <div class="grid-item-first">
+                    <div class="circle">2</div>
+                </div>
+                <p class="grid-item-second-par">Dodaj przedsiębiorstwo</p>
+            </div>
+            <div class="grid-item-fourth-section-grid">
+                <div class="grid-item-first">
+                    <div class="circle">3</div>
+                </div>
+                <p class="grid-item-second-par">Wprowadź bilans</p>
+            </div>
+            <div class="grid-item-fourth-section-grid">
+                <div class="grid-item-first">
+                    <div class="circle">4</div>
+                </div>
+                <p class="grid-item-second-par">Eksploruj</p>
+            </div>
+        </div>
+    </div>
 </section>
-
-

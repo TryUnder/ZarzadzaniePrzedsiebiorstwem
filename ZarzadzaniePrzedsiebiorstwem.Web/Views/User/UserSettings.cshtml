@@ -61,13 +61,29 @@
 
      .columns {
         margin-top: 5px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Cień */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
         border-radius: 20px;
         padding: 20px;
-        height: 71vh;
+        height: 70vh;
         overflow-y: auto;
      }
 
+     .columns::-webkit-scrollbar {
+         display: inline-block;
+         width: 5px;
+         background-color: rgba(0,0,0,0.4);
+         border-radius: 40px;
+         scroll-margin-right: 20px;
+     }
+
+     .columns::-webkit-scrollbar-track {
+         border-radius: 10px;
+     }
+
+     .columns::-webkit-scrollbar-thumb {
+         border-radius: 10px;
+         background-color: antiquewhite;
+     }
 </style>
 
 <section class="hero is-gradient" style="padding-top:5px;">
@@ -267,7 +283,7 @@
                         </p>
                     </div>
 
-                    <button id="saveButtonCompany" onclick="EditOrUpdateCompany" type="submit" class="button is-info" disabled>Edytuj Dane Przedsiębiorstwa</button>
+                    <button style="margin-bottom: 10px;" id="saveButtonCompany" onclick="EditOrUpdateCompany" type="submit" class="button is-info" disabled>Edytuj Dane Przedsiębiorstwa</button>
                 </div>
             </div>
         </div>

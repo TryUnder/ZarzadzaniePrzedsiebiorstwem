@@ -1,0 +1,390 @@
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
+
+@Html.Partial("~/Views/PartialVertical.cshtml", Model)
+
+<style>
+
+    * {
+        font-family: Verdana;
+    }
+
+    main-container {
+        display: block;
+        position: fixed;
+        top: 4.6rem;
+        left: 13%;
+        height: 100%;
+        width: calc(100% - 14.5%);
+        box-shadow: 0 2px 4px rgba(0,0,0, 0.4);
+        border-radius: 20px;
+        margin-left: 5px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .flexbox-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .menu-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        background-color: rgba(237,231,225, 0.7);
+    }
+
+    /*
+        1 kolumna
+    */
+    .menu-tasks-container {
+        flex: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .menu-par {
+        display: inline-flex;
+        font-size: 24px;
+        margin-left: 10px;
+        flex: 1;
+    }
+
+    .menu-bars-icon-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex: 1;
+    }
+
+    .menu-bars-icon {
+        display: inline-flex;
+        flex: 1;
+        justify-content: flex-end;
+        margin-right: 20px;
+    }
+
+    .menu-input {
+        margin-left: 20px;
+        border-radius: 5px;
+        height: 30px;
+        width: 85%;
+        margin-top: 10px;
+    }
+
+    .menu-tasks-par {
+        margin-top: 15px;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 25px;
+    }
+
+    .tasks-list-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .task-list-items {
+        flex: 1;
+    }
+
+    .task-list-items-inside {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 30px;
+    }
+
+    .task-list-items-inside-item-first {
+        flex: 1;
+    }
+
+    .task-list-items-inside-item-second {
+        flex: 4;
+    }
+
+    .task-list-items-inside-item-third {
+        flex: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-align: center;
+        border-radius: 5px;
+        margin-right: 20px;
+        background-color: lightgrey;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .color-item-config {
+        width: 20px;
+        height: 20px;
+        border-radius: 7px;
+    }
+
+
+    .menu-lists-container {
+        flex: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .menu-tags-container {
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .menu-tags-container-flex {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 10px;
+        margin-left: 8px;
+        margin-right: 8px;
+        margin-top: 15px;
+    }
+
+    .simple_tag_1 {
+        flex: 1;
+        box-shadow: 0 2px 4px rgb(0,0,0,0.2);
+        background-color: #d4556a;
+        border-radius: 5px;
+    }
+
+    .simple_tag_2 {
+        flex: 1;
+        box-shadow: 0 2px 4px rgb(0,0,0,0.2);
+        background-color: #2bd8e8;
+        border-radius: 5px;
+    }
+
+    .create_tag {
+        flex: 2;
+        box-shadow: 0 2px 4px rgb(0,0,0,0.2);
+        background-color: #ffccff;
+        border-radius: 5px;
+        align-items: center;
+    }
+
+        .simple_tag_1, .simple_tag_2, .create_tag p {
+            text-align: center;
+            display: inline-block;
+        }
+
+    .settings-container {
+        display: flex;
+        flex: auto;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        flex-direction: row;
+    }
+
+    .settings-container p {
+        margin-left: 10px;
+    }
+
+    .center-container {
+        flex: 1.5;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        background-color: rgba(237, 231, 225, 0.7);
+    }
+
+    .center-container-header {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .center-container-header-list {
+        margin-left: 20px;
+        flex: 1;
+    }
+
+    .center-container-header-list p {
+        font-size: 36px;
+    }
+
+    .number-box-shadow {
+        display: inline-block;
+        width: 50px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        background-color: rgba(237, 231, 225, 0.7);
+    }
+
+    .center-container-header-number {
+        flex: 3;
+    }
+
+    .center-container-header-number p {
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    .center-container-tasks {
+        flex: 8;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row-input {
+        flex: 1;
+        margin-top: 20px;
+        margin-left: 20px;
+        width: 90%;
+        border-radius: 5px;
+        height: 40px;
+    }
+
+    .input-icon i {
+        position: absolute;
+    }
+
+    .icon {
+        padding: 30px;
+        margin-top: 10px;
+    }
+
+    .input-text {
+        position: absolute;
+        display: inline-block;
+        margin-top: 28px;
+        margin-left: 60px;
+    }
+
+    .tasks {
+        flex: 12;
+    }
+
+    
+</style>
+
+<div class="main-container">
+    <div class="flexbox-container">
+        <div class="menu-container">
+            <div class="menu-tasks-container">
+                <div class="menu-bars-icon-container">
+                    <p class="menu-par"><strong>Menu</strong></p>
+                    <i class="fa-solid fa-bars fa-lg menu-bars-icon"></i>
+                </div>
+                <input class="menu-input" type="text" placeholder="Wyszukaj"></input>
+                <p class="menu-tasks-par">Zadania</p>
+                <div class="tasks-list-container">
+                    <div class="task-list-items">
+                        <div class="task-list-items-inside">
+                            <p class="task-list-items-inside-item-first"><i class="fa-solid fa-angles-right fa-lg"></i></p>
+                            <p class="task-list-items-inside-item-second">Nadchodzące</p>
+                            <p class="task-list-items-inside-item-third">12</p>
+                        </div>
+
+                        <div class="task-list-items-inside">
+                            <p class="task-list-items-inside-item-first"><i class="fa-solid fa-list-check fa-lg"></i></p>
+                            <p class="task-list-items-inside-item-second">Dzisiaj</p>
+                            <p class="task-list-items-inside-item-third">12</p>
+                        </div>
+
+                        <div class="task-list-items-inside">
+                            <p class="task-list-items-inside-item-first"><i class="fa-regular fa-calendar-days fa-lg"></i></p>
+                            <p class="task-list-items-inside-item-second">Kalendarz</p>
+                            <p class="task-list-items-inside-item-third">12</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-lists-container">
+                <p class="menu-tasks-par">Listy</p>
+                <div class="tasks-list-container">
+                    <div class="task-list-items">
+                        <div class="task-list-items-inside">
+                            <div class="task-list-items-inside-item-first">
+                                <div class="color-item-config" style="background-color: #ff6699;"></div>
+                            </div>
+                            <p class="task-list-items-inside-item-second">Prywatne</p>
+                            <p class="task-list-items-inside-item-third">12</p>
+                        </div>
+
+                        <div class="task-list-items-inside">
+                            <div class="task-list-items-inside-item-first">
+                                <div class="color-item-config" style="background-color: #66c2ff"></div>
+                            </div>
+                            <p class="task-list-items-inside-item-second">Praca</p>
+                            <p class="task-list-items-inside-item-third">12</p>
+                        </div>
+
+                        <div class="task-list-items-inside">
+                            <div class="task-list-items-inside-item-first">
+                                <div class="color-item-config" style="background-color: #ffff66;"></div>
+                            </div>
+                            <p class="task-list-items-inside-item-second">Lista 1</p>
+                            <p class="task-list-items-inside-item-third">12</p>
+                        </div>
+
+                        <div class="task-list-items-inside">
+                            <div class="task-list-items-inside-item-first">
+                                <i class="fa-solid fa-plus fa-lg"></i>
+                            </div>
+                            <p class="task-list-items-inside-item-second">Utwórz listę</p>
+                            <p class="task-list-items-inside-item-third" style="border: none; background-color: transparent;"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-tags-container">
+                <p class="menu-tasks-par">Tagi</p>
+                <div class="menu-tags-container-flex">
+                    <div class="simple_tag_1">
+                        <p>Tag 1</p>
+                    </div>
+                    <div class="simple_tag_2">
+                        <p>Tag 2</p>
+                    </div>
+                    <div class="create_tag">
+                        <i class="fa-solid fa-plus fa-2xs" style="margin-left: 5px;"></i>
+                        <p>Utwórz tag</p>
+                    </div>
+                </div>
+                <div class="settings-container">
+                    <div style="margin-left: 8px;">
+                        <i class="fa-solid fa-sliders fa-lg"></i>
+                    </div>
+                    <p>Ustawienia</p>
+                </div>
+            </div>
+        </div>
+        <div class="center-container">
+            <div class="center-container-header">
+                <div class="center-container-header-list">
+                    <p><strong>Today</strong></p>
+                </div>
+                <div class="center-container-header-number">
+                    <div class="number-box-shadow">
+                        <p>5</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-container-tasks">
+                <div class="input-icon">
+                    <i class="fa-solid fa-plus fa-lg icon"></i>
+                    <p class="input-text">Dodaj nowe zadanie</p>
+                    <input class="row-input"/>
+                </div>
+                <div class="tasks">
+                    1
+                </div>
+            </div>
+        </div>
+        <div class="item-container">
+            <p>Adding-Item</p>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels;
+using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
 
 namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 
@@ -14,6 +15,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 		public virtual DbSet<Przedsiebiorstwo> Przedsiebiorstwo { get; set; }
 		public virtual DbSet<Pracownik> Pracownik { get; set; }
 		public virtual DbSet<User> User { get; set; }
+		public virtual DbSet<Planner> Planner { get; set; }
+		public virtual DbSet<Subtask> SubTask { get; set; }
+		public virtual DbSet<Tag> Tag { get; set; }
 
 		public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
@@ -24,6 +28,16 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<Planner>()
+				.HasOne(p => p.User)
+				.WithMany(u => u.Planners)
+				.HasForeignKey(p => p.UserId);
+
+			modelBuilder.Entity<Planner>()
+				.HasMany(p => p.Subtask)
+				.WithOne(s => s.Planner)
+				.HasForeignKey(s => s.PlannerId);
 		}
 
 	}

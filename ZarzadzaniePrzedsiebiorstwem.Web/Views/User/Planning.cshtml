@@ -8,14 +8,15 @@
         font-family: Verdana;
     }
 
-    main-container {
+    .main-container {
         display: block;
         position: fixed;
         top: 4.6rem;
         left: 13%;
-        height: 100%;
+        height: 82%;
         width: calc(100% - 14.5%);
         box-shadow: 0 2px 4px rgba(0,0,0, 0.4);
+        background-color: whitesmoke;
         border-radius: 20px;
         margin-left: 5px;
         margin-top: 20px;
@@ -36,7 +37,7 @@
         flex-direction: column;
         box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         border-radius: 10px;
-        background-color: rgba(237,231,225, 0.7);
+        background-color: rgba(237, 231, 225, 0.7);
     }
 
     /*
@@ -79,8 +80,9 @@
     .menu-tasks-par {
         margin-top: 15px;
         display: inline-block;
-        font-size: 16px;
+        font-size: 14px;
         margin-left: 25px;
+        font-weight: 700;
     }
 
     .tasks-list-container {
@@ -100,6 +102,10 @@
         margin-left: 30px;
     }
 
+    .task-list-items-inside p {
+        font-weight: 500;
+    }
+
     .task-list-items-inside-item-first {
         flex: 1;
     }
@@ -111,12 +117,12 @@
     .task-list-items-inside-item-third {
         flex: 1;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        text-align: center;
         border-radius: 5px;
         margin-right: 20px;
         background-color: lightgrey;
         margin-top: 5px;
         margin-bottom: 5px;
+        text-align: center;
     }
 
     .color-item-config {
@@ -133,18 +139,20 @@
 
     .menu-tags-container {
         flex: 1;
+        display: flex;
         flex-direction: column;
     }
 
     .menu-tags-container-flex {
-        flex: 1;
+        flex: 2;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         column-gap: 10px;
         margin-left: 8px;
         margin-right: 8px;
         margin-top: 15px;
+        flex-wrap: wrap;
     }
 
     .simple_tag_1 {
@@ -184,17 +192,18 @@
         flex-direction: row;
     }
 
-    .settings-container p {
-        margin-left: 10px;
-    }
+        .settings-container p {
+            margin-left: 10px;
+            font-weight: 700;
+        }
 
     .center-container {
         flex: 1.5;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
-        background-color: rgba(237, 231, 225, 0.7);
+        background-color: whitesmoke;
     }
 
     .center-container-header {
@@ -208,6 +217,10 @@
         flex: 1;
     }
 
+    .center-container-header-number {
+        flex: 3;
+    }
+
     .center-container-header-list p {
         font-size: 36px;
     }
@@ -219,10 +232,6 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
         background-color: rgba(237, 231, 225, 0.7);
-    }
-
-    .center-container-header-number {
-        flex: 3;
     }
 
     .center-container-header-number p {
@@ -247,6 +256,7 @@
 
     .input-icon i {
         position: absolute;
+        margin-left: 10px;
     }
 
     .icon {
@@ -265,6 +275,213 @@
         flex: 12;
     }
 
+    .tasks-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tasks-container-list-items {
+        display: flex;
+        flex-direction: row;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 30px;
+    }
+
+    .tasks-container-list-item {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        flex: 12;
+    }
+
+    .tasks-container-arrow {
+        flex: 0.5;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .tasks-container-list-item p {
+    }
+
+    .item-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(237, 231, 225, 0.7);
+        border-radius: 10px;
+    }
+
+    .task-information {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .task-information-header p {
+        font-size: 24px;
+        font-weight: 700;
+        margin-left: 20px;
+    }
+
+    .task-input {
+        width: 90%;
+        margin-left: 20px;
+    }
+
+    .subtask-information {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .task-information-header-description {
+        flex: 1;
+        width: 90%;
+    }
+
+    .my-textarea-input {
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
+    .task-information-options {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .list-category, .due-date, .list-tags {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-top: 5px;
+        margin-left: 20px;
+    }
+
+    .list-option {
+        flex: 1;
+    }
+
+    .list-option p {
+        font-weight: 700;
+    }
+
+    .list-option-mark {
+        flex: 3;
+    }
+
+        .list-option-mark .select select {
+            height: auto;
+            padding: 0.25em 0.5em;
+            background-color: whitesmoke;
+            width: 100%;
+            width: 100px;
+        }
+
+    .list-tags {
+        column-gap: 10px;
+        margin-right: 20px;
+        padding-bottom: 70px;
+        flex-wrap: wrap;
+    }
+
+    .subtask-header-name {
+        flex: 0.3;
+    }
+
+    .row-input-subtask {
+        flex: 1;
+        width: 90%;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .input-text-subtask {
+        position: absolute;
+        display: inline-block;
+        margin-top: 14px;
+        margin-left: 50px;
+    }
+
+    .icon-subtask {
+       padding-top: 25px; 
+       padding-left: 18px;
+    }
+
+    .subtask-information-list {
+        flex: 1;
+        display: flex; 
+        flex-direction: column;
+    }
+
+    .subtask-information-header {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .subtask-information-header p {
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    .subtasks-container-list-items {
+        flex: 1;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color: whitesmoke;
+        padding-left: 10px;
+    }
+
+    .subtask-container-list-item {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+
+    .subtask-information-buttons {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+
+    .subtask-information-buttons-list {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: end;
+        margin-left: 20px;
+        margin-right: 20px;
+        gap: 20px;
+    }
+
+    .delete-button, .save-button {
+        border-radius: 5px;
+        width: 100%;
+        height: 50%;
+    }
+
+    .save-button {
+        background-color: #ff8c1a;
+    }
+
+    .delete-button p, .save-button p {
+        display: inline-block;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: black;
+    }
     
 </style>
 
@@ -277,7 +494,7 @@
                     <i class="fa-solid fa-bars fa-lg menu-bars-icon"></i>
                 </div>
                 <input class="menu-input" type="text" placeholder="Wyszukaj"></input>
-                <p class="menu-tasks-par">Zadania</p>
+                <p class="menu-tasks-par">ZADANIA</p>
                 <div class="tasks-list-container">
                     <div class="task-list-items">
                         <div class="task-list-items-inside">
@@ -301,7 +518,7 @@
                 </div>
             </div>
             <div class="menu-lists-container">
-                <p class="menu-tasks-par">Listy</p>
+                <p class="menu-tasks-par">LISTY</p>
                 <div class="tasks-list-container">
                     <div class="task-list-items">
                         <div class="task-list-items-inside">
@@ -328,7 +545,7 @@
                             <p class="task-list-items-inside-item-third">12</p>
                         </div>
 
-                        <div class="task-list-items-inside">
+                        <div class="task-list-items-inside" style="height: 34px;">
                             <div class="task-list-items-inside-item-first">
                                 <i class="fa-solid fa-plus fa-lg"></i>
                             </div>
@@ -339,7 +556,7 @@
                 </div>
             </div>
             <div class="menu-tags-container">
-                <p class="menu-tasks-par">Tagi</p>
+                <p class="menu-tasks-par">TAGI</p>
                 <div class="menu-tags-container-flex">
                     <div class="simple_tag_1">
                         <p>Tag 1</p>
@@ -376,15 +593,125 @@
                 <div class="input-icon">
                     <i class="fa-solid fa-plus fa-lg icon"></i>
                     <p class="input-text">Dodaj nowe zadanie</p>
-                    <input class="row-input"/>
+                    <input class="row-input" />
                 </div>
                 <div class="tasks">
-                    1
+                    <div class="tasks-container">
+                        <div class="tasks-container-list-items">
+                            <div class="tasks-container-list-item">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Remember me
+                                </label>
+                            </div>
+
+                            <div class="tasks-container-arrow">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="item-container">
-            <p>Adding-Item</p>
+            <div class="task-information">
+                <div class="task-information-header">
+                    <p>Zadanie:</p>
+                </div>
+                <div class="task-information-header-input">
+                    <input type="text" class="menu-input" placeholder="Odnów ubezpieczenie samochodu" style="width: 90%;">
+                </div>
+                <div class="task-information-header-description">
+                    <p class="is-size-1">
+                        <textarea class="textarea my-textarea-input" placeholder="Dodaj opis"></textarea>
+                    </p>
+                </div>
+                <div class="task-information-options">
+                    <div class="list-category">
+                        <div class="list-option"><p>Lista</p></div>
+                        <div class="list-option-mark">
+                            <div class="select is-small is-link">
+                                <select>
+                                    <option>option_1</option>
+                                    <option>option_2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="due-date">
+                        <div class="list-option"><p>Termin</p></div>
+                        <div class="list-option-mark">
+                            <div class="select is-small is-link">
+                                <select>
+                                    <option>option_1</option>
+                                    <option>option_2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-tags">
+                        <div class="list-option"><p>Tagi</p></div>
+                        <div class="simple_tag_2">
+                            <p>Tag 2</p>
+                        </div>
+                        <div class="create_tag">
+                            <i class="fa-solid fa-plus fa-2xs" style="margin-left: 5px;"></i>
+                            <p>Utwórz tag</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="subtask-information">
+                <div class="subtask-information-header">
+                    <p>Podzadanie:</p>
+                </div>
+                <div class="subtask-information-list">
+                    <div class="input-icon subtask-header-name">
+                        <i class="fa-solid fa-plus fa-lg icon-subtask"></i>
+                        <p class="input-text-subtask">Dodaj nowe podzadanie</p>
+                        <input class="row-input-subtask" />
+                    </div>
+                    <div class="subtasks-container-list-items">
+                        <div>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            Remember me
+                        </label>
+                    </div>
+                        <div>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            Remember me
+                        </label>
+                        </div>
+                        <div>
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Remember me
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Remember me
+                            </label>
+                        </div>
+                        <div>
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                Remember me
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="subtask-information-buttons">
+                        <div class="subtask-information-buttons-list">
+                            <button class="delete-button"><p>Usuń zadanie </p></button>
+                            <button class="save-button"><p>Zapisz zmiany</p></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

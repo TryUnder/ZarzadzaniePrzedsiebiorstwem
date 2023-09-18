@@ -512,6 +512,10 @@
     background-color: #ff8c1a;
 }
 
+.overriden-button-a {
+    color: #333;
+}
+
 .delete-button p, .save-button p {
     display: inline-block;
     text-align: center;

@@ -1,31 +1,29 @@
 ﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
 
-<style>
-	section.section {
-		margin-top: 0;
-		padding-top: 1.5rem;
-		margin-bottom: 0;
-		padding-bottom: 1.5rem;
-	}
-</style>
-
-<section class="section">
-	<div class="message-header is-primary">
-		<p class="has-text-centered">Wprowadź dane do logowania w serwisie</p>
-	</div>
-		<form asp-controller="User" asp-action="LoginUser" method="post">
-			<div class="field">
-				<label asp-for="Login" class="label">Login</label>
-				<input asp-for="Login" class="input is-medium is-fullwidth" type="text" placeholder="Login" />
-			</div>
-
-			<div class="field">
-				<label asp-for="Haslo" class="label">Hasło</label>
-				<input asp-for="Haslo" class="input is-medium is-fullwidth" type="password" placeholder="Haslo" />
-			</div>
-
-			<div class="field">
-				<button type="submit" class="button">Zaloguj</button>
-			</div>
-		</form>
-</section>
+<div class="login-body">
+    <div class="login">
+        <form asp-controller="User" asp-action="LoginUser" method="post">
+            <h1>Logowanie</h1>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i>
+                </span>
+                <input asp-for="Login" type="text" placeholder="Nazwa użytkownika" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="fa-solid fa-lock fa-xs" style="color: #ffffff;"></i>
+                </span>
+                <input asp-for="Haslo" type="password" placeholder="Hasło" required>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">Zapamiętaj mnie</label>
+                <a href="#">Przypomnij hasło</a>
+            </div>
+            <button type="submit" class="button">Zaloguj się</button>
+            <div class="register-list">
+                <p>Nie masz konta? <a href="#">Zarejestruj się!</a></p>
+            </div>
+        </form>
+    </div>
+</div>

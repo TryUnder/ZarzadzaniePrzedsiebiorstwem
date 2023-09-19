@@ -83,6 +83,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
 }
 
 .task-list-items {
@@ -128,7 +129,17 @@
     border: 2px solid #ffee10;
 }
 
+.list-item-bcg.clicked {
+    background-color: #333;
+    color: #ffee10;
+    border: 2px solid #ffee10;
+}
+
 .task-item-number.clicked_icon {
+    border: 2px solid #ffee10;
+}
+
+.list-item-number.clicked_number {
     border: 2px solid #ffee10;
 }
 
@@ -175,13 +186,13 @@
 }
 
 .menu-tags-container {
-    flex: 1;
+    flex: 2;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .menu-tags-container-flex {
-    flex: 2;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -212,6 +223,8 @@
     background-color: #ffccff;
     border-radius: 5px;
     align-items: center;
+    padding: 10px 20px 10px 20px;
+    
 }
 
     .simple_tag_1, .simple_tag_2, .create_tag p {
@@ -219,14 +232,31 @@
         display: inline-block;
     }
 
-.settings-container {
-    display: flex;
-    flex: auto;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    flex-direction: row;
+        .settings-container {
+            display: flex;
+            flex: 0.3;
+            justify-content: flex-start;
+            align-items: flex-end;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            flex-direction: row;
+        }
+
+.menu-tags-container::-webkit-scrollbar {
+    display: inline-block;
+    width: 5px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 40px;
+    scroll-margin-right: 20px;
+}
+
+.menu-tags-container::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.menu-tags-container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: antiquewhite;
 }
 
     .settings-container p {
@@ -252,6 +282,7 @@
 .center-container-header-list {
     margin-left: 20px;
     flex: 1;
+    padding-right: 20px;
 }
 
 .center-container-header-number {
@@ -297,8 +328,13 @@
 }
 
 .icon {
-    padding: 30px;
-    margin-top: 10px;
+    padding: 0;
+    margin-top: 0;
+}
+
+.icon-plus {
+    padding-left: 25px;
+    margin-top: 40px;
 }
 
 .input-text {

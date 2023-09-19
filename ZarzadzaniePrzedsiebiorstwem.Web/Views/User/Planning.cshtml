@@ -38,32 +38,8 @@
                 <p class="menu-tasks-par">LISTY</p>
                 <div class="tasks-list-container">
                     <div id="task-list-items" class="task-list-items">
-                        <div class="task-list-items-inside">
-                            <div class="task-list-items-inside-item-first list-item-bcg">
-                                <div class="color-item-config" style="background-color: #ff6699;"></div>
-                            </div>
-                            <p class="task-list-items-inside-item-second text-list-item">Prywatne</p>
-                            <p class="task-list-items-inside-item-third list-item-number">12</p>
-                        </div>
-
-                        <div class="task-list-items-inside">
-                            <div class="task-list-items-inside-item-first list-item-bcg">
-                                <div class="color-item-config" style="background-color: #66c2ff"></div>
-                            </div>
-                            <p class="task-list-items-inside-item-second text-list-item">Praca</p>
-                            <p class="task-list-items-inside-item-third list-item-number">12</p>
-                        </div>
-
-                        <div class="task-list-items-inside">
-                            <div class="task-list-items-inside-item-first list-item-bcg">
-                                <div class="color-item-config" style="background-color: #ffff66;"></div>
-                            </div>
-                            <p class="task-list-items-inside-item-second text-list-item">Lista 1</p>
-                            <p class="task-list-items-inside-item-third list-item-number">12</p>
-                        </div>
-
                         <a id="before" href="#" onclick="CreateList();" class="overriden-button-a">
-                        <div class="task-list-items-inside" style="height: 34px;">
+                        <div class="task-list-items-inside" style="height: 34px; margin-bottom: 20px; margin-top: 5px;">
                             <div style="margin-top: 10px;" class="task-list-items-inside-item-first">
                                 <i class="fa-solid fa-plus fa-lg"></i>
                             </div>
@@ -74,43 +50,40 @@
                     </div>
                 </div>
             </div>
-            <div class="menu-tags-container">
+            <div id="menu-tags-container" class="menu-tags-container">
                 <p class="menu-tasks-par">TAGI</p>
-                <div class="menu-tags-container-flex">
-                    <div class="simple_tag_1">
-                        <p>Tag 1</p>
-                    </div>
-                    <div class="simple_tag_2">
-                        <p>Tag 2</p>
-                    </div>
-                    <div class="create_tag">
-                        <i class="fa-solid fa-plus fa-2xs" style="margin-left: 5px;"></i>
-                        <p>Utwórz tag</p>
-                    </div>
+                <div id="menu-tags-container-flex" class="menu-tags-row menu-tags-container-flex" style="justify-content: center; ">
+                    <a id="create_tag" href="#" class="overriden-button-a" onclick="CreateTag();">
+                        <div class="create_tag">
+                            <i class="fa-solid fa-plus fa-2xs" style="margin-left: 5px;"></i>
+                            <p>Utwórz tag</p>
+                        </div>
+                    </a>
                 </div>
+            </div>
                 <div class="settings-container">
                     <div style="margin-left: 8px;">
                         <i class="fa-solid fa-sliders fa-lg"></i>
                     </div>
                     <p>Ustawienia</p>
                 </div>
-            </div>
+            
         </div>
         <div class="center-container">
             <div class="center-container-header">
                 <div class="center-container-header-list">
-                    <p><strong>Today</strong></p>
+                    <p id="header-list-par"><strong>Nadchodzące</strong></p>
                 </div>
                 <div class="center-container-header-number">
                     <div class="number-box-shadow">
-                        <p>5</p>
+                        <p id="header-list-number">5</p>
                     </div>
                 </div>
             </div>
 
             <div class="center-container-tasks">
                 <div class="input-icon">
-                    <i id="input-plus-icon" onclick="HideElement('input-plus-icon'); HideElement('input-text');" onblur="ShowElement('input-plus-icon','row-input'); ShowElement('input-text', 'row-input');" class="fa-solid fa-plus fa-lg icon"></i>
+                    <i id="input-plus-icon" onclick="HideElement('input-plus-icon'); HideElement('input-text');" onblur="ShowElement('input-plus-icon','row-input'); ShowElement('input-text', 'row-input');" class="fa-solid fa-plus fa-lg icon-plus"></i>
                     <p id="input-text" onclick="HideElement('input-plus-icon'); HideElement('input-text');" onblur="ShowElement('input-plus-icon','row-input'); ShowElement('input-text', 'row-input');" class="input-text">Dodaj nowe zadanie</p>
                     <input id="row-input" onclick="HideElement('input-plus-icon'); HideElement('input-text');" onblur="ShowElement('input-plus-icon','row-input'); ShowElement('input-text', 'row-input');" class="row-input" />
                 </div>

@@ -23,13 +23,13 @@ function ShowPlaceholder(id) {
     element.placeholder = element.dataset.placeholder;
 }
 
-function ShowIconGlow() {
+function SelectGlowTaskItems() {
     const iconElements = document.querySelectorAll(".task-item-icon");
     const numberElements = document.querySelectorAll(".task-item-number");
     const parElements = document.querySelectorAll(".text-item");
 
     iconElements.forEach((icon, index) => {
-        icon.addEventListener('click', function() {
+        icon.addEventListener('click', function () {
 
             iconElements.forEach((el) => {
                 el.classList.remove('clicked');
@@ -42,6 +42,8 @@ function ShowIconGlow() {
             const numberElement = numberElements[index];
             icon.classList.add('clicked');
             numberElement.classList.add('clicked_icon');
+
+            UpdateHeaderPar();
         });
     });
 
@@ -59,6 +61,8 @@ function ShowIconGlow() {
             const iconElement = iconElements[index];
             iconElement.classList.add('clicked');
             number.classList.add('clicked_icon');
+
+            UpdateHeaderPar();
         });
     });
 
@@ -77,11 +81,70 @@ function ShowIconGlow() {
             const numberElement = numberElements[index];
             iconElement.classList.add('clicked');
             numberElement.classList.add('clicked_icon');
+
+            UpdateHeaderPar();
         });
     });
 }
 
-window.addEventListener('load', ShowIconGlow);
+function SelectGlowListItems() {
+    const bcgElements = document.querySelectorAll(".list-item-bcg");
+    const numberElements = document.querySelectorAll(".list-item-number");
+    const parElements = document.querySelectorAll(".text-list-item");
+
+    bcgElements.forEach((bcg, index) => {
+        bcg.addEventListener('click', function () {
+
+            bcgElements.forEach((el) => {
+                el.classList.remove('clicked');
+            });
+
+            numberElements.forEach((el) => {
+                el.classList.remove('clicked_number');
+            });
+
+            const numberElement = numberElements[index];
+            bcg.classList.add('clicked');
+            numberElement.classList.add('clicked_number');
+        });
+    });
+
+    numberElements.forEach((number, index) => {
+        number.addEventListener('click', function () {
+
+            bcgElements.forEach((el) => {
+                el.classList.remove('clicked');
+            });
+
+            numberElements.forEach((el) => {
+                el.classList.remove('clicked_number');
+            });
+
+            const bcgElement = bcgElements[index];
+            const numberElement = numberElements[index];
+            bcgElement.classList.add('clicked');
+            numberElement.classList.add('clicked_number');
+
+        });
+    });
+
+    parElements.forEach((par, index) => {
+        par.addEventListener('click', function () {
+            bcgElements.forEach((el) => {
+                el.classList.remove('clicked');
+            });
+
+            numberElements.forEach((el) => {
+                el.classList.remove('clicked_number');
+            });
+
+            const bcgElement = bcgElements[index];
+            const numberElement = numberElements[index];
+            bcgElement.classList.add('clicked');
+            numberElement.classList.add('clicked_number');
+        });
+    });
+}
 
 function CreateList() {
     var taskListItems = document.getElementById("task-list-items");
@@ -119,6 +182,8 @@ function CreateList() {
     newRow.appendChild(thirdPar);
 
     taskListItems.insertBefore(newRow, document.getElementById("before"));
+
+    SelectGlowListItems();
 }
 
 function CreateTag() {
@@ -126,11 +191,11 @@ function CreateTag() {
 
     var rows = tagsContainerFlex.getElementsByClassName("menu-tags-row");
 
-    if (rows === 0 || rows[rows.length - 1].querySelectorAll("div.simple_tag_1").length >= 3) {
+        
         var menuTagsContainer = document.getElementById("menu-tags-container");
         var newRow = document.createElement("div");
-        newRow.className = "menu-tags-row menu-tags-container-flex"
-    }
+        newRow.className = "menu-tags-row menu-tags-container-flex";
+    
 
     var tagName = prompt("Podaj nazwę tagu");
 
@@ -150,3 +215,51 @@ function CreateTag() {
     newRow.appendChild(newTag);
     menuTagsContainer.appendChild(newRow);
 }
+
+function UpdateHeaderPar() {
+    var headerListPar = document.getElementById("header-list-par");
+
+    const iconElements = document.querySelectorAll(".task-item-icon");
+    const numberElements = document.querySelectorAll(".task-item-number");
+    const parElements = document.querySelectorAll(".text-item");
+
+    let isTodaySelected = false;
+    let isUpcomingSelected = false;
+    let isCalendarSelected = false;
+
+    iconElements.forEach((icon, index) => {
+        if (icon.classList.contains('clicked')) {
+            const numberElement = numberElements[index];
+            if (numberElement.classList.contains('clicked_icon')) {
+                const textElement = parElements[index];
+                if (textElement.textContent === 'Dzisiaj') {
+                    isTodaySelected = true;
+                } else if (textElement.textContent === 'Nadchodzące') {
+                    isUpcomingSelected = true;
+                } else if (textElement.textContent === 'Kalendarz') {
+                    isCalendarSelected = true;
+                }
+            }
+        }
+    });
+
+    headerListPar.style.fontWeight = "bold";
+    headerListPar.style.paddingRight = "20px;";
+
+    if (isTodaySelected) {
+        headerListPar.textContent = "Dzisiaj";
+    } else if (isUpcomingSelected) {
+        headerListPar.textContent = "Nadchodzące";
+    } else if (isCalendarSelected) {
+        headerListPar.textContent = "Kalendarz";
+    }
+
+    console.log(5);
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+    SelectGlowTaskItems();
+    SelectGlowListItems();
+    UpdateHeaderPar();
+});
+

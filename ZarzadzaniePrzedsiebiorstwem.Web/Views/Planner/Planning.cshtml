@@ -10,7 +10,7 @@
                     <p class="menu-par"><strong>Menu</strong></p>
                     <i class="fa-solid fa-bars fa-lg menu-bars-icon"></i>
                 </div>
-                <input id="menu-input" onclick="HidePlaceholder('menu-input');" onblur="ShowPlaceholder('menu-input');" class="menu-input" type="text" placeholder="Wyszukaj"></input>
+                <input id="menu-input" onclick="HidePlaceholder('menu-input');" onblur="ShowPlaceholder('menu-input');" class="menu-input" type="text" placeholder="Wyszukaj" />
                 <p class="menu-tasks-par">ZADANIA</p>
                 <div class="tasks-list-container">
                     <div class="task-list-items">
@@ -38,14 +38,32 @@
                 <p class="menu-tasks-par">LISTY</p>
                 <div class="tasks-list-container">
                     <div id="task-list-items" class="task-list-items">
+                        @foreach (var item in Model.Planners) 
+						{
+                            List<String> taskItemList = new List<String>();
+                            if (!taskItemList.Contains(item.TaskList)) {
+                                taskItemList.Add(item.TaskList);
+
+                                // obliczam zadania przyporządkowane do danej listy
+                                int taskCount = Model.Planners.Count(p => p.TaskList == item.TaskList);
+
+                                <div class="task-list-items-inside">
+                                    <div class="task-list-items-inside-item-first list-item-bcg">
+                                        <div class="color-item-config"></div>
+                                    </div>
+                                    <p class="task-list-items-inside-item-second text-list-item">@item.TaskList</p>
+                                    <p class="task-list-items-inside-item-third list-item-number">@taskCount</p>
+                                </div>
+						    }
+						}
                         <a id="before" href="#" onclick="CreateList();" class="overriden-button-a">
-                        <div class="task-list-items-inside" style="height: 34px; margin-bottom: 20px; margin-top: 5px;">
-                            <div style="margin-top: 10px;" class="task-list-items-inside-item-first">
-                                <i class="fa-solid fa-plus fa-lg"></i>
+                            <div class="task-list-items-inside" style="height: 34px; margin-bottom: 20px; margin-top: 5px;">
+                                <div style="margin-top: 10px;" class="task-list-items-inside-item-first">
+                                    <i class="fa-solid fa-plus fa-lg"></i>
+                                </div>
+                                <p style="margin-top: 10px;" class="task-list-items-inside-item-second">Utwórz listę</p>
+                                <p class="task-list-items-inside-item-third" style="border: none; background-color: transparent; box-shadow: none;"></p>
                             </div>
-                            <p style="margin-top: 10px;" class="task-list-items-inside-item-second">Utwórz listę</p>
-                            <p class="task-list-items-inside-item-third" style="border: none; background-color: transparent; box-shadow: none;"></p>
-                        </div>
                         </a>
                     </div>
                 </div>
@@ -88,7 +106,22 @@
                     <input id="row-input" onclick="HideElement('input-plus-icon'); HideElement('input-text');" onblur="ShowElement('input-plus-icon','row-input'); ShowElement('input-text', 'row-input');" class="row-input" />
                 </div>
                 <div class="tasks">
-                    <div class="tasks-container">
+                    <div id="task-" class="tasks-container">
+                        @foreach (var item in Model.Planners) {
+                            
+                        }
+                        <div class="tasks-container-list-items">
+                            <div class="tasks-container-list-item">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Remember me
+                                </label>
+                            </div>
+
+                            <div class="tasks-container-arrow">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </div>
+                        </div>
                         <div class="tasks-container-list-items">
                             <div class="tasks-container-list-item">
                                 <label class="checkbox">
@@ -207,5 +240,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    var myData = @Html.Raw(Json.Serialize(Model));
+</script>
 
 <script src="~/js/planner.js"></script>

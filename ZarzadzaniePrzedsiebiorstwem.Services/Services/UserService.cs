@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels;
+using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 	public class UserService : BaseService, IUserService {
@@ -158,5 +159,5 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 			}
 			return null;
 		}
-	}
+    }
 }

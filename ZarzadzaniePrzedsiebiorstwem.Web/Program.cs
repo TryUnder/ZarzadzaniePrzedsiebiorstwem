@@ -3,15 +3,20 @@ using ZarzadzaniePrzedsiebiorstwem.DAL.EF;
 using ZarzadzaniePrzedsiebiorstwem.Services.Interfaces;
 using ZarzadzaniePrzedsiebiorstwem.Services.Services;
 using Microsoft.AspNetCore.Session;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(options => {
+	options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+});
 
 var connectionString = builder.Configuration.GetConnectionString("MyConnection");
+
 builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPrzedsiebiorstwoService, PrzedsiebiorstwoService>();
+builder.Services.AddScoped<IPlannerService, PlannerService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {

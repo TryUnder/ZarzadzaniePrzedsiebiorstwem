@@ -87,6 +87,8 @@ function SelectGlowTaskItems() {
     });
 }
 
+console.log(myData.planners[0].taskList);
+
 function SelectGlowListItems() {
     const bcgElements = document.querySelectorAll(".list-item-bcg");
     const numberElements = document.querySelectorAll(".list-item-number");
@@ -254,12 +256,23 @@ function UpdateHeaderPar() {
         headerListPar.textContent = "Kalendarz";
     }
 
-    console.log(5);
+}
+
+function generateBackgroundIconColor() {
+    var icons = document.querySelectorAll(".color-item-config");
+    icons.forEach((icon) => {
+        let r = Math.floor(150 + Math.random() * 155);
+        let g = Math.floor(150 + Math.random() * 155);
+        let b = Math.floor(150 + Math.random() * 155);
+
+        icon.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    });
 }
 
 window.addEventListener('DOMContentLoaded', function () {
     SelectGlowTaskItems();
     SelectGlowListItems();
     UpdateHeaderPar();
+    generateBackgroundIconColor();
 });
 

@@ -229,8 +229,11 @@ function SearchInModel() {
             filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName).flatMap(a => a.taskName);
         }
     } else if (selectedFilters.list == false) {
-        const currentDate = new Date();
-        console.log(myData.planners[0].dueDate)
+        const currentDate = new Date().toJSON().slice(0, 10);
+        const newDate = new Date(myData.planners[0].dueDate);
+        if (newDate.toISOString().split('T')[0] === currentDate) {
+            console.log("true");
+        }
         if (selectedFilters.today == true) {
             filteredTasks = myData.planners.filter(a => a.dueDate === "Dzisiaj").flatMap(a => a.taskName);
         }

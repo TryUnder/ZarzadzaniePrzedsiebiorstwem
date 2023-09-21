@@ -106,10 +106,7 @@
                     <input id="row-input" onclick="HideElement('input-plus-icon'); HideElement('input-text');" onblur="ShowElement('input-plus-icon','row-input'); ShowElement('input-text', 'row-input');" class="row-input" />
                 </div>
                 <div class="tasks">
-                    <div id="task-" class="tasks-container">
-                        @foreach (var item in Model.Planners) {
-                            
-                        }
+                    <div id="task-container" class="tasks-container">
                         <div class="tasks-container-list-items">
                             <div class="tasks-container-list-item">
                                 <label class="checkbox">
@@ -166,12 +163,13 @@
                     <div class="due-date">
                         <div class="list-option"><p>Termin</p></div>
                         <div class="list-option-mark">
-                            <div class="select is-small is-link">
-                                <select>
-                                    <option>option_1</option>
-                                    <option>option_2</option>
-                                </select>
+                            <form asp-controller="Planner" asp-action="AddDate" method="post">
+                            <div>
+                                <input asp-for="Planners" type="date" name="date"/>
                             </div>
+                                <button type="submit">Submit</button>
+                            </form>
+ 
                         </div>
                     </div>
                     <div class="list-tags">
@@ -231,7 +229,7 @@
                     </div>
                     <div class="subtask-information-buttons">
                         <div class="subtask-information-buttons-list">
-                            <button class="delete-button"><p>Usuń zadanie </p></button>
+                            <button class="delete-button"><p>Usuń zadanie</p></button>
                             <button class="save-button"><p>Zapisz zmiany</p></button>
                         </div>
                     </div>

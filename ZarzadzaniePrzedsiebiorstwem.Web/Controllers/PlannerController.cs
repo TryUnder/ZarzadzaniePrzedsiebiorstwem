@@ -5,6 +5,7 @@ using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels;
 using ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels;
 using ZarzadzaniePrzedsiebiorstwem.Services.Services;
+using System.Globalization;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
     public class PlannerController : Controller {
@@ -25,6 +26,15 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 
             var user = _userService.GetUserFromId(Id);
             return View("Views/Planner/Planning.cshtml", user);
+        }
+
+        [HttpPost]
+        public IActionResult AddDate(string date) {
+            DateTime result;// = new DateTime(Int32.Parse(date[0..3]), Int32.Parse(date[4..5]), Int32.Parse(date[6..7]));
+            String format = "yyyy-MM-dd";
+            result = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
+            _plannerService.addDate(result);
+            return View("Index");
         }
     }
 }

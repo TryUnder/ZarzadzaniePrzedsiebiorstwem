@@ -47,5 +47,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
             return planner;
         }
 
+        public void addDate(DateTime date) {
+            var user = _dbContext.User.Where(x => x.Id == 3).FirstOrDefault();
+
+            user.Planners.ElementAt(0).DueDate = date;
+            _dbContext.SaveChanges();
+        }
+
     }
 }

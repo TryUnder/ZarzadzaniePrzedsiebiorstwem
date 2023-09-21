@@ -10,5 +10,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Interfaces {
         public void CreatePlanner(int userId);
         public bool GetPlannerBool(int userId);
         public Planner GetPlanner(int userId);
+        public void addDate(DateTime date);
     }
 }

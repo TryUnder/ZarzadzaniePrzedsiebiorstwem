@@ -11,7 +11,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner {
         public int Id { get; set; }
         public string TaskName { get; set; } = "";
         public string? Description { get; set; }
-        public DateTime? DueDate { get; set; }
+        public DateTime DueDate { get; set; }
 
         public string TaskList { get; set; } = "Nadchodzące";
         public virtual ICollection<Tag>? Tags { get; set; } = new List<Tag>();

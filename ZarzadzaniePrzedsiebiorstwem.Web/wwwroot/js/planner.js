@@ -1,4 +1,38 @@
 ﻿
+var selectedFilters = {
+    list: false,
+    listName: null,
+    task: false,
+    taskName: null,
+    today: false,
+    upcoming: false,
+    calendar: false
+};
+
+function SetDueDateFilter(parElements, index) {
+    selectedFilters.task = true;
+    if (parElements[index].textContent === "Nadchodzące") {
+        selectedFilters.taskName 
+        selectedFilters.upcoming = true;
+        selectedFilters.today = false;
+        selectedFilters.calendar = false;
+    }
+
+    if (parElements[index].textContent === "Dzisiaj") {
+        selectedFilters.today = true;
+        selectedFilters.upcoming = false;
+        selectedFilters.calendar = false;
+    }
+
+    if (parElements[index].textContent === "Kalendarz") {
+        selectedFilters.calendar = true;
+        selectedFilters.today = false;
+        selectedFilters.upcoming = false;
+    }
+
+    selectedFilters.taskName = parElements[index].textContent;
+}
+
 function HideElement(id) {
     const element = document.getElementById(id);
     element.style.display = "none";
@@ -44,6 +78,8 @@ function SelectGlowTaskItems() {
             numberElement.classList.add('clicked_icon');
 
             UpdateHeaderPar();
+            SetDueDateFilter(parElements, index);
+            SearchInModel();
         });
     });
 
@@ -63,6 +99,8 @@ function SelectGlowTaskItems() {
             number.classList.add('clicked_icon');
 
             UpdateHeaderPar();
+            SetDueDateFilter(parElements, index);
+            SearchInModel();
         });
     });
 
@@ -83,11 +121,12 @@ function SelectGlowTaskItems() {
             numberElement.classList.add('clicked_icon');
 
             UpdateHeaderPar();
+            SetDueDateFilter(parElements, index);
+            SearchInModel();
         });
     });
 }
 
-console.log(myData.planners[0].taskList);
 
 function SelectGlowListItems() {
     const bcgElements = document.querySelectorAll(".list-item-bcg");
@@ -126,7 +165,6 @@ function SelectGlowListItems() {
             const numberElement = numberElements[index];
             bcgElement.classList.add('clicked');
             numberElement.classList.add('clicked_number');
-
         });
     });
 
@@ -145,6 +183,90 @@ function SelectGlowListItems() {
             bcgElement.classList.add('clicked');
             numberElement.classList.add('clicked_number');
         });
+    });
+}
+
+function DisplayTaskList() {
+    const bcgElements = document.querySelectorAll(".list-item-bcg");
+    const numberElements = document.querySelectorAll(".list-item-number");
+    const parElements = document.querySelectorAll(".text-list-item");
+
+    var taskContainer = document.getElementById("task-container");
+
+    bcgElements.forEach((par, index) => {
+        par.addEventListener('click', function () {
+            selectedFilters.list = true;
+            selectedFilters.listName = parElements[index].textContent;
+            SearchInModel();
+        });
+    });
+
+    numberElements.forEach((par, index) => {
+        par.addEventListener('click', function () {
+            selectedFilters.list = true;
+            selectedFilters.listName = parElements[index].textContent;
+            SearchInModel();
+        });
+    });
+
+    parElements.forEach((par, index) => {
+        par.addEventListener('click', function () {
+            selectedFilters.list = true;
+            selectedFilters.listName = parElements[index].textContent;
+            SearchInModel();
+        });
+    });
+}
+
+function SearchInModel() {
+    var taskContainer = document.getElementById("task-container");
+
+    //taskList = parElements[index].textContent;
+    var filteredTasks = [];
+
+    if (selectedFilters.list == true) {
+        if (selectedFilters.listName != null) {
+            filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName).flatMap(a => a.taskName);
+        }
+    } else if (selectedFilters.list == false) {
+        const currentDate = new Date();
+        console.log(myData.planners[0].dueDate)
+        if (selectedFilters.today == true) {
+            filteredTasks = myData.planners.filter(a => a.dueDate === "Dzisiaj").flatMap(a => a.taskName);
+        }
+    }
+    
+    taskContainer.innerHTML = '';
+    filteredTasks.forEach((taskName) => {
+        var taskContainerListItemsDiv = document.createElement("div");
+        taskContainerListItemsDiv.className = "tasks-container-list-items";
+
+        var taskContainerListItemDiv = document.createElement("div");
+        taskContainerListItemDiv.className = "tasks-container-list-item";
+
+        var taskContainerArrowDiv = document.createElement("div");
+        taskContainerArrowDiv.className = "tasks-container-arrow";
+
+        var taskContainerArrowIcon = document.createElement("i");
+        taskContainerArrowIcon.className = "fa-solid fa-angle-right";
+
+        var label = document.createElement("label");
+        label.className = "checkbox";
+
+        var input = document.createElement("input");
+        input.type = "checkbox";
+
+        var labelText = document.createElement("span");
+        labelText.textContent = taskName;
+        labelText.style.marginLeft = "5px";
+
+        taskContainerArrowDiv.appendChild(taskContainerArrowIcon);
+        label.appendChild(input);
+        label.appendChild(labelText);
+        taskContainerListItemDiv.appendChild(label);
+        taskContainerListItemsDiv.appendChild(taskContainerListItemDiv);
+        taskContainerListItemsDiv.appendChild(taskContainerArrowDiv);
+        taskContainer.appendChild(taskContainerListItemsDiv);
     });
 }
 
@@ -274,5 +396,5 @@ window.addEventListener('DOMContentLoaded', function () {
     SelectGlowListItems();
     UpdateHeaderPar();
     generateBackgroundIconColor();
+    DisplayTaskList();
 });
-

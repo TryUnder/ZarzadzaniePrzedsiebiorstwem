@@ -17,19 +17,54 @@
                         <div class="task-list-items-inside">
                             <p class="task-list-items-inside-item-first task-item-icon"><i id="icon-angles" class="fa-solid fa-angles-right fa-lg"></i></p>
                             <p class="task-list-items-inside-item-second text-item">Nadchodzące</p>
-                            <p class="task-list-items-inside-item-third task-item-number">12</p>
+                            <p class="task-list-items-inside-item-third task-item-number">
+                                @{
+                                    DateTime currentDate = DateTime.Now.Date;
+                                    var taskNumber = 0;
+
+                                    @foreach (var item in Model.Planners) {
+                                        DateTime dueDate = item.DueDate;
+                                        if (dueDate > currentDate) {
+                                            taskNumber += 1;        
+                                        }
+                                    }
+                                    @taskNumber
+                                }
+                            </p>
                         </div>
 
                         <div class="task-list-items-inside">
                             <p class="task-list-items-inside-item-first task-item-icon"><i class="fa-solid fa-list-check fa-lg"></i></p>
                             <p class="task-list-items-inside-item-second text-item">Dzisiaj</p>
-                            <p class="task-list-items-inside-item-third task-item-number">12</p>
+                            <p class="task-list-items-inside-item-third task-item-number">
+                                @{
+                                    var taskNumberToday = 0;
+
+                                    @foreach (var item in Model.Planners) {
+                                        DateTime dueDate = item.DueDate;
+                                        Console.WriteLine(dueDate);
+                                        Console.WriteLine(currentDate);
+                                        if (dueDate == currentDate) {
+                                            taskNumberToday += 1;
+                                        }
+                                    }
+                                    @taskNumberToday
+                                }
+                            </p>
                         </div>
 
                         <div class="task-list-items-inside">
                             <p class="task-list-items-inside-item-first task-item-icon"><i class="fa-regular fa-calendar-days fa-lg"></i></p>
                             <p class="task-list-items-inside-item-second text-item">Kalendarz</p>
-                            <p class="task-list-items-inside-item-third task-item-number">12</p>
+                            <p class="task-list-items-inside-item-third task-item-number">
+                                @{
+                                    var taskNumberAll = 0;
+                                    @foreach (var item in Model.Planners) {
+                                        taskNumberAll += 1;
+                                    }
+                                    @taskNumberAll
+                                }
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -94,7 +129,7 @@
                 </div>
                 <div class="center-container-header-number">
                     <div class="number-box-shadow">
-                        <p id="header-list-number">5</p>
+                        <p id="header-list-number"></p>
                     </div>
                 </div>
             </div>

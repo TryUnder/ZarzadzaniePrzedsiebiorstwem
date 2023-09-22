@@ -223,22 +223,35 @@ function SearchInModel() {
 
     //taskList = parElements[index].textContent;
     var filteredTasks = [];
-
-    if (selectedFilters.list == true) {
+    var currentDay = new Date().toLocaleDateString();
+    if (selectedFilters.task == true && selectedFilters.list == true) {
+        //list and task
         if (selectedFilters.listName != null) {
-            filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName).flatMap(a => a.taskName);
-        }
-    } else if (selectedFilters.list == false) {
-        const currentDate = new Date().toJSON().slice(0, 10);
-        const newDate = new Date(myData.planners[0].dueDate);
-        if (newDate.toISOString().split('T')[0] === currentDate) {
-            console.log("true");
-        }
-        if (selectedFilters.today == true) {
-            filteredTasks = myData.planners.filter(a => a.dueDate === "Dzisiaj").flatMap(a => a.taskName);
+            if (selectedFilters.upcoming == true) {
+                //list and upcoming
+                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate).toLocaleDateString() > currentDay).flatMap(a => a.taskName);
+            } else if (selectedFilters.today == true) {
+                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate).toLocaleDateString() === currentDay).flatMap(a => a.taskName);
+            }
         }
     }
-    
+
+    if (selectedFilters.task == false && selectedFilters.list == true) {
+        if (selectedFilters.listName) {
+            filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName).flatMap(a => a.taskName);
+        }
+    }
+
+    if (selectedFilters.task == true && selectedFilters.list == false) {
+        if (selectedFilters.upcoming == true) {
+            filteredTasks = myData.planners.filter(a => new Date(a.dueDate).toLocaleDateString() > currentDay).flatMap(a => a.taskName);
+        } else if (selectedFilters.today == true) {
+            filteredTasks = myData.planners.filter(a => new Date(a.dueDate).toLocaleDateString() === currentDay).flatMap(a => a.taskName);
+        }
+    }
+
+    UpdateHeaderNumber(filteredTasks.length);
+
     taskContainer.innerHTML = '';
     filteredTasks.forEach((taskName) => {
         var taskContainerListItemsDiv = document.createElement("div");
@@ -381,6 +394,11 @@ function UpdateHeaderPar() {
         headerListPar.textContent = "Kalendarz";
     }
 
+}
+
+function UpdateHeaderNumber(taskNumber) {
+    var numberListPar = document.getElementById("header-list-number");
+    numberListPar.textContent = taskNumber;
 }
 
 function generateBackgroundIconColor() {

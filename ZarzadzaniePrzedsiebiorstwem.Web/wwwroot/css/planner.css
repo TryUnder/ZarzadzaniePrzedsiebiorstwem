@@ -371,6 +371,10 @@
     flex: 12;
 }
 
+.tasks-container-list-items:hover {
+    background-color: aqua;
+}
+
 .tasks-container-arrow {
     flex: 0.5;
     margin-left: 20px;
@@ -559,4 +563,3 @@
     font-weight: 700;
     color: black;
 }
-

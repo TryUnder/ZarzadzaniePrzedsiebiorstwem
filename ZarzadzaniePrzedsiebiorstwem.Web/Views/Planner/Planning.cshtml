@@ -42,8 +42,6 @@
 
                                     @foreach (var item in Model.Planners) {
                                         DateTime dueDate = item.DueDate;
-                                        Console.WriteLine(dueDate);
-                                        Console.WriteLine(currentDate);
                                         if (dueDate == currentDate) {
                                             taskNumberToday += 1;
                                         }
@@ -142,30 +140,6 @@
                 </div>
                 <div class="tasks">
                     <div id="task-container" class="tasks-container">
-                        <div class="tasks-container-list-items">
-                            <div class="tasks-container-list-item">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Remember me
-                                </label>
-                            </div>
-
-                            <div class="tasks-container-arrow">
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                        </div>
-                        <div class="tasks-container-list-items">
-                            <div class="tasks-container-list-item">
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Remember me
-                                </label>
-                            </div>
-
-                            <div class="tasks-container-arrow">
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -188,9 +162,7 @@
                         <div class="list-option"><p>Lista</p></div>
                         <div class="list-option-mark">
                             <div class="select is-small is-link">
-                                <select>
-                                    <option>option_1</option>
-                                    <option>option_2</option>
+                                <select id="select-list-task">
                                 </select>
                             </div>
                         </div>
@@ -198,13 +170,9 @@
                     <div class="due-date">
                         <div class="list-option"><p>Termin</p></div>
                         <div class="list-option-mark">
-                            <form asp-controller="Planner" asp-action="AddDate" method="post">
                             <div>
-                                <input asp-for="Planners" type="date" name="date"/>
+                                <input type="date" name="date"/>
                             </div>
-                                <button type="submit">Submit</button>
-                            </form>
- 
                         </div>
                     </div>
                     <div class="list-tags">
@@ -229,38 +197,7 @@
                         <p id="subtask-input-text" onclick="HideElement('subtask-icon'); HideElement('subtask-input-text');" onblur="ShowElement('subtask-icon', 'subtask-input'); ShowElement('subtask-input-text','subtask-input');" class="input-text-subtask">Dodaj nowe podzadanie</p>
                         <input id="subtask-input" onclick="HideElement('subtask-icon'); HideElement('subtask-input-text');" onblur="ShowElement('subtask-icon', 'subtask-input'); ShowElement('subtask-input-text','subtask-input');" class="row-input-subtask" />
                     </div>
-                    <div class="subtasks-container-list-items">
-                        <div>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            Remember me
-                        </label>
-                    </div>
-                        <div>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            Remember me
-                        </label>
-                        </div>
-                        <div>
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Remember me
-                            </label>
-                        </div>
-                        <div>
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Remember me
-                            </label>
-                        </div>
-                        <div>
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Remember me
-                            </label>
-                        </div>
-
+                    <div id="subtask-container-list-items" class="subtasks-container-list-items">
                     </div>
                     <div class="subtask-information-buttons">
                         <div class="subtask-information-buttons-list">

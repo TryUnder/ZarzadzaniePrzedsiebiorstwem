@@ -60,7 +60,7 @@
     display: inline-flex;
     flex: 1;
     justify-content: flex-end;
-    margin-right: 20px;
+    margin-left: 315px;
 }
 
 .menu-input {
@@ -242,7 +242,7 @@
             flex-direction: row;
         }
 
-.menu-tags-container::-webkit-scrollbar {
+.menu-tags-container::-webkit-scrollbar, .subtasks-container-list-items::-webkit-scrollbar {
     display: inline-block;
     width: 5px;
     background-color: rgba(0,0,0,0.4);
@@ -250,11 +250,11 @@
     scroll-margin-right: 20px;
 }
 
-.menu-tags-container::-webkit-scrollbar-track {
+.menu-tags-container::-webkit-scrollbar-track, .subtasks-container-list-items::-webkit-scrollbar-track {
     border-radius: 10px;
 }
 
-.menu-tags-container::-webkit-scrollbar-thumb {
+.menu-tags-container::-webkit-scrollbar-thumb, .subtasks-container-list-items::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: antiquewhite;
 }
@@ -517,6 +517,7 @@
     margin-right: 20px;
     background-color: whitesmoke;
     padding-left: 10px;
+    overflow: auto;
 }
 
 .subtask-container-list-item {

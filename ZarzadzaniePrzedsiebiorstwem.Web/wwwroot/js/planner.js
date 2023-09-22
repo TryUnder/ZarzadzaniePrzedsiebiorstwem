@@ -283,6 +283,8 @@ function SearchInModel() {
         taskContainerListItemsDiv.appendChild(taskContainerListItemDiv);
         taskContainerListItemsDiv.appendChild(taskContainerArrowDiv);
         taskContainer.appendChild(taskContainerListItemsDiv);
+
+        CommitTaskDetails();
     });
 }
 
@@ -412,10 +414,123 @@ function generateBackgroundIconColor() {
     });
 }
 
+function AddTaskFromInput() {
+    const taskContainer = document.getElementById("task-container");
+    const taskInputId = document.getElementById("row-input");
+
+    taskInputId.addEventListener("keypress", (event) => {
+        if (event.keyCode === 13) {
+            if (taskInputId != null) {
+
+                var taskContainerListItemsDiv = document.createElement("div");
+                taskContainerListItemsDiv.className = "tasks-container-list-items";
+                taskContainerListItemsDiv.style = "border-top: 2px solid black; border-bottom: 2px solid black;";
+
+                var taskContainerListItemDiv = document.createElement("div");
+                taskContainerListItemDiv.className = "tasks-container-list-item";
+
+                var taskContainerArrowDiv = document.createElement("div");
+                taskContainerArrowDiv.className = "tasks-container-arrow";
+
+                var taskContainerArrowIcon = document.createElement("i");
+                taskContainerArrowIcon.className = "fa-solid fa-angle-right";
+
+                var label = document.createElement("label");
+                label.className = "checkbox";
+
+                var input = document.createElement("input");
+                input.type = "checkbox";
+
+                var labelText = document.createElement("span");
+                labelText.textContent = taskInputId.value;
+                labelText.style.marginLeft = "5px";
+
+                taskContainerArrowDiv.appendChild(taskContainerArrowIcon);
+                label.appendChild(input);
+                label.appendChild(labelText);
+                taskContainerListItemDiv.appendChild(label);
+                taskContainerListItemsDiv.appendChild(taskContainerListItemDiv);
+                taskContainerListItemsDiv.appendChild(taskContainerArrowDiv);
+                taskContainer.appendChild(taskContainerListItemsDiv);
+
+                taskInputId.value = '';
+                CommitTaskDetails();
+            }
+        }
+    }); 
+}
+
+function CommitTaskDetails() {
+    const taskContainerArrowDivs = document.querySelectorAll(".tasks-container-arrow");
+    
+    taskContainerArrowDivs.forEach((arrow) => {
+        arrow.addEventListener("click", (event) => {
+            // why
+            const labelText = event.currentTarget.previousSibling.querySelector("span").textContent;
+            CommitTaskName(labelText);
+        });
+    });
+}
+
+function AddSubtaskFromInput() {
+    const subtaskContainerListItemDiv = document.getElementById("subtask-container-list-items");
+    const subtaskInputId = document.getElementById("subtask-input");
+
+    subtaskInputId.addEventListener("keypress", (event) => {
+        if (event.keyCode == 13) {
+            if (subtaskInputId != null) {
+                var createDiv = document.createElement("div");
+                var createLabel = document.createElement("label");
+                createLabel.className = "checkbox";
+
+                var createInput = document.createElement("input");
+                createInput.type = "checkbox";
+
+                var labelText = document.createElement("span");
+                labelText.textContent = subtaskInputId.value;
+                labelText.style.marginLeft = "5px";
+
+                createLabel.appendChild(createInput);
+                createLabel.appendChild(labelText);
+                createDiv.appendChild(createLabel);
+                subtaskContainerListItemDiv.appendChild(createDiv);
+                subtaskInputId.value = '';
+            }
+        }
+    });
+}
+
+function CommitTaskName(labelText) {
+    const menuInputTask = document.getElementById("menu-input-task");
+
+    if (menuInputTask != null) {
+        menuInputTask.value = labelText;
+    }
+}
+
+function UpdateTaskList() {
+    const selectListTask = document.getElementById("select-list-task");
+
+    var option = document.createElement("option");
+    option.textContent = "Wybierz listę";
+    selectListTask.appendChild(option);
+
+    myData.planners.forEach((planner) => {
+        var option = document.createElement("option");
+        option.textContent = planner.taskList;
+
+        selectListTask.appendChild(option);
+    });
+}
+
 window.addEventListener('DOMContentLoaded', function () {
     SelectGlowTaskItems();
     SelectGlowListItems();
     UpdateHeaderPar();
     generateBackgroundIconColor();
     DisplayTaskList();
+    AddTaskFromInput();
+    //CommitTaskDetails();
+    UpdateTaskList();
+    AddSubtaskFromInput();
 });

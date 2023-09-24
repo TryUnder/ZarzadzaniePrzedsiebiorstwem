@@ -487,6 +487,7 @@ function AddSubtaskFromInput() {
                 createInput.type = "checkbox";
 
                 var labelText = document.createElement("span");
+                labelText.className = "subtask-name";
                 labelText.textContent = subtaskInputId.value;
                 labelText.style.marginLeft = "5px";
 
@@ -523,6 +524,26 @@ function UpdateTaskList() {
     });
 }
 
+function CreateDynamicForm() {
+
+    var submitButton = document.getElementById("save-button");
+    submitButton.addEventListener("click", (event) => {
+        var subtaskInput = document.getElementById("subtask-input");
+        subtaskInput.value = "test";
+        subtaskInput.name = "Planner.Description";
+
+        var descriptionInput = document.getElementById("textarea-input");
+
+        var form = document.createElement("form");
+        form.setAttribute("action", "/Planner/AddPlanners");
+        form.setAttribute("method", "post");
+
+        form.appendChild(subtaskInput);
+        document.body.appendChild(form);
+        form.submit();
+    });
+}
+
 window.addEventListener('DOMContentLoaded', function () {
     SelectGlowTaskItems();
     SelectGlowListItems();
@@ -533,4 +554,5 @@ window.addEventListener('DOMContentLoaded', function () {
     //CommitTaskDetails();
     UpdateTaskList();
     AddSubtaskFromInput();
+    CreateDynamicForm();
 });

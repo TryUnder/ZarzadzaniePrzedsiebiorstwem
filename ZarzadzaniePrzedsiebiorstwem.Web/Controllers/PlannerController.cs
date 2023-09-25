@@ -31,8 +31,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 
         [HttpPost]
         public IActionResult AddPlanners(Planner planner) {
-            Console.WriteLine(planner.Description);
-            return View("Index");
+            var user = _userService.GetUserFromId(planner.UserId);
+            Console.WriteLine(planner.Subtask.Count);
+            return View("Views/Planner/Planning.cshtml", user);
         }
     }
 }

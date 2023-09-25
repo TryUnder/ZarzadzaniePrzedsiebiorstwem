@@ -356,6 +356,7 @@ function CreateTag() {
     newTag.appendChild(newPar);
     newRow.appendChild(newTag);
     menuTagsContainer.appendChild(newRow);
+    LoadTags();
 }
 
 function UpdateHeaderPar() {
@@ -524,21 +525,64 @@ function UpdateTaskList() {
     });
 }
 
+function LoadTags() {
+    var simple_tags_1 = document.querySelectorAll(".simple_tag_1");
+    var multipleSelectId = document.getElementById("multiple-select");
+    var multipleOptions = document.querySelectorAll(".option-tag");
+    simple_tags_1.forEach((tag) => {
+        var createOption = document.createElement("option");
+        createOption.className = "option-tag";
+        createOption.textContent = tag.textContent;
+        multipleOptions.forEach((option) => {
+            if (option.textContent === tag.textContent) {
+                option.remove();
+            }
+        });
+        multipleSelectId.appendChild(createOption);
+    });
+}
+
 function CreateDynamicForm() {
 
     var submitButton = document.getElementById("save-button");
     submitButton.addEventListener("click", (event) => {
-        var subtaskInput = document.getElementById("subtask-input");
-        subtaskInput.value = "test";
-        subtaskInput.name = "Planner.Description";
+        var menuInputTask = document.getElementById("menu-input-task");
+        menuInputTask.name = "Planner.TaskName";
 
         var descriptionInput = document.getElementById("textarea-input");
+        descriptionInput.name = "Planner.Description";
+
+        var selectListTask = document.getElementById("select-list-task");
+        selectListTask.name = "Planner.TaskList";
+
+        var dueDateInput = document.getElementById("input-date");
+        dueDateInput.name = "Planner.DueDate";
+
+        var UserIdSpan = document.createElement("input");
+        UserIdSpan.value = myData.id;
+        UserIdSpan.name = "Planner.userId";
+        UserIdSpan.style.display = "none";
 
         var form = document.createElement("form");
         form.setAttribute("action", "/Planner/AddPlanners");
         form.setAttribute("method", "post");
+        form.style.display = "none";
 
-        form.appendChild(subtaskInput);
+        var subtaskNameInput = document.querySelectorAll(".subtask-name");
+        subtaskNameInput.forEach((subtask, index) => {
+            var subtaskInput = document.createElement("input");
+            subtaskInput.value = subtask.textContent;
+            subtaskInput.name = `Planner.Subtask[${index}].Name`;
+            subtaskInput.type = "hidden";
+
+            form.appendChild(subtaskInput);
+        });
+
+        form.appendChild(menuInputTask);
+        form.appendChild(descriptionInput);
+        form.appendChild(selectListTask);
+        form.appendChild(dueDateInput);
+        form.appendChild(UserIdSpan);
         document.body.appendChild(form);
         form.submit();
     });
@@ -555,4 +599,5 @@ window.addEventListener('DOMContentLoaded', function () {
     UpdateTaskList();
     AddSubtaskFromInput();
     CreateDynamicForm();
+    LoadTags();
 });

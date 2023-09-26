@@ -394,6 +394,7 @@ function UpdateHeaderPar() {
                     isUpcomingSelected = true;
                 } else if (textElement.textContent === 'Kalendarz') {
                     isCalendarSelected = true;
+                    DisplayCalendar();
                 }
             }
         }
@@ -646,17 +647,38 @@ function DisplaySelectedTags() {
     simpleTags1.forEach((tag) => {
         tag.addEventListener("click", (event) => {
             console.log(1);
-            if (tag.className = "simple_tag_1") {
+            if (tag.className === "simple_tag_1") {
                 tag.className = "simple_tag_1 clicked_tag_1";
                 selectedFilters.tags = true;
                 selectedFilters.tagName = tag.textContent;
-            } else if (tag.className = "simple_tag_1 clicked_tag_1") {
+            } else if (tag.className === "simple_tag_1 clicked_tag_1") {
                 tag.className = "simple_tag_1";
+                selectedFilters.tags = false;
             }
 
             SearchInModel();
         });
     });
+}
+
+function DisplayCalendar() {
+    var centerContainerTasksId = document.querySelector(".center-container-tasks");
+
+    var listContainer = document.createElement("div");
+    listContainer.className = "list-container";
+
+    var headerCalendarNumber = document.createElement("span");
+    headerCalendarNumber.className = "header-calendar-number";
+    headerCalendarNumber.innerText = "26.09.2023 (Piątek)";
+
+    var plannerDay = document.createElement("span");
+    plannerDay.className = "planner-day";
+    plannerDay.innerText = "Nocowanie z Agusią";
+
+    centerContainerTasksId.innerHTML = '';
+    listContainer.appendChild(headerCalendarNumber);
+    listContainer.appendChild(plannerDay);
+    centerContainerTasksId.appendChild(listContainer);
 }
 
 window.addEventListener('DOMContentLoaded', function () {

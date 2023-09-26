@@ -235,6 +235,11 @@
     
 }
 
+#create_tag:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
     .simple_tag_1, .simple_tag_2, .create_tag p {
         text-align: center;
         display: inline-block;
@@ -573,3 +578,25 @@
     color: black;
 }
 
+.list-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding: 10px;
+    transition: border-bottom 0.08s, border-top 0.08s;
+}
+
+.list-container:hover {
+    background-color: #ffccff;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.header-calendar-number {
+    font-size: 24px;
+    font-weight: 700;
+}

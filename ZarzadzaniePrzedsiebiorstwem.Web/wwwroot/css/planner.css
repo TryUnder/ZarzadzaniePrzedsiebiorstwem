@@ -210,6 +210,14 @@
     border-radius: 5px;
 }
 
+.simple_tag_1:hover {
+    border: 2px solid black;
+}
+
+.clicked_tag_1 {
+    border: 2px solid black;
+}
+
 .simple_tag_2 {
     flex: 1;
     box-shadow: 0 2px 4px rgb(0,0,0,0.2);

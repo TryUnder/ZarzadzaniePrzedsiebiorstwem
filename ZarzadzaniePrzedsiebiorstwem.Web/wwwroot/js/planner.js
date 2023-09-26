@@ -6,7 +6,9 @@ var selectedFilters = {
     taskName: null,
     today: false,
     upcoming: false,
-    calendar: false
+    calendar: false,
+    tags: false,
+    tagNames: []
 };
 
 function SetDueDateFilter(parElements, index) {
@@ -224,7 +226,7 @@ function SearchInModel() {
     //taskList = parElements[index].textContent;
     var filteredTasks = [];
     var currentDay = new Date().toLocaleDateString();
-    if (selectedFilters.task == true && selectedFilters.list == true) {
+    if (selectedFilters.task == true && selectedFilters.list == true && selectedFilters.tags == false) {
         //list and task
         if (selectedFilters.listName != null) {
             if (selectedFilters.upcoming == true) {
@@ -236,17 +238,26 @@ function SearchInModel() {
         }
     }
 
-    if (selectedFilters.task == false && selectedFilters.list == true) {
+    if (selectedFilters.task == false && selectedFilters.list == true && selectedFilters.tags == false) {
         if (selectedFilters.listName) {
             filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName).flatMap(a => a.taskName);
         }
     }
 
-    if (selectedFilters.task == true && selectedFilters.list == false) {
+    if (selectedFilters.task == true && selectedFilters.list == false && selectedFilters.tags == false) {
         if (selectedFilters.upcoming == true) {
             filteredTasks = myData.planners.filter(a => new Date(a.dueDate).toLocaleDateString() > currentDay).flatMap(a => a.taskName);
         } else if (selectedFilters.today == true) {
             filteredTasks = myData.planners.filter(a => new Date(a.dueDate).toLocaleDateString() === currentDay).flatMap(a => a.taskName);
+        }
+    }
+
+    //new
+    if (selectedFilters.tags == true) {
+        if (selectedFilters.tagNames != null) {
+            selectedFilters.tagNames.forEach((tagName) => {
+                filteredTasks += myData.planners.filter(a => a.Tags.Name === tagName).flatMap(a => a.taskName);
+            });
         }
     }
 
@@ -326,6 +337,7 @@ function CreateList() {
     taskListItems.insertBefore(newRow, document.getElementById("before"));
 
     SelectGlowListItems();
+    DisplaySelectedTags();
 }
 
 function CreateTag() {
@@ -356,7 +368,8 @@ function CreateTag() {
     newTag.appendChild(newPar);
     newRow.appendChild(newTag);
     menuTagsContainer.appendChild(newRow);
-    LoadTags();
+    LoadTagsToSelect();
+    DisplaySelectedTags();
 }
 
 function UpdateHeaderPar() {
@@ -525,7 +538,7 @@ function UpdateTaskList() {
     });
 }
 
-function LoadTags() {
+function LoadTagsToSelect() {
     var simple_tags_1 = document.querySelectorAll(".simple_tag_1");
     var multipleSelectId = document.getElementById("multiple-select");
     var multipleOptions = document.querySelectorAll(".option-tag");
@@ -578,6 +591,18 @@ function CreateDynamicForm() {
             form.appendChild(subtaskInput);
         });
 
+        var tagsMultipleSelect = document.querySelectorAll(".option-tag");
+        tagsMultipleSelect.forEach((tag, index) => {
+            if (tag.selected) {
+                var tagInput = document.createElement("input");
+                tagInput.value = tag.textContent;
+                tagInput.name = `Planner.Tags[${index}].Name`;
+                tagInput.type = "hidden";
+
+                form.appendChild(tagInput);
+            }
+        });
+
         form.appendChild(menuInputTask);
         form.appendChild(descriptionInput);
         form.appendChild(selectListTask);
@@ -585,6 +610,52 @@ function CreateDynamicForm() {
         form.appendChild(UserIdSpan);
         document.body.appendChild(form);
         form.submit();
+    });
+}
+//naprawic hover dla simple_tag_1
+// do przetestowania
+function LoadTagsFromDB() {
+    var menuTagsContainerId = document.getElementById("menu-tags-container");
+
+    tagUserList = [];
+    myData.planners.forEach((planner) => {
+        if (planner.Tags != null) {
+            planner.Tags.forEach((tag) => {
+                if (!tagUserList.contains(tag.value)) {
+                    var menuTagsContainerFlex = document.createElement("div");
+                    menuTagsContainerFlex.className = "menu-tags-row menu-tags-container-flex";
+
+                    var simpleTag1Div = document.createElement("div");
+                    simpleTag1Div.className = "simple_tag_1";
+                    simpleTag1Div.style.backgroundColor = `rgb(${Math.floor(150 + Math.random() * 155)}, ${Math.floor(150 + Math.random() * 155)}, ${Math.floor(150 + Math.random() * 155)})`;
+
+                    var newPar = document.createElement("p");
+                    newPar.textContent = tag.value;
+
+                    simpleTag1Div.appendChild(newPar);
+                    menuTagsContainerFlex.appendChild(simpleTag1Div);
+                    menuTagsContainerId.appendChild(menuTagsContainerFlex);
+                }
+            });
+        }
+    });
+}
+
+function DisplaySelectedTags() {
+    var simpleTags1 = document.querySelectorAll(".simple_tag_1");
+    simpleTags1.forEach((tag) => {
+        tag.addEventListener("click", (event) => {
+            console.log(1);
+            if (tag.className = "simple_tag_1") {
+                tag.className = "simple_tag_1 clicked_tag_1";
+                selectedFilters.tags = true;
+                selectedFilters.tagName = tag.textContent;
+            } else if (tag.className = "simple_tag_1 clicked_tag_1") {
+                tag.className = "simple_tag_1";
+            }
+
+            SearchInModel();
+        });
     });
 }
 
@@ -599,5 +670,7 @@ window.addEventListener('DOMContentLoaded', function () {
     UpdateTaskList();
     AddSubtaskFromInput();
     CreateDynamicForm();
-    LoadTags();
+    LoadTagsToSelect();
+    LoadTagsFromDB();
+    DisplaySelectedTags();
 });

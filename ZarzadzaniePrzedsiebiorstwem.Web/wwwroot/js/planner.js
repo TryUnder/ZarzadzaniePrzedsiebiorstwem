@@ -263,7 +263,10 @@ function SearchInModel() {
 
     UpdateHeaderNumber(filteredTasks.length);
 
-    taskContainer.innerHTML = '';
+    if (taskContainer != null) {
+        taskContainer.innerHTML = '';
+    }
+    
     filteredTasks.forEach((taskName) => {
         var taskContainerListItemsDiv = document.createElement("div");
         taskContainerListItemsDiv.className = "tasks-container-list-items";
@@ -646,7 +649,6 @@ function DisplaySelectedTags() {
     var simpleTags1 = document.querySelectorAll(".simple_tag_1");
     simpleTags1.forEach((tag) => {
         tag.addEventListener("click", (event) => {
-            console.log(1);
             if (tag.className === "simple_tag_1") {
                 tag.className = "simple_tag_1 clicked_tag_1";
                 selectedFilters.tags = true;
@@ -662,24 +664,53 @@ function DisplaySelectedTags() {
 }
 
 function DisplayCalendar() {
-    var centerContainerTasksId = document.querySelector(".center-container-tasks");
+    var centerContainerTasksId = document.querySelector(".tasks");
 
-    var listContainer = document.createElement("div");
-    listContainer.className = "list-container";
+    myData.planners.forEach((planner) => {
+        var listContainer = document.createElement("div");
+        listContainer.className = "list-container";
 
-    var headerCalendarNumber = document.createElement("span");
-    headerCalendarNumber.className = "header-calendar-number";
-    headerCalendarNumber.innerText = "26.09.2023 (Piątek)";
+        var headerCalendarNumber = document.createElement("span");
+        headerCalendarNumber.className = "header-calendar-number";
+        headerCalendarNumber.innerText = `${planner.dueDate.slice(0,10)} `;
 
-    var plannerDay = document.createElement("span");
-    plannerDay.className = "planner-day";
-    plannerDay.innerText = "Nocowanie z Agusią";
+        var plannerDay = document.createElement("span");
+        plannerDay.className = "planner-day";
+        plannerDay.innerText = `${planner.taskName}`;
 
-    centerContainerTasksId.innerHTML = '';
-    listContainer.appendChild(headerCalendarNumber);
-    listContainer.appendChild(plannerDay);
-    centerContainerTasksId.appendChild(listContainer);
+        listContainer.appendChild(headerCalendarNumber);
+        listContainer.appendChild(plannerDay);
+        centerContainerTasksId.appendChild(listContainer);
+    });
+    
 }
+
+function LoadSubtaskFromDB() {
+    var subtaskContainerListItemDiv = document.getElementById("subtask-container-list-items");
+
+    var subtaskItems = myData.planners.flatMap(a => a.Name);
+    if (subtaskItems != null) {
+        subtaskItems.forEach((item) => {
+            var createDiv = document.createElement("div");
+            var createLabel = document.createElement("label");
+            createLabel.className = "checkbox";
+
+            var createInput = document.createElement("input");
+            createInput.type = "checkbox";
+
+            var labelText = document.createElement("span");
+            labelText.className = "subtask-name";
+            labelText.textContent = item.value;
+            labelText.style.marginLeft = "5px";
+
+            createLabel.appendChild(createInput);
+            createLabel.appendChild(labelText);
+            createDiv.appendChild(createLabel);
+            subtaskContainerListItemDiv.appendChild(createDiv);
+        });
+    }
+}
+
 
 window.addEventListener('DOMContentLoaded', function () {
     SelectGlowTaskItems();

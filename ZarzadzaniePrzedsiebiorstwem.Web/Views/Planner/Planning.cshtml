@@ -52,9 +52,9 @@
                         </div>
 
                         <div class="task-list-items-inside">
-                            <p class="task-list-items-inside-item-first task-item-icon"><i class="fa-regular fa-calendar-days fa-lg"></i></p>
-                            <p class="task-list-items-inside-item-second text-item">Kalendarz</p>
-                            <p class="task-list-items-inside-item-third task-item-number">
+                            <p id="calendar-icon" class="task-list-items-inside-item-first task-item-icon"><i class="fa-regular fa-calendar-days fa-lg"></i></p>
+                            <p id="calendar-text" class="task-list-items-inside-item-second text-item">Kalendarz</p>
+                            <p id="calendar-number" class="task-list-items-inside-item-third task-item-number">
                                 @{
                                     var taskNumberAll = 0;
                                     @foreach (var item in Model.Planners) {

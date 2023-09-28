@@ -79,9 +79,9 @@ function SelectGlowTaskItems() {
             icon.classList.add('clicked');
             numberElement.classList.add('clicked_icon');
 
-            UpdateHeaderPar();
             SetDueDateFilter(parElements, index);
             SearchInModel();
+            UpdateHeaderPar();
         });
     });
 
@@ -100,9 +100,9 @@ function SelectGlowTaskItems() {
             iconElement.classList.add('clicked');
             number.classList.add('clicked_icon');
 
-            UpdateHeaderPar();
             SetDueDateFilter(parElements, index);
             SearchInModel();
+            UpdateHeaderPar();
         });
     });
 
@@ -122,9 +122,9 @@ function SelectGlowTaskItems() {
             iconElement.classList.add('clicked');
             numberElement.classList.add('clicked_icon');
 
-            UpdateHeaderPar();
             SetDueDateFilter(parElements, index);
             SearchInModel();
+            UpdateHeaderPar();
         });
     });
 }
@@ -146,9 +146,12 @@ function SelectGlowListItems() {
                 el.classList.remove('clicked_number');
             });
 
-            const numberElement = numberElements[index];
-            bcg.classList.add('clicked');
-            numberElement.classList.add('clicked_number');
+            //!!!! new works
+            if (selectedFilters.calendar == false) {
+                const numberElement = numberElements[index];
+                bcg.classList.add('clicked');
+                numberElement.classList.add('clicked_number');
+            }
         });
     });
 
@@ -163,10 +166,12 @@ function SelectGlowListItems() {
                 el.classList.remove('clicked_number');
             });
 
-            const bcgElement = bcgElements[index];
-            const numberElement = numberElements[index];
-            bcgElement.classList.add('clicked');
-            numberElement.classList.add('clicked_number');
+            if (selectedFilters.calendar == false) {
+                const bcgElement = bcgElements[index];
+                const numberElement = numberElements[index];
+                bcgElement.classList.add('clicked');
+                numberElement.classList.add('clicked_number');
+            }
         });
     });
 
@@ -180,10 +185,12 @@ function SelectGlowListItems() {
                 el.classList.remove('clicked_number');
             });
 
-            const bcgElement = bcgElements[index];
-            const numberElement = numberElements[index];
-            bcgElement.classList.add('clicked');
-            numberElement.classList.add('clicked_number');
+            if (selectedFilters.calendar == false) {
+                const bcgElement = bcgElements[index];
+                const numberElement = numberElements[index];
+                bcgElement.classList.add('clicked');
+                numberElement.classList.add('clicked_number');
+            }
         });
     });
 }
@@ -222,7 +229,7 @@ function DisplayTaskList() {
 
 function SearchInModel() {
     var taskContainer = document.getElementById("task-container");
-
+    var tasks = document.getElementById("tasks");
     //taskList = parElements[index].textContent;
     var filteredTasks = [];
     var currentDay = new Date().toLocaleDateString();
@@ -266,6 +273,10 @@ function SearchInModel() {
     if (taskContainer != null) {
         taskContainer.innerHTML = '';
     }
+
+    if (tasks != null && selectedFilters.calendar == false) {
+        tasks.innerHTML = '';
+    }
     
     filteredTasks.forEach((taskName) => {
         var taskContainerListItemsDiv = document.createElement("div");
@@ -296,7 +307,7 @@ function SearchInModel() {
         taskContainerListItemDiv.appendChild(label);
         taskContainerListItemsDiv.appendChild(taskContainerListItemDiv);
         taskContainerListItemsDiv.appendChild(taskContainerArrowDiv);
-        taskContainer.appendChild(taskContainerListItemsDiv);
+        tasks.appendChild(taskContainerListItemsDiv);
 
         CommitTaskDetails();
     });
@@ -381,6 +392,9 @@ function UpdateHeaderPar() {
     const iconElements = document.querySelectorAll(".task-item-icon");
     const numberElements = document.querySelectorAll(".task-item-number");
     const parElements = document.querySelectorAll(".text-item");
+    var taskInput = document.getElementById("row-input");
+    var inputText = document.getElementById("input-text");
+    var inputPlusIcon = document.getElementById("input-plus-icon");
 
     let isTodaySelected = false;
     let isUpcomingSelected = false;
@@ -408,10 +422,19 @@ function UpdateHeaderPar() {
 
     if (isTodaySelected) {
         headerListPar.textContent = "Dzisiaj";
+        taskInput.style.display = "inline-block";
+        inputPlusIcon.style.display = "inline-block";
+        inputText.style.display = "inline-block";
     } else if (isUpcomingSelected) {
         headerListPar.textContent = "Nadchodzące";
+        taskInput.style.display = "inline-block";
+        inputPlusIcon.style.display = "inline-block";
+        inputText.style.display = "inline-block";
     } else if (isCalendarSelected) {
         headerListPar.textContent = "Kalendarz";
+        taskInput.style.display = "none";
+        inputPlusIcon.style.display = "none";
+        inputText.style.display = "none";
     }
 
 }
@@ -433,7 +456,7 @@ function generateBackgroundIconColor() {
 }
 
 function AddTaskFromInput() {
-    const taskContainer = document.getElementById("task-container");
+    const tasks = document.getElementById("tasks");
     const taskInputId = document.getElementById("row-input");
 
     taskInputId.addEventListener("keypress", (event) => {
@@ -469,7 +492,7 @@ function AddTaskFromInput() {
                 taskContainerListItemDiv.appendChild(label);
                 taskContainerListItemsDiv.appendChild(taskContainerListItemDiv);
                 taskContainerListItemsDiv.appendChild(taskContainerArrowDiv);
-                taskContainer.appendChild(taskContainerListItemsDiv);
+                tasks.appendChild(taskContainerListItemsDiv);
 
                 taskInputId.value = '';
                 CommitTaskDetails();
@@ -666,6 +689,10 @@ function DisplaySelectedTags() {
 function DisplayCalendar() {
     var centerContainerTasksId = document.querySelector(".tasks");
 
+    if (centerContainerTasksId != null) {
+        centerContainerTasksId.innerHTML = '';
+    }
+
     myData.planners.forEach((planner) => {
         var listContainer = document.createElement("div");
         listContainer.className = "list-container";
@@ -682,7 +709,8 @@ function DisplayCalendar() {
         listContainer.appendChild(plannerDay);
         centerContainerTasksId.appendChild(listContainer);
     });
-    
+
+    UpdateHeaderNumber(myData.planners.length);
 }
 
 function LoadSubtaskFromDB() {
@@ -710,7 +738,6 @@ function LoadSubtaskFromDB() {
         });
     }
 }
-
 
 window.addEventListener('DOMContentLoaded', function () {
     SelectGlowTaskItems();

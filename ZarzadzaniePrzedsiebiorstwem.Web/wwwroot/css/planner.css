@@ -328,6 +328,7 @@
 
 .row-input {
     flex: 1;
+    display: inline-block;
     margin-top: 20px;
     margin-left: 20px;
     width: 90%;

@@ -232,15 +232,15 @@ function SearchInModel() {
     var tasks = document.getElementById("tasks");
     //taskList = parElements[index].textContent;
     var filteredTasks = [];
-    var currentDay = new Date().toLocaleDateString();
+    var currentDay = new Date();
     if (selectedFilters.task == true && selectedFilters.list == true && selectedFilters.tags == false) {
         //list and task
         if (selectedFilters.listName != null) {
             if (selectedFilters.upcoming == true) {
                 //list and upcoming
-                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate).toLocaleDateString() > currentDay).flatMap(a => a.taskName);
+                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate) > currentDay).flatMap(a => a.taskName);
             } else if (selectedFilters.today == true) {
-                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate).toLocaleDateString() === currentDay).flatMap(a => a.taskName);
+                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate) === currentDay).flatMap(a => a.taskName);
             }
         }
     }
@@ -253,9 +253,9 @@ function SearchInModel() {
 
     if (selectedFilters.task == true && selectedFilters.list == false && selectedFilters.tags == false) {
         if (selectedFilters.upcoming == true) {
-            filteredTasks = myData.planners.filter(a => new Date(a.dueDate).toLocaleDateString() > currentDay).flatMap(a => a.taskName);
+            filteredTasks = myData.planners.filter(a => new Date(a.dueDate) > currentDay).flatMap(a => a.taskName);
         } else if (selectedFilters.today == true) {
-            filteredTasks = myData.planners.filter(a => new Date(a.dueDate).toLocaleDateString() === currentDay).flatMap(a => a.taskName);
+            filteredTasks = myData.planners.filter(a => new Date(a.dueDate).toLocaleDateString() === currentDay.toLocaleDateString()).flatMap(a => a.taskName);
         }
     }
 
@@ -594,6 +594,9 @@ function CreateDynamicForm() {
 
         var selectListTask = document.getElementById("select-list-task");
         selectListTask.name = "Planner.TaskList";
+        if (selectListTask.value === "Wybierz listę") {
+            selectListTask.value = null;
+        }
 
         var dueDateInput = document.getElementById("input-date");
         dueDateInput.name = "Planner.DueDate";

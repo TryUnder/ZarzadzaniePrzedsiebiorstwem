@@ -22,8 +22,8 @@
                                     DateTime currentDate = DateTime.Now.Date;
                                     var taskNumber = 0;
 
-                                    @foreach (var item in Model.Planners) {
-                                        DateTime dueDate = item.DueDate;
+                                    foreach (var item in Model.Planners) {
+                                        var dueDate = item.DueDate;
                                         if (dueDate > currentDate) {
                                             taskNumber += 1;        
                                         }
@@ -40,8 +40,8 @@
                                 @{
                                     var taskNumberToday = 0;
 
-                                    @foreach (var item in Model.Planners) {
-                                        DateTime dueDate = item.DueDate;
+                                    foreach (var item in Model.Planners) {
+                                        var dueDate = item.DueDate;
                                         if (dueDate == currentDate) {
                                             taskNumberToday += 1;
                                         }
@@ -57,9 +57,10 @@
                             <p id="calendar-number" class="task-list-items-inside-item-third task-item-number">
                                 @{
                                     var taskNumberAll = 0;
-                                    @foreach (var item in Model.Planners) {
+                                    foreach (var item in Model.Planners) {
                                         taskNumberAll += 1;
                                     }
+
                                     @taskNumberAll
                                 }
                             </p>
@@ -71,24 +72,27 @@
                 <p class="menu-tasks-par">LISTY</p>
                 <div class="tasks-list-container">
                     <div id="task-list-items" class="task-list-items">
-                        @foreach (var item in Model.Planners) 
-						{
+                        @foreach (var item in Model.Planners) {
                             List<String> taskItemList = new List<String>();
-                            if (!taskItemList.Contains(item.TaskList)) {
+                            @if (!taskItemList.Contains(item.TaskList))
+                            {
                                 taskItemList.Add(item.TaskList);
 
                                 // obliczam zadania przyporządkowane do danej listy
                                 int taskCount = Model.Planners.Count(p => p.TaskList == item.TaskList);
-
-                                <div class="task-list-items-inside">
-                                    <div class="task-list-items-inside-item-first list-item-bcg">
-                                        <div class="color-item-config"></div>
+                                @if (item.TaskList != null)
+                                {
+                                    <div class="task-list-items-inside">
+                                        <div class="task-list-items-inside-item-first list-item-bcg">
+                                            <div class="color-item-config"></div>
+                                        </div>
+                                        <p class="task-list-items-inside-item-second text-list-item">@item.TaskList</p>
+                                        <p class="task-list-items-inside-item-third list-item-number">@taskCount</p>
                                     </div>
-                                    <p class="task-list-items-inside-item-second text-list-item">@item.TaskList</p>
-                                    <p class="task-list-items-inside-item-third list-item-number">@taskCount</p>
-                                </div>
-						    }
-						}
+                                }
+                            }
+
+                        }
                         <a id="before" href="#" onclick="CreateList();" class="overriden-button-a">
                             <div class="task-list-items-inside" style="height: 34px; margin-bottom: 20px; margin-top: 5px;">
                                 <div style="margin-top: 10px;" class="task-list-items-inside-item-first">
@@ -118,7 +122,6 @@
                     </div>
                     <p>Ustawienia</p>
                 </div>
-            
         </div>
         <div class="center-container">
             <div class="center-container-header">

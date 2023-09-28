@@ -19,11 +19,13 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
         }
 
         public IActionResult Index(int Id) {
+            /*
             var plannerExists = _plannerService.GetPlannerBool(Id);
 
             if (plannerExists == false) {
                 _plannerService.CreatePlanner(Id);
             }
+            */
 
             var user = _userService.GetUserFromId(Id);
             return View("Views/Planner/Planning.cshtml", user);
@@ -32,7 +34,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
         [HttpPost]
         public IActionResult AddPlanners(Planner planner) {
             var user = _userService.GetUserFromId(planner.UserId);
-            Console.WriteLine(planner.Subtask.Count);
+            _plannerService.AddPlanner(planner);
             return View("Views/Planner/Planning.cshtml", user);
         }
     }

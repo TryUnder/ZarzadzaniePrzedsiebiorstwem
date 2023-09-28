@@ -47,11 +47,15 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
             return planner;
         }
 
-        public void addDate(DateTime date) {
-            var user = _dbContext.User.Where(x => x.Id == 3).FirstOrDefault();
+        public void AddPlanner(Planner planner) {
+            var user = _dbContext.User.Where(x => x.Id == planner.UserId).FirstOrDefault();
 
-            user.Planners.ElementAt(0).DueDate = date;
-            _dbContext.SaveChanges();
+            try {
+                user.Planners.Add(planner);
+                _dbContext.SaveChanges();
+            } catch (Exception e) {
+                Console.WriteLine(e);
+            }
         }
 
     }

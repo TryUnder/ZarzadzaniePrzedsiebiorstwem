@@ -49,8 +49,20 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 
         public void AddPlanner(Planner planner) {
             var user = _dbContext.User.Where(x => x.Id == planner.UserId).FirstOrDefault();
-
+            
+            
             try {
+                
+                if (planner.Tags != null && planner.Tags.Count > 0) {
+                    var plannerId = _dbContext.Planner.ToList().Last().Id;
+                    foreach (var tag in planner.Tags) {
+                        if (tag.PlannerId == 0) {
+                            tag.Name.TrimStart();
+                            tag.PlannerId = plannerId + 1;
+                        }
+                    }
+                }
+                
                 user.Planners.Add(planner);
                 _dbContext.SaveChanges();
             } catch (Exception e) {

@@ -115,6 +115,25 @@
                         </div>
                     </a>
                 </div>
+                @{
+                    var uniqueTags = new HashSet<string>();
+
+                    foreach (var item in Model.Planners) {
+                        if (item.Id != 0) {
+                            foreach (var tag in item.Tags) {
+                                uniqueTags.Add(tag.Name);
+                            }
+                        }
+                    }
+
+                    foreach (var tagName in uniqueTags) {
+                        <div class="menu-tags-row menu-tags-container-flex">
+                            <div class="simple_tag_1" style="background-color: rgb(140, 23, 93);">
+                                <p>@tagName</p>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
                 <div class="settings-container">
                     <div style="margin-left: 8px;">

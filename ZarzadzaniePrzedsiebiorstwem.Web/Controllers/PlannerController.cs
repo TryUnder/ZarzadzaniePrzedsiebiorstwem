@@ -35,7 +35,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
         public IActionResult AddPlanners(Planner planner) {
             var user = _userService.GetUserFromId(planner.UserId);
             _plannerService.AddPlanner(planner);
-            return View("Views/Planner/Planning.cshtml", user);
+            //return View("Views/Planner/Planning.cshtml", user);
+            return RedirectToAction("Index", new { Id = planner.UserId });
         }
     }
 }

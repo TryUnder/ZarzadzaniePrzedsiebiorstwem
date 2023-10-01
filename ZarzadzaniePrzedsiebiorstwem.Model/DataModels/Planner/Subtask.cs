@@ -13,7 +13,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner {
 
         public virtual Planner Planner { get; set; }
 
-        [ForeignKey("ParentTaskId")] // jawnie określam FK pomimo fluent api
+        [ForeignKey("PlannerId")] // jawnie określam FK pomimo fluent api
         public int PlannerId { get; set; }
     }
 }

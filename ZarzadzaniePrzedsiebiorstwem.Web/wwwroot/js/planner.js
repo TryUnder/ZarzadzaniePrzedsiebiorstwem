@@ -260,11 +260,14 @@ function SearchInModel() {
     }
 
     //new
-    if (selectedFilters.tags == true) {
-        if (selectedFilters.tagNames != null) {
-            selectedFilters.tagNames.forEach((tagName) => {
-                filteredTasks += myData.planners.filter(a => a.Tags.Name === tagName).flatMap(a => a.taskName);
-            });
+    if (selectedFilters.tags === true) {
+        if (selectedFilters.tagNames !== null) {
+            filteredTasks = myData.planners.filter((planner) => {
+                // Sprawdź, czy którykolwiek z wybranych tagów jest zawarty w zadaniach
+                return selectedFilters.tagNames.some((tagName) => {
+                    return planner.tags.some((tag) => tag.name === tagName);
+                });
+            }).map((planner) => planner.taskName);
         }
     }
 
@@ -622,14 +625,16 @@ function CreateDynamicForm() {
         });
 
         var tagsMultipleSelect = document.querySelectorAll(".option-tag");
+        var index = 0;
         tagsMultipleSelect.forEach((tag, index) => {
             if (tag.selected) {
                 var tagInput = document.createElement("input");
-                tagInput.value = tag.textContent;
-                tagInput.name = `Planner.Tags[${index}].Name`;
+                tagInput.value = tag.textContent.trim();
+                tagInput.name = "Planner.Tags[" + index + "].Name";
                 tagInput.type = "hidden";
 
                 form.appendChild(tagInput);
+                index++;
             }
         });
 
@@ -642,34 +647,6 @@ function CreateDynamicForm() {
         form.submit();
     });
 }
-//naprawic hover dla simple_tag_1
-// do przetestowania
-function LoadTagsFromDB() {
-    var menuTagsContainerId = document.getElementById("menu-tags-container");
-
-    tagUserList = [];
-    myData.planners.forEach((planner) => {
-        if (planner.Tags != null) {
-            planner.Tags.forEach((tag) => {
-                if (!tagUserList.contains(tag.value)) {
-                    var menuTagsContainerFlex = document.createElement("div");
-                    menuTagsContainerFlex.className = "menu-tags-row menu-tags-container-flex";
-
-                    var simpleTag1Div = document.createElement("div");
-                    simpleTag1Div.className = "simple_tag_1";
-                    simpleTag1Div.style.backgroundColor = `rgb(${Math.floor(150 + Math.random() * 155)}, ${Math.floor(150 + Math.random() * 155)}, ${Math.floor(150 + Math.random() * 155)})`;
-
-                    var newPar = document.createElement("p");
-                    newPar.textContent = tag.value;
-
-                    simpleTag1Div.appendChild(newPar);
-                    menuTagsContainerFlex.appendChild(simpleTag1Div);
-                    menuTagsContainerId.appendChild(menuTagsContainerFlex);
-                }
-            });
-        }
-    });
-}
 
 function DisplaySelectedTags() {
     var simpleTags1 = document.querySelectorAll(".simple_tag_1");
@@ -678,10 +655,11 @@ function DisplaySelectedTags() {
             if (tag.className === "simple_tag_1") {
                 tag.className = "simple_tag_1 clicked_tag_1";
                 selectedFilters.tags = true;
-                selectedFilters.tagName = tag.textContent;
+                selectedFilters.tagNames.push(tag.textContent.trim());
             } else if (tag.className === "simple_tag_1 clicked_tag_1") {
                 tag.className = "simple_tag_1";
                 selectedFilters.tags = false;
+                selectedFilters.tagNames = selectedFilters.tagNames.filter((tagName) => tagName !== tag.textContent.trim());
             }
 
             SearchInModel();
@@ -754,6 +732,6 @@ window.addEventListener('DOMContentLoaded', function () {
     AddSubtaskFromInput();
     CreateDynamicForm();
     LoadTagsToSelect();
-    LoadTagsFromDB();
     DisplaySelectedTags();
+    
 });

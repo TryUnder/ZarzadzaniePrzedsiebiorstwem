@@ -72,26 +72,26 @@
                 <p class="menu-tasks-par">LISTY</p>
                 <div class="tasks-list-container">
                     <div id="task-list-items" class="task-list-items">
-                        @foreach (var item in Model.Planners) {
+                        @{
                             List<String> taskItemList = new List<String>();
-                            @if (!taskItemList.Contains(item.TaskList))
-                            {
-                                taskItemList.Add(item.TaskList);
+                            foreach (var item in Model.Planners) {
+                                if (!taskItemList.Contains(item.TaskList)) {
+                                    taskItemList.Add(item.TaskList);
 
-                                // obliczam zadania przyporządkowane do danej listy
-                                int taskCount = Model.Planners.Count(p => p.TaskList == item.TaskList);
-                                @if (item.TaskList != null)
-                                {
-                                    <div class="task-list-items-inside">
-                                        <div class="task-list-items-inside-item-first list-item-bcg">
-                                            <div class="color-item-config"></div>
+                                    // obliczam zadania przyporządkowane do danej listy
+                                    int taskCount = Model.Planners.Count(p => p.TaskList == item.TaskList);
+                                    if (item.TaskList != null) {
+                                        <div class="task-list-items-inside">
+                                            <div class="task-list-items-inside-item-first list-item-bcg">
+                                                <div class="color-item-config"></div>
+                                            </div>
+                                            <p class="task-list-items-inside-item-second text-list-item">@item.TaskList</p>
+                                            <p class="task-list-items-inside-item-third list-item-number">@taskCount</p>
                                         </div>
-                                        <p class="task-list-items-inside-item-second text-list-item">@item.TaskList</p>
-                                        <p class="task-list-items-inside-item-third list-item-number">@taskCount</p>
-                                    </div>
+                                    }
                                 }
-                            }
 
+                            }
                         }
                         <a id="before" href="#" onclick="CreateList();" class="overriden-button-a">
                             <div class="task-list-items-inside" style="height: 34px; margin-bottom: 20px; margin-top: 5px;">

@@ -38,6 +38,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 				.HasMany(p => p.Subtask)
 				.WithOne(s => s.Planner)
 				.HasForeignKey(s => s.PlannerId);
+
+			modelBuilder.Entity<Planner>()
+				.HasMany(p => p.Tags)
+				.WithOne(t => t.Planner)
+				.HasForeignKey(t => t.PlannerId);
 		}
 
 	}

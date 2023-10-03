@@ -48,6 +48,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
         }
 
         public void AddPlanner(Planner planner) {
+            /*
             var user = _dbContext.User.Where(x => x.Id == planner.UserId).FirstOrDefault();
             
             
@@ -68,7 +69,25 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
             } catch (Exception e) {
                 Console.WriteLine(e);
             }
-        }
+            */
+            using (var transaction = _dbContext.Database.BeginTransaction()) {
+                try {
+                    // Dodaj planera do bazy danych
+                    _dbContext.Planner.Add(planner);
+                    _dbContext.SaveChanges();
 
+                    // Przypisz ID planera do tagów i zapisz tagi
+                    foreach (var tag in planner.Tags) {
+                        tag.PlannerId = planner.Id;
+                        _dbContext.Tag.Add(tag);
+                    }
+
+                    transaction.Commit();
+                } catch (Exception ex) {
+                    transaction.Rollback();
+                    throw new Exception("Błąd podczas dodawania planera z tagami i subtaskami.", ex);
+                }
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner {
         public string Name { get; set; } = "";
         public virtual ICollection<Planner>? Tasks { get; set; } = new List<Planner>();
 
+        public virtual Planner Planner { get; set; }
         public int PlannerId { get; set; }
     }
 }

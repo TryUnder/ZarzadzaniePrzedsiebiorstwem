@@ -22,21 +22,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("PlannerTag", b =>
-                {
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TasksId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TagsId", "TasksId");
-
-                    b.HasIndex("TasksId");
-
-                    b.ToTable("PlannerTag");
-                });
-
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", b =>
                 {
                     b.Property<int>("Id")
@@ -72,6 +57,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("TagId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TaskList")
                         .HasColumnType("nvarchar(max)");
 
@@ -83,6 +71,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TagId");
 
                     b.HasIndex("UserId");
 
@@ -127,6 +117,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PlannerId");
 
                     b.ToTable("Tag");
                 });
@@ -213,23 +205,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.ToTable("Przedsiebiorstwo");
                 });
 
-            modelBuilder.Entity("PlannerTag", b =>
-                {
-                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner", null)
-                        .WithMany()
-                        .HasForeignKey("TasksId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner", b =>
                 {
+                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Tag", null)
+                        .WithMany("Tasks")
+                        .HasForeignKey("TagId");
+
                     b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", "User")
                         .WithMany("Planners")
                         .HasForeignKey("UserId")
@@ -243,6 +224,17 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                 {
                     b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner", "Planner")
                         .WithMany("Subtask")
+                        .HasForeignKey("PlannerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Planner");
+                });
+
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Tag", b =>
+                {
+                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner", "Planner")
+                        .WithMany("Tags")
                         .HasForeignKey("PlannerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -269,6 +261,13 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner", b =>
                 {
                     b.Navigation("Subtask");
+
+                    b.Navigation("Tags");
+                });
+
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Tag", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

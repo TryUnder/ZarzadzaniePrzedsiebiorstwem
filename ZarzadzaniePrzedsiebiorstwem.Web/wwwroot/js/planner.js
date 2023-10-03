@@ -195,7 +195,7 @@ function SelectGlowListItems() {
     });
 }
 
-function DisplayTaskList() {
+function SearchDbBasedOnList() {
     const bcgElements = document.querySelectorAll(".list-item-bcg");
     const numberElements = document.querySelectorAll(".list-item-number");
     const parElements = document.querySelectorAll(".text-list-item");
@@ -238,9 +238,9 @@ function SearchInModel() {
         if (selectedFilters.listName != null) {
             if (selectedFilters.upcoming == true) {
                 //list and upcoming
-                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate) > currentDay).flatMap(a => a.taskName);
+                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate).toLocaleDateString() > currentDay.toLocaleDateString()).flatMap(a => a.taskName);
             } else if (selectedFilters.today == true) {
-                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate) === currentDay).flatMap(a => a.taskName);
+                filteredTasks = myData.planners.filter(a => a.taskList === selectedFilters.listName && new Date(a.dueDate).toLocaleDateString() === currentDay.toLocaleDateString()).flatMap(a => a.taskName);
             }
         }
     }
@@ -319,7 +319,8 @@ function SearchInModel() {
 function CreateList() {
     var taskListItems = document.getElementById("task-list-items");
     var listName = prompt("Podaj nazwę listy");
-    if (listName === '') {
+
+    if (listName.trim() == "" || listName === null) {
         return;
     }
 
@@ -344,7 +345,7 @@ function CreateList() {
 
     var thirdPar = document.createElement("p");
     thirdPar.className = "task-list-items-inside-item-third list-item-number";
-    thirdPar.textContent = "12";
+    thirdPar.textContent = "0";
 
     newCol.appendChild(colImageNode);
     newRow.appendChild(newCol);
@@ -355,6 +356,10 @@ function CreateList() {
 
     SelectGlowListItems();
     DisplaySelectedTags();
+    //UpdateTaskList(); dorenderowywanie z bazy?
+    CommitTaskDetails();
+    //poco to tutaj? .. zeby zaladowac nowo utworzoną listę do list..
+    DisplayTaskList();
 }
 
 function CreateTag() {
@@ -369,6 +374,9 @@ function CreateTag() {
     
 
     var tagName = prompt("Podaj nazwę tagu");
+    if (tagName.trim() === "" || tagName === null) {
+        return;
+    }
 
 
     let r = Math.floor(Math.random() * 255);
@@ -504,6 +512,11 @@ function AddTaskFromInput() {
     }); 
 }
 
+/*
+    CommitTaskDetails() - Przypisuje zdarzenie 'click' do elementów 'tasks-container-arrow' w celu
+    przekazania nazwy klikniętego zadania do sekcji po prawej stronie
+*/
+
 function CommitTaskDetails() {
     const taskContainerArrowDivs = document.querySelectorAll(".tasks-container-arrow");
     
@@ -512,8 +525,112 @@ function CommitTaskDetails() {
             // why
             const labelText = event.currentTarget.previousSibling.querySelector("span").textContent;
             CommitTaskName(labelText);
+
+            const descriptionText = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.description);
+            CommitTextAreaInput(descriptionText);
+
+            const listAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.taskList).toString();
+            CommitList(listAssigned);
+
+            const dateAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.dueDate).toString();
+            CommitDate(dateAssigned);
+
+            const tagsAssigned = myData.planners.flatMap(a => a.tags);
+            CommitTags(tagsAssigned);
+
+            const subtaskAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.subtask);
+            CommitSubtasks(subtaskAssigned);
         });
     });
+}
+
+/*
+    Po kliknięciu w ikonkę zadania, wczytuje opis zadania
+*/
+
+function CommitTextAreaInput(description) {
+    var textAreaInput = document.getElementById("textarea-input");
+    textAreaInput.value = description;
+}
+
+/*
+    Po kliknięciu w ikonkę zadania, wczytuje listę przypisaną do zadania
+*/
+
+function CommitList(listAssigned) {
+    var selectListTask = document.getElementById("select-list-task");
+    if (selectListTask) {
+        for (let i = 0; i < selectListTask.options.length; i++) {
+            const option = selectListTask.options[i];
+            if (option.value === listAssigned) {
+                selectListTask.selectedIndex = i;
+                break;
+            }
+        }
+    }
+}
+
+/*
+    Po kliknięciu w ikonkę zadania, wczytuje datę przypisaną do zadania
+*/
+
+function CommitDate(dateAssigned) {
+    var formattedDate = dateAssigned.split('T')[0];
+    var inputDate = document.getElementById("input-date");
+
+    if (formattedDate != null && inputDate != null) {
+        inputDate.value = new Date(formattedDate).toISOString().split('T')[0];
+    }
+}
+
+/*
+    Po kliknięciu w ikonkę zadania, wczytuje tagi przypisane do zadania
+    //sprawdzic czy dziala dla wielu tagow
+*/
+
+function CommitTags(tagsAssigned) {
+    var multipleTagsInput = document.getElementById("multiple-select");
+
+    if (multipleTagsInput != null && tagsAssigned) {
+        tagsAssigned.forEach((tag) => {
+            for (let i = 0; i < multipleTagsInput.options.length; i++) {
+                if (multipleTagsInput.options[i].value === tag.name) {
+                    multipleTagsInput.options[i].selected = true;
+                    break;
+                }
+            }
+        });
+    }
+}
+
+/*
+    Po kliknięciu w ikonkę zadania, wczytuje podzadania przypisane do danego zadania
+*/
+
+function CommitSubtasks(subtaskAssigned) {
+    var subtaskContainerListItemDiv = document.getElementById("subtask-container-list-items");
+    subtaskContainerListItemDiv.innerHTML = '';
+
+    if (subtaskAssigned != null) {
+        subtaskAssigned.forEach((subtask) => {
+            var createDiv = document.createElement("div");
+            var createLabel = document.createElement("label");
+            createLabel.className = "checkbox";
+
+            var createInput = document.createElement("input");
+            createInput.type = "checkbox";
+
+            var labelText = document.createElement("span");
+            labelText.className = "subtask-name";
+            labelText.textContent = subtask.name;
+            labelText.style.marginLeft = "5px";
+
+            createLabel.appendChild(createInput);
+            createLabel.appendChild(labelText);
+            createDiv.appendChild(createLabel);
+            subtaskContainerListItemDiv.appendChild(createDiv);
+        });
+    }
 }
 
 function AddSubtaskFromInput() {
@@ -552,7 +669,7 @@ function CommitTaskName(labelText) {
         menuInputTask.value = labelText;
     }
 }
-
+/*
 function UpdateTaskList() {
     const selectListTask = document.getElementById("select-list-task");
 
@@ -565,6 +682,61 @@ function UpdateTaskList() {
         option.textContent = planner.taskList;
 
         selectListTask.appendChild(option);
+    });
+}
+*/
+
+/*
+    * UpdateTaskList() - Aktualizuje opcje w elemencie 'select-list-task' na podstawie danych z bazy danych
+    * Tworzy opcje w elemencie 'select-list-task' na podstawie unikalnych nazw list z bazy danych
+*/
+function UpdateTaskList() {
+    const selectListTask = document.getElementById("select-list-task");
+
+    // Wyczyść istniejące opcje w select-list-task, z wyjątkiem "Wybierz listę"
+    while (selectListTask.firstChild) {
+        selectListTask.removeChild(selectListTask.firstChild);
+    }
+
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "Wybierz listę";
+    defaultOption.textContent = "Wybierz listę";
+    selectListTask.appendChild(defaultOption);
+
+    const existingOptions = new Set();
+
+    myData.planners.forEach((planner) => {
+        const taskList = planner.taskList.trim();
+
+        if (!existingOptions.has(taskList)) {
+            existingOptions.add(taskList);
+
+            var option = document.createElement("option");
+            option.textContent = taskList;
+            selectListTask.appendChild(option);
+        }
+    });
+}
+
+/*
+    * DisplayTaskList() *
+    1) Aktualizuje opcje w elemencie 'select-list-task' na podstawie dostępnych list (text-list-item) 
+       w interfejsie użytkownika
+    2) Nie dodaje opcji "Wybierz listę" na początek, ponieważ jest ona już ustawiona przez UpdateTaskList()
+*/
+function DisplayTaskList() {
+    const textListItems = document.querySelectorAll(".text-list-item");
+    const selectListTaskMultiple = document.getElementById("select-list-task");
+
+    // Wyczyść istniejące opcje w select-list-task
+    selectListTaskMultiple.innerHTML = "";
+
+    // Dodaj opcje na podstawie dostępnych list
+    textListItems.forEach((task) => {
+        const taskName = task.textContent.trim();
+        const option = document.createElement("option");
+        option.textContent = taskName;
+        selectListTaskMultiple.appendChild(option);
     });
 }
 
@@ -586,7 +758,12 @@ function LoadTagsToSelect() {
 }
 
 function CreateDynamicForm() {
-
+    //
+    var form = document.createElement("form");
+    form.setAttribute("action", "/Planner/AddPlanners");
+    form.setAttribute("method", "post");
+    form.style.display = "none";
+    //
     var submitButton = document.getElementById("save-button");
     submitButton.addEventListener("click", (event) => {
         var menuInputTask = document.getElementById("menu-input-task");
@@ -596,9 +773,10 @@ function CreateDynamicForm() {
         descriptionInput.name = "Planner.Description";
 
         var selectListTask = document.getElementById("select-list-task");
-        selectListTask.name = "Planner.TaskList";
-        if (selectListTask.value === "Wybierz listę") {
-            selectListTask.value = null;
+
+        if (selectListTask.value != "Wybierz listę") {
+            selectListTask.name = "Planner.TaskList";
+            form.appendChild(selectListTask);
         }
 
         var dueDateInput = document.getElementById("input-date");
@@ -609,10 +787,6 @@ function CreateDynamicForm() {
         UserIdSpan.name = "Planner.userId";
         UserIdSpan.style.display = "none";
 
-        var form = document.createElement("form");
-        form.setAttribute("action", "/Planner/AddPlanners");
-        form.setAttribute("method", "post");
-        form.style.display = "none";
 
         var subtaskNameInput = document.querySelectorAll(".subtask-name");
         subtaskNameInput.forEach((subtask, index) => {
@@ -626,11 +800,11 @@ function CreateDynamicForm() {
 
         var tagsMultipleSelect = document.querySelectorAll(".option-tag");
         var index = 0;
-        tagsMultipleSelect.forEach((tag, index) => {
+        tagsMultipleSelect.forEach((tag) => {
             if (tag.selected) {
                 var tagInput = document.createElement("input");
                 tagInput.value = tag.textContent.trim();
-                tagInput.name = "Planner.Tags[" + index + "].Name";
+                tagInput.name = `Planner.Tags[${index}].Name`;
                 tagInput.type = "hidden";
 
                 form.appendChild(tagInput);
@@ -640,7 +814,6 @@ function CreateDynamicForm() {
 
         form.appendChild(menuInputTask);
         form.appendChild(descriptionInput);
-        form.appendChild(selectListTask);
         form.appendChild(dueDateInput);
         form.appendChild(UserIdSpan);
         document.body.appendChild(form);
@@ -673,6 +846,15 @@ function DisplayCalendar() {
     if (centerContainerTasksId != null) {
         centerContainerTasksId.innerHTML = '';
     }
+
+    myData.planners.sort((a, b) => {
+        if (a.dueDate < b.dueDate) {
+            return -1;
+        } else if (a.dueDate > b.dueDate) {
+            return 1;
+        } 
+        return 0;
+    });
 
     myData.planners.forEach((planner) => {
         var listContainer = document.createElement("div");
@@ -720,12 +902,14 @@ function LoadSubtaskFromDB() {
     }
 }
 
+
 window.addEventListener('DOMContentLoaded', function () {
     SelectGlowTaskItems();
     SelectGlowListItems();
     UpdateHeaderPar();
     generateBackgroundIconColor();
-    DisplayTaskList();
+    // odkomentowanie - test dzialania wysw z list
+    //DisplayTaskList();
     AddTaskFromInput();
     //CommitTaskDetails();
     UpdateTaskList();
@@ -733,5 +917,5 @@ window.addEventListener('DOMContentLoaded', function () {
     CreateDynamicForm();
     LoadTagsToSelect();
     DisplaySelectedTags();
-    
+    SearchDbBasedOnList();
 });

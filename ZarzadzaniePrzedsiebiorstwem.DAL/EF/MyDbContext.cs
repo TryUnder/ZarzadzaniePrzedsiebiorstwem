@@ -37,12 +37,14 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 			modelBuilder.Entity<Planner>()
 				.HasMany(p => p.Subtask)
 				.WithOne(s => s.Planner)
-				.HasForeignKey(s => s.PlannerId);
+				.HasForeignKey(s => s.PlannerId)
+				.OnDelete(DeleteBehavior.Cascade);
 
 			modelBuilder.Entity<Planner>()
 				.HasMany(p => p.Tags)
 				.WithOne(t => t.Planner)
-				.HasForeignKey(t => t.PlannerId);
+				.HasForeignKey(t => t.PlannerId)
+				.OnDelete(DeleteBehavior.Cascade);
 		}
 
 	}

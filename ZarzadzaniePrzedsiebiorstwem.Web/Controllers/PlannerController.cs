@@ -38,5 +38,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             //return View("Views/Planner/Planning.cshtml", user);
             return RedirectToAction("Index", new { Id = planner.UserId });
         }
+
+        [HttpPost]
+        public IActionResult DeletePlanner(Planner planner) {
+            var user = _userService.GetUserFromId(planner.UserId);
+            _plannerService.DeletePlanner(planner);
+            return RedirectToAction("Index", new { Id = planner.UserId });
+        }
     }
 }

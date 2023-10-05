@@ -522,26 +522,39 @@ function CommitTaskDetails() {
     
     taskContainerArrowDivs.forEach((arrow) => {
         arrow.addEventListener("click", (event) => {
-            // why
             const labelText = event.currentTarget.previousSibling.querySelector("span").textContent;
-            CommitTaskName(labelText);
-
-            const descriptionText = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.description);
-            CommitTextAreaInput(descriptionText);
-
-            const listAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.taskList).toString();
-            CommitList(listAssigned);
-
-            const dateAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.dueDate).toString();
-            CommitDate(dateAssigned);
-
-            const tagsAssigned = myData.planners.flatMap(a => a.tags);
-            CommitTags(tagsAssigned);
-
-            const subtaskAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.subtask);
-            CommitSubtasks(subtaskAssigned);
+            ApplyCommit(labelText);
         });
     });
+}
+
+function CommitTaskDeatilsCalendar() {
+    const listContainer = document.querySelectorAll(".list-container");
+    listContainer.forEach((planner) => {
+        planner.addEventListener("click", (event) => {
+            var name = planner.querySelector("span:nth-child(2)").textContent;
+            ApplyCommit(name);
+        });
+    });
+}
+
+function ApplyCommit(labelText) {
+    CommitTaskName(labelText);
+
+    const descriptionText = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.description);
+    CommitTextAreaInput(descriptionText);
+
+    const listAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.taskList).toString();
+    CommitList(listAssigned);
+
+    const dateAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.dueDate).toString();
+    CommitDate(dateAssigned);
+
+    const tagsAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.tags);
+    CommitTags(tagsAssigned);
+
+    const subtaskAssigned = myData.planners.filter(a => a.taskName === labelText).flatMap(a => a.subtask);
+    CommitSubtasks(subtaskAssigned);
 }
 
 /*
@@ -592,6 +605,12 @@ function CommitTags(tagsAssigned) {
     var multipleTagsInput = document.getElementById("multiple-select");
 
     if (multipleTagsInput != null && tagsAssigned) {
+        for (let i = 0; i < multipleTagsInput.options.length; i++) {
+            if (multipleTagsInput.options[i].selected) {
+                multipleTagsInput.options[i].selected = false;
+            }
+        }
+
         tagsAssigned.forEach((tag) => {
             for (let i = 0; i < multipleTagsInput.options.length; i++) {
                 if (multipleTagsInput.options[i].value === tag.name) {
@@ -689,14 +708,10 @@ function UpdateTaskList() {
 /*
     * UpdateTaskList() - Aktualizuje opcje w elemencie 'select-list-task' na podstawie danych z bazy danych
     * Tworzy opcje w elemencie 'select-list-task' na podstawie unikalnych nazw list z bazy danych
+    * Funkcja wołana tylko raz, przy załadowaniu strony.
 */
 function UpdateTaskList() {
     const selectListTask = document.getElementById("select-list-task");
-
-    // Wyczyść istniejące opcje w select-list-task, z wyjątkiem "Wybierz listę"
-    while (selectListTask.firstChild) {
-        selectListTask.removeChild(selectListTask.firstChild);
-    }
 
     const defaultOption = document.createElement("option");
     defaultOption.value = "Wybierz listę";
@@ -706,14 +721,16 @@ function UpdateTaskList() {
     const existingOptions = new Set();
 
     myData.planners.forEach((planner) => {
-        const taskList = planner.taskList.trim();
+        if (planner.taskList != null) {
+            const taskList = planner.taskList.trim();
 
-        if (!existingOptions.has(taskList)) {
-            existingOptions.add(taskList);
+            if (!existingOptions.has(taskList)) {
+                existingOptions.add(taskList);
 
-            var option = document.createElement("option");
-            option.textContent = taskList;
-            selectListTask.appendChild(option);
+                var option = document.createElement("option");
+                option.textContent = taskList;
+                selectListTask.appendChild(option);
+            }
         }
     });
 }
@@ -730,6 +747,12 @@ function DisplayTaskList() {
 
     // Wyczyść istniejące opcje w select-list-task
     selectListTaskMultiple.innerHTML = "";
+
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "Wybierz listę";
+    defaultOption.textContent = "Wybierz listę";
+    selectListTaskMultiple.appendChild(defaultOption);
+
 
     // Dodaj opcje na podstawie dostępnych list
     textListItems.forEach((task) => {
@@ -757,15 +780,13 @@ function LoadTagsToSelect() {
     });
 }
 
-function CreateDynamicForm() {
+function CreateDynamicForm(controller) {
     //
     var form = document.createElement("form");
-    form.setAttribute("action", "/Planner/AddPlanners");
+    form.setAttribute("action", controller);
     form.setAttribute("method", "post");
     form.style.display = "none";
     //
-    var submitButton = document.getElementById("save-button");
-    submitButton.addEventListener("click", (event) => {
         var menuInputTask = document.getElementById("menu-input-task");
         menuInputTask.name = "Planner.TaskName";
 
@@ -818,6 +839,21 @@ function CreateDynamicForm() {
         form.appendChild(UserIdSpan);
         document.body.appendChild(form);
         form.submit();
+}
+
+function SavePlanner() {
+    const saveController = "/Planner/AddPlanners";
+    var savePlanner = document.getElementById("save-button");
+    savePlanner.addEventListener("click", (event) => {
+        CreateDynamicForm(saveController);
+    });
+}
+
+function DeletePlanner() {
+    const deleteController = "/Planner/DeletePlanner";
+    var deleteButton = document.getElementById("delete-button");
+    deleteButton.addEventListener("click", (event) => {
+        CreateDynamicForm(deleteController);
     });
 }
 
@@ -873,6 +909,8 @@ function DisplayCalendar() {
         centerContainerTasksId.appendChild(listContainer);
     });
 
+
+    CommitTaskDeatilsCalendar();
     UpdateHeaderNumber(myData.planners.length);
 }
 
@@ -902,7 +940,6 @@ function LoadSubtaskFromDB() {
     }
 }
 
-
 window.addEventListener('DOMContentLoaded', function () {
     SelectGlowTaskItems();
     SelectGlowListItems();
@@ -914,8 +951,10 @@ window.addEventListener('DOMContentLoaded', function () {
     //CommitTaskDetails();
     UpdateTaskList();
     AddSubtaskFromInput();
-    CreateDynamicForm();
+    //CreateDynamicForm(controller);
     LoadTagsToSelect();
     DisplaySelectedTags();
     SearchDbBasedOnList();
+    DeletePlanner();
+    SavePlanner();
 });

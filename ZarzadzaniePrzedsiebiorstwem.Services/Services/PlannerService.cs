@@ -8,6 +8,7 @@ using ZarzadzaniePrzedsiebiorstwem.Model.DataModels;
 using ZarzadzaniePrzedsiebiorstwem.DAL.EF;
 using ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
+using Microsoft.EntityFrameworkCore;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
     public class PlannerService : BaseService, IPlannerService {
@@ -88,6 +89,31 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
                     throw new Exception("Błąd podczas dodawania planera z tagami i subtaskami.", ex);
                 }
             }
+        }
+
+        public void DeletePlanner(Planner planner) {
+            var plannerToDelete = _dbContext.Planner
+                .Include(p => p.Subtask)
+                .Include(p => p.Tags)
+                .FirstOrDefault(p => p.TaskName == planner.TaskName);
+            if (plannerToDelete != null) {
+                using (var transaction = _dbContext.Database.BeginTransaction()) {
+                    try {
+                        _dbContext.Planner.Remove(plannerToDelete);
+                        _dbContext.SaveChanges();
+                        transaction.Commit();
+
+                    } catch (Exception ex) {
+                        transaction.Rollback();
+                        throw new Exception("Błąd podczas usuwania plannera z tagami i subtaskami.", ex);
+                    }
+                }
+            }
+        }
+
+        public Planner GerPlannerByPlannerId(int plannerId) {
+            var planner = _dbContext.Planner.Where(x => x.Id == plannerId).FirstOrDefault();
+            return planner;
         }
     }
 }

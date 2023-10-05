@@ -11,5 +11,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Interfaces {
         public bool GetPlannerBool(int userId);
         public Planner GetPlanner(int userId);
         public void AddPlanner(Planner planner);
+        public void DeletePlanner(Planner planner);
+        public Planner GerPlannerByPlannerId(int plannerId);
     }
 }

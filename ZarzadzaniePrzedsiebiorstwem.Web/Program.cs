@@ -17,6 +17,7 @@ builder.Services.AddDbContext<MyDbContext>(x => x.UseSqlServer(connectionString)
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPrzedsiebiorstwoService, PrzedsiebiorstwoService>();
 builder.Services.AddScoped<IPlannerService, PlannerService>();
+builder.Services.AddScoped<IFinanseService, FinanseService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {

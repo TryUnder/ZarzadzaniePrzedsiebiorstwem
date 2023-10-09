@@ -1,0 +1,85 @@
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
+
+@Html.Partial("~/Views/PartialVertical.cshtml", Model)
+
+<section class="section">
+	<div class="grid-container">
+		<div class="grid-item">
+			<p class="header-info">
+				Sprawozdania Finansowe
+			</p>
+		</div>
+		<div class="columns">
+			<div class="grid-item">
+				<div class="column">
+					<p class="header-info" style="font-weight: 700; font-size: 26px;">Rachunek Zysków I Strat</p>
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th class="align-middle">Lp.</th>
+								<th class="align-middle">Okres Rozliczeniowy</th>
+								<th class="align-middle">Zysk Netto</th>
+								<th class="align-middle">Szczegóły</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="align-middle">1</td>
+								<td class="align-middle">2023-10-09</td>
+								<td class="align-middle">1000.00</td>
+								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
+							</tr>
+							<tr>
+								<td class="align-middle">1</td>
+								<td class="align-middle">01-01-2023 - 31.12.2023</td>
+								<td class="align-middle">1000.00</td>
+								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
+							</tr>
+							<tr>
+								<td colspan="4" class="text-center">
+									<button class="btn button is-info">Dodaj Nowe Sprawozdanie</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="grid-item">
+				<div class="column">
+					<p class="header-info" style="font-weight: 700; font-size: 26px;">Bilans</p>
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th class="align-middle">Lp.</th>
+								<th class="align-middle">Okres Rozliczeniowy</th>
+								<th class="align-middle">Zysk Netto</th>
+								<th class="align-middle">Szczegóły</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="align-middle">1</td>
+								<td class="align-middle">2023-10-09</td>
+								<td class="align-middle">1000.00</td>
+								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
+							</tr>
+							<tr>
+								<td class="align-middle">1</td>
+								<td class="align-middle">2023-10-09</td>
+								<td class="align-middle">1000.00</td>
+								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
+							</tr>
+							<tr>
+								<td colspan="4" class="text-center">
+									<button class="btn button is-info">Dodaj Nowe Sprawozdanie</button>
+								</td>
+							</tr>
+						</tbody>
+						</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<link rel="stylesheet" href="~/css/WyswietlRozliczenia.css" />

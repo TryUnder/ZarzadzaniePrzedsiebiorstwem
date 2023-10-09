@@ -299,6 +299,7 @@ function SearchInModel() {
 
         var input = document.createElement("input");
         input.type = "checkbox";
+        input.className = "checkbox-input";
 
         var labelText = document.createElement("span");
         labelText.textContent = taskName;

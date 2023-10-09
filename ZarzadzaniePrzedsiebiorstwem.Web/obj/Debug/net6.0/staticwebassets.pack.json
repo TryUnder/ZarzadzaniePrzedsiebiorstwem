@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\css\\Rejestracja.css"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\WyswietlRozliczenia.css",
+      "PackagePath": "staticwebassets\\css\\WyswietlRozliczenia.css"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\basicStyling.css",
       "PackagePath": "staticwebassets\\css\\basicStyling.css"
     },
@@ -73,6 +77,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\slider.css",
+      "PackagePath": "staticwebassets\\css\\slider.css"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\verticalPanelScript.js",
       "PackagePath": "staticwebassets\\css\\verticalPanelScript.js"
     },
@@ -91,6 +99,10 @@
     {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\slider.js",
+      "PackagePath": "staticwebassets\\js\\slider.js"
     },
     {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\lib\\bootstrap\\LICENSE",

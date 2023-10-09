@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
+using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Model.Authentication {
     public class User {
@@ -21,7 +22,13 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.Authentication {
         [UIHint("password")]
         public string Haslo { get; set; } = null!;
 
+        public string Nazwisko { get; set; }
+        public string Imie { get; set; }
+
         [IgnoreDataMember]
         public virtual ICollection<Planner> Planners { get; set; } = new List<Planner>();
+
+        [IgnoreDataMember]
+        public virtual ICollection<RachunekZyskowIStrat> RachunkiZyskowIStrat { get; set; } = new List<RachunekZyskowIStrat>();
     }
 }

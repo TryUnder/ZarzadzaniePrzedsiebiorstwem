@@ -9,25 +9,25 @@
                 <span class="icon">
                     <i class="fa-solid fa-envelope fa-xs" style="color: #ffffff;"></i>
                 </span>
-                <input asp-for="Login" type="email" placeholder="E-mail" required>
-            </div>
-            <div class="input-box">
-                <span class="icon">
-                    <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i>
-                </span>
-                <input type="text" placeholder="Imię" required>
-            </div>
-            <div class="input-box">
-                <span class="icon">
-                    <i class="fa-solid fa-signature fa-xs" style="color: #ffffff;"></i>
-                </span>
-                <input type="text" placeholder="Nazwisko" required>
+                <input asp-for="Login" type="text" placeholder="Login" required>
             </div>
             <div class="input-box">
                 <span class="icon">
                     <i class="fa-solid fa-lock fa-xs" style="color: #ffffff;"></i>
                 </span>
                 <input asp-for="Haslo" type="password" placeholder="Hasło" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="fa-solid fa-user fa-xs" style="color: #ffffff;"></i>
+                </span>
+                <input asp-for="Imie" type="text" placeholder="Imię" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <i class="fa-solid fa-signature fa-xs" style="color: #ffffff;"></i>
+                </span>
+                <input asp-for="Nazwisko" type="text" placeholder="Nazwisko" required>
             </div>
             <button type="submit" class="button">Zarejestruj się!</button>
         </form>

@@ -34,7 +34,15 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Imie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nazwisko")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

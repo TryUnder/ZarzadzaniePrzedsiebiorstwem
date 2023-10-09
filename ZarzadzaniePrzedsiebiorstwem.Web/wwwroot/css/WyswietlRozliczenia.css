@@ -1,0 +1,42 @@
+﻿section.section {
+    position: absolute;
+    width: 1500px;
+    top: 9%;
+    left: 5%;
+}
+
+.columns {
+    margin-left: 30px;
+}
+
+.grid-container {
+    display: grid;
+    height: 80vh;
+    grid-template-rows: 0.15fr 1fr;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+}
+
+.grid-item {
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.table {
+    margin-top: 20px;
+    border-radius: 10px;
+
+}
+
+td {
+    vertical-align: middle;
+}
+
+.header-info {
+    text-align: center;
+    font-family: Verdana;
+    color: #363636;
+    font-size: 36px;
+    font-weight: 900;
+}

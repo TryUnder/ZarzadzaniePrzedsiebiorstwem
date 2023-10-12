@@ -9,6 +9,7 @@ using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe;
+using ZarzadzaniePrzedsiebiorstwem.Model.DataModels;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Model.Authentication {
     public class User {

@@ -16,5 +16,10 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             var user = _userService.GetUserFromId(id);
             return View("~/Views/Finanse/WyswietlRozliczenia.cshtml", user);
         }
+
+        public IActionResult DodajRachunekZyskowIStrat(int id) {
+            var user = _userService.GetUserFromId(id);
+            return View("~/Views/Finanse/DodajRachunekZyskowIStrat.cshtml", user);
+        }
     }
 }

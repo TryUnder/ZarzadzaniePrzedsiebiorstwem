@@ -213,6 +213,150 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.ToTable("Przedsiebiorstwo");
                 });
 
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.RachunekZyskowIStrat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal?>("AktualizacjaWartosciAktywowFinansowych")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("AktualizacjaWartosciAktywowFinansowychStrata")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Amortyzacja")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DataKoncowa")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataPoczatkowa")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("Dywidendy")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Inne")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("InneKosztyFinansowe")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("InneKosztyOperacyjne")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("InnePrzychodyOperacyjne")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Inwestycje")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("KosztWytworzeniaProduktowNaWlasnePotrzebyJednostki")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KosztyDzialalnosciOperacyjnej")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KosztyFinansowe")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("OdsetkiDlaFirmy")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("OdsetkiNaRzeczInnych")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PodatekDochodowy")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PodatkiIOplaty")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PozostaleKosztyOperacyjne")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PozostaleKosztyRodzajowe")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PozostaleObowiazkoweZmniejszeniaZysku")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PozostalePrzychodyOperacyjne")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PrzychodyFinansowe")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PrzychodyNettoZeSprzedazy")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PrzychodyNettoZeSprzedazyProduktow")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PrzychodyNettoZeSprzedazyTowarowIMaterialow")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SkladkiNaZus")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("StrataZTytuluRozchoduAktywowFinansowych")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("StrataZTytuluRozchoduNiefinansowychAktywow")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("UslugiObce")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("WartoscSprzedanychTowarowIMaterialow")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Wynagrodzenia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ZmianaStanuProduktow")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ZmniejszenieWartosciAktywowNiefinansowych")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ZuzycieMaterialowIProduktow")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ZwiekszenieWartosciAktywowNiefinansowych")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ZyskStrataBrutto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ZyskStrataNetto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ZyskStrataZDzialalnosciOperacyjnej")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ZyskStrataZeSprzedazy")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ZyskZTytuluRozchoduAktywowFinansowych")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ZyskZTytuluRozchoduNiefinansowychAktywowTrwalych")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RachunekZyskowIStrat");
+                });
+
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner", b =>
                 {
                     b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Tag", null)
@@ -261,9 +405,18 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.RachunekZyskowIStrat", b =>
+                {
+                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", null)
+                        .WithMany("RachunkiZyskowIStrat")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", b =>
                 {
                     b.Navigation("Planners");
+
+                    b.Navigation("RachunkiZyskowIStrat");
                 });
 
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner", b =>

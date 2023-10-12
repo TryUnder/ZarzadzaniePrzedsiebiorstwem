@@ -1,0 +1,48 @@
+﻿section.section {
+    position: absolute;
+    width: 1500px;
+    top: 9%;
+    left: 5%;
+}
+
+.grid-container {
+    display: grid;
+    height: 220vh;
+    grid-template-rows: 0.05fr 0.05fr auto;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+}
+
+.grid-item {
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.grid-item p {
+    color: antiquewhite;
+    font-weight: 500;
+}
+
+.header-info {
+    text-align: center;
+    font-size: 20px;
+}
+
+input {
+    height: 30px;
+    border-radius: 10px;
+}
+
+.index-column {
+    width: 10px;
+    border-right: 2px solid black !important;
+}
+
+#grid-items-main {
+    
+}
+
+table {
+    border-radius: 10px;
+}

@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\bulma.sass"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\DodajRachunekZyskowIStrat.css",
+      "PackagePath": "staticwebassets\\css\\DodajRachunekZyskowIStrat.css"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\Login.css",
       "PackagePath": "staticwebassets\\css\\Login.css"
     },

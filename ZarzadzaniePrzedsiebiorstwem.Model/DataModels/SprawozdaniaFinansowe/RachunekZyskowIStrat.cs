@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
     public class RachunekZyskowIStrat {
         public int Id { get; set; }
-        public DateTime OkresRozliczeniowy { get; set; }
+        public DateTime DataPoczatkowa { get; set; }
+        public DateTime DataKoncowa { get; set; }
 
         public decimal PrzychodyNettoZeSprzedazy { get; set; }
 

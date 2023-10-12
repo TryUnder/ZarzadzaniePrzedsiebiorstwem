@@ -26,7 +26,6 @@
 .table {
     margin-top: 20px;
     border-radius: 10px;
-
 }
 
 td {
@@ -36,7 +35,7 @@ td {
 .header-info {
     text-align: center;
     font-family: Verdana;
-    color: #363636;
+    color: antiquewhite;
     font-size: 36px;
     font-weight: 900;
 }

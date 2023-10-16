@@ -7,8 +7,8 @@
 
 .grid-container {
     display: grid;
-    height: 220vh;
-    grid-template-rows: 0.05fr 0.05fr auto;
+    height: 225vh;
+    grid-template-rows: 0.05fr 0.05fr auto 0.05fr;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 25px;
@@ -45,4 +45,8 @@ input {
 
 table {
     border-radius: 10px;
+}
+
+.button {
+    border-radius: 5px;
 }

@@ -97,6 +97,10 @@
       "PackagePath": "staticwebassets\\js\\bulma-calendar.min.js"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\finanse.js",
+      "PackagePath": "staticwebassets\\js\\finanse.js"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\planner.js",
       "PackagePath": "staticwebassets\\js\\planner.js"
     },

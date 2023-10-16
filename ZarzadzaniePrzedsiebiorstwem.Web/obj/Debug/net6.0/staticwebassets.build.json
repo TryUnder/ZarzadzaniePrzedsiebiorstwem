@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Z2LWpRsKJ/WGmuEdWmfXKdn0U4Q/K06GA46O0f4T6tU=",
+  "Hash": "JXg18fZL6GwiBDjdXq5PYiWiUxls2eklqSgTazqGbtM=",
   "Source": "ZarzadzaniePrzedsiebiorstwem.Web",
   "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
   "Mode": "Default",
@@ -406,6 +406,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\bulma-calendar.min.js"
+    },
+    {
+      "Identity": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\finanse.js",
+      "SourceId": "ZarzadzaniePrzedsiebiorstwem.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\",
+      "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
+      "RelativePath": "js/finanse.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\finanse.js"
     },
     {
       "Identity": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\planner.js",

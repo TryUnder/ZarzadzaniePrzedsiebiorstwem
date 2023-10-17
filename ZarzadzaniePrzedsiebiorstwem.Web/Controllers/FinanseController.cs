@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
+using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe;
 using ZarzadzaniePrzedsiebiorstwem.Services.Interfaces;
 using ZarzadzaniePrzedsiebiorstwem.Services.Services;
@@ -26,8 +27,16 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 
         [HttpPost]
         public IActionResult DodajRachunekDoBazy(RachunekZyskowIStrat rachunekZyskowIStrat) {
-            var user = _userService.GetUserFromId(0);
-            return View("~/Views/Finanse/DodajRachunekZyskowIStrat.cshtml", user);
+            var user = _userService.GetUserFromId(rachunekZyskowIStrat.UserId);
+            _finanseService.AddRachunekZyskowIStratToDb(rachunekZyskowIStrat);
+
+            var newViewUrl = Url.Action("WyswietlRozliczenia", new { id = rachunekZyskowIStrat.UserId });
+            return Json(new { redirectUrl = newViewUrl });
+        }
+
+        public IActionResult WyswietlRachunekZyskowIStrat(int id) {
+            var rachunekZyskowIStrat = _finanseService.GetRachunekZyskowIStratFromDb(id);
+            return View("~/Views/Finanse/WyswietlRachunekZyskowIStrat.cshtml", rachunekZyskowIStrat);
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
+using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe;
 
 namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 
@@ -18,6 +19,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.EF {
 		public virtual DbSet<Planner> Planner { get; set; }
 		public virtual DbSet<Subtask> SubTask { get; set; }
 		public virtual DbSet<Tag> Tag { get; set; }
+		public virtual DbSet<RachunekZyskowIStrat> RachunekZyskowIStrat { get; set; }
 
 		public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 

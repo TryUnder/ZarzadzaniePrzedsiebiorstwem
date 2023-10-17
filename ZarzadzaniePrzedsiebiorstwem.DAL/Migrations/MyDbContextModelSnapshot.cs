@@ -239,13 +239,13 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<decimal?>("Dywidendy")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("Inne")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal?>("InneKosztyFinansowe")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("InneKosztyOperacyjne")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("InnePrzychodyFinansowe")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("InnePrzychodyOperacyjne")
@@ -281,7 +281,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<decimal?>("PozostaleKosztyRodzajowe")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("PozostaleObowiazkoweZmniejszeniaZysku")
+                    b.Property<decimal?>("PozostaleObowiazkoweZmniejszeniaZysku")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("PozostalePrzychodyOperacyjne")
@@ -299,16 +299,16 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<decimal?>("PrzychodyNettoZeSprzedazyTowarowIMaterialow")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("SkladkiNaZus")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal?>("StrataZTytuluRozchoduAktywowFinansowych")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("StrataZTytuluRozchoduNiefinansowychAktywow")
+                    b.Property<decimal?>("StrataZTytuluRozchoduNiefinansowychAktywowTrwalych")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<decimal?>("UbezpieczeniaSpoleczneIInneSwiadczenia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("UslugiObce")
@@ -326,7 +326,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<decimal?>("ZmniejszenieWartosciAktywowNiefinansowych")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("ZuzycieMaterialowIProduktow")
+                    b.Property<decimal?>("ZuzycieMaterialowIEnergii")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("ZwiekszenieWartosciAktywowNiefinansowych")
@@ -407,9 +407,13 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
 
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.RachunekZyskowIStrat", b =>
                 {
-                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", null)
+                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", "User")
                         .WithMany("RachunkiZyskowIStrat")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", b =>

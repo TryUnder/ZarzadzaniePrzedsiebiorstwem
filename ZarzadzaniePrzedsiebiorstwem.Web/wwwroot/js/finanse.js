@@ -246,16 +246,182 @@
 
 }
 
+function CreateFormData() {
+    var formData = new FormData();
+
+    var DataPoczatkowa = document.getElementById("DataPoczatkowa");
+    var DataKoncowa = document.getElementById("DataKoncowa");
+
+    var indexA0 = document.getElementById("indexA0");
+    var indexA1 = document.getElementById("indexA1");
+    var indexA2 = document.getElementById("indexA2");
+    var indexA3 = document.getElementById("indexA3");
+    var indexA4 = document.getElementById("indexA4");
+
+    var valueA0 = parseFloat(indexA0.value) || 0;
+    var valueA1 = parseFloat(indexA1.value) || null;
+    var valueA2 = parseFloat(indexA2.value) || null;
+    var valueA3 = parseFloat(indexA3.value) || null;
+    var valueA4 = parseFloat(indexA4.value) || null;
+
+    var indexB0 = document.getElementById("indexB0");
+    var indexB1 = document.getElementById("indexB1");
+    var indexB2 = document.getElementById("indexB2");
+    var indexB3 = document.getElementById("indexB3");
+    var indexB4 = document.getElementById("indexB4");
+    var indexB5 = document.getElementById("indexB5");
+    var indexB6 = document.getElementById("indexB6");
+    var indexB7 = document.getElementById("indexB7");
+    var indexB8 = document.getElementById("indexB8");
+
+    var valueB0 = parseFloat(indexB0.value) || 0;
+    var valueB1 = parseFloat(indexB1.value) || null;
+    var valueB2 = parseFloat(indexB2.value) || null;
+    var valueB3 = parseFloat(indexB3.value) || null;
+    var valueB4 = parseFloat(indexB4.value) || null;
+    var valueB5 = parseFloat(indexB5.value) || null;
+    var valueB6 = parseFloat(indexB6.value) || null;
+    var valueB7 = parseFloat(indexB7.value) || null;
+    var valueB8 = parseFloat(indexB8.value) || null;
+
+    var indexC0 = document.getElementById("indexC0");
+
+    var valueC0 = parseFloat(indexC0.value) || 0;
+
+    var indexD0 = document.getElementById("indexD0");
+    var indexD1 = document.getElementById("indexD1");
+    var indexD2 = document.getElementById("indexD2");
+    var indexD3 = document.getElementById("indexD3");
+    var indexD4 = document.getElementById("indexD4");
+
+    var valueD0 = parseFloat(indexD0.value) || 0;
+    var valueD1 = parseFloat(indexD1.value) || null;
+    var valueD2 = parseFloat(indexD2.value) || null;
+    var valueD3 = parseFloat(indexD3.value) || null;
+    var valueD4 = parseFloat(indexD4.value) || null;
+
+    var indexE0 = document.getElementById("indexE0");
+    var indexE1 = document.getElementById("indexE1");
+    var indexE2 = document.getElementById("indexE2");
+    var indexE3 = document.getElementById("indexE3");
+
+    var valueE0 = parseFloat(indexE0.value) || 0;
+    var valueE1 = parseFloat(indexE1.value) || null;
+    var valueE2 = parseFloat(indexE2.value) || null;
+    var valueE3 = parseFloat(indexE3.value) || null;
+
+    var indexF0 = document.getElementById("indexF0");
+
+    var valueF0 = parseFloat(indexF0.value) || 0;
+
+    var indexG0 = document.getElementById("indexG0");
+    var indexG1 = document.getElementById("indexG1");
+    var indexG2 = document.getElementById("indexG2");
+    var indexG3 = document.getElementById("indexG3");
+    var indexG4 = document.getElementById("indexG4");
+    var indexG5 = document.getElementById("indexG5");
+
+    var valueG0 = parseFloat(indexG0.value) || 0;
+    var valueG1 = parseFloat(indexG1.value) || null;
+    var valueG2 = parseFloat(indexG2.value) || null;
+    var valueG3 = parseFloat(indexG3.value) || null;
+    var valueG4 = parseFloat(indexG4.value) || null;
+    var valueG5 = parseFloat(indexG5.value) || null;
+
+    var indexH0 = document.getElementById("indexH0");
+    var indexH1 = document.getElementById("indexH1");
+    var indexH2 = document.getElementById("indexH2");
+    var indexH3 = document.getElementById("indexH3");
+    var indexH4 = document.getElementById("indexH4");
+
+    var valueH0 = parseFloat(indexH0.value) || 0;
+    var valueH1 = parseFloat(indexH1.value) || null;
+    var valueH2 = parseFloat(indexH2.value) || null;
+    var valueH3 = parseFloat(indexH3.value) || null;
+    var valueH4 = parseFloat(indexH4.value) || null;
+
+    var indexI0 = document.getElementById("indexI0");
+    var indexJ0 = document.getElementById("indexJ0");
+    var indexK0 = document.getElementById("indexK0");
+
+    var valueI0 = parseFloat(indexI0.value) || 0;
+    var valueJ0 = parseFloat(indexJ0.value) || 0;
+    var valueK0 = parseFloat(indexK0.value) || null;
+
+    var indexL0 = document.getElementById("indexL0");
+    var valueL0 = parseFloat(indexL0.value) || 0;
+
+    var UserId = parseInt(myData.id);
+    
+    formData.append("RachunekZyskowIStrat.UserId", UserId);
+    
+    formData.append("RachunekZyskowIStrat.DataPoczatkowa", DataPoczatkowa.value);
+    formData.append("RachunekZyskowIStrat.DataKoncowa", DataKoncowa.value);
+
+    formData.append("RachunekZyskowIStrat.PrzychodyNettoZeSprzedazy", valueA0);
+
+    formData.append("RachunekZyskowIStrat.PrzychodyNettoZeSprzedazyProduktow", valueA1);
+    formData.append("RachunekZyskowIStrat.ZmianaStanuProduktow", valueA2);
+    formData.append("RachunekZyskowIStrat.KosztWytworzeniaProduktowNaWlasnePotrzebyJednostki", valueA3);
+    formData.append("RachunekZyskowIStrat.PrzychodyNettoZeSprzedazyTowarowIMaterialow", valueA4);
+
+    formData.append("RachunekZyskowIStrat.KosztyDzialalnosciOperacyjnej", valueB0);
+
+    formData.append("RachunekZyskowIStrat.Amortyzacja", valueB1);
+    formData.append("RachunekZyskowIStrat.ZuzycieMaterialowIEnergii", valueB2);
+    formData.append("RachunekZyskowIStrat.UslugiObce", valueB3);
+    formData.append("RachunekZyskowIStrat.PodatkiIOplaty", valueB4);
+    formData.append("RachunekZyskowIStrat.Wynagrodzenia", valueB5);
+    formData.append("RachunekZyskowIStrat.UbezpieczeniaSpoleczneIInneSwiadczenia", valueB6);
+    formData.append("RachunekZyskowIStrat.PozostaleKosztyRodzajowe", valueB7);
+    formData.append("RachunekZyskowIStrat.WartoscSprzedanychTowarowIMaterialow", valueB8);
+
+    formData.append("RachunekZyskowIStrat.ZyskStrataZeSprzedazy", valueC0);
+
+    formData.append("RachunekZyskowIStrat.PozostalePrzychodyOperacyjne", valueD0);
+
+    formData.append("RachunekZyskowIStrat.ZyskZTytuluRozchoduNiefinansowychAktywowTrwalych", valueD1);
+    formData.append("RachunekZyskowIStrat.Inwestycje", valueD2);
+    formData.append("RachunekZyskowIStrat.ZwiekszenieWartosciAktywowNiefinansowych", valueD3);
+    formData.append("RachunekZyskowIStrat.InnePrzychodyOperacyjne", valueD4);
+
+    formData.append("RachunekZyskowIStrat.PozostaleKosztyOperacyjne", valueE0);
+
+    formData.append("RachunekZyskowIStrat.StrataZTytuluRozchoduNiefinansowychAktywowTrwalych", valueE1)
+    formData.append("RachunekZyskowIStrat.ZmniejszenieWartosciAktywowNiefinansowych", valueE2);
+    formData.append("RachunekZyskowIStrat.InneKosztyOperacyjne", valueE3);
+
+    formData.append("RachunekZyskowIStrat.ZyskStrataZDzialalnosciOperacyjnej", valueF0);
+
+    formData.append("RachunekZyskowIStrat.PrzychodyFinansowe", valueG0);
+
+    formData.append("RachunekZyskowIStrat.Dywidendy", valueG1);
+    formData.append("RachunekZyskowIStrat.OdsetkiDlaFirmy", valueG2);
+    formData.append("RachunekZyskowIStrat.ZyskZTytuluRozchoduAktywowFinansowych", valueG3);
+    formData.append("RachunekZyskowIStrat.AktualizacjaWartosciAktywowFinansowych", valueG4);
+    formData.append("RachunekZyskowIStrat.InnePrzychodyFinansowe", valueG5);
+
+    formData.append("RachunekZyskowIStrat.KosztyFinansowe", valueH0);
+    formData.append("RachunekZyskowIStrat.OdsetkiNaRzeczInnych", valueH1);
+    formData.append("RachunekZyskowIStrat.StrataZTytuluRozchoduAktywowFinansowych", valueH2);
+    formData.append("RachunekZyskowIStrat.AktualizacjaWartosciAktywowFinansowychStrata", valueH3);
+    formData.append("RachunekZyskowIStrat.InneKosztyFinansowe", valueH4);
+
+    formData.append("RachunekZyskowIStrat.ZyskStrataBrutto", valueI0);
+    formData.append("RachunekZyskowIStrat.PodatekDochodowy", valueJ0);
+    formData.append("RachunekZyskowIStrat.PozostaleObowiazkoweZmniejszeniaZysku", valueK0);
+    formData.append("RachunekZyskowIStrat.ZyskStrataNetto", valueL0);
+
+    return formData;
+}
+
 
 function CreateDynamicForm() {
     var myButton = document.getElementById("submit");
     myButton.addEventListener("click", function () {
 
-        var indexA0 = document.getElementById("indexA0");
-        var valueA0 = parseFloat(indexA0.value) || null;
-
-        var formData = new FormData();
-        formData.append("RachunekZyskowIStrat.PrzychodyNettoZeSprzedazy", valueA0);
+        var formData = CreateFormData();
+        //formData.append("RachunekZyskowIStrat.PrzychodyNettoZeSprzedazy", valueA0);
 
         fetch("/Finanse/DodajRachunekDoBazy", {
             method: "POST",
@@ -263,7 +429,11 @@ function CreateDynamicForm() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            if (data.redirectUrl) {
+                window.location.href = data.redirectUrl;
+            } else {
+                console.log(data);
+            }
         })
         .catch(error => console.log(error));
     });

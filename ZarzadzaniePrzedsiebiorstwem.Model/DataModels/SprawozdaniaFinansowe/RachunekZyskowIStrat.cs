@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
     public class RachunekZyskowIStrat {
         public int Id { get; set; }
+
+        public virtual User User { get; set; }
+        public int UserId { get; set; }
+
         public DateTime DataPoczatkowa { get; set; }
         public DateTime DataKoncowa { get; set; }
 
@@ -20,11 +25,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
         public decimal KosztyDzialalnosciOperacyjnej { get; set; }
 
         public decimal? Amortyzacja { get; set; }
-        public decimal? ZuzycieMaterialowIProduktow { get; set; }
+        public decimal? ZuzycieMaterialowIEnergii { get; set; }
         public decimal? UslugiObce { get; set; }
         public decimal? PodatkiIOplaty { get; set; }
         public decimal? Wynagrodzenia { get; set; }
-        public decimal? SkladkiNaZus { get; set; }
+        public decimal? UbezpieczeniaSpoleczneIInneSwiadczenia { get; set; }
         public decimal? PozostaleKosztyRodzajowe { get; set; }
         public decimal? WartoscSprzedanychTowarowIMaterialow { get; set; }
 
@@ -40,7 +45,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
 
         public decimal PozostaleKosztyOperacyjne { get; set; }
 
-        public decimal? StrataZTytuluRozchoduNiefinansowychAktywow { get; set; }
+        public decimal? StrataZTytuluRozchoduNiefinansowychAktywowTrwalych { get; set; }
         public decimal? ZmniejszenieWartosciAktywowNiefinansowych { get; set; }
         public decimal? InneKosztyOperacyjne { get; set; }
 
@@ -53,7 +58,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
         public decimal? OdsetkiDlaFirmy { get; set; }
         public decimal? ZyskZTytuluRozchoduAktywowFinansowych { get; set; }
         public decimal? AktualizacjaWartosciAktywowFinansowych { get; set; }
-        public decimal? Inne { get; set; }
+        public decimal? InnePrzychodyFinansowe { get; set; }
 
 
         public decimal KosztyFinansowe { get; set; }
@@ -66,7 +71,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
 
         public decimal ZyskStrataBrutto { get; set; }
         public decimal PodatekDochodowy { get; set; }
-        public decimal PozostaleObowiazkoweZmniejszeniaZysku { get; set; }
+        public decimal? PozostaleObowiazkoweZmniejszeniaZysku { get; set; }
         public decimal ZyskStrataNetto { get; set; }
 
     }

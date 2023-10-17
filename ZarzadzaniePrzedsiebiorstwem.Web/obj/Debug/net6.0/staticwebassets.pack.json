@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\WyswietlRachunekZyskowIStrat.js",
+      "PackagePath": "staticwebassets\\js\\WyswietlRachunekZyskowIStrat.js"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\bulma-calendar.min.js",
       "PackagePath": "staticwebassets\\js\\bulma-calendar.min.js"
     },

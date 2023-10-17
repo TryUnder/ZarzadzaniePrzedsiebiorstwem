@@ -23,18 +23,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="align-middle">1</td>
-								<td class="align-middle">2023-10-09</td>
-								<td class="align-middle">1000.00</td>
-								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
-							</tr>
-							<tr>
-								<td class="align-middle">1</td>
-								<td class="align-middle">01-01-2023 - 31.12.2023</td>
-								<td class="align-middle">1000.00</td>
-								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
-							</tr>
+							@{
+								foreach (var rachunek in Model.RachunkiZyskowIStrat) {
+									var DataPoczatkowa = rachunek.DataPoczatkowa.ToString("yyyy-MM-dd");
+									var DataKoncowa = rachunek.DataKoncowa.ToString("yyyy-MM-dd");
+									<tr>
+										<td class="align-middle">@rachunek.Id</td>
+										<td class="align-middle">@rachunek.DataPoczatkowa.ToString("yyyy-MM-dd") - @rachunek.DataKoncowa.ToString("yyyy-MM-dd")</td>
+										<td class="align-middle">@rachunek.ZyskStrataNetto</td>
+										<td class="align-middle">
+											<a asp-controller="Finanse" asp-action="WyswietlRachunekZyskowIStrat" asp-route-id="@rachunek.Id">
+												<button class="btn button is-primary">Wyświetl</button>
+											</a>
+											<button class="btn button is-danger">Usuń</button>
+										</td>
+									</tr>
+								}
+							}
 							<tr>
 								<td colspan="4" class="text-center">
 									<a asp-controller="Finanse" asp-action="DodajRachunekZyskowIStrat" asp-route-id="@Model.Id">

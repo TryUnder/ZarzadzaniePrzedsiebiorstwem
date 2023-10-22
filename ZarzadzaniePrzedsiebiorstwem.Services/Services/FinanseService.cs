@@ -33,5 +33,19 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 				throw new Exception("Wystąpił błąd podczas pobierania rachunku zysków i strat z bazy danych", ex);
             }
         }
+
+		public void DeleteRachunekZyskowIStratFromDb(RachunekZyskowIStrat rachunekZyskowIStrat) {
+            using (var transaction = _dbContext.Database.BeginTransaction()) {
+			    try {
+					_dbContext.RachunekZyskowIStrat.Remove(rachunekZyskowIStrat);
+					_dbContext.SaveChanges();
+
+					transaction.Commit();
+				} catch (Exception ex) {
+					transaction.Rollback();
+					throw new Exception("Wystąpił błąd podczas usuwania rachunku zysków i strat z bazy danych", ex);
+				}
+			}
+        }
 	}
 }

@@ -38,5 +38,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             var rachunekZyskowIStrat = _finanseService.GetRachunekZyskowIStratFromDb(id);
             return View("~/Views/Finanse/WyswietlRachunekZyskowIStrat.cshtml", rachunekZyskowIStrat);
         }
-    }
+
+        public IActionResult UsunRachunekZyskowIStrat(int id) {
+            var rachunekZyskowIStrat = _finanseService.GetRachunekZyskowIStratFromDb(id);
+            _finanseService.DeleteRachunekZyskowIStratFromDb(rachunekZyskowIStrat);
+            return RedirectToAction("WyswietlRozliczenia", new { id = rachunekZyskowIStrat.UserId });
+        }
+
+	}
 }

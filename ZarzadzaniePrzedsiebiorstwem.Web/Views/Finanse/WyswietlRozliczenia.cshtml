@@ -35,7 +35,9 @@
 											<a asp-controller="Finanse" asp-action="WyswietlRachunekZyskowIStrat" asp-route-id="@rachunek.Id">
 												<button class="btn button is-primary">Wyświetl</button>
 											</a>
-											<button class="btn button is-danger">Usuń</button>
+											<a asp-controller="Finanse" asp-action="UsunRachunekZyskowIStrat" asp-route-id="@rachunek.Id">
+												<button class="btn button is-danger">Usuń</button>
+											</a>
 										</td>
 									</tr>
 								}

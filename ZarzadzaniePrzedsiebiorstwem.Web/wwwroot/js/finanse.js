@@ -381,7 +381,7 @@ function CreateFormData() {
     formData.append("RachunekZyskowIStrat.PozostalePrzychodyOperacyjne", valueD0);
 
     formData.append("RachunekZyskowIStrat.ZyskZTytuluRozchoduNiefinansowychAktywowTrwalych", valueD1);
-    formData.append("RachunekZyskowIStrat.Inwestycje", valueD2);
+    formData.append("RachunekZyskowIStrat.Dotacje", valueD2);
     formData.append("RachunekZyskowIStrat.ZwiekszenieWartosciAktywowNiefinansowych", valueD3);
     formData.append("RachunekZyskowIStrat.InnePrzychodyOperacyjne", valueD4);
 
@@ -421,7 +421,6 @@ function CreateDynamicForm() {
     myButton.addEventListener("click", function () {
 
         var formData = CreateFormData();
-        //formData.append("RachunekZyskowIStrat.PrzychodyNettoZeSprzedazy", valueA0);
 
         fetch("/Finanse/DodajRachunekDoBazy", {
             method: "POST",

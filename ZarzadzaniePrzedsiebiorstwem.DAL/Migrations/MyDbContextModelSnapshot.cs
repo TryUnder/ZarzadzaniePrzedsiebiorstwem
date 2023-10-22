@@ -236,6 +236,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<DateTime>("DataPoczatkowa")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal?>("Dotacje")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal?>("Dywidendy")
                         .HasColumnType("decimal(18,2)");
 
@@ -249,9 +252,6 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("InnePrzychodyOperacyjne")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("Inwestycje")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("KosztWytworzeniaProduktowNaWlasnePotrzebyJednostki")

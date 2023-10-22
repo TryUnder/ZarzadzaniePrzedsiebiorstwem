@@ -39,7 +39,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
         public decimal PozostalePrzychodyOperacyjne { get; set; }
 
         public decimal? ZyskZTytuluRozchoduNiefinansowychAktywowTrwalych { get; set; }
-        public decimal? Inwestycje { get; set; }
+        public decimal? Dotacje { get; set; }
         public decimal? ZwiekszenieWartosciAktywowNiefinansowych { get; set; }
         public decimal? InnePrzychodyOperacyjne { get; set; }
 

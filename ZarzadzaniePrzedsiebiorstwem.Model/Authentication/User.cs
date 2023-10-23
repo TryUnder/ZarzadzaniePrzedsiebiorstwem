@@ -31,5 +31,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.Authentication {
 
         [IgnoreDataMember]
         public virtual ICollection<RachunekZyskowIStrat> RachunkiZyskowIStrat { get; set; } = new List<RachunekZyskowIStrat>();
+
+        [IgnoreDataMember]
+        public virtual ICollection<Bilans> Bilans { get; set; } = new List<Bilans>();
     }
 }

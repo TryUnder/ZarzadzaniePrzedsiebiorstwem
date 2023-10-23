@@ -80,7 +80,9 @@
 							</tr>
 							<tr>
 								<td colspan="4" class="text-center">
-									<button class="btn button is-info">Dodaj Nowe Sprawozdanie</button>
+									<a asp-controller="Finanse" asp-action="DodajBilans" asp-route-id="@Model.Id">
+										<button class="btn button is-info">Dodaj Nowe Sprawozdanie</button>
+									</a>
 								</td>
 							</tr>
 						</tbody>

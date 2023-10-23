@@ -45,5 +45,10 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
             return RedirectToAction("WyswietlRozliczenia", new { id = rachunekZyskowIStrat.UserId });
         }
 
+        public IActionResult DodajBilans(int id) {
+			var user = _userService.GetUserFromId(id);
+			return View("~/Views/Finanse/DodajBilans.cshtml", user);
+		}
+
 	}
 }

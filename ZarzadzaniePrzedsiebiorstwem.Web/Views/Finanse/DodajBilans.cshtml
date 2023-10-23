@@ -1,0 +1,26 @@
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
+@inject ZarzadzaniePrzedsiebiorstwem.DAL.EF.MyDbContext _myDbContext
+@Html.Partial("~/Views/PartialVertical.cshtml", Model)
+
+<section class="section">
+    <div class="grid-container">
+        <div class="grid-item">
+            @{
+                foreach (var item in _myDbContext.Przedsiebiorstwo) {
+                    if (Model.Id == item.Id) {
+                        <p>@item.NazwaPelna</p>
+                        <p>@item.daneAdresowe @item.Wojewodztwo</p>
+                        <p>NIP:@item.NIP</p>
+                    }
+                }
+            }
+        </div>
+        <div class="grid-item">
+            <p class="header-info">
+                Rachunek Zysków I Strat
+                <br />
+                wariant porównawczy za okres od <input id="DataPoczatkowa" type="datetime-local" disabled /> do <input id="DataKoncowa" type="datetime-local" disabled />
+            </p>
+        </div>
+    </div>
+</section>

@@ -213,6 +213,62 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.ToTable("Przedsiebiorstwo");
                 });
 
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Bilans", b =>
+                {
+                    b.Property<int>("BilansId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BilansId"), 1L, 1);
+
+                    b.Property<decimal>("KwotaDebet")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KwotaKredyt")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BilansId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Bilans");
+                });
+
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Konto", b =>
+                {
+                    b.Property<int>("KontoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KontoId"), 1L, 1);
+
+                    b.Property<int>("BilansId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("KwotaDebet")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KwotaKredyt")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("NazwaKonta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumerKonta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("KontoId");
+
+                    b.HasIndex("BilansId");
+
+                    b.ToTable("Konto");
+                });
+
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.RachunekZyskowIStrat", b =>
                 {
                     b.Property<int>("Id")
@@ -405,6 +461,28 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Bilans", b =>
+                {
+                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", "User")
+                        .WithMany("Bilans")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Konto", b =>
+                {
+                    b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Bilans", "Bilans")
+                        .WithMany("Konta")
+                        .HasForeignKey("BilansId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bilans");
+                });
+
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.RachunekZyskowIStrat", b =>
                 {
                     b.HasOne("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", "User")
@@ -418,6 +496,8 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
 
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User", b =>
                 {
+                    b.Navigation("Bilans");
+
                     b.Navigation("Planners");
 
                     b.Navigation("RachunkiZyskowIStrat");
@@ -433,6 +513,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Tag", b =>
                 {
                     b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Bilans", b =>
+                {
+                    b.Navigation("Konta");
                 });
 #pragma warning restore 612, 618
         }

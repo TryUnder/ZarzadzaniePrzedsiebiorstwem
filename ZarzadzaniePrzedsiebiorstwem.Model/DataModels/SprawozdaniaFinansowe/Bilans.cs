@@ -9,7 +9,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
     public class Bilans {
         public int BilansId { get; set; }
 
-        public decimal KwotaDebet { get; set; }
+        public decimal AktywaTrwaleDebet { get; set; }
         public decimal KwotaKredyt { get; set; }
 
         public virtual ICollection<Konto> Konta { get; set; } = new List<Konto>();

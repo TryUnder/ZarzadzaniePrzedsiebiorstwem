@@ -17,10 +17,322 @@
         </div>
         <div class="grid-item">
             <p class="header-info">
-                Rachunek Zysków I Strat
-                <br />
-                wariant porównawczy za okres od <input id="DataPoczatkowa" type="datetime-local" disabled /> do <input id="DataKoncowa" type="datetime-local" disabled />
+                Uproszczony bilans sporządzony na dzień <input id="OkresSprawozdawczy" type="datetime-local" /> 
             </p>
+        </div>
+        <div id="grid-items-main" class="grid-item">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="narrow">Lp.</th>
+                        <th>Aktywa</th>
+                        <th>Suma</th>
+                        <th class="narrow">Lp.</th>
+                        <th>Pasywa</th>
+                        <th>Suma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="narrow"><strong>A.</strong></td>
+                        <td><strong>AKTYWA TRWAŁE</strong></td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                        <td class="narrow"><strong>A.</strong></td>
+                        <td><strong>KAPITAŁ (FUNDUSZ) WŁASNY</strong></td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">I.</td>
+                        <td>Wartości niematerialne i prawne</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow">I.</td>
+                        <td>Kapitał (fundusz) podstawowy</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">II.</td>
+                        <td>Rzeczowe aktywa trwałe</td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                        <td class="narrow">II.</td>
+                        <td>Pozostałe kapitały (fundusze)</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1. Środki trwałe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow">III.</td>
+                        <td>Zysk (strata) lat ubiegłych</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Środki trwałe w budowie</td>
+                        <td>
+							<input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow">IV.</td>
+                        <td>Zysk (strata) netto</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>3. Zaliczka na środki trwałe w budowie</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow">V.</td>
+                        <td>Odpisy z zysku netto w ciągu roku obrotowego</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">III.</td>
+                        <td>Należności długoterminowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">IV.</td>
+                        <td>Inwestycje długoterminowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">V.</td>
+                        <td>Długoterminowe rozliczenia międzyokresowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>B.</strong></td>
+                        <td><strong>AKTYWA OBROTOWE</strong></td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                        <td class="narrow"><strong>B.</strong></td>
+                        <td><strong>ZOBOWIĄZANIA I REZERWY NA ZOBOWIĄZANIA</strong></td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">I.</td>
+                        <td>Zapasy</td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                        <td class="narrow">I.</td>
+                        <td>Rezerwy na zobowiązania</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1.Materiały</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow">II.</td>
+                        <td>Zobowiązania długoterminowe</td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Półprodukty i produkty w toku (produkcja niezakończona)</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>1. Kredyty i pożyczki</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>3. Produkty gotowe (wyroby gotowe i usługi)</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow">III.</td>
+                        <td>Zobowiązania krótkoterminowe</td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>4. Towary</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>1. Kredyty i pożyczki</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>5. Zaliczki na dostawy</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>2. Zobowiązania z tytułu dostaw i usług</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">II.</td>
+                        <td>Należności krótkoterminowe</td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>3. Zaliczki otrzymane na dostawy</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1. Należności z tytułu dostaw i usług</td>
+                        <td>
+							<input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>4. Zobowiązania wekslowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Należności z tytułu podatków,<br />dotacji, ceł, ubezpieczeń społecznych<br /> i zdrowotnych oraz innych świadczeń (publicznoprawne)</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>5. Zobowiązania z tytułu <br />podatków, ceł, ubezpieczeń<br />i innych świadczeń<br />(publicznoprawne)</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>3. Pozostałe należności</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>6. Zobowiązania z tytułu<br />wynagrodzeń (wobec pracowników)</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>4. Należności dochodzone na drodze sądowej</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>7. Pozostałe zobowiązania</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">III.</td>
+                        <td>Inwestycje krótkoterminowe</td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                        <td class="narrow">IV.</td>
+                        <td>Rozliczenia międzyokresowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1. Krótkoterminowe aktywa finansowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Inne inwestycje krótkoterminowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">IV.</td>
+                        <td>Krótkoterminowe rozliczenia międzyokresowe</td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>C.</strong></td>
+                        <td><strong>NALEŻNE WPŁATY NA KAPITAŁ (FUNDUSZ) PODSTAWOWY</strong></td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>D.</strong></td>
+                        <td><strong>UDZIAŁY (AKCJE) WŁASNE</strong></td>
+                        <td>
+                            <input type="text" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>E.</strong></td>
+                        <td><strong>SUMA BILANSOWA AKTYWÓW</strong></td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                        <td class="narrow"><strong>E.</strong></td>
+                        <td><strong>SUMA BILANSOWA PASYWÓW</strong></td>
+                        <td>
+                            <input type="text" class="form-control" disabled />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
+
+<link rel="stylesheet" href="~/css/DodajBilans.css" />

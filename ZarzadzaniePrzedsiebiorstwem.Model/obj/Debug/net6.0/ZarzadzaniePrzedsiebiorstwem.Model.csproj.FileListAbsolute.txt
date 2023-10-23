@@ -9,3 +9,14 @@ D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\refint\ZarzadzaniePrzedsiebiorstwem.Model.dll
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.pdb
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ref\ZarzadzaniePrzedsiebiorstwem.Model.dll
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.deps.json
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.dll
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\bin\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.pdb
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.AssemblyInfoInputs.cache
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.AssemblyInfo.cs
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.csproj.CoreCompileInputs.cache
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.dll
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\refint\ZarzadzaniePrzedsiebiorstwem.Model.dll
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Model.pdb
+C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Model\obj\Debug\net6.0\ref\ZarzadzaniePrzedsiebiorstwem.Model.dll

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SBcu4Uih52V93FvT/rDZEUfcAFifFRNlqKCzug8i6jQUzmTPf4Tli1J+T2z6aXpCeAYCApAsNk7GCtq6WnwrgQ==",
+  "dgSpecHash": "3/BkeWDpws9Rv9uweq1irBcDMKcjtXYI2IvECkAuHlHAXf4q+4/mWBxM+sEud3wSKtXyxOR6fXKwJ1UNb6lfxA==",
   "success": true,
-  "projectFilePath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Services\\ZarzadzaniePrzedsiebiorstwem.Services.csproj",
+  "projectFilePath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Services\\ZarzadzaniePrzedsiebiorstwem.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hubert\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Hubert\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.1.1\\microsoft.aspnetcore.cryptography.internal.2.1.1.nupkg.sha512",

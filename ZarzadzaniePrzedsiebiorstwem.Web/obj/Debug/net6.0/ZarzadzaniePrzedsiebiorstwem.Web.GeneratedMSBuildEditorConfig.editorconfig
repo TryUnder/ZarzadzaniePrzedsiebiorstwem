@@ -9,105 +9,105 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ZarzadzaniePrzedsiebiorstwem.Web
 build_property.RootNamespace = ZarzadzaniePrzedsiebiorstwem.Web
-build_property.ProjectDir = C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Web\
+build_property.ProjectDir = D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Hubert\source\repos\TryUnder\ZarzadzaniePrzedsiebiorstwem\ZarzadzaniePrzedsiebiorstwem.Web
+build_property.MSBuildProjectDirectory = D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Company/AddCompanyView.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Company/AddCompanyView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxBZGRDb21wYW55Vmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Company/CompanyDashboard.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Company/CompanyDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxDb21wYW55RGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/DodajBilans.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/DodajBilans.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmluYW5zZVxEb2RhakJpbGFucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/DodajRachunekZyskowIStrat.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/DodajRachunekZyskowIStrat.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmluYW5zZVxEb2RhalJhY2h1bmVrWnlza293SVN0cmF0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/WyswietlRachunekZyskowIStrat.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/WyswietlRachunekZyskowIStrat.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmluYW5zZVxXeXN3aWV0bFJhY2h1bmVrWnlza293SVN0cmF0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/WyswietlRozliczenia.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Finanse/WyswietlRozliczenia.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmluYW5zZVxXeXN3aWV0bFJvemxpY3plbmlhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Home/Index.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Home/Privacy.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/PartialVertical.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/PartialVertical.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGlhbFZlcnRpY2FsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Planner/Index.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Planner/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbm5lclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Planner/Planning.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Planner/Planning.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbm5lclxQbGFubmluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/Components/LoginComponent/Default.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/Components/LoginComponent/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTG9naW5Db21wb25lbnRcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/Error.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/PartialVertical.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/PartialVertical.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWZXJ0aWNhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/_AuthenticationStatus.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/_AuthenticationStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BdXRoZW50aWNhdGlvblN0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/UserSettings.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/UserSettings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2VyU2V0dGluZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokAutoryzowany.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokAutoryzowany.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxXaWRva0F1dG9yeXpvd2FueS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokLogowania.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokLogowania.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxXaWRva0xvZ293YW5pYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokRejestracji.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokRejestracji.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxXaWRva1JlamVzdHJhY2ppLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokWylogowania.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/WidokWylogowania.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxXaWRva1d5bG9nb3dhbmlhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/ZarejestrowanyUzytkownik.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/User/ZarejestrowanyUzytkownik.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxaYXJlamVzdHJvd2FueVV6eXRrb3duaWsuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/_ViewImports.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/_ViewStart.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Hubert/source/repos/TryUnder/ZarzadzaniePrzedsiebiorstwem/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/_Layout.cshtml]
+[D:/CppVscode/Praca_Dyplomowa/ZarzadzaniePrzedsiebiorstwem.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-wj8hf7hqtc

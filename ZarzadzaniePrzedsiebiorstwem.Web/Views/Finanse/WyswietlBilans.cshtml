@@ -1,0 +1,358 @@
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Bilans
+@inject ZarzadzaniePrzedsiebiorstwem.DAL.EF.MyDbContext _myDbContext
+
+@Html.Partial("~/Views/PartialVertical.cshtml", Model.User);
+
+<section class="section">
+    <div class="grid-container">
+        <div class="grid-item">
+            @{
+                foreach (var item in _myDbContext.Przedsiebiorstwo) {
+                    if (Model.UserId == item.UserId) {
+                        <p>@item.NazwaPelna</p>
+                        <p>@item.daneAdresowe @item.Wojewodztwo</p>
+                        <p>NIP:@item.NIP</p>
+                    }
+                }
+            }
+        </div>
+        <div class="grid-item">
+            <p class="header-info">
+                Uproszczony bilans sporządzony na dzień <input id="OkresRozliczeniowy" type="datetime-local" value="@Model.OkresRozliczeniowy" disabled />
+            </p>
+        </div>
+        <div id="grid-items-main" class="grid-item">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="narrow">Lp.</th>
+                        <th>Aktywa</th>
+                        <th>Suma</th>
+                        <th class="narrow">Lp.</th>
+                        <th>Pasywa</th>
+                        <th>Suma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="narrow"><strong>A.</strong></td>
+                        <td><strong>AKTYWA TRWAŁE</strong></td>
+                        <td>
+                            <input id="indexAA0" type="text" class="form-control" value="@Model.AktywaTrwale" disabled />
+                        </td>
+                        <td class="narrow"><strong>A.</strong></td>
+                        <td><strong>KAPITAŁ (FUNDUSZ) WŁASNY</strong></td>
+                        <td>
+                            <input id="indexPA0" type="text" class="form-control" value="@Model.KapitalFunduszWlasny" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">I.</td>
+                        <td>Wartości niematerialne i prawne</td>
+                        <td>
+                            <input id="indexAA1" type="text" class="form-control" value="@Model.WartosciNiematerialneIPrawne" disabled />
+                        </td>
+                        <td class="narrow">I.</td>
+                        <td>Kapitał (fundusz) podstawowy</td>
+                        <td>
+                            <input id="indexPA1" type="text" class="form-control" value="@Model.KapitalFunduszPodstawowy" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">II.</td>
+                        <td>Rzeczowe aktywa trwałe</td>
+                        <td>
+                            <input id="indexAA2" type="text" class="form-control" value="@Model.RzeczoweAktywaTrwale" disabled />
+                        </td>
+                        <td class="narrow">II.</td>
+                        <td>Pozostałe kapitały (fundusze)</td>
+                        <td>
+                            <input id="indexPA2" type="text" class="form-control" value="@Model.PozostaleKapitaly" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1. Środki trwałe</td>
+                        <td>
+                            <input id="indexAA3" type="text" class="form-control" value="@Model.SrodkiTrwale" disabled />
+                        </td>
+                        <td class="narrow">III.</td>
+                        <td>Zysk (strata) z lat ubiegłych</td>
+                        <td>
+                            <input id="indexPA3" type="text" class="form-control" value="@Model.ZyskStrataZLatUbieglych" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Środki trwałe w budowie</td>
+                        <td>
+                            <input id="indexAA4" type="text" class="form-control" value="@Model.SrodkiTrwaleWBudowie" disabled />
+                        </td>
+                        <td class="narrow">IV.</td>
+                        <td>Zysk (strata) netto</td>
+                        <td>
+                            <input id="indexPA4" type="text" class="form-control" value="@Model.ZyskStrataNetto" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>3. Zaliczka na środki trwałe w budowie</td>
+                        <td>
+                            <input id="indexAA5" type="text" class="form-control" value="@Model.ZaliczkaNaSrodkiTrwaleWBudowie" disabled />
+                        </td>
+                        <td class="narrow">V.</td>
+                        <td>Odpisy z zysku netto w ciągu roku obrotowego</td>
+                        <td>
+                            <input id="indexPA5" type="text" class="form-control" value="@Model.OdpisyZZyskuNettoWCiaguRokuObrotowego" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">III.</td>
+                        <td>Należności długoterminowe</td>
+                        <td>
+                            <input id="indexAA6" type="text" class="form-control" value="@Model.NaleznosciDlugoterminowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">IV.</td>
+                        <td>Inwestycje długoterminowe</td>
+                        <td>
+                            <input id="indexAA7" type="text" class="form-control" value="@Model.InwestycjeDlugoterminowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">V.</td>
+                        <td>Długoterminowe rozliczenia międzyokresowe</td>
+                        <td>
+                            <input id="indexAA8" type="text" class="form-control" value="@Model.RozliczeniaDlugoterminowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>B.</strong></td>
+                        <td><strong>AKTYWA OBROTOWE</strong></td>
+                        <td>
+                            <input id="indexAB0" type="text" class="form-control" value="@Model.AktywaObrotowe" disabled />
+                        </td>
+                        <td class="narrow"><strong>B.</strong></td>
+                        <td><strong>ZOBOWIĄZANIA I REZERWY NA ZOBOWIĄZANIA</strong></td>
+                        <td>
+                            <input id="indexPB0" type="text" class="form-control" value="@Model.ZobowiazaniaIRezerwyNaZobowiazania" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">I.</td>
+                        <td>Zapasy</td>
+                        <td>
+                            <input id="indexAB1" type="text" class="form-control" value="@Model.Zapasy" disabled />
+                        </td>
+                        <td class="narrow">I.</td>
+                        <td>Rezerwy na zobowiązania</td>
+                        <td>
+                            <input id="indexPB1" type="text" class="form-control" value="@Model.RezerwyNaZobowiazania" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1.Materiały</td>
+                        <td>
+                            <input id="indexAB2" type="text" class="form-control" value="@Model.Materialy" disabled />
+                        </td>
+                        <td class="narrow">II.</td>
+                        <td>Zobowiązania długoterminowe</td>
+                        <td>
+                            <input id="indexPB2" type="text" class="form-control" value="@Model.ZobowiazaniaDlugoterminowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Półprodukty i produkty w toku (produkcja niezakończona)</td>
+                        <td>
+                            <input id="indexAB3" type="text" class="form-control" value="@Model.PolproduktyIProduktyWToku" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>1. Kredyty i pożyczki</td>
+                        <td>
+                            <input id="indexPB3" type="text" class="form-control" value="@Model.KredytyIPozyczki" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>3. Produkty gotowe (wyroby gotowe i usługi)</td>
+                        <td>
+                            <input id="indexAB4" type="text" class="form-control" value="@Model.ProduktyGotowe" disabled />
+                        </td>
+                        <td class="narrow">III.</td>
+                        <td>Zobowiązania krótkoterminowe</td>
+                        <td>
+                            <input id="indexPB4" type="text" class="form-control" value="@Model.ZobowiazaniaKrotkoterminowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>4. Towary</td>
+                        <td>
+                            <input id="indexAB5" type="text" class="form-control" value="@Model.Towary" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>1. Kredyty i pożyczki</td>
+                        <td>
+                            <input id="indexPB5" type="text" class="form-control" value="@Model.KredytyIPozyczkiKrotkoterminowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>5. Zaliczki na dostawy</td>
+                        <td>
+                            <input id="indexAB6" type="text" class="form-control" value="@Model.ZaliczkiNaDostawy" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>2. Zobowiązania z tytułu dostaw i usług</td>
+                        <td>
+                            <input id="indexPB6" type="text" class="form-control" value="@Model.ZobowiazaniaZTytyuluDostawIUslug" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">II.</td>
+                        <td>Należności krótkoterminowe</td>
+                        <td>
+                            <input id="indexAB7" type="text" class="form-control" value="@Model.NaleznosciKrotkoterminowe" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>3. Zaliczki otrzymane na dostawy</td>
+                        <td>
+                            <input id="indexPB7" type="text" class="form-control" value="@Model.ZaliczkiOtrzymaneNaDostawy" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1. Należności z tytułu dostaw i usług</td>
+                        <td>
+                            <input id="indexAB8" type="text" class="form-control" value="@Model.NaleznosciZTytuluDostawIUslug" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>4. Zobowiązania wekslowe</td>
+                        <td>
+                            <input id="indexPB8" type="text" class="form-control" value="@Model.ZobowiazaniaWekslowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Należności z tytułu podatków,<br />dotacji, ceł, ubezpieczeń społecznych<br /> i zdrowotnych oraz innych świadczeń (publicznoprawne)</td>
+                        <td>
+                            <input id="indexAB9" type="text" class="form-control" value="@Model.NaleznosciZTytuluPodatkow" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>5. Zobowiązania z tytułu <br />podatków, ceł, ubezpieczeń<br />i innych świadczeń<br />(publicznoprawne)</td>
+                        <td>
+                            <input id="indexPB9" type="text" class="form-control" value="@Model.ZobowiazaniaZTytyuluPodatkow" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>3. Pozostałe należności</td>
+                        <td>
+                            <input id="indexAB10" type="text" class="form-control" value="@Model.PozostaleNaleznosci" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>6. Zobowiązania z tytułu<br />wynagrodzeń (wobec pracowników)</td>
+                        <td>
+                            <input id="indexPB10" type="text" class="form-control" value="@Model.ZobowiazaniaZTytuluWynagrodzen" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>4. Należności dochodzone na drodze sądowej</td>
+                        <td>
+                            <input id="indexAB11" type="text" class="form-control" value="@Model.NaleznosciDochodzoneNaDrodzeSadowej" disabled />
+                        </td>
+                        <td class="narrow"></td>
+                        <td>7. Pozostałe zobowiązania</td>
+                        <td>
+                            <input id="indexPB11" type="text" class="form-control" value="@Model.PozostaleZobowiazania" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">III.</td>
+                        <td>Inwestycje krótkoterminowe</td>
+                        <td>
+                            <input id="indexAB12" type="text" class="form-control" value="@Model.InwestycjeKrotkoterminowe" disabled />
+                        </td>
+                        <td class="narrow">IV.</td>
+                        <td>Rozliczenia międzyokresowe</td>
+                        <td>
+                            <input id="indexPB12" type="text" class="form-control" value="@Model.RozliczeniaMiedzyokresowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>1. Krótkoterminowe aktywa finansowe</td>
+                        <td>
+                            <input id="indexAB13" type="text" class="form-control" value="@Model.KrotkoterminoweAktywaFinansowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"></td>
+                        <td>2. Inne inwestycje krótkoterminowe</td>
+                        <td>
+                            <input id="indexAB14" type="text" class="form-control" value="@Model.InneInwestycjeKrotkoterminowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow">IV.</td>
+                        <td>Krótkoterminowe rozliczenia międzyokresowe</td>
+                        <td>
+                            <input id="indexAB15" type="text" class="form-control" value="@Model.KrotkoterminoweRozliczeniaMiedzyokresowe" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>C.</strong></td>
+                        <td><strong>NALEŻNE WPŁATY NA KAPITAŁ (FUNDUSZ) PODSTAWOWY</strong></td>
+                        <td>
+                            <input id="indexAC0" type="text" class="form-control" value="@Model.NalezneWplatyNaKapitalPodstawowy" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>D.</strong></td>
+                        <td><strong>UDZIAŁY (AKCJE) WŁASNE</strong></td>
+                        <td>
+                            <input id="indexAD0" type="text" class="form-control" value="@Model.UdzialyWlasne" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="narrow"><strong>E.</strong></td>
+                        <td><strong>SUMA BILANSOWA AKTYWÓW</strong></td>
+                        <td>
+                            <input id="indexAE0" type="text" class="form-control" value="@Model.SumaBilansowaAktywow" disabled />
+                        </td>
+                        <td class="narrow"><strong>E.</strong></td>
+                        <td><strong>SUMA BILANSOWA PASYWÓW</strong></td>
+                        <td>
+                            <input id="indexPE0" type="text" class="form-control" value="@Model.SumaBilansowaPasywow" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a asp-controller="Finanse" asp-action="WyswietlRozliczenia" asp-route-id="@Model.UserId">
+                                <button class="btn button is-primary form-control">Powrót</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    var myData = @Html.Raw(Json.Serialize(Model));
+    var OkresRozliczeniowy = document.getElementById("OkresRozliczeniowy");
+    OkresRozliczeniowy.value = myData.okresRozliczeniowy;
+    OkresRozliczeniowy.style.fontWeight = "700";
+</script>
+
+<link rel="stylesheet" href="~/css/DodajBilans.css" />

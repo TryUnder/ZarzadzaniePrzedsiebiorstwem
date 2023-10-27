@@ -303,7 +303,7 @@
 function CreateFormData() {
     var formData = new FormData();
 
-    var OkresSprawozdawczy = document.getElementById("OkresSprawozdawczy");
+    var OkresRozliczeniowy = document.getElementById("OkresRozliczeniowy");
 
     var indexAA0 = document.getElementById("indexAA0");
     var indexAA1 = document.getElementById("indexAA1");
@@ -412,6 +412,68 @@ function CreateFormData() {
     var indexPE0 = document.getElementById("indexPE0");
 
     var valuePE0 = parseFloat(indexPE0.value) || 0;
+
+    var UserId = parseInt(myData.id);
+
+    formData.append("Bilans.UserId", UserId);
+    formData.append("Bilans.OkresRozliczeniowy", OkresRozliczeniowy.value);
+
+    formData.append("Bilans.AktywaTrwale", valueAA0);
+    formData.append("Bilans.WartosciNiematerialneIPrawne", valueAA1);
+    formData.append("Bilans.RzeczoweAktywaTrwale", valueAA2);
+    formData.append("Bilans.SrodkiTrwale", valueAA3);
+    formData.append("Bilans.SrodkiTrwaleWBudowie", valueAA4);
+    formData.append("Bilans.ZaliczkaNaSrodkiTrwaleWBudowie", valueAA5);
+    formData.append("Bilans.NaleznosciDlugoterminowe", valueAA6);
+    formData.append("Bilans.InwestycjeDlugoterminowe", valueAA7);
+    formData.append("Bilans.RozliczeniaDlugoterminowe", valueAA8);
+
+    formData.append("Bilans.AktywaObrotowe", valueAB0);
+    formData.append("Bilans.Zapasy", valueAB1);
+    formData.append("Bilans.Materialy", valueAB2);
+    formData.append("Bilans.PolproduktyIProduktyWToku", valueAB3);
+    formData.append("Bilans.ProduktyGotowe", valueAB4);
+    formData.append("Bilans.Towary", valueAB5);
+    formData.append("Bilans.ZaliczkiNaDostawy", valueAB6);
+    formData.append("Bilans.NaleznosciKrotkoterminowe", valueAB7);
+    formData.append("Bilans.NaleznosciZTytuluDostawIUslug", valueAB8);
+    formData.append("Bilans.NaleznosciZTytuluPodatkow", valueAB9);
+    formData.append("Bilans.PozostaleNaleznosci", valueAB10);
+    formData.append("Bilans.NaleznosciDochodzoneNaDrodzeSadowej", valueAB11);
+    formData.append("Bilans.InwestycjeKrotkoterminowe", valueAB12);
+    formData.append("Bilans.KrotkoterminoweAktywaFinansowe", valueAB13);
+    formData.append("Bilans.InneInwestycjeKrotkoterminowe", valueAB14);
+    formData.append("Bilans.KrotkoterminoweRozliczeniaMiedzyokresowe", valueAB15);
+
+    formData.append("Bilans.NalezneWplatyNaKapitalPodstawowy", valueAC0);
+    formData.append("Bilans.UdzialyWlasne", valueAD0);
+
+    formData.append("Bilans.SumaBilansowaAktywow", valueAE0);
+
+    formData.append("Bilans.KapitalFunduszWlasny", valuePA0);
+    formData.append("Bilans.KapitalFunduszPodstawowy", valuePA1);
+    formData.append("Bilans.PozostaleKapitaly", valuePA2);
+    formData.append("Bilans.ZyskStrataZLatUbieglych", valuePA3);
+    formData.append("Bilans.ZyskStrataNetto", valuePA4);
+    formData.append("Bilans.OdpisyZZyskuNettoWCiaguRokuObrotowego", valuePA5);
+
+    formData.append("Bilans.ZobowiazaniaIRezerwyNaZobowiazania", valuePB0);
+    formData.append("Bilans.RezerwyNaZobowiazania", valuePB1);
+    formData.append("Bilans.ZobowiazaniaDlugoterminowe", valuePB2);
+    formData.append("Bilans.KredytyIPozyczki", valuePB3);
+    formData.append("Bilans.ZobowiazaniaKrotkoterminowe", valuePB4);
+    formData.append("Bilans.KredytyIPozyczkiKrotkoterminowe", valuePB5);
+    formData.append("Bilans.ZobowiazaniaZTytyuluDostawIUslug", valuePB6);
+    formData.append("Bilans.ZaliczkiOtrzymaneNaDostawy", valuePB7);
+    formData.append("Bilans.ZobowiazaniaWekslowe", valuePB8);
+    formData.append("Bilans.ZobowiazaniaZTytyuluPodatkow", valuePB9);
+    formData.append("Bilans.ZobowiazaniaZTytuluWynagrodzen", valuePB10);
+    formData.append("Bilans.PozostaleZobowiazania", valuePB11);
+    formData.append("Bilans.RozliczeniaMiedzyokresowe", valuePB12);
+
+    formData.append("Bilans.SumaBilansowaPasywow", valuePE0);
+
+    return formData;
 }
 
 function CreateDynamicForm() {
@@ -419,10 +481,24 @@ function CreateDynamicForm() {
 
     submitButton.addEventListener("click", function () {
         var formData = CreateFormData();
+
+        fetch("/Finanse/DodajBilansDoBazy", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirectUrl) {
+                    window.location.href = data.redirectUrl;
+                } else {
+                    console.log(data);
+                }
+            })
+            .catch(error => console.log(error));
     });
 }
 
 window.addEventListener('DOMContentLoaded', function () {
     addIndexEventListeners();
-    //CreateDynamicForm();
+    CreateDynamicForm();
 });

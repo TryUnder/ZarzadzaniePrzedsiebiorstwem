@@ -50,5 +50,29 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
 			return View("~/Views/Finanse/DodajBilans.cshtml", user);
 		}
 
+        [HttpPost]
+        public IActionResult DodajBilansDoBazy(Bilans bilans) {
+            var user = _userService.GetUserFromId(bilans.UserId);
+            _finanseService.AddBilansToDb(bilans);
+
+            var newViewUrl = Url.Action("WyswietlRozliczenia", new { id = bilans.UserId });
+            return Json(new { redirectUrl = newViewUrl });
+        }
+
+        public IActionResult WyswietlBilans(int id) {
+            var bilans = _finanseService.GetBilansFromDb(id);
+            return View("~/Views/Finanse/WyswietlBilans.cshtml", bilans);
+        }
+
+        public IActionResult UsunBilans(int id) {
+            var bilans = _finanseService.GetBilansFromDb(id);
+            _finanseService.DeleteBilansFromDb(bilans);
+            return RedirectToAction("WyswietlRozliczenia", new { id = bilans.UserId });
+        }
+
+        public IActionResult WyswietlAnalizy(int id) {
+            var user = _userService.GetUserFromId(id);
+            return View("~/Views/Finanse/Wyswietlanalizy.cshtml", user);
+        }
 	}
 }

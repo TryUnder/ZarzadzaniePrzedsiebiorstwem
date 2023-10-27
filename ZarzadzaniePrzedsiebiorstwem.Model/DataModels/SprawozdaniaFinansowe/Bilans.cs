@@ -7,7 +7,7 @@ using ZarzadzaniePrzedsiebiorstwem.Model.Authentication;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
     public class Bilans {
-        public int BilansId { get; set; }
+        public int Id { get; set; }
 
         public DateTime OkresRozliczeniowy { get; set; }
 
@@ -33,7 +33,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
         public decimal NaleznosciKrotkoterminowe { get; set; }
         public decimal NaleznosciZTytuluDostawIUslug { get; set; }
         public decimal NaleznosciZTytuluPodatkow { get; set; }
-        public decimal PozostaleNalleznosci { get; set; }
+        public decimal PozostaleNaleznosci { get; set; }
         public decimal NaleznosciDochodzoneNaDrodzeSadowej { get; set; }
         public decimal InwestycjeKrotkoterminowe { get; set; }
         public decimal KrotkoterminoweAktywaFinansowe { get; set; }
@@ -47,7 +47,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
 
         public decimal KapitalFunduszWlasny { get; set; }
 
-        public decimal KapitalFunduzPodstawowy { get; set; }
+        public decimal KapitalFunduszPodstawowy { get; set; }
         public decimal PozostaleKapitaly { get; set; }
         public decimal ZyskStrataZLatUbieglych { get; set; }
         public decimal ZyskStrataNetto { get; set; }

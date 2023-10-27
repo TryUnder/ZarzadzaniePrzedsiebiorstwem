@@ -66,18 +66,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="align-middle">1</td>
-								<td class="align-middle">2023-10-09</td>
-								<td class="align-middle">1000.00</td>
-								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
-							</tr>
-							<tr>
-								<td class="align-middle">1</td>
-								<td class="align-middle">2023-10-09</td>
-								<td class="align-middle">1000.00</td>
-								<td class="align-middle"><button class="btn button is-primary">Wyświetl Sprawozdanie</button></td>
-							</tr>
+							@{
+								foreach (var bilans in Model.Bilans) {
+									<tr>
+										<td class="align-middle">@bilans.Id</td>
+										<td class="align-middle">@bilans.OkresRozliczeniowy</td>
+										<td class="align-middle">@bilans.ZyskStrataNetto</td>
+										<td class="align-middle">
+											<a asp-controller="Finanse" asp-action="WyswietlBilans" asp-route-id="@bilans.Id">
+												<button class="btn button is-primary">Wyświetl</button>
+											</a>
+											<a asp-controller="Finanse" asp-action="UsunBilans" asp-route-id="@bilans.Id">
+												<button class="btn button is-danger">Usuń</button>
+											</a>
+										</td>
+									</tr>
+								}
+							}
 							<tr>
 								<td colspan="4" class="text-center">
 									<a asp-controller="Finanse" asp-action="DodajBilans" asp-route-id="@Model.Id">

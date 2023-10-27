@@ -215,11 +215,11 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
 
             modelBuilder.Entity("ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Bilans", b =>
                 {
-                    b.Property<int>("BilansId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BilansId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<decimal>("AktywaObrotowe")
                         .HasColumnType("decimal(18,2)");
@@ -236,10 +236,10 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<decimal>("InwestycjeKrotkoterminowe")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("KapitalFunduszWlasny")
+                    b.Property<decimal>("KapitalFunduszPodstawowy")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("KapitalFunduzPodstawowy")
+                    b.Property<decimal>("KapitalFunduszWlasny")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("KredytyIPozyczki")
@@ -287,7 +287,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<decimal>("PozostaleKapitaly")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("PozostaleNalleznosci")
+                    b.Property<decimal>("PozostaleNaleznosci")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("PozostaleZobowiazania")
@@ -371,7 +371,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.DAL.Migrations
                     b.Property<decimal>("ZyskStrataZLatUbieglych")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("BilansId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 

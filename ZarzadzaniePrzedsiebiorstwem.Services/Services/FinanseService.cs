@@ -47,5 +47,42 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Services {
 				}
 			}
         }
+
+        public void AddBilansToDb(Bilans bilans) {
+            using (var transaction = _dbContext.Database.BeginTransaction()) {
+                try {
+                    _dbContext.Bilans.Add(bilans);
+                    _dbContext.SaveChanges();
+
+                    transaction.Commit();
+                } catch (Exception ex) {
+                    transaction.Rollback();
+                    throw new Exception("Wystąpił błąd podczas dodawania bilansu do bazy danych.", ex);
+                }
+            }
+        }
+
+        public Bilans GetBilansFromDb(int id) {
+            try {
+                var bilans = _dbContext.Bilans.Where(x => x.Id == id).FirstOrDefault();
+                return bilans;
+            } catch (Exception ex) {
+                throw new Exception("Wystąpił błąd podczas pobierania bilansu z bazy danych.", ex);
+            }
+        }
+
+        public void DeleteBilansFromDb(Bilans bilans) {
+            using (var transaction = _dbContext.Database.BeginTransaction()) {
+                try {
+                    _dbContext.Bilans.Remove(bilans);
+                    _dbContext.SaveChanges();
+
+                    transaction.Commit();
+                } catch (Exception ex) {
+                    transaction.Rollback();
+                    throw new Exception("Wystąpił błąd podczas usuwania bilansu z bazy danych.", ex);
+                }
+            }
+        }
 	}
 }

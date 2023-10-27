@@ -10,5 +10,9 @@ namespace ZarzadzaniePrzedsiebiorstwem.Services.Interfaces {
         public void AddRachunekZyskowIStratToDb(RachunekZyskowIStrat rachunekZyskowIStrat);
         public RachunekZyskowIStrat GetRachunekZyskowIStratFromDb(int id);
         public void DeleteRachunekZyskowIStratFromDb(RachunekZyskowIStrat rachunekZyskowIStrat);
+
+        public void AddBilansToDb(Bilans bilans);
+        public Bilans GetBilansFromDb(int id);
+        public void DeleteBilansFromDb(Bilans bilans);
     }
 }

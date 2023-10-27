@@ -7727,11 +7727,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Services\\ZarzadzaniePrzedsiebiorstwem.Services.csproj",
+      "projectUniqueName": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Services\\ZarzadzaniePrzedsiebiorstwem.Services.csproj",
       "projectName": "ZarzadzaniePrzedsiebiorstwem.Services",
-      "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Services\\ZarzadzaniePrzedsiebiorstwem.Services.csproj",
+      "projectPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Services\\ZarzadzaniePrzedsiebiorstwem.Services.csproj",
       "packagesPath": "C:\\Users\\Hubert\\.nuget\\packages\\",
-      "outputPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Services\\obj\\",
+      "outputPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7752,14 +7752,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj": {
-              "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj"
+            "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj": {
+              "projectPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj"
             },
-            "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj": {
-              "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj"
+            "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj": {
+              "projectPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj"
             },
-            "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.ViewModels\\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj": {
-              "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.ViewModels\\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj"
+            "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.ViewModels\\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj": {
+              "projectPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.ViewModels\\ZarzadzaniePrzedsiebiorstwem.ViewModels.csproj"
             }
           }
         }

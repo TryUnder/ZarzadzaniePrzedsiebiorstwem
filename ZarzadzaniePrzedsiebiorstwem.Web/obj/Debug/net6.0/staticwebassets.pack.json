@@ -97,6 +97,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\DodajBilans.js",
+      "PackagePath": "staticwebassets\\js\\DodajBilans.js"
+    },
+    {
       "Id": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\WyswietlRachunekZyskowIStrat.js",
       "PackagePath": "staticwebassets\\js\\WyswietlRachunekZyskowIStrat.js"
     },

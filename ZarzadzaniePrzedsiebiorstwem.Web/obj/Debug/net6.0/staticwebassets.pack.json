@@ -109,6 +109,10 @@
       "PackagePath": "staticwebassets\\js\\bulma-calendar.min.js"
     },
     {
+      "Id": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\chart.min.js",
+      "PackagePath": "staticwebassets\\js\\chart.min.js"
+    },
+    {
       "Id": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\finanse.js",
       "PackagePath": "staticwebassets\\js\\finanse.js"
     },

@@ -1,6 +1,20 @@
 ﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User 
 @inject ZarzadzaniePrzedsiebiorstwem.DAL.EF.MyDbContext _myDbContext
 
-@Html.Partial("~/Views/PartialVertical.cshtml", Model);
 
-wsadz se w sople i zobacz co sie stanie
+// this is the partial view that is being called from the main view and represents the data analysis from User.Bilans. It is using chart.js diagrams to compare data from two different years.
+
+@{
+	ViewBag.Title = "WyswietlAnalizy";
+}
+
+<div class="columns">
+	<div class="column is-2">
+		@Html.Partial("~/Views/PartialVertical.cshtml", Model);
+	</div>
+	<div class="column is-10">
+		<div class="columns">
+			123
+		</div>
+	</div>
+</div>

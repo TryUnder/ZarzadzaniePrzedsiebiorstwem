@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2SlnquuEZnUc1v0h+H6dtIESVOsOvLe2ih/sIkezZRQ=",
+  "Hash": "te9IiM1Wis9YVdN/QXIxFoTRjE0ZNhMeQ45xWPQzq9Q=",
   "Source": "ZarzadzaniePrzedsiebiorstwem.Web",
   "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
   "Mode": "Default",
@@ -423,6 +423,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\bulma-calendar.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\chart.min.js",
+      "SourceId": "ZarzadzaniePrzedsiebiorstwem.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\",
+      "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
+      "RelativePath": "js/chart.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chart.min.js"
     },
     {
       "Identity": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\DodajBilans.js",

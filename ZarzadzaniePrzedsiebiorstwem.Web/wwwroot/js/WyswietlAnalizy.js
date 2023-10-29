@@ -4,12 +4,24 @@ function HandlePanelTabs() {
     var okresRozliczeniowyPoczatek = document.getElementById("okresRozliczeniowyPoczatek");
     var okresRozliczeniowyKoniec = document.getElementById("okresRozliczeniowyKoniec");
 
+    var okresRozliczeniowy = new Set();
+
     rodzajAnalizy.addEventListener("click", function () {
         var panelBlock = document.querySelectorAll(".panel-block");
         var rodzajAnalizyList = ["Analiza rentownoœci", "Analiza zad³u¿enia", "Analiza p³ynnoœci"];
+        
         panelBlock.forEach(elem => {
             elem.remove();
         });
+
+        myData.bilans.forEach(elem => {
+            okresRozliczeniowy.add(elem.okresRozliczeniowy);
+        });
+
+        myData.rachunkiZyskowIStrat.forEach(elem => {
+            okresRozliczeniowy.add(elem.okresRozliczeniowy);
+        });
+
         rodzajAnalizyList.forEach(elem => {
             var newLabel = document.createElement("label");
             newLabel.classList = "panel-block";
@@ -33,7 +45,8 @@ function HandlePanelTabs() {
         panelBlock.forEach(elem => {
             elem.remove();
         });
-        myData.bilans.forEach((elem) => {
+
+            okresRozliczeniowy.forEach(elem => {
             var newLabel = document.createElement("label");
             newLabel.classList = "panel-block";
 
@@ -42,27 +55,12 @@ function HandlePanelTabs() {
 
             var newSpan = document.createElement("span");
             newSpan.classList = "text";
-            newSpan.textContent = elem.okresRozliczeniowy;
+            newSpan.textContent = elem;
 
             newLabel.appendChild(newInput);
             newLabel.appendChild(newSpan);
             primaryPanel.appendChild(newLabel);
-        });
 
-        myData.rachunkiZyskowIStrat.forEach((elem) => {
-            var newLabel = document.createElement("label");
-            newLabel.classList = "panel-block";
-
-            var newInput = document.createElement("input");
-            newInput.type = "checkbox";
-
-            var newSpan = document.createElement("span");
-            newSpan.classList = "text";
-            newSpan.textContent = elem.dataPoczatkowa;
-
-            newLabel.appendChild(newInput);
-            newLabel.appendChild(newSpan);
-            primaryPanel.appendChild(newLabel);
         });
     });
 
@@ -71,7 +69,8 @@ function HandlePanelTabs() {
         panelBlock.forEach(elem => {
             elem.remove();
         });
-        myData.bilans.forEach((elem) => {
+
+        okresRozliczeniowy.forEach(elem => {
             var newLabel = document.createElement("label");
             newLabel.classList = "panel-block";
 
@@ -80,27 +79,12 @@ function HandlePanelTabs() {
 
             var newSpan = document.createElement("span");
             newSpan.classList = "text";
-            newSpan.textContent = elem.okresRozliczeniowy;
+            newSpan.textContent = elem;
 
             newLabel.appendChild(newInput);
             newLabel.appendChild(newSpan);
             primaryPanel.appendChild(newLabel);
-        });
 
-        myData.rachunkiZyskowIStrat.forEach((elem) => {
-            var newLabel = document.createElement("label");
-            newLabel.classList = "panel-block";
-
-            var newInput = document.createElement("input");
-            newInput.type = "checkbox";
-
-            var newSpan = document.createElement("span");
-            newSpan.classList = "text";
-            newSpan.textContent = elem.dataKoncowa;
-
-            newLabel.appendChild(newInput);
-            newLabel.appendChild(newSpan);
-            primaryPanel.appendChild(newLabel);
         });
     });
 }

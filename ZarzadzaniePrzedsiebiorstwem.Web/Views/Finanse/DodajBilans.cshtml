@@ -7,7 +7,7 @@
         <div class="grid-item">
             @{
                 foreach (var item in _myDbContext.Przedsiebiorstwo) {
-                    if (Model.Id == item.Id) {
+                    if (Model.Id == item.UserId) {
                         <p>@item.NazwaPelna</p>
                         <p>@item.daneAdresowe @item.Wojewodztwo</p>
                         <p>NIP:@item.NIP</p>

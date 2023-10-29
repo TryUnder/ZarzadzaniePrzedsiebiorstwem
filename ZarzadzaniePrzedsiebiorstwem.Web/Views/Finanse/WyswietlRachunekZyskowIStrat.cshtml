@@ -8,7 +8,7 @@
         <div class="grid-item">
             @{
                 foreach (var item in _myDbContext.Przedsiebiorstwo) {
-                    if (Model.UserId == item.Id) {
+                    if (Model.UserId == item.UserId) {
                         <p>@item.NazwaPelna</p>
                         <p>@item.daneAdresowe @item.Wojewodztwo</p>
                         <p>NIP:@item.NIP</p>
@@ -20,7 +20,7 @@
             <p class="header-info">
                 Rachunek Zysków I Strat
                 <br />
-                wariant porównawczy za okres od <input id="DataPoczatkowa" type="datetime-local" disabled /> do <input id="DataKoncowa" type="datetime-local" disabled />
+                wariant porównawczy sporządzony na dzień <input id="OkresRozliczeniowy" type="datetime-local" value="@Model.OkresRozliczeniowy" disabled />
             </p>
         </div>
         <div id="grid-items-main" class="grid-item">

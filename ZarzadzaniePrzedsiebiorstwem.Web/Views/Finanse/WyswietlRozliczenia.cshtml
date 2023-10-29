@@ -25,11 +25,10 @@
 						<tbody>
 							@{
 								foreach (var rachunek in Model.RachunkiZyskowIStrat) {
-									var DataPoczatkowa = rachunek.DataPoczatkowa.ToString("yyyy-MM-dd");
-									var DataKoncowa = rachunek.DataKoncowa.ToString("yyyy-MM-dd");
+									var DataPoczatkowa = rachunek.OkresRozliczeniowy.ToString("yyyy-MM-dd");
 									<tr>
 										<td class="align-middle">@rachunek.Id</td>
-										<td class="align-middle">@rachunek.DataPoczatkowa.ToString("yyyy-MM-dd") - @rachunek.DataKoncowa.ToString("yyyy-MM-dd")</td>
+										<td class="align-middle">@rachunek.OkresRozliczeniowy.ToString("yyyy-MM-dd")</td>
 										<td class="align-middle">@rachunek.ZyskStrataNetto</td>
 										<td class="align-middle">
 											<a asp-controller="Finanse" asp-action="WyswietlRachunekZyskowIStrat" asp-route-id="@rachunek.Id">

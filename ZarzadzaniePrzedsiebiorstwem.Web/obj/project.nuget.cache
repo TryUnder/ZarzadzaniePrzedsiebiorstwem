@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GW4wg9l+f437Febd54LhdyWgBUS3iuWetreA2NlwWsrZxkbb7PHmnPb5FzUEq5SG+F1H27mwUsolvhMKE0N1Tw==",
+  "dgSpecHash": "AzNGRepp/p5abTiQXWZ24x6+9z656EjTByz7i5pBFKuRc0PEFGTkY61V4nqOICiAlD15WYopKD355EMF/DZxtA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\ZarzadzaniePrzedsiebiorstwem.Web.csproj",
+  "projectFilePath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Web\\ZarzadzaniePrzedsiebiorstwem.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hubert\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Hubert\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

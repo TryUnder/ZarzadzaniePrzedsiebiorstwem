@@ -249,8 +249,7 @@
 function CreateFormData() {
     var formData = new FormData();
 
-    var DataPoczatkowa = document.getElementById("DataPoczatkowa");
-    var DataKoncowa = document.getElementById("DataKoncowa");
+    var OkresRozliczeniowy = document.getElementById("OkresRozliczeniowy");
 
     var indexA0 = document.getElementById("indexA0");
     var indexA1 = document.getElementById("indexA1");
@@ -354,9 +353,8 @@ function CreateFormData() {
     var UserId = parseInt(myData.id);
     
     formData.append("RachunekZyskowIStrat.UserId", UserId);
-    
-    formData.append("RachunekZyskowIStrat.DataPoczatkowa", DataPoczatkowa.value);
-    formData.append("RachunekZyskowIStrat.DataKoncowa", DataKoncowa.value);
+
+    formData.append("RachunekZyskowIStrat.OkresRozliczeniowy", OkresRozliczeniowy.value);
 
     formData.append("RachunekZyskowIStrat.PrzychodyNettoZeSprzedazy", valueA0);
 

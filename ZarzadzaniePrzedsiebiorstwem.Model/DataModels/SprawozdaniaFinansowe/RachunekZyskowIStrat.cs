@@ -12,8 +12,7 @@ namespace ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe {
         public virtual User User { get; set; }
         public int UserId { get; set; }
 
-        public DateTime DataPoczatkowa { get; set; }
-        public DateTime DataKoncowa { get; set; }
+        public DateTime OkresRozliczeniowy { get; set; }
 
         public decimal PrzychodyNettoZeSprzedazy { get; set; }
 

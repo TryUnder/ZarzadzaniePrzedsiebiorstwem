@@ -297,7 +297,6 @@
     indexPB10.addEventListener("change", updateIndexPB4);
     indexPB11.addEventListener("change", updateIndexPB4);
 
-
 }
 
 function CreateFormData() {

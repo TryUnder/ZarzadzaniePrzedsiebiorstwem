@@ -7000,11 +7000,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj",
+      "projectUniqueName": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj",
       "projectName": "ZarzadzaniePrzedsiebiorstwem.DAL",
-      "projectPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj",
+      "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj",
       "packagesPath": "C:\\Users\\Hubert\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.DAL\\obj\\",
+      "outputPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7025,8 +7025,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj": {
-              "projectPath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj"
+            "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj": {
+              "projectPath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.Model\\ZarzadzaniePrzedsiebiorstwem.Model.csproj"
             }
           }
         }

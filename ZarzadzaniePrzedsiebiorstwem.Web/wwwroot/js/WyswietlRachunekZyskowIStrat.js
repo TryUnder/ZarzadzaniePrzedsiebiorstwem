@@ -1,7 +1,4 @@
-﻿var DataPoczatkowa = document.getElementById("DataPoczatkowa");
-var DataKoncowa = document.getElementById("DataKoncowa");
+﻿var OkresRozliczeniowy = document.getElementById("OkresRozliczeniowy");
 
-DataPoczatkowa.value = myData.dataPoczatkowa
-DataPoczatkowa.style.fontWeight = "700"
-DataKoncowa.value = myData.dataKoncowa
-DataKoncowa.style.fontWeight = "700"
+OkresRozliczeniowy.value = myData.OkresRozliczeniowy
+OkresRozliczeniowy.style.fontWeight = "700"

@@ -1,20 +1,27 @@
 ﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User 
 @inject ZarzadzaniePrzedsiebiorstwem.DAL.EF.MyDbContext _myDbContext
 
+@Html.Partial("~/Views/PartialVertical.cshtml", Model)
 
-// this is the partial view that is being called from the main view and represents the data analysis from User.Bilans. It is using chart.js diagrams to compare data from two different years.
+<nav id="primaryPanel" class="panel is-primary">
+	<p class="panel-heading">
+		Analizy Finansowe
+	</p>
+	<p class="panel-tabs">
+		<a id="rodzajAnalizy" class="text">Rodzaj Analizy</a>
+		<a id="okresRozliczeniowyPoczatek" class="text">Okres Rozliczeniowy - Początek</a>
+		<a id="okresRozliczeniowyKoniec" class="text">Okres Rozliczeniowy - Koniec</a>
+	</p>
+	<label class="panel-block">
+		<input type="checkbox" />
+		<span class="text">2022</span>
+	</label>
 
-@{
-	ViewBag.Title = "WyswietlAnalizy";
-}
+</nav>
 
-<div class="columns">
-	<div class="column is-2">
-		@Html.Partial("~/Views/PartialVertical.cshtml", Model);
-	</div>
-	<div class="column is-10">
-		<div class="columns">
-			123
-		</div>
-	</div>
-</div>
+<link rel="stylesheet" href="~/css/WyswietlAnalizy.css" />
+<script>
+	var myData = @Html.Raw(Json.Serialize(Model));
+</script>
+
+<script src="~/js/WyswietlAnalizy.js"></script>

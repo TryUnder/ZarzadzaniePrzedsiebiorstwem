@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "te9IiM1Wis9YVdN/QXIxFoTRjE0ZNhMeQ45xWPQzq9Q=",
+  "Hash": "cpotXQiSjJKRrWtsJ7sVU3T6PvgV61bKzmGXPtfxWpQ=",
   "Source": "ZarzadzaniePrzedsiebiorstwem.Web",
   "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
   "Mode": "Default",
@@ -374,6 +374,23 @@
       "OriginalItemSpec": "wwwroot\\css\\verticalPanelScript.js"
     },
     {
+      "Identity": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\WyswietlAnalizy.css",
+      "SourceId": "ZarzadzaniePrzedsiebiorstwem.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\",
+      "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
+      "RelativePath": "css/WyswietlAnalizy.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\WyswietlAnalizy.css"
+    },
+    {
       "Identity": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\WyswietlRozliczenia.css",
       "SourceId": "ZarzadzaniePrzedsiebiorstwem.Web",
       "SourceType": "Discovered",
@@ -525,6 +542,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\slider.js"
+    },
+    {
+      "Identity": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\WyswietlAnalizy.js",
+      "SourceId": "ZarzadzaniePrzedsiebiorstwem.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\",
+      "BasePath": "_content/ZarzadzaniePrzedsiebiorstwem.Web",
+      "RelativePath": "js/WyswietlAnalizy.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\WyswietlAnalizy.js"
     },
     {
       "Identity": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\WyswietlRachunekZyskowIStrat.js",

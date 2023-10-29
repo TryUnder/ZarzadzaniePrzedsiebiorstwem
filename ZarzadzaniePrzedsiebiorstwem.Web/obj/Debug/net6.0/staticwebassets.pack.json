@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\css\\Rejestracja.css"
     },
     {
+      "Id": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\WyswietlAnalizy.css",
+      "PackagePath": "staticwebassets\\css\\WyswietlAnalizy.css"
+    },
+    {
       "Id": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\css\\WyswietlRozliczenia.css",
       "PackagePath": "staticwebassets\\css\\WyswietlRozliczenia.css"
     },
@@ -99,6 +103,10 @@
     {
       "Id": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\DodajBilans.js",
       "PackagePath": "staticwebassets\\js\\DodajBilans.js"
+    },
+    {
+      "Id": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\WyswietlAnalizy.js",
+      "PackagePath": "staticwebassets\\js\\WyswietlAnalizy.js"
     },
     {
       "Id": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.Web\\wwwroot\\js\\WyswietlRachunekZyskowIStrat.js",

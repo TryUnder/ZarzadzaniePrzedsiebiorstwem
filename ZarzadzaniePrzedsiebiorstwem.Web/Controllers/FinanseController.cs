@@ -4,6 +4,7 @@ using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
 using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe;
 using ZarzadzaniePrzedsiebiorstwem.Services.Interfaces;
 using ZarzadzaniePrzedsiebiorstwem.Services.Services;
+using ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels;
 
 namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
     public class FinanseController : Controller {
@@ -73,6 +74,12 @@ namespace ZarzadzaniePrzedsiebiorstwem.Web.Controllers {
         public IActionResult WyswietlAnalizy(int id) {
             var user = _userService.GetUserFromId(id);
             return View("~/Views/Finanse/Wyswietlanalizy.cshtml", user);
+        }
+
+        [HttpPost]
+        public IActionResult DokonajAnalizy(SelectedFilters selectedFilters) {
+            
+            return View();
         }
 	}
 }

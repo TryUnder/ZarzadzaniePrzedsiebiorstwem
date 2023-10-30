@@ -8,7 +8,5 @@ using ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner;
 namespace ZarzadzaniePrzedsiebiorstwem.ViewModels.ViewModels {
     public class PlannerViewModel {
         public Planner Planner { get; set; }
-        
-        
     }
 }

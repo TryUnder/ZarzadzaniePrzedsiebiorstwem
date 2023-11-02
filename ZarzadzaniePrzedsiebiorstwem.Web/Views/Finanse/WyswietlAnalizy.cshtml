@@ -1,22 +1,521 @@
-﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User 
+﻿@model ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User
 @inject ZarzadzaniePrzedsiebiorstwem.DAL.EF.MyDbContext _myDbContext
 
 @Html.Partial("~/Views/PartialVertical.cshtml", Model)
 
-<nav id="primaryPanel" class="panel is-primary">
-	<p class="panel-heading">
-		Analizy Finansowe
-	</p>
-	<p class="panel-tabs">
-		<a id="rodzajAnalizy" class="text">Rodzaj Analizy</a>
-		<a id="okresRozliczeniowyPoczatek" class="text">Okres Rozliczeniowy - Początek</a>
-		<a id="okresRozliczeniowyKoniec" class="text">Okres Rozliczeniowy - Koniec</a>
-	</p>
-</nav>
+<style>
+    .radio-block input[type="radio"] {
+        margin-right: 8px;
+    }
 
-<link rel="stylesheet" href="~/css/WyswietlAnalizy.css" />
+    .radio-block label {
+        display: block;
+        margin-bottom: 8px;
+        border: 1px solid #ccc;
+        padding: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .radio-block label:hover {
+            background-color: #f0f0f0;
+        }
+
+    .radio-block input[type="radio"]:checked + label {
+        background-color: #3D5AFE;
+        color: #fff;
+    }
+
+    .radio-block input[type="radio"] {
+        display: none;
+    }
+
+    .radio-block label {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+        margin: 5px;
+    }
+
+        .radio-block label:hover {
+            background-color: #f0f0f0;
+        }
+
+    .radio-block input[type="radio"]:checked + label {
+        background-color: #3D5AFE;
+        color: #fff;
+    }
+
+    .custom-box {
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        background-color: rgba(255, 255, 255, 0.7); /* Przeźroczyste tło */
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .custom-button-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .submit-button {
+        margin-top: 20px;
+    }
+    
+    .chart-button {
+        margin: 10px;
+    }
+
+</style>
+
 <script>
-	var myData = @Html.Raw(Json.Serialize(Model));
+    var kontekst = "base";
+    var analiza = {
+        wskaznikPlynnosciBiezacejUbiegly: null,
+        wskaznikPlynnosciSzybkiejUbiegly: null,
+        wskaznikPlynnosciGotowkowejUbiegly: null,
+
+        wskaznikPlynnosciBiezacejBiezacy: null,
+        wskaznikPlynnosciSzybkiejBiezacy: null,
+        wskaznikPlynnosciGotowkowejBiezacy: null
+    };
 </script>
 
-<script src="~/js/WyswietlAnalizy.js"></script>
+<div class="container mt-4"> 
+    <div class="custom-box">
+        <h1 class="title is-2 has-text-centered mb-4">Analiza finansowa</h1>
+        <div class="columns">
+            <div class="column">
+            <div class="box p-4">
+                <h2 class="title is-4 mb-4">Wybierz rodzaj analizy oraz okres sprawozdawczy</h2>
+                <div class="panel">
+                    <div class="panel-block">
+                        <input type="radio" name="typAnalizy" id="plynnosc" value="Analiza płynności finansowej">
+                        <label for="plynnosc">Analiza płynności finansowej</label>
+                    </div>
+                    <div class="panel-block">
+                        <input type="radio" name="typAnalizy" id="rentownosc" value="Analiza rentowności">
+                        <label for="rentownosc">Analiza rentowności</label>
+                    </div>
+                    <div class="panel-block">
+                        <input type="radio" name="typAnalizy" id="zadluzenie" value="Analiza zadłużenia">
+                        <label for="zadluzenie">Analiza zadłużenia</label>
+                    </div>
+
+                    <div class="panel-block mt-4">
+                        <h3>Okres początkowy</h3>
+                        <h4>Dla Bilansu</h4>
+                        <div class="radio-block">
+                            @foreach (var bilans in Model.Bilans) {
+                                <input type="radio" name="okresPoczatkowyBilans" id="bilansPoczatkowy@(bilans.Id)" value="@bilans.OkresRozliczeniowy.ToString("yyyy-MM-dd")">
+                                <label for="bilansPoczatkowy@(bilans.Id)">@bilans.OkresRozliczeniowy.ToString("yyyy-MM-dd")</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="panel-block">
+                        <h4>Dla Rachunku Zysków i Strat</h4>
+                        <div class="radio-block">
+                            @foreach (var rachunek in Model.RachunkiZyskowIStrat) {
+                                <input type="radio" name="okresPoczatkowyRachunek" id="rachunekPoczatkowy@(rachunek.Id)" value="@rachunek.OkresRozliczeniowy.ToString("yyyy-MM-dd")">
+                                <label for="rachunekPoczatkowy@(rachunek.Id)">@rachunek.OkresRozliczeniowy.ToString("yyyy-MM-dd")</label>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="panel-block mt-4">
+                        <h3>Okres końcowy</h3>
+                        <h4>Dla Bilansu</h4>
+                        <div class="radio-block">
+                            @foreach (var bilans in Model.Bilans) {
+                                <input type="radio" name="okresKoncowyBilans" id="bilansKoncowy@(bilans.Id)" value="@bilans.OkresRozliczeniowy.ToString("yyyy-MM-dd")">
+                                <label for="bilansKoncowy@(bilans.Id)">@bilans.OkresRozliczeniowy.ToString("yyyy-MM-dd")</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="panel-block">
+                        <h4>Dla Rachunku Zysków i Strat</h4>
+                        <div class="radio-block">
+                            @foreach (var rachunek in Model.RachunkiZyskowIStrat) {
+                                <input type="radio" name="okresKoncowyRachunek" id="rachunekKoncowy@(rachunek.Id)" value="@rachunek.OkresRozliczeniowy.ToString("yyyy-MM-dd")">
+                                <label for="rachunekKoncowy@(rachunek.Id)">@rachunek.OkresRozliczeniowy.ToString("yyyy-MM-dd")</label>
+                            }
+                        </div>
+                    </div>
+                        <div class="custom-button-container">
+                            <button id="submit-button" class="submit-button btn button is-primary">Zatwierdź zmiany</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Twój dotychczasowy kod -->
+    </div>
+    <div class="charts-section" style="display: none;">
+            <div class="chart-buttons">
+
+            </div>
+
+    </div>
+
+    <!-- Twój dotychczasowy kod -->
+</div>
+</div>
+
+<script>
+    var myData = @Html.Raw(Json.Serialize(Model));
+
+    function renderCharts(wybranaAnaliza, wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax) {
+        var chartsContext = document.createElement('canvas');
+        chartsContext.id = "canvas";
+        document.querySelector('.charts-section').appendChild(chartsContext);
+
+        const chartData = {
+            labels: [wybranyOkresPoczatkowy.slice(0, 10), wybranyOkresKoncowy.slice(0, 10)],
+            datasets: [{
+                label: wybranaAnaliza,
+                data: [wskaznikUbiegly, wskaznikBiezacy],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 1
+            }]
+        };
+
+        const myChart = new Chart(chartsContext, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                scales: {
+                    y: {
+                        suggestedMin: suggestedMin,
+                        suggestedMax: suggestedMax
+                    }
+                }
+            }
+        });
+
+        // Pokaż sekcję z wykresami
+        document.querySelector('.charts-section').style.display = 'block';
+        console.log(FiltrujPoDacie(wybranyOkresKoncowy, "rachunek"));
+    }
+
+    function FiltrujPoDacie(data, rozliczenie) {
+        console.log('Przekazane dane:', data); 
+        console.log('Typ przekazanych danych:', typeof data);
+
+        if (rozliczenie == "bilans") {
+            console.log('Bilans:', myData.bilans); 
+            if (myData.bilans) {
+                console.log('Length of bilans:', myData.bilans.length); 
+            }
+            return myData.bilans ? myData.bilans.filter((bilans) => bilans.okresRozliczeniowy.slice(0, 10) === data) : [];
+        } else if (rozliczenie == "rachunek") {
+            console.log('Rachunek:', myData.rachunekZyskowIStrat); 
+            if (myData.rachunekZyskowIStrat) {
+                console.log('Length of rachunek:', myData.rachunekZyskowIStrat.length); 
+            }
+            return myData.rachunekZyskowIStrat ? myData.rachunekZyskowIStrat.filter((bilans) => bilans.okresRozliczeniowy.slice(0, 10) === data) : [];
+        }
+    }
+
+    function ObliczWskaznikPlynnosciBiezacej(bilans) {
+        return bilans[0].aktywaObrotowe / bilans[0].zobowiazaniaKrotkoterminowe;
+    }
+
+    function ObliczWskaznikPlynnosciSzybkiej(bilans) {
+        return (bilans[0].naleznosciKrotkoterminowe + bilans[0].inwestycjeKrotkoterminowe) / bilans[0].zobowiazaniaKrotkoterminowe;
+    }
+
+    function ObliczWskaznikPlynnosciGotowkowej(bilans) {
+        return bilans[0].inwestycjeKrotkoterminowe / bilans[0].zobowiazaniaKrotkoterminowe;
+    }
+
+    function GenerujSprawozdanie() {
+        var wybranaAnaliza = document.querySelector('input[name="typAnalizy"]:checked').value;
+        switch (wybranaAnaliza) {
+            case "Analiza płynności finansowej": {
+                GenerujPrzyciski(wybranaAnaliza);
+                wybranaAnaliza = "Wskaźnik płynności bieżącej";
+                var wybranyOkresPoczatkowy = document.querySelector('input[name="okresPoczatkowyBilans"]:checked').value;
+                var wybranyOkresKoncowy = document.querySelector('input[name="okresKoncowyBilans"]:checked').value;
+
+                const bilansUbiegly = FiltrujPoDacie(wybranyOkresPoczatkowy, "bilans");
+                const bilansBiezacy = FiltrujPoDacie(wybranyOkresKoncowy, "bilans");
+                switch (kontekst) {
+                    case "base": {
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikPlynnosciBiezacej(bilansUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikPlynnosciBiezacej(bilansBiezacy);
+                        analiza.wskaznikPlynnosciBiezacejUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikPlynnosciBiezacejBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        var suggestedMax = 4;
+                        renderCharts("Wskaźnik płynności bieżącej", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
+                    case "wskaznikPlynnosciSzybkiej": {
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikPlynnosciSzybkiej(bilansUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikPlynnosciSzybkiej(bilansBiezacy);
+                        analiza.wskaznikPlynnosciSzybkiejUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikPlynnosciSzybkiejBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        var suggestedMax = 4;
+                        renderCharts("Wskaźnik płynności szybkiej", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
+                    case "wskaznikPlynnosciGotowkowej": {
+						WyzerujWykres();
+						const wskaznikUbiegly = ObliczWskaznikPlynnosciGotowkowej(bilansUbiegly);
+						const wskaznikBiezacy = ObliczWskaznikPlynnosciGotowkowej(bilansBiezacy);
+                        analiza.wskaznikPlynnosciGotowkowejUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikPlynnosciGotowkowejBiezacy = wskaznikBiezacy;
+
+						var suggestedMin = 0;
+						var suggestedMax = 1;
+						renderCharts("Wskaźnik płynności gotówkowej", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
+
+                }
+            }
+        }
+    }
+
+    function GenerujPrzyciski(wybranaAnaliza) {
+        var chartButtons = document.querySelector('.chart-buttons');
+
+        chartButtons.innerHTML = "";
+
+        switch (wybranaAnaliza) {
+            case "Analiza płynności finansowej": {
+                var wskaznikPlynnosciBiezacejButton = document.createElement('button');
+                wskaznikPlynnosciBiezacejButton.classList = "btn button is-info chart-button";
+                wskaznikPlynnosciBiezacejButton.innerHTML = "Wskaźnik płynności bieżącej";
+                chartButtons.appendChild(wskaznikPlynnosciBiezacejButton);
+                wskaznikPlynnosciBiezacejButton.addEventListener('click', function () {
+                    kontekst = "base";
+                    GenerujSprawozdanie();
+				});
+
+                var wskaznikPlynnosciSzybkiejButton = document.createElement('button');
+                wskaznikPlynnosciSzybkiejButton.classList = "btn button is-info chart-button";
+                wskaznikPlynnosciSzybkiejButton.innerHTML = "Wskaźnik płynności szybkiej";
+                chartButtons.appendChild(wskaznikPlynnosciSzybkiejButton);
+                wskaznikPlynnosciSzybkiejButton.addEventListener('click', function () {
+                    kontekst = "wskaznikPlynnosciSzybkiej";
+                    GenerujSprawozdanie();
+                });
+
+                var wskaznikPlynnosciGotowkowejButton = document.createElement('button');
+                wskaznikPlynnosciGotowkowejButton.classList = "btn button is-info chart-button";
+				wskaznikPlynnosciGotowkowejButton.innerHTML = "Wskaźnik płynności gotówkowej";
+				chartButtons.appendChild(wskaznikPlynnosciGotowkowejButton);
+				wskaznikPlynnosciGotowkowejButton.addEventListener('click', function () {
+					kontekst = "wskaznikPlynnosciGotowkowej";
+					GenerujSprawozdanie();
+				});
+
+                var interpretacjaIAnalizaWskaznikowButton = document.createElement('button');
+                interpretacjaIAnalizaWskaznikowButton.classList = "btn button is-info chart-button";
+                interpretacjaIAnalizaWskaznikowButton.innerHTML = "Interpretacja i analiza wskaźników";
+                chartButtons.appendChild(interpretacjaIAnalizaWskaznikowButton);
+                interpretacjaIAnalizaWskaznikowButton.addEventListener('click', function () {
+                    InterpretujWskaznikiPlynnosci();
+				});
+            }
+        }
+    }
+
+    function GenerujStartoweSprawozdanie() {
+        var button = document.getElementById('submit-button');
+        button.addEventListener('click', function () {
+            GenerujSprawozdanie();
+        });
+    }
+
+    function WyzerujWykres() {
+		var chartsContext = document.querySelector('.charts-section canvas');
+        if (chartsContext) {
+			chartsContext.remove();
+        }
+    }
+
+    function InterpretujWskaznikiPlynnosci() {
+        var wybranyOkresPoczatkowy = document.querySelector('input[name="okresPoczatkowyBilans"]:checked').value;
+        var wybranyOkresKoncowy = document.querySelector('input[name="okresKoncowyBilans"]:checked').value;
+        if (analiza.wskaznikPlynnosciBiezacejUbiegly == null || analiza.wskaznikPlynnosciSzybkiejUbiegly == null || analiza.wskaznikPlynnosciGotowkowejUbiegly == null 
+            || analiza.wskaznikPlynnosciBiezacejBiezacy == null || analiza.wskaznikPlynnosciSzybkiejBiezacy == null || analiza.wskaznikPlynnosciGotowkowejBiezacy == null) {
+                kontekst = "base";
+                GenerujSprawozdanie();
+                kontekst = "wskaznikPlynnosciSzybkiej";
+                GenerujSprawozdanie();
+                kontekst = "wskaznikPlynnosciGotowkowej";
+                GenerujSprawozdanie();
+            }
+        var chartsContext = document.getElementById('canvas');
+        chartsContext.remove();
+        
+        var charts = document.querySelector(".chart-buttons");
+
+        var table = document.createElement("table");
+        table.classList = "table is-bordered is-striped is-narrow is-hoverable is-fullwidth";
+        var thead = document.createElement("thead");
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        th.innerHTML = "Nazwa wskaźnika";
+        var th1 = document.createElement("th");
+        th1.innerHTML = "Zalecana wartość wskaźnika";
+        var th2 = document.createElement("th");
+        th2.innerHTML = "Wartość wskaźnika (ubiegła)";
+        var th3 = document.createElement("th");
+        th3.innerHTML = "Wartość wskaźnika (bieżąca)";
+        var tbody = document.createElement("tbody");
+
+        var tr1 = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerHTML = "Wskaźnik płynności bieżącej";
+
+        var td2 = document.createElement("td");
+        td2.innerHTML = "1,2 - 2,0";
+
+        var td3 = document.createElement("td");
+        td3.innerHTML = analiza.wskaznikPlynnosciBiezacejUbiegly.toString().slice(0,4);
+
+        var td4 = document.createElement("td");
+        td4.innerHTML = analiza.wskaznikPlynnosciBiezacejBiezacy.toString().slice(0,4);
+
+        var trSzybka = document.createElement("tr");
+
+        var td12 = document.createElement("td");
+        td12.innerHTML = "Wskaźnik płynności szybkiej";
+
+        var td22 = document.createElement("td");
+        td22.innerHTML = "~1,0";
+
+        var td23 = document.createElement("td");
+        td23.innerHTML = analiza.wskaznikPlynnosciSzybkiejUbiegly.toString().slice(0, 4);
+
+        var td24 = document.createElement("td");
+        td24.innerHTML = analiza.wskaznikPlynnosciSzybkiejBiezacy.toString().slice(0, 4);
+
+        var trGotowkowa = document.createElement("tr");
+
+        var td31 = document.createElement("td");
+        td31.innerHTML = "Wskaźnik płynności gotówkowej";
+
+        var td32 = document.createElement("td");
+        td32.innerHTML = "0,1 - 0,2";
+
+        var td33 = document.createElement("td");
+        td33.innerHTML = analiza.wskaznikPlynnosciGotowkowejUbiegly.toString().slice(0, 4);
+
+        var td34 = document.createElement("td");
+        td34.innerHTML = analiza.wskaznikPlynnosciGotowkowejBiezacy.toString().slice(0, 4);
+
+        tr.appendChild(th);
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+        tr1.appendChild(td1);
+        tr1.appendChild(td2);
+        tr1.appendChild(td3);
+        tr1.appendChild(td4);
+
+        tbody.appendChild(tr1);
+
+        trSzybka.appendChild(td12);
+        trSzybka.appendChild(td22);
+        trSzybka.appendChild(td23);
+        trSzybka.appendChild(td24);
+
+        tbody.appendChild(trSzybka);
+
+        trGotowkowa.appendChild(td31);
+        trGotowkowa.appendChild(td32);
+        trGotowkowa.appendChild(td33);
+        trGotowkowa.appendChild(td34);
+
+		tbody.appendChild(trGotowkowa);
+
+        table.appendChild(tbody);
+        charts.appendChild(table);
+
+        var interpretacjaSection = document.createElement("div");
+        interpretacjaSection.classList = "interpretation-section";
+        var interpretacjaHeader = document.createElement("h1");
+        interpretacjaHeader.innerHTML = "Opis wskaźników płynności finansowej.<br>";
+        var interpretacjaText = document.createElement("p");
+        interpretacjaText.style.marginLeft = "10px"; 
+        interpretacjaText.style.display = "inline-block"; 
+        interpretacjaText.innerHTML = "Wskaźniki płynności finansowej oznaczają zdolność jednostki do terminowego regulowania bieżących zobowiązań." +
+            "<ol>"
+            + "<li>Wskaźnik płynności bieżącej określa w jakim stopniu aktywa obrotowe pokrywają zobowiązania krótkoterminowe.<br>"
+            + "Zalecana wartość wskaźnika powinna być w przedziale od 1,2 do 2 (tj. 120-200%)</li>" +
+            "<li>Wskaźnik płynności szybkiej określa w jakim stopniu płynne aktywa obrotowe pokrywają zobowiązania krótkoterminowe.<br>"
+            + "Wskaźnik ten, wyłącza z aktywów obrotowych najmniej płynne aktywa - zapasy.<br>" + 
+            "Zalecana wartość wskaźnika powinna wynosić ~1,0 (tj. 100%).</li>" +
+            "<li>Wskaźnik płynności gotówkowej określa w jakim stopniu najbardziej płynne aktywa obrotowe (środki w kasie i na rachunku bieżącym) pokrywają zobowiązania krótkoterminowe.<br>"
+            + "Zalecana wartość wskaźnika powinna być w przedziale od 0,1 do 0,2 (tj. 10-20%).</li>" +
+            "</ol>";
+
+        interpretacjaSection.appendChild(interpretacjaHeader);
+        interpretacjaSection.appendChild(interpretacjaText);
+
+        
+        var chartsSection = document.querySelector(".charts-section");
+        chartsSection.appendChild(interpretacjaSection);
+
+        var tableAnaliza = document.createElement("table");
+        tableAnaliza.classList = "table is-bordered is-striped is-narrow is-hoverable is-fullwidth";
+        var thead = document.createElement("thead");
+        var trTableHead = document.createElement("tr");
+        var thNazwa = document.createElement("th");
+        thNazwa.innerHTML = "Nazwa wskaźnika";
+        var thInterpretacja = document.createElement("th");
+        thInterpretacja.innerHTML = "Interpretacja wskaźnika";
+        var thAnaliza = document.createElement("th");
+        thAnaliza.innerHTML = "Analiza wskaźnika";
+
+        var tbodyAnaliza = document.createElement("tbody");
+        var trBiezaca = document.createElement("tr");
+        var tdBiezaca = document.createElement("td");
+        var tdBiezacaInterpretacja = document.createElement("td");
+        var tdBiezacaAnaliza = document.createElement("td");
+
+        tdBiezaca.innerHTML = "Wskaźnik płynności bieżącej";
+        const wskaznikPlynnosciBiezacejUbieglyProcent = (analiza.wskaznikPlynnosciBiezacejUbiegly * 100).toString().slice(0, 4).replace(".", "");
+        const wskaznikPlynnosciBiezacejBiezacyProcent = (analiza.wskaznikPlynnosciBiezacejBiezacy * 100).toString().slice(0, 4).replace(".", "");
+
+        tdBiezacaInterpretacja.innerHTML = `Wskaźnik płynności bieżącej z okresu początkowego: ${wybranyOkresPoczatkowy} wyniósł: ${analiza.wskaznikPlynnosciBiezacejUbiegly} <br>
+        co oznacza, że aktywa obrotowe pokryły zobowiązania krótkoterminowe w ${wskaznikPlynnosciBiezacejUbieglyProcent}%.<br>
+        Wskaźnik płynności bieżącej z okresu końcowego: ${wybranyOkresKoncowy} wyniósł: ${analiza.wskaznikPlynnosciBiezacejBiezacy} <br>
+        co oznacza, że aktywa obrotowe pokrywają zobowiązania krótkoterminowe w ${wskaznikPlynnosciBiezacejBiezacyProcent}%.`;
+
+        trTableHead.appendChild(thNazwa);
+        trTableHead.appendChild(thInterpretacja);
+        trTableHead.appendChild(thAnaliza);
+        thead.appendChild(trTableHead);
+        tableAnaliza.appendChild(thead);
+
+        trBiezaca.appendChild(tdBiezaca);
+        trBiezaca.appendChild(tdBiezacaInterpretacja);
+        trBiezaca.appendChild(tdBiezacaAnaliza);
+        tbodyAnaliza.appendChild(trBiezaca);
+        tableAnaliza.appendChild(tbodyAnaliza);
+        charts.appendChild(tableAnaliza);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        GenerujStartoweSprawozdanie();
+	});
+</script>

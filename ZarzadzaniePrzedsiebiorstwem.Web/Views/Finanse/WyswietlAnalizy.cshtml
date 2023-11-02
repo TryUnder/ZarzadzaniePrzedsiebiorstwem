@@ -495,11 +495,37 @@
         tdBiezaca.innerHTML = "Wskaźnik płynności bieżącej";
         const wskaznikPlynnosciBiezacejUbieglyProcent = (analiza.wskaznikPlynnosciBiezacejUbiegly * 100).toString().slice(0, 4).replace(".", "");
         const wskaznikPlynnosciBiezacejBiezacyProcent = (analiza.wskaznikPlynnosciBiezacejBiezacy * 100).toString().slice(0, 4).replace(".", "");
+        const wskaznikPlynnosciBiezacejBiezacy = (analiza.wskaznikPlynnosciBiezacejBiezacy).toString().slice(0, 4);
+        const wskaznikPlynnosciBiezacejUbiegly = (analiza.wskaznikPlynnosciBiezacejUbiegly).toString().slice(0, 4);
 
         tdBiezacaInterpretacja.innerHTML = `Wskaźnik płynności bieżącej z okresu początkowego: ${wybranyOkresPoczatkowy} wyniósł: ${analiza.wskaznikPlynnosciBiezacejUbiegly} <br>
         co oznacza, że aktywa obrotowe pokryły zobowiązania krótkoterminowe w ${wskaznikPlynnosciBiezacejUbieglyProcent}%.<br>
-        Wskaźnik płynności bieżącej z okresu końcowego: ${wybranyOkresKoncowy} wyniósł: ${analiza.wskaznikPlynnosciBiezacejBiezacy} <br>
+        Wskaźnik płynności bieżącej z okresu końcowego: ${wybranyOkresKoncowy} wyniósł: ${wskaznikPlynnosciBiezacejBiezacy} <br>
         co oznacza, że aktywa obrotowe pokrywają zobowiązania krótkoterminowe w ${wskaznikPlynnosciBiezacejBiezacyProcent}%.`;
+
+        var analizaPlynnosiBiezacej = "";
+        var roznicaPlynnosci = parseFloat(wskaznikPlynnosciBiezacejBiezacy) - parseFloat(wskaznikPlynnosciBiezacejUbiegly);
+        var roznicaPlynnosciString = Math.abs(roznicaPlynnosci).toString().slice(0, 4);
+        if (roznicaPlynnosci > 0) {
+            analizaPlynnosiBiezacej = `Wzrost wskaźnika płynności bieżącej o ${roznicaPlynnosciString} w stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>`;
+        } else if (roznicaPlynnosci < 0) {
+            analizaPlynnosiBiezacej = `Spadek wskaźnika płynności bieżącej o ${roznicaPlynnosciString} w stosunku do roku ubiegłego jest zjawiskiem negatywnym.<br>`;
+        } else if (roznicaPlynnosci == 0) {
+            analizaPlynnosiBiezacej = `Wskaźnik płynności bieżącej nie zmienił się w stosunku do roku ubiegłego.`;
+        }
+
+        if (parseFloat(wskaznikPlynnosciBiezacejBiezacy) > 2.0) {
+			analizaPlynnosiBiezacej += `Wartość wskaźnika płynności bieżącej z okresu końcowego 
+            jest wyższa od zalecanej wartości wskaźnika, co może stanowić o nadmiernym zaangażowaniu środków finansowych w finansowanie bieżącej działalności.`;
+		} else if (parseFloat(wskaznikPlynnosciBiezacejBiezacy) < 1.2) {
+			analizaPlynnosiBiezacej += `Wartość wskaźnika płynności bieżącej z okresu końcowego
+            jest niższa od zalecanej wartości wskaźnika, co może świadczyć o niedostatecznym zaangażowaniu środków finansowych w finansowaniu bieżącej działalności..`;
+		} else if (parseFloat(wskaznikPlynnosciBiezacejBiezacy) > 1.2 && parseFloat(wskaznikPlynnosciBiezacejBiezacy) < 2.0) {
+			analizaPlynnosiBiezacej += `Wartość wskaźnika płynności bieżącej z okresu końcowego jest zgodna z zalecaną wartością wskaźnika.
+            Wartość wskaźnika mieści się w normie, co oznacza, że jednostka ma zdolność do terminowego regulowania bieżących zobowiązań.`;
+		}
+
+        tdBiezacaAnaliza.innerHTML = analizaPlynnosiBiezacej;
 
         trTableHead.appendChild(thNazwa);
         trTableHead.appendChild(thInterpretacja);
@@ -511,6 +537,103 @@
         trBiezaca.appendChild(tdBiezacaInterpretacja);
         trBiezaca.appendChild(tdBiezacaAnaliza);
         tbodyAnaliza.appendChild(trBiezaca);
+
+        var trSzybka = document.createElement("tr");
+        var tdSzybka = document.createElement("td");
+        var tdSzybkaInterpretacja = document.createElement("td");
+        var tdSzybkaAnaliza = document.createElement("td");
+
+        tdSzybka.innerHTML = "Wskaźnik płynności szybkiej";
+        const wskaznikPlynnosciSzybkiejUbieglyProcent = (analiza.wskaznikPlynnosciSzybkiejUbiegly * 100).toString().slice(0, 3).replace(".", "");
+        const wskaznikPlynnosciSzybkiejBiezacyProcent = (analiza.wskaznikPlynnosciSzybkiejBiezacy * 100).toString().slice(0, 3).replace(".", "");
+        const wskaznikPlynnosciSzybkiejBiezacy = (analiza.wskaznikPlynnosciSzybkiejBiezacy).toString().slice(0, 3);
+        const wskaznikPlynnosciSzybkiejUbiegly = (analiza.wskaznikPlynnosciSzybkiejUbiegly).toString().slice(0, 3);
+
+        tdSzybkaInterpretacja.innerHTML = `Wskaźnik płynności szybkiej z okresu początkowego: ${wybranyOkresPoczatkowy} wyniósł: ${wskaznikPlynnosciSzybkiejUbiegly} <br>
+        co oznacza, że płynne aktywa obrotowe pokryły zobowiązania krótkoterminowe w ${wskaznikPlynnosciSzybkiejUbieglyProcent}%.<br>
+        Wskaźnik płynności szybkiej z okresu końcowego: ${wybranyOkresKoncowy} wyniósł: ${wskaznikPlynnosciSzybkiejBiezacy} <br>
+        co oznacza, że płynne aktywa obrotowe pokrywają zobowiązania krótkoterminowe w ${wskaznikPlynnosciSzybkiejBiezacyProcent}%.`
+
+        var analizaPlynnosiSzybkiej = "";
+        var roznicaPlynnosciSzybkiej = parseFloat(wskaznikPlynnosciSzybkiejBiezacy) - parseFloat(wskaznikPlynnosciSzybkiejUbiegly);
+        var roznicaPlynnosciSzybkiejString = Math.abs(roznicaPlynnosci).toString().slice(0, 3);
+        if (roznicaPlynnosciSzybkiej > 0) {
+            analizaPlynnosiSzybkiej = `Wzrost wskaźnika płynności szybkiej o ${roznicaPlynnosciSzybkiejString} w stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>`;
+        } else if (roznicaPlynnosciSzybkiej < 0) {
+            analizaPlynnosiSzybkiej = `Spadek wskaźnika płynności szybkiej o ${roznicaPlynnosciSzybkiejString} w stosunku do roku ubiegłego jest zjawiskiem negatywnym.<br>`;
+        } else if (roznicaPlynnosciSzybkiej == 0) {
+            analizaPlynnosiSzybkiej = `Wskaźnik płynności szybkiej nie zmienił się w stosunku do roku ubiegłego.`;
+        }
+
+        if (parseFloat(wskaznikPlynnosciSzybkiejBiezacy) > 1.1) {
+            analizaPlynnosiSzybkiej += `Wartość wskaźnika płynności szybkiej z okresu końcowego
+                jest wyższa od zalecanej wartości wskaźnika, co może stanowić o nadmiernym zaangażowaniu środków finansowych w finansowanie bieżącej działalności.<br>
+                Może świadczyć o za niskim zaangażowaniu środków pieniężnych w zapasy.`;
+        } else if (parseFloat(wskaznikPlynnosciSzybkiejBiezacy) < 0.9) {
+            analizaPlynnosiSzybkiej += `Wartość wskaźnika płynności szybkiej z okresu końcowego
+                jest niższa od zalecanej wartości wskaźnika, co może świadczyć o niedostatecznym zaangażowaniu środków finansowych w finansowaniu bieżącej działalności.<br>
+                Może świadczyć o zbyt dużym zaangażowaniu środków pieniężnych w zapasy.`;
+        } else if (parseFloat(wskaznikPlynnosciSzybkiejBiezacy) > 0.9 && parseFloat(wskaznikPlynnosciSzybkiejBiezacy) < 1.1) {
+            analizaPlynnosiSzybkiej += `Wartość wskaźnika płynności szybkiej z okresu końcowego jest zgodna z zalecaną wartością wskaźnika.
+                Wartość wskaźnika mieści się w normie, co oznacza, że jednostka ma zdolność do terminowego regulowania bieżących zobowiązań.`;
+        }
+
+        tdSzybkaAnaliza.innerHTML = analizaPlynnosiSzybkiej;
+
+        trSzybka.appendChild(tdSzybka);
+        trSzybka.appendChild(tdSzybkaInterpretacja);
+        trSzybka.appendChild(tdSzybkaAnaliza);
+        tbodyAnaliza.appendChild(trSzybka);
+
+        var trGotowkowa = document.createElement("tr");
+        var tdGotowkowa = document.createElement("td");
+        var tdGotowkowaInterpretacja = document.createElement("td");
+        var tdGotowkowaAnaliza = document.createElement("td");
+
+        tdSzybka.innerHTML = "Wskaźnik płynności gotówkowej";
+        const wskaznikPlynnosciGotowkowejUbieglyProcent = (analiza.wskaznikPlynnosciGotowkowejUbiegly * 100).toString().replace(".", "").slice(0, 2);
+        const wskaznikPlynnosciGotowkowejBiezacyProcent = (analiza.wskaznikPlynnosciGotowkowejBiezacy * 100).toString().replace(".", "").slice(0, 2);
+        const wskaznikPlynnosciGotowkowejBiezacy = (analiza.wskaznikPlynnosciGotowkowejBiezacy).toString().slice(0, 4);
+        const wskaznikPlynnosciGotowkowejUbiegly = (analiza.wskaznikPlynnosciGotowkowejUbiegly).toString().slice(0, 4);
+
+        tdGotowkowaInterpretacja.innerHTML = `Wskaźnik płynności gotówkowej z okresu początkowego: ${wybranyOkresPoczatkowy} wynoszący: ${wskaznikPlynnosciGotowkowejUbiegly}
+        informuje, że natychmiastowa spłata zobowiązań bieżących środkami pieniężnymi jest możliwa w ${wskaznikPlynnosciGotowkowejUbieglyProcent}%. <br>
+        Wskaźnik płynności gotówkowej z okresu końcowego: ${wybranyOkresKoncowy} wynoszący: ${wskaznikPlynnosciGotowkowejBiezacy}
+        informuje, że natychmiastowa spłata zobowiązań bieżących środkami pieniężnymi jest możliwa w ${wskaznikPlynnosciGotowkowejBiezacyProcent}%.`;
+
+        var analizaPlynnosciGotowkowej = "";
+        var roznicaPlynnosciGotowkowej = parseFloat(wskaznikPlynnosciGotowkowejBiezacy) - parseFloat(wskaznikPlynnosciGotowkowejUbiegly);
+        var roznicaPlynnosciGotowkowejString = Math.abs(roznicaPlynnosci).toString().slice(0, 2);
+        if (roznicaPlynnosciGotowkowej > 0) {
+            analizaPlynnosiGotowkowej = `Wzrost wskaźnika płynności gotówkowej o ${roznicaPlynnosciGotowkowejString} w stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>`;
+        } else if (roznicaPlynnosciGotowkowej < 0) {
+            analizaPlynnosiGotowkowej = `Spadek wskaźnika płynności gotówkowej o ${roznicaPlynnosciGotowkowejString} w stosunku do roku ubiegłego jest zjawiskiem negatywnym.<br>`;
+        } else if (roznicaPlynnosciGotowkowej == 0) {
+            analizaPlynnosiSzybkiej = `Wskaźnik płynności gotówkowej nie zmienił się w stosunku do roku ubiegłego.`;
+        }
+
+        if (parseFloat(wskaznikPlynnosciGotowkowejBiezacy) > 0.2) {
+            analizaPlynnosciGotowkowej += `Wartość wskaźnika płynności gotówkowej z okresu końcowego
+                    jest wyższa od zalecanej wartości wskaźnika, co może stanowić o nadmiernej wartości przechowywanych środków pieniężnych
+                    w kasie i na rachunku bankowym. Należy pamiętać, że tylko środki zaangażowane w procesy gospodarcze generują zyski.<br>`;
+        } else if (parseFloat(wskaznikPlynnosciGotowkowejBiezacy) < 0.1) {
+            analizaPlynnosciGotowkowej += `Wartość wskaźnika płynności gotówkowej z okresu końcowego
+                    jest niższa od zalecanej wartości wskaźnika, co może świadczyć o niedostatecznej wartości przechowywanych środków pieniężnych
+                    w kasie i na rachunku bankowym. Należy pamiętać, że zbyt niska wartość tego wskaźnika może stanowić problem w przypadku chęci
+                    inkasowania należności przez kontrahentów.`;
+        } else if (parseFloat(wskaznikPlynnosciGotowkowejBiezacy) > 0.1 && parseFloat(wskaznikPlynnosciGotowkowejBiezacy) < 0.2) {
+            analizaPlynnosciGotowkowej += `Wartość wskaźnika płynności gotówkowej z okresu końcowego jest zgodna z zalecaną wartością wskaźnika.
+                    Wartość wskaźnika mieści się w normie, co oznacza, że jednostka ma zdolność do terminowego regulowania bieżących zobowiązań
+                    postawionych nagle w stan wymagalności.`;
+        }
+
+        tdGotowkowaAnaliza.innerHTML = analizaPlynnosciGotowkowej;
+
+        trGotowkowa.appendChild(tdGotowkowa);
+        trGotowkowa.appendChild(tdGotowkowaInterpretacja);
+        trGotowkowa.appendChild(tdGotowkowaAnaliza);
+        tbodyAnaliza.appendChild(trGotowkowa);
+
         tableAnaliza.appendChild(tbodyAnaliza);
         charts.appendChild(tableAnaliza);
     }

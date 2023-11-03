@@ -271,20 +271,32 @@
                     }
                         break;
                     case "wskaznikPlynnosciGotowkowej": {
-						WyzerujWykres();
-						const wskaznikUbiegly = ObliczWskaznikPlynnosciGotowkowej(bilansUbiegly);
-						const wskaznikBiezacy = ObliczWskaznikPlynnosciGotowkowej(bilansBiezacy);
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikPlynnosciGotowkowej(bilansUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikPlynnosciGotowkowej(bilansBiezacy);
                         analiza.wskaznikPlynnosciGotowkowejUbiegly = wskaznikUbiegly;
                         analiza.wskaznikPlynnosciGotowkowejBiezacy = wskaznikBiezacy;
 
-						var suggestedMin = 0;
-						var suggestedMax = 1;
-						renderCharts("Wskaźnik płynności gotówkowej", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                        var suggestedMin = 0;
+                        var suggestedMax = 1;
+                        renderCharts("Wskaźnik płynności gotówkowej", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
                     }
                         break;
 
                 }
             }
+                break;
+            case "Analiza rentowności": {
+                GenerujPrzyciski(wybranaAnaliza);
+                wybranaAnaliza = "Wskaźnik rentowności sprzedaży";
+                var wybranyOkresPoczatkowy = document.querySelector('input[name="okresPoczatkowyRachunek"]:checked').value;
+                var wybranyOkresKoncowy = document.querySelector('input[name="okresKoncowyRachunek"]:checked').value;
+
+                switch(kontekst) {
+
+                }
+            }
+                break;
         }
     }
 
@@ -302,7 +314,7 @@
                 wskaznikPlynnosciBiezacejButton.addEventListener('click', function () {
                     kontekst = "base";
                     GenerujSprawozdanie();
-				});
+                });
 
                 var wskaznikPlynnosciSzybkiejButton = document.createElement('button');
                 wskaznikPlynnosciSzybkiejButton.classList = "btn button is-info chart-button";
@@ -315,12 +327,12 @@
 
                 var wskaznikPlynnosciGotowkowejButton = document.createElement('button');
                 wskaznikPlynnosciGotowkowejButton.classList = "btn button is-info chart-button";
-				wskaznikPlynnosciGotowkowejButton.innerHTML = "Wskaźnik płynności gotówkowej";
-				chartButtons.appendChild(wskaznikPlynnosciGotowkowejButton);
-				wskaznikPlynnosciGotowkowejButton.addEventListener('click', function () {
-					kontekst = "wskaznikPlynnosciGotowkowej";
-					GenerujSprawozdanie();
-				});
+                wskaznikPlynnosciGotowkowejButton.innerHTML = "Wskaźnik płynności gotówkowej";
+                chartButtons.appendChild(wskaznikPlynnosciGotowkowejButton);
+                wskaznikPlynnosciGotowkowejButton.addEventListener('click', function () {
+                    kontekst = "wskaznikPlynnosciGotowkowej";
+                    GenerujSprawozdanie();
+                });
 
                 var interpretacjaIAnalizaWskaznikowButton = document.createElement('button');
                 interpretacjaIAnalizaWskaznikowButton.classList = "btn button is-info chart-button";
@@ -328,8 +340,39 @@
                 chartButtons.appendChild(interpretacjaIAnalizaWskaznikowButton);
                 interpretacjaIAnalizaWskaznikowButton.addEventListener('click', function () {
                     InterpretujWskaznikiPlynnosci();
-				});
+                });
             }
+                break;
+
+            case "Analiza rentowności": {
+                var wskaznikRentownosciSprzedazyButton = document.createElement('button');
+                wskaznikRentownosciSprzedazyButton.classList = "btn button is-info chart-button";
+                wskaznikRentownosciSprzedazyButton.innerHTML = "Wskaźnik rentowności sprzedaży";
+                chartButtons.appendChild(wskaznikRentownosciSprzedazyButton);
+                wskaznikRentownosciSprzedazyButton.addEventListener('click', function () {
+                    kontekst = "base";
+                    GenerujSprawozdanie();
+                });
+
+                var wskaznikRentownosciNettoSprzedazyButton = document.createElement('button');
+                wskaznikRentownosciNettoSprzedazyButton.classList = "btn button is-info chart-button";
+                wskaznikRentownosciNettoSprzedazyButton.innerHTML = "Wskaźnik rentowności netto sprzedaży";
+                chartButtons.appendChild(wskaznikRentownosciNettoSprzedazyButton);
+                wskaznikRentownosciNettoSprzedazyButton.addEventListener('click', function () {
+                    kontekst = "wskaznikRentownosciNettoSprzedazy";
+                    GenerujSprawozdanie();
+                });
+
+                var wskaznikRentownosciNettoKapitaluWlasnegoButton = document.createElement('button');
+                wskaznikRentownosciNettoKapitaluWlasnegoButton.classList = "btn button is-info chart-button";
+                wskaznikRentownosciNettoKapitaluWlasnegoButton.innerHTML = "Wskaźnik rentowności netto kapitału własnego";
+                chartButtons.appendChild(wskaznikRentownosciNettoKapitaluWlasnegoButton);
+                wskaznikRentownosciNettoKapitaluWlasnegoButton.addEventListener('click', function () {
+                    kontekst = "wskaznikRentownosciNettoKapitaluWlasnego";
+                    GenerujSprawozdanie();
+                });
+            }
+                break;
         }
     }
 

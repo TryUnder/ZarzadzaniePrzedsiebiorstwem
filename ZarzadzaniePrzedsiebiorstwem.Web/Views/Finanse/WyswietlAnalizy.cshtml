@@ -82,7 +82,15 @@
 
         wskaznikPlynnosciBiezacejBiezacy: null,
         wskaznikPlynnosciSzybkiejBiezacy: null,
-        wskaznikPlynnosciGotowkowejBiezacy: null
+        wskaznikPlynnosciGotowkowejBiezacy: null,
+
+        wskaznikRentownosciSprzedazyUbiegly: null,
+        wskaznikRentownosciNettoSprzedazyUbiegly: null,
+        wskaznikRentownosciNettoKapitaluWlasnegoUbiegly: null,
+
+        wskaznikRentownosciSprzedazyBiezacy: null,
+        wskaznikRentownosciNettoSprzedazyBiezacy: null,
+        wskaznikRentownosciNettoKapitaluWlasnegoBiezacy: null
     };
 </script>
 
@@ -218,7 +226,7 @@
             if (myData.rachunekZyskowIStrat) {
                 console.log('Length of rachunek:', myData.rachunekZyskowIStrat.length); 
             }
-            return myData.rachunekZyskowIStrat ? myData.rachunekZyskowIStrat.filter((bilans) => bilans.okresRozliczeniowy.slice(0, 10) === data) : [];
+            return myData.rachunkiZyskowIStrat ? myData.rachunkiZyskowIStrat.filter((rachunek) => rachunek.okresRozliczeniowy.slice(0, 10) === data) : [];
         }
     }
 
@@ -232,6 +240,18 @@
 
     function ObliczWskaznikPlynnosciGotowkowej(bilans) {
         return bilans[0].inwestycjeKrotkoterminowe / bilans[0].zobowiazaniaKrotkoterminowe;
+    }
+
+    function ObliczWskaznikRentownosciSprzedazy(rachunek) {
+        return rachunek[0].zyskStrataZeSprzedazy / rachunek[0].przychodyNettoZeSprzedazy;
+    }
+
+    function ObliczWskaznikRentownosciNettoSprzedazy(rachunek) {
+        return rachunek[0].zyskStrataNetto / (rachunek[0].przychodyNettoZeSprzedazyProduktow + rachunek[0].przychodyNettoZeSprzedazyTowarowIMaterialow + rachunek[0].pozostalePrzychodyOperacyjne + rachunek[0].przychodyFinansowe)
+    }
+
+    function ObliczWskaznikRentownosciNettoKapitaluWlasnego(rachunek, bilans) {
+        return rachunek[0].zyskStrataNetto / bilans[0].kapitalFunduszWlasny;
     }
 
     function GenerujSprawozdanie() {
@@ -292,8 +312,56 @@
                 var wybranyOkresPoczatkowy = document.querySelector('input[name="okresPoczatkowyRachunek"]:checked').value;
                 var wybranyOkresKoncowy = document.querySelector('input[name="okresKoncowyRachunek"]:checked').value;
 
+                const rachunekUbiegly = FiltrujPoDacie(wybranyOkresPoczatkowy, "rachunek");
+                const rachunekBiezacy = FiltrujPoDacie(wybranyOkresKoncowy, "rachunek");
                 switch(kontekst) {
+                    case "base": {
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikRentownosciSprzedazy(rachunekUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikRentownosciSprzedazy(rachunekBiezacy);
 
+                        analiza.wskaznikRentownosciSprzedazyUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikRentownosciSprzedazyBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        var suggestedMax = 1.5;
+                        renderCharts("Wskaźnik rentowności sprzedaży", wybranyOkresPoczatkowy, wybranyOkresKoncowy, rachunekUbiegly, rachunekBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
+
+                    case "wskaznikRentownosciNettoSprzedazy": {
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikRentownosciNettoSprzedazy(rachunekUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikRentownosciNettoSprzedazy(rachunekBiezacy);
+
+                        analiza.wskaznikRentownosciNettoSprzedazyUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikRentownosciNettoSprzedazyBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        var suggestedMax = wskaznikBiezacy + 0.5;
+                        renderCharts("Wskaźnik rentowności netto sprzedaży", wybranyOkresPoczatkowy, wybranyOkresKoncowy, rachunekUbiegly, rachunekBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
+
+                    case "wskaznikRentownosciNettoKapitaluWlasnego": {
+                        WyzerujWykres();
+                        var wybranyOkresPoczatkowyBilans = document.querySelector('input[name="okresPoczatkowyBilans"]:checked').value;
+                        var wybranyOkresKoncowyBilans = document.querySelector('input[name="okresKoncowyBilans"]:checked').value;
+
+                        const bilansUbiegly = FiltrujPoDacie(wybranyOkresPoczatkowyBilans, "bilans");
+                        const bilansBiezacy = FiltrujPoDacie(wybranyOkresKoncowyBilans, "bilans");
+
+                        const wskaznikUbiegly = ObliczWskaznikRentownosciNettoKapitaluWlasnego(rachunekUbiegly, bilansUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikRentownosciNettoKapitaluWlasnego(rachunekBiezacy, bilansBiezacy);
+
+                        analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        var suggestedMax = wskaznikBiezacy + 0.5;
+                        renderCharts("Wskaźnik rentowności netto kapitału własnego", wybranyOkresPoczatkowy, wybranyOkresKoncowy, rachunekUbiegly, rachunekBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
                 }
             }
                 break;
@@ -334,11 +402,11 @@
                     GenerujSprawozdanie();
                 });
 
-                var interpretacjaIAnalizaWskaznikowButton = document.createElement('button');
-                interpretacjaIAnalizaWskaznikowButton.classList = "btn button is-info chart-button";
-                interpretacjaIAnalizaWskaznikowButton.innerHTML = "Interpretacja i analiza wskaźników";
-                chartButtons.appendChild(interpretacjaIAnalizaWskaznikowButton);
-                interpretacjaIAnalizaWskaznikowButton.addEventListener('click', function () {
+                var interpretacjaIAnalizaWskaznikowPlynnosciButton = document.createElement('button');
+                interpretacjaIAnalizaWskaznikowPlynnosciButton.classList = "btn button is-info chart-button";
+                interpretacjaIAnalizaWskaznikowPlynnosciButton.innerHTML = "Interpretacja i analiza wskaźników";
+                chartButtons.appendChild(interpretacjaIAnalizaWskaznikowPlynnosciButton);
+                interpretacjaIAnalizaWskaznikowPlynnosciButton.addEventListener('click', function () {
                     InterpretujWskaznikiPlynnosci();
                 });
             }
@@ -371,6 +439,14 @@
                     kontekst = "wskaznikRentownosciNettoKapitaluWlasnego";
                     GenerujSprawozdanie();
                 });
+
+                var interpretacjaIAnalizaWskaznikowRentownosciButton = document.createElement('button');
+                interpretacjaIAnalizaWskaznikowRentownosciButton.classList = "btn button is-info chart-button";
+                interpretacjaIAnalizaWskaznikowRentownosciButton.innerHTML = "Interpretacja i analiza wskaźników";
+                chartButtons.appendChild(interpretacjaIAnalizaWskaznikowRentownosciButton);
+                interpretacjaIAnalizaWskaznikowRentownosciButton.addEventListener('click', function () {
+					InterpretujWskaznikiRentownosci();
+				});
             }
                 break;
         }
@@ -676,6 +752,281 @@
         trGotowkowa.appendChild(tdGotowkowaInterpretacja);
         trGotowkowa.appendChild(tdGotowkowaAnaliza);
         tbodyAnaliza.appendChild(trGotowkowa);
+
+        tableAnaliza.appendChild(tbodyAnaliza);
+        charts.appendChild(tableAnaliza);
+    }
+
+    function InterpretujWskaznikiRentownosci() {
+
+        var wybranyOkresPoczatkowyBilans = document.querySelector('input[name="okresPoczatkowyBilans"]:checked').value;
+        var wybranyOkresKoncowyBilans = document.querySelector('input[name="okresKoncowyBilans"]:checked').value;
+        var wybranyOkresPoczatkowyRachunek = document.querySelector('input[name="okresPoczatkowyRachunek"]:checked').value;
+        var wybranyOkresKoncowyRachunek = document.querySelector('input[name="okresKoncowyRachunek"]:checked').value;
+		kontekst = "base";
+		GenerujSprawozdanie();
+		kontekst = "wskaznikRentownosciNettoSprzedazy";
+		GenerujSprawozdanie();
+		kontekst = "wskaznikRentownosciNettoKapitaluWlasnego";
+		GenerujSprawozdanie();
+			
+
+        var chartsContext = document.getElementById('canvas');
+        chartsContext.remove();
+
+        var charts = document.querySelector(".chart-buttons");
+
+        var table = document.createElement("table");
+        table.classList = "table is-bordered is-striped is-narrow is-hoverable is-fullwidth";
+        var thead = document.createElement("thead");
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        th.innerHTML = "Nazwa wskaźnika";
+        var th1 = document.createElement("th");
+        th1.innerHTML = "Zalecana wartość wskaźnika";
+        var th2 = document.createElement("th");
+        th2.innerHTML = "Wartość wskaźnika (ubiegła)";
+        var th3 = document.createElement("th");
+        th3.innerHTML = "Wartość wskaźnika (bieżąca)";
+        var tbody = document.createElement("tbody");
+
+        var tr1 = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerHTML = "Wskaźnik rentowności sprzedaży";
+
+        var td2 = document.createElement("td");
+        td2.innerHTML = "Im więcej, tym lepiej";
+
+        var td3 = document.createElement("td");
+        td3.innerHTML = analiza.wskaznikRentownosciSprzedazyUbiegly.toString().slice(0, 4);
+
+        var td4 = document.createElement("td");
+        td4.innerHTML = analiza.wskaznikRentownosciSprzedazyBiezacy.toString().slice(0, 4);
+
+        var trSzybka = document.createElement("tr");
+
+        var td12 = document.createElement("td");
+        td12.innerHTML = "Wskaźnik rentowności netto sprzedaży";
+
+        var td22 = document.createElement("td");
+        td22.innerHTML = "Im więcej, tym lepiej.";
+
+        var td23 = document.createElement("td");
+        td23.innerHTML = analiza.wskaznikRentownosciNettoSprzedazyUbiegly.toString().slice(0, 4);
+
+        var td24 = document.createElement("td");
+        td24.innerHTML = analiza.wskaznikRentownosciNettoSprzedazyBiezacy.toString().slice(0, 4);
+
+        var trGotowkowa = document.createElement("tr");
+
+        var td31 = document.createElement("td");
+        td31.innerHTML = "Wskaźnik rentowności netto kapitału własnego (ROE)";
+
+        var td32 = document.createElement("td");
+        td32.innerHTML = "Im więcej, tym lepiej.";
+
+        var td33 = document.createElement("td");
+        td33.innerHTML = analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly.toString().slice(0, 4);
+
+        var td34 = document.createElement("td");
+        td34.innerHTML = analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy.toString().slice(0, 4);
+
+        tr.appendChild(th);
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+        tr1.appendChild(td1);
+        tr1.appendChild(td2);
+        tr1.appendChild(td3);
+        tr1.appendChild(td4);
+
+        tbody.appendChild(tr1);
+
+        trSzybka.appendChild(td12);
+        trSzybka.appendChild(td22);
+        trSzybka.appendChild(td23);
+        trSzybka.appendChild(td24);
+
+        tbody.appendChild(trSzybka);
+
+        trGotowkowa.appendChild(td31);
+        trGotowkowa.appendChild(td32);
+        trGotowkowa.appendChild(td33);
+        trGotowkowa.appendChild(td34);
+
+        tbody.appendChild(trGotowkowa);
+
+        table.appendChild(tbody);
+        charts.appendChild(table);
+
+        var interpretacjaSection = document.createElement("div");
+        interpretacjaSection.classList = "interpretation-section";
+        var interpretacjaHeader = document.createElement("h1");
+        interpretacjaHeader.innerHTML = "Opis wskaźników rentowności.<br>";
+        var interpretacjaText = document.createElement("p");
+        interpretacjaText.style.marginLeft = "10px";
+        interpretacjaText.style.display = "inline-block";
+        interpretacjaText.innerHTML = "Wskaźniki rentowności są miarą dzięki której przedsiębiorstwo może ocenić efektywność gospodarowania sprzedażą, tudzież aktywami. Określa się to mianem zyskowności lub deficytowości." +
+            "<ol>"
+            + "<li>Wskaźnik rentowności sprzedaży określa, ile groszy zysku ze sprzedaży daje (generuje) 1 złotówka osiągniętego przychodu, np. ze sprzedaży towarów. Im wskaźnik wyższy, tym efektywność sprzedaży towarów większa.<br>" +
+            "<li>Wskaźnik rentowności netto sprzedaży określa, ile groszy zysku netto daje (generuje) 1 złotówka osiągniętego przychodu ogółem. Innymi słowy - jak bardzo opłacalna, rentowna jest działalność przedsiębiorstwa. Im wskaźnik wykazuje większy poziom, tym sytuacja jest korzystniejsza (efektywność sprzedaży wyższa).<br>" +
+            "<li>Wskaźnik rentowności netto kapitału własnego (ROE) określa, jaka kwota zysku netto przypada na 1 złotówkę kapitału własnego zaangażowanego w działalność. Im wyższa wartość wskaźnika, tym lepiej.<br>" +
+            "</ol>";
+
+        interpretacjaSection.appendChild(interpretacjaHeader);
+        interpretacjaSection.appendChild(interpretacjaText);
+
+
+        var chartsSection = document.querySelector(".charts-section");
+        chartsSection.appendChild(interpretacjaSection);
+
+        var tableAnaliza = document.createElement("table");
+        tableAnaliza.classList = "table is-bordered is-striped is-narrow is-hoverable is-fullwidth";
+        var thead = document.createElement("thead");
+        var trTableHead = document.createElement("tr");
+        var thNazwa = document.createElement("th");
+        thNazwa.innerHTML = "Nazwa wskaźnika";
+        var thInterpretacja = document.createElement("th");
+        thInterpretacja.innerHTML = "Interpretacja wskaźnika";
+        var thAnaliza = document.createElement("th");
+        thAnaliza.innerHTML = "Analiza wskaźnika";
+
+        var tbodyAnaliza = document.createElement("tbody");
+        var trRentownosciSprzedazy = document.createElement("tr");
+        var tdRentownosciSprzedazy = document.createElement("td");
+        var tdRentownosciSprzedazyInterpretacja = document.createElement("td");
+        var tdRentownosciSprzedazyAnaliza = document.createElement("td");
+
+        tdRentownosciSprzedazy.innerHTML = "Wskaźnik rentowności sprzedaży";
+        const wskaznikRentownosciSprzedazyUbieglyProcent = (parseFloat(analiza.wskaznikRentownosciSprzedazyUbiegly) * 100).toString().slice(0, 4)
+        const wskaznikRentownosciSprzedazyBiezacyProcent = (parseFloat(analiza.wskaznikRentownosciSprzedazyBiezacy) * 100).toString().slice(0, 4)
+        const wskaznikRentownosciSprzedazyBiezacy = parseFloat(analiza.wskaznikRentownosciSprzedazyBiezacy).toString().slice(0, 4);
+        const wskaznikRentownosciSprzedazyUbiegly = parseFloat(analiza.wskaznikRentownosciSprzedazyUbiegly).toString().slice(0, 4);
+
+        tdRentownosciSprzedazyInterpretacja.innerHTML = `Wskaźnik rentowności sprzedaży z okresu początkowego: ${wybranyOkresPoczatkowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyUbiegly} <br>
+            co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyUbieglyProcent} groszy.<br>
+            Wskaźnik rentowności sprzedaży z okresu końcowego: ${wybranyOkresKoncowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyBiezacy} <br>
+            co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyBiezacyProcent} groszy.`;
+
+        var analizaRentownosciSprzedazy = "";
+        var roznicaSprzedazy = parseFloat(wskaznikRentownosciSprzedazyBiezacy) - parseFloat(wskaznikRentownosciSprzedazyUbiegly);
+        var roznicaSprzedazyString = Math.abs(roznicaSprzedazy).toString().slice(0, 5);
+        if (roznicaSprzedazy > 0) {
+            analizaRentownosciSprzedazy = `Wzrost wskaźnika rentowności sprzedaży o ${roznicaSprzedazyString} w 
+            stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
+            Zwiększający się wskaźnik rentowności sprzedaży świadczy o większej efektywności sprzedaży,
+            czyli większym zysku ze 
+            sprzedaży przypadającym na każdą złotówkę zaangażowaną w przychody ze sprzedaży.`;
+        } else if (roznicaSprzedazy < 0) {
+            analizaRentownosciSprzedazy = `Spadek wskaźnika rentowności sprzedaży o ${roznicaSprzedazyString} w 
+            stosunku do roku ubiegłego jest zjawiskiem negatywnym. Zmniejszający się wskaźnik rentowności sprzedaży
+            świadczy o mniejszej efektywności sprzedaży, czyli mniejszym zysku ze sprzedaży przypadającym na
+            każdą złotówkę zaangażowaną w przychody ze sprzedaży.<br>`;
+        } else if (roznicaSprzedazy == 0) {
+            analizaRentownosciSprzedazy = `Wskaźnik rentowności sprzedaży nie zmienił się w stosunku
+            do roku ubiegłego. `;
+        }
+
+        tdRentownosciSprzedazyAnaliza.innerHTML = analizaRentownosciSprzedazy;
+
+        trTableHead.appendChild(thNazwa);
+        trTableHead.appendChild(thInterpretacja);
+        trTableHead.appendChild(thAnaliza);
+        thead.appendChild(trTableHead);
+        tableAnaliza.appendChild(thead);
+
+        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazy);
+        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazyInterpretacja);
+        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazyAnaliza);
+        tbodyAnaliza.appendChild(trRentownosciSprzedazy);
+        
+        var trRentownosciSprzedazyNetto = document.createElement("tr");
+        var tdRentownosciSprzedazyNetto = document.createElement("td");
+        var tdRentownosciSprzedazyNettoInterpretacja = document.createElement("td");
+        var tdRentownosciSprzedazyNettoAnaliza = document.createElement("td");
+
+        tdRentownosciSprzedazyNetto.innerHTML = "Wskaźnik rentowności netto sprzedaży";
+        const wskaznikRentownosciSprzedazyNettoUbieglyProcent = (parseFloat(analiza.wskaznikRentownosciNettoSprzedazyUbiegly) * 100).toString().slice(0, 4)
+        const wskaznikRentownosciSprzedazyNettoBiezacyProcent = (parseFloat(analiza.wskaznikRentownosciNettoSprzedazyBiezacy) * 100).toString().slice(0, 4)
+        const wskaznikRentownosciSprzedazyNettoBiezacy = parseFloat(analiza.wskaznikRentownosciNettoSprzedazyBiezacy).toString().slice(0, 4);
+        const wskaznikRentownosciSprzedazyNettoUbiegly = parseFloat(analiza.wskaznikRentownosciNettoSprzedazyUbiegly).toString().slice(0, 4);
+        
+        tdRentownosciSprzedazyNettoInterpretacja.innerHTML = `Wskaźnik rentowności netto sprzedaży z okresu początkowego: ${wybranyOkresPoczatkowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyNettoUbiegly} <br>
+                co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk netto ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyNettoUbieglyProcent} groszy.<br>
+                Wskaźnik rentowności netto sprzedaży z okresu końcowego: ${wybranyOkresKoncowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyNettoBiezacy} <br>
+                co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk netto ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyNettoBiezacyProcent} groszy.`;
+            
+        var analizaRentownosciNettoSprzedazy = "";
+        var roznicaSprzedazyNetto = parseFloat(wskaznikRentownosciSprzedazyNettoBiezacy) - parseFloat(wskaznikRentownosciSprzedazyNettoUbiegly);
+        var roznicaSprzedazyNettoString = Math.abs(roznicaSprzedazyNetto).toString().slice(0, 5);
+        if (roznicaSprzedazyNetto > 0) {
+            analizaRentownosciNettoSprzedazy = `Wzrost wskaźnika rentowności netto sprzedaży o ${roznicaSprzedazyNettoString} w 
+            stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
+            Zwiększający się wskaźnik rentowności netto sprzedaży świadczy o większej efektywności sprzedaży,
+            czyli większym zysku netto ze 
+            sprzedaży przypadającym na każdą złotówkę zaangażowaną w przychody ze sprzedaży.`;
+        } else if (roznicaSprzedazyNetto < 0) {
+            analizaRentownosciNettoSprzedazy = `Spadek wskaźnika rentowności netto sprzedaży o ${roznicaSprzedazyNettoString} w 
+            stosunku do roku ubiegłego jest zjawiskiem negatywnym. Zmniejszający się wskaźnik rentowności netto sprzedaży 
+            świadczy o mniejszej efektywności sprzedaży, czyli mniejszym zysku netto ze sprzedaży przypadającym na
+            każdą złotówkę zaangażowaną w przychody ze sprzedaży.<br>`;
+        } else if (roznicaSprzedazyNetto == 0) {
+            analizaRentownosciNettoSprzedazy = `Wskaźnik rentowności netto sprzedaży nie zmienił się w stosunku
+            do roku ubiegłego. `;
+        }
+
+        tdRentownosciSprzedazyNettoAnaliza.innerHTML = analizaRentownosciNettoSprzedazy;
+
+        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNetto);
+        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNettoInterpretacja);
+        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNettoAnaliza);
+        tbodyAnaliza.appendChild(trRentownosciSprzedazyNetto);
+        
+        var trRentownosciNettoKapitaluWlasnego = document.createElement("tr");
+        var tdRentownosciNettoKapitaluWlasnego = document.createElement("td");
+        var tdRentownosciNettoKapitaluWlasnegoInterpretacja = document.createElement("td");
+        var tdRentownosciNettoKapitaluWlasnegoAnaliza = document.createElement("td");
+
+        tdRentownosciNettoKapitaluWlasnego.innerHTML = "Wskaźnik rentowności netto kapitału własnego";
+        const wskaznikRentownosciNettoKapitaluWlasnegoUbieglyProcent = (parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly) * 100).toString().slice(0, 4);
+        const wskaznikRentownosciNettoKapitaluWlasnegoBiezacyProcent = (parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy) * 100).toString().slice(0, 4);
+        const wskaznikRentownosciNettoKapitaluWlasnegoBiezacy = parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy).toString().slice(0, 4);
+        const wskaznikRentownosciNettoKapitaluWlasnegoUbiegly = parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly).toString().slice(0, 4);
+        
+        tdRentownosciNettoKapitaluWlasnegoInterpretacja.innerHTML = `Wskaźnik rentowności netto kapitału własnego z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikRentownosciNettoKapitaluWlasnegoUbiegly} <br>
+                co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki zaangażowanego w działalność przedsiębiorstwa kapitału własnego zysk netto w wysokości ${wskaznikRentownosciNettoKapitaluWlasnegoUbieglyProcent} groszy.<br>
+                Wskaźnik rentowności netto kapitału własnego z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikRentownosciNettoKapitaluWlasnegoBiezacy} <br>
+                    co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki zaangażowanego w działalność przedsiębiorstwa kapitału własnego zysk netto w wysokości ${wskaznikRentownosciNettoKapitaluWlasnegoBiezacyProcent} groszy.`;
+
+        var analizaRentownosciNettoKapitaluWlasnego = "";
+        var roznicaRentownosciNettoKapitaluWlasnego = parseFloat(wskaznikRentownosciNettoKapitaluWlasnegoBiezacy) - parseFloat(wskaznikRentownosciNettoKapitaluWlasnegoUbiegly);
+        var roznicaRentownosciNettoKapitaluWlasnegoString = Math.abs(roznicaRentownosciNettoKapitaluWlasnego).toString().slice(0, 5);
+        if (roznicaRentownosciNettoKapitaluWlasnego > 0) {
+            analizaRentownosciNettoKapitaluWlasnego = `Wzrost wskaźnika rentowności netto kapitału własnego 
+            o ${roznicaRentownosciNettoKapitaluWlasnegoString} w
+                stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
+                Zwiększający się wskaźnik rentowności netto kapitału własnego świadczy o większej efektywności generowania zysku netto
+                z każdej jednej złotówki zaangażowanej w kapitał własny.`;
+        } else if (roznicaRentownosciNettoKapitaluWlasnego < 0) {
+            analizaRentownosciNettoKapitaluWlasnego = `Spadek wskaźnika rentowności netto kapitału własnego
+                o ${roznicaRentownosciNettoKapitaluWlasnegoString} w
+                stosunku do roku ubiegłego jest zjawiskiem negatywnym.
+                Zmniejszający się wskaźnik rentowności netto kapitału własnego świadczy o mniejszej efektywności generowania zysku netto
+                z każdej jednej złotówki zaangażowanej w kapitał własny.<br>`;
+        } else if (roznicaRentownosciNettoKapitaluWlasnego == 0) {
+            analizaRentownosciNettoKapitaluWlasnego = `Wskaźnik rentowności netto kapitału własnego nie zmienił się w stosunku
+                do roku ubiegłego. `;
+        }
+
+        tdRentownosciNettoKapitaluWlasnegoAnaliza.innerHTML = analizaRentownosciNettoKapitaluWlasnego;
+
+        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnego);
+        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnegoInterpretacja);
+        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnegoAnaliza);
+        tbodyAnaliza.appendChild(trRentownosciNettoKapitaluWlasnego);
 
         tableAnaliza.appendChild(tbodyAnaliza);
         charts.appendChild(tableAnaliza);

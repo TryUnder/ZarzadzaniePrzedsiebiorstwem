@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oZ+pRMsJDbVkSnRbffFzoLU/Q9IHPXkkfSJG2Q1no5CyzcOQpCf5MEpTVTAEsZYqPGpa6uHLWFlnh7J5HBDJ9Q==",
+  "dgSpecHash": "BR2g4DkmI0T/FmLAWXeTE7pF4pqzzt7sgkkVtpOLHRpk1GAarm5ESHR96RRMjdVxyccfjW+4V0EuGZ9nfPi8aw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hubert\\source\\repos\\TryUnder\\ZarzadzaniePrzedsiebiorstwem\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj",
+  "projectFilePath": "D:\\CppVscode\\Praca_Dyplomowa\\ZarzadzaniePrzedsiebiorstwem.DAL\\ZarzadzaniePrzedsiebiorstwem.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hubert\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\Hubert\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

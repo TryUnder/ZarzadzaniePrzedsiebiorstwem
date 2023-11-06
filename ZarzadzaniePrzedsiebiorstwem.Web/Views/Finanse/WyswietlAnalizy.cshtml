@@ -90,7 +90,15 @@
 
         wskaznikRentownosciSprzedazyBiezacy: null,
         wskaznikRentownosciNettoSprzedazyBiezacy: null,
-        wskaznikRentownosciNettoKapitaluWlasnegoBiezacy: null
+        wskaznikRentownosciNettoKapitaluWlasnegoBiezacy: null,
+
+        wskaznikOgolnegoZadluzeniaUbiegly: null,
+        wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuUbiegly: null,
+        wskaznikZadluzeniaKapitaluWlasnegoUbiegly: null,
+
+        wskaznikOgolnegoZadluzeniaBiezacy: null,
+        wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuBiezacy: null,
+        wskaznikZadluzeniaKapitaluWlasnegoBiezacy: null
     };
 </script>
 
@@ -212,9 +220,6 @@
     }
 
     function FiltrujPoDacie(data, rozliczenie) {
-        console.log('Przekazane dane:', data); 
-        console.log('Typ przekazanych danych:', typeof data);
-
         if (rozliczenie == "bilans") {
             console.log('Bilans:', myData.bilans); 
             if (myData.bilans) {
@@ -254,8 +259,21 @@
         return rachunek[0].zyskStrataNetto / bilans[0].kapitalFunduszWlasny;
     }
 
+    function ObliczWskaznikOgolnegoZadluzenia(bilans) {
+        return bilans[0].zobowiazaniaIRezerwyNaZobowiazania / bilans[0].sumaBilansowaAktywow;
+    }
+
+    function ObliczWskaznikUdzialuKapitalowWlasnychWFinansowaniuMajataku(bilans) {
+        return bilans[0].kapitalFunduszWlasny / bilans[0].sumaBilansowaAktywow;
+    }
+
+    function ObliczWskaznikZadluzeniaKapitaluWlasnego(bilans) {
+		return bilans[0].zobowiazaniaIRezerwyNaZobowiazania / bilans[0].kapitalFunduszWlasny;
+	}
+
     function GenerujSprawozdanie() {
         var wybranaAnaliza = document.querySelector('input[name="typAnalizy"]:checked').value;
+        console.log(wybranaAnaliza);
         switch (wybranaAnaliza) {
             case "Analiza płynności finansowej": {
                 GenerujPrzyciski(wybranaAnaliza);
@@ -302,7 +320,6 @@
                         renderCharts("Wskaźnik płynności gotówkowej", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
                     }
                         break;
-
                 }
             }
                 break;
@@ -314,7 +331,7 @@
 
                 const rachunekUbiegly = FiltrujPoDacie(wybranyOkresPoczatkowy, "rachunek");
                 const rachunekBiezacy = FiltrujPoDacie(wybranyOkresKoncowy, "rachunek");
-                switch(kontekst) {
+                switch (kontekst) {
                     case "base": {
                         WyzerujWykres();
                         const wskaznikUbiegly = ObliczWskaznikRentownosciSprzedazy(rachunekUbiegly);
@@ -362,9 +379,81 @@
                         renderCharts("Wskaźnik rentowności netto kapitału własnego", wybranyOkresPoczatkowy, wybranyOkresKoncowy, rachunekUbiegly, rachunekBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
                     }
                         break;
+
                 }
             }
                 break;
+
+            case "Analiza zadłużenia": {
+                GenerujPrzyciski(wybranaAnaliza);
+                wybranaAnaliza = "Wskaźnik ogólnego zadłużenia";
+                console.log(wybranaAnaliza);
+                var wybranyOkresPoczatkowy = document.querySelector('input[name="okresPoczatkowyBilans"]:checked').value;
+                console.log(wybranyOkresPoczatkowy);
+                var wybranyOkresKoncowy = document.querySelector('input[name="okresKoncowyBilans"]:checked').value;
+                console.log(wybranyOkresKoncowy);
+                const bilansUbiegly = FiltrujPoDacie(wybranyOkresPoczatkowy, "bilans");
+                const bilansBiezacy = FiltrujPoDacie(wybranyOkresKoncowy, "bilans");
+                console.log(bilansUbiegly);
+                console.log(bilansBiezacy);
+                console.log(kontekst);
+                switch (kontekst) {
+                    case "base": {
+                        console.log("wewnatrz_base");
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikOgolnegoZadluzenia(bilansUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikOgolnegoZadluzenia(bilansBiezacy);
+                        console.log(wskaznikUbiegly);
+                        console.log(wskaznikBiezacy);
+                        analiza.wskaznikOgolnegoZadluzeniaUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikOgolnegoZadluzeniaBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        
+                        var suggestedMax = wskaznikBiezacy + 0.5;
+                        
+                        renderCharts("Wskaźnik ogólnego zadłużenia", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
+
+                    case "wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatku": {
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikUdzialuKapitalowWlasnychWFinansowaniuMajataku(bilansUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikUdzialuKapitalowWlasnychWFinansowaniuMajataku(bilansBiezacy);
+
+                        analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        if (wskaznikBiezacy > wskaznikUbiegly) {
+                            suggestedMax = wskaznikBiezacy + 0.5;
+                        } else {
+                            suggestedMax = wskaznikUbiegly + 0.5;
+                        }
+                        renderCharts("Wskaźnik udziału kapitałów własnych w finansowaniu majątku", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+
+                    }
+                        break;
+                    case "wskaznikZadluzeniaKapitaluWlasnego": {
+                        WyzerujWykres();
+                        const wskaznikUbiegly = ObliczWskaznikZadluzeniaKapitaluWlasnego(bilansUbiegly);
+                        const wskaznikBiezacy = ObliczWskaznikZadluzeniaKapitaluWlasnego(bilansBiezacy);
+
+                        analiza.wskaznikZadluzeniaKapitaluWlasnegoUbiegly = wskaznikUbiegly;
+                        analiza.wskaznikZadluzeniaKapitaluWlasnegoBiezacy = wskaznikBiezacy;
+
+                        var suggestedMin = 0;
+                        if (wskaznikBiezacy > wskaznikUbiegly) {
+                            suggestedMax = wskaznikBiezacy + 0.5;
+                        } else {
+                            suggestedMax = wskaznikUbiegly + 0.5;
+                        }
+                        renderCharts("Wskaźnik zadłużenia kapitału własnego", wybranyOkresPoczatkowy, wybranyOkresKoncowy, bilansUbiegly, bilansBiezacy, wskaznikUbiegly, wskaznikBiezacy, suggestedMin, suggestedMax);
+                    }
+                        break;
+                }
+                break;
+            }
         }
     }
 
@@ -447,6 +536,44 @@
                 interpretacjaIAnalizaWskaznikowRentownosciButton.addEventListener('click', function () {
 					InterpretujWskaznikiRentownosci();
 				});
+            }
+                break;
+
+            case "Analiza zadłużenia": {
+                var wskaznikOgolnegoZadluzeniaButton = document.createElement('button');
+                wskaznikOgolnegoZadluzeniaButton.classList = "btn button is-info chart-button";
+                wskaznikOgolnegoZadluzeniaButton.innerHTML = "Wskaźnik ogólnego zadłużenia";
+                chartButtons.appendChild(wskaznikOgolnegoZadluzeniaButton);
+                wskaznikOgolnegoZadluzeniaButton.addEventListener('click', function () {
+                    kontekst = "base";
+                    GenerujSprawozdanie();
+                });
+
+                var wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuButton = document.createElement('button');
+                wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuButton.classList = "btn button is-info chart-button";
+                wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuButton.innerHTML = "Wskaźnik udziału kapitałów własnych w finansowaniu majątku";
+                chartButtons.appendChild(wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuButton);
+                wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuButton.addEventListener('click', function () {
+                    kontekst = "wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatku";
+                    GenerujSprawozdanie();
+                });
+
+                var wskaznikZadluzeniaKapitaluWlasnegoButton = document.createElement('button');
+                wskaznikZadluzeniaKapitaluWlasnegoButton.classList = "btn button is-info chart-button";
+                wskaznikZadluzeniaKapitaluWlasnegoButton.innerHTML = "Wskaźnik zadłużenia kapitału własnego";
+                chartButtons.appendChild(wskaznikZadluzeniaKapitaluWlasnegoButton);
+                wskaznikZadluzeniaKapitaluWlasnegoButton.addEventListener('click', function () {
+					kontekst = "wskaznikZadluzeniaKapitaluWlasnego";
+					GenerujSprawozdanie();
+				});
+
+                var interpretacjaIAnalizaWskaznikowZadluzeniaButton = document.createElement('button');
+				interpretacjaIAnalizaWskaznikowZadluzeniaButton.classList = "btn button is-info chart-button";
+				interpretacjaIAnalizaWskaznikowZadluzeniaButton.innerHTML = "Interpretacja i analiza wskaźników";
+				chartButtons.appendChild(interpretacjaIAnalizaWskaznikowZadluzeniaButton);
+                interpretacjaIAnalizaWskaznikowZadluzeniaButton.addEventListener('click', function () {
+                    InterpretujWskaznikiZadluzenia();
+                });
             }
                 break;
         }
@@ -1030,6 +1157,288 @@
 
         tableAnaliza.appendChild(tbodyAnaliza);
         charts.appendChild(tableAnaliza);
+    }
+
+    function InterpretujWskaznikiZadluzenia() {
+
+        var wybranyOkresPoczatkowyBilans = document.querySelector('input[name="okresPoczatkowyBilans"]:checked').value;
+        var wybranyOkresKoncowyBilans = document.querySelector('input[name="okresKoncowyBilans"]:checked').value;
+        kontekst = "base";
+        GenerujSprawozdanie();
+        kontekst = "wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatku";
+        GenerujSprawozdanie();
+        kontekst = "wskaznikZadluzeniaKapitaluWlasnego";
+        GenerujSprawozdanie();
+
+
+        var chartsContext = document.getElementById('canvas');
+        chartsContext.remove();
+
+        var charts = document.querySelector(".chart-buttons");
+
+        var table = document.createElement("table");
+        table.classList = "table is-bordered is-striped is-narrow is-hoverable is-fullwidth";
+        var thead = document.createElement("thead");
+        var tr = document.createElement("tr");
+        var th = document.createElement("th");
+        th.innerHTML = "Nazwa wskaźnika";
+        var th1 = document.createElement("th");
+        th1.innerHTML = "Zalecana wartość wskaźnika";
+        var th2 = document.createElement("th");
+        th2.innerHTML = "Wartość wskaźnika (ubiegła)";
+        var th3 = document.createElement("th");
+        th3.innerHTML = "Wartość wskaźnika (bieżąca)";
+        var tbody = document.createElement("tbody");
+
+        var tr1 = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerHTML = "Wskaźnik ogólnego zadłużenia";
+
+        var td2 = document.createElement("td");
+        td2.innerHTML = "Im mniej tym lepiej, natomiast najlepiej aby wskaźnik nie przekraczał 65%";
+
+        var td3 = document.createElement("td");
+        td3.innerHTML = analiza.wskaznikOgolnegoZadluzeniaUbiegly.toString().slice(0, 4);
+
+        var td4 = document.createElement("td");
+        td4.innerHTML = analiza.wskaznikOgolnegoZadluzeniaBiezacy.toString().slice(0, 4);
+
+        var trUdzialuKapitalowWlasnychWFinansowaniuMajatku = document.createElement("tr");
+
+        var td12 = document.createElement("td");
+        td12.innerHTML = "Wskaźnik udziału kapitałów własnych w finansowaniu majątku";
+
+        var td22 = document.createElement("td");
+        td22.innerHTML = "Im większa wartość wskaźnika, tym lepiej. Jednostka jest wówczas w mniejszym stopniu zależna od zewnętrznych źródeł finansowania";
+
+        var td23 = document.createElement("td");
+        td23.innerHTML = analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuUbiegly.toString().slice(0, 4);
+
+        var td24 = document.createElement("td");
+        td24.innerHTML = analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuBiezacy.toString().slice(0, 4);
+
+        var trZadluzeniaKapitaluWlasnego = document.createElement("tr");
+
+        var td31 = document.createElement("td");
+        td31.innerHTML = "Wskaźnik zadłużenia kapitału własnego";
+
+        var td32 = document.createElement("td");
+        td32.innerHTML = "Im większa wartość wskaźnika, tym gorzej. Jednostka jest wówczas w większym stopniu zależna od zewnętrznych źródeł finansowania";
+
+        var td33 = document.createElement("td");
+        td33.innerHTML = analiza.wskaznikZadluzeniaKapitaluWlasnegoUbiegly.toString().slice(0, 4);
+
+        var td34 = document.createElement("td");
+        td34.innerHTML = analiza.wskaznikZadluzeniaKapitaluWlasnegoBiezacy.toString().slice(0, 4);
+
+        tr.appendChild(th);
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+        tr1.appendChild(td1);
+        tr1.appendChild(td2);
+        tr1.appendChild(td3);
+        tr1.appendChild(td4);
+
+        tbody.appendChild(tr1);
+
+        trUdzialuKapitalowWlasnychWFinansowaniuMajatku.appendChild(td12);
+        trUdzialuKapitalowWlasnychWFinansowaniuMajatku.appendChild(td22);
+        trUdzialuKapitalowWlasnychWFinansowaniuMajatku.appendChild(td23);
+        trUdzialuKapitalowWlasnychWFinansowaniuMajatku.appendChild(td24);
+
+        tbody.appendChild(trUdzialuKapitalowWlasnychWFinansowaniuMajatku);
+
+        trZadluzeniaKapitaluWlasnego.appendChild(td31);
+        trZadluzeniaKapitaluWlasnego.appendChild(td32);
+        trZadluzeniaKapitaluWlasnego.appendChild(td33);
+        trZadluzeniaKapitaluWlasnego.appendChild(td34);
+
+        tbody.appendChild(trZadluzeniaKapitaluWlasnego);
+
+        table.appendChild(tbody);
+        charts.appendChild(table);
+        
+        var interpretacjaSection = document.createElement("div");
+        interpretacjaSection.classList = "interpretation-section";
+        var interpretacjaHeader = document.createElement("h1");
+        interpretacjaHeader.innerHTML = "Opis wskaźników zadłużenia.<br>";
+        var interpretacjaText = document.createElement("p");
+        interpretacjaText.style.marginLeft = "10px";
+        interpretacjaText.style.display = "inline-block";
+        interpretacjaText.innerHTML = "Wskaźniki zadłużenia (wypłacalności) służą do oceny stopnia zadłużenia jednostki gospodarczej,"+
+        "czyli charakteryzują poziom finansowania działalności przez źródła zewnętrzne, np. przez banki i dostawców. Do oceny zadłużenia" +
+            "jednostki służą m.in następujące wskaźniki:" +
+            "<ol>"
+            + "<li>Wskaźnik ogólnego zadłużenia informuje o tym, w jakim stopniu zobowiązania ogólem pokrywają aktywa ogółem."+
+            "Innymi słowy, wskazuje udział zewnętrznych źródeł finansowania w aktywa firmy. Im mniejsza wartość wskaźnika, tym większa zdolność firmy do spłaty zobowiązań.<br>" +
+            "Według standardów zachodnich, najlepiej aby nie przekraczał 67%" +
+            "<li>Wskaźnik udziału kapitałów własnych w finansowanie majątku informuje o tym, w jakim stopniu kapitał własny pokrywa aktywa ogółem.<br>" +
+            "Im wskaźnik jest bliższy 100%, tym sytuacja finansowa firmy jest bardziej stabilna." +
+            "<li>Wskaźnik zadłużenia kapitału własnego informuje o tym, w jakim stopniu zobowiązania ogółem pokrywają kapitał własny.<br>" +
+            "Im mniejsza wartość wskaźnika, tym lepiej, bowiem w mniejszym stopniu firma jest zależna od zewnętrznych - obcych źródeł finansowania." +
+            "Wartość tego wskaźnika nie powinna przekraczać 300%. Średnie i duże firmy powinny zachować proporcję 1:1." +
+            "</ol>";
+
+        interpretacjaSection.appendChild(interpretacjaHeader);
+        interpretacjaSection.appendChild(interpretacjaText);
+
+
+        var chartsSection = document.querySelector(".charts-section");
+        chartsSection.appendChild(interpretacjaSection);
+        
+        var tableAnaliza = document.createElement("table");
+        tableAnaliza.classList = "table is-bordered is-striped is-narrow is-hoverable is-fullwidth";
+        var thead = document.createElement("thead");
+        var trTableHead = document.createElement("tr");
+        var thNazwa = document.createElement("th");
+        thNazwa.innerHTML = "Nazwa wskaźnika";
+        var thInterpretacja = document.createElement("th");
+        thInterpretacja.innerHTML = "Interpretacja wskaźnika";
+        var thAnaliza = document.createElement("th");
+        thAnaliza.innerHTML = "Analiza wskaźnika";
+
+        var tbodyAnaliza = document.createElement("tbody");
+        var trOgolnegoZadluzenia = document.createElement("tr");
+        var tdOgolnegoZadluzenia = document.createElement("td");
+        var tdOgolnegoZadluzeniaInterpretacja = document.createElement("td");
+        var tdOgolnegoZadluzeniaAnaliza = document.createElement("td");
+        
+        tdOgolnegoZadluzenia.innerHTML = "Wskaźnik rentowności sprzedaży";
+        const wskaznikOgolnegoZadluzeniaUbieglyProcent = (parseFloat(analiza.wskaznikOgolnegoZadluzeniaUbiegly) * 100).toString().slice(0, 4)
+        const wskaznikOgolnegoZadluzeniaBiezacyProcent = (parseFloat(analiza.wskaznikOgolnegoZadluzeniaBiezacy) * 100).toString().slice(0, 4)
+        const wskaznikOgolnegoZadluzeniaBiezacy = parseFloat(analiza.wskaznikOgolnegoZadluzeniaBiezacy).toString().slice(0, 4);
+        const wskaznikOgolnegoZadluzeniaUbiegly = parseFloat(analiza.wskaznikOgolnegoZadluzeniaUbiegly).toString().slice(0, 4);
+        
+        tdOgolnegoZadluzeniaInterpretacja.innerHTML = `Wskaźnik ogólnego zadłużenia z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikOgolnegoZadluzeniaUbiegly} <br>
+                co oznacza, że zobowiązania ogółem stanowiły ${wskaznikOgolnegoZadluzeniaUbieglyProcent}% całości aktywów.<br>
+                Wskaźnik ogólnego zadłużenia z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikOgolnegoZadluzeniaBiezacy} <br>
+                co oznacza, że zobowiązania ogółem stanowiły ${wskaznikOgolnegoZadluzeniaBiezacyProcent} całości aktywów.`;
+        
+        var analizaRentownosciSprzedazy = "";
+        var roznicaSprzedazy = parseFloat(wskaznikRentownosciSprzedazyBiezacy) - parseFloat(wskaznikRentownosciSprzedazyUbiegly);
+        var roznicaSprzedazyString = Math.abs(roznicaSprzedazy).toString().slice(0, 5);
+        if (roznicaSprzedazy > 0) {
+            analizaRentownosciSprzedazy = `Wzrost wskaźnika rentowności sprzedaży o ${roznicaSprzedazyString} w
+                stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
+                Zwiększający się wskaźnik rentowności sprzedaży świadczy o większej efektywności sprzedaży,
+                czyli większym zysku ze
+                sprzedaży przypadającym na każdą złotówkę zaangażowaną w przychody ze sprzedaży.`;
+        } else if (roznicaSprzedazy < 0) {
+            analizaRentownosciSprzedazy = `Spadek wskaźnika rentowności sprzedaży o ${roznicaSprzedazyString} w
+                stosunku do roku ubiegłego jest zjawiskiem negatywnym. Zmniejszający się wskaźnik rentowności sprzedaży
+                świadczy o mniejszej efektywności sprzedaży, czyli mniejszym zysku ze sprzedaży przypadającym na
+                każdą złotówkę zaangażowaną w przychody ze sprzedaży.<br>`;
+        } else if (roznicaSprzedazy == 0) {
+            analizaRentownosciSprzedazy = `Wskaźnik rentowności sprzedaży nie zmienił się w stosunku
+                do roku ubiegłego. `;
+        }
+
+        tdRentownosciSprzedazyAnaliza.innerHTML = analizaRentownosciSprzedazy;
+
+        trTableHead.appendChild(thNazwa);
+        trTableHead.appendChild(thInterpretacja);
+        trTableHead.appendChild(thAnaliza);
+        thead.appendChild(trTableHead);
+        tableAnaliza.appendChild(thead);
+
+        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazy);
+        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazyInterpretacja);
+        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazyAnaliza);
+        tbodyAnaliza.appendChild(trRentownosciSprzedazy);
+        /*
+        var trRentownosciSprzedazyNetto = document.createElement("tr");
+        var tdRentownosciSprzedazyNetto = document.createElement("td");
+        var tdRentownosciSprzedazyNettoInterpretacja = document.createElement("td");
+        var tdRentownosciSprzedazyNettoAnaliza = document.createElement("td");
+
+        tdRentownosciSprzedazyNetto.innerHTML = "Wskaźnik rentowności netto sprzedaży";
+        const wskaznikRentownosciSprzedazyNettoUbieglyProcent = (parseFloat(analiza.wskaznikRentownosciNettoSprzedazyUbiegly) * 100).toString().slice(0, 4)
+        const wskaznikRentownosciSprzedazyNettoBiezacyProcent = (parseFloat(analiza.wskaznikRentownosciNettoSprzedazyBiezacy) * 100).toString().slice(0, 4)
+        const wskaznikRentownosciSprzedazyNettoBiezacy = parseFloat(analiza.wskaznikRentownosciNettoSprzedazyBiezacy).toString().slice(0, 4);
+        const wskaznikRentownosciSprzedazyNettoUbiegly = parseFloat(analiza.wskaznikRentownosciNettoSprzedazyUbiegly).toString().slice(0, 4);
+
+        tdRentownosciSprzedazyNettoInterpretacja.innerHTML = `Wskaźnik rentowności netto sprzedaży z okresu początkowego: ${wybranyOkresPoczatkowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyNettoUbiegly} <br>
+                    co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk netto ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyNettoUbieglyProcent} groszy.<br>
+                    Wskaźnik rentowności netto sprzedaży z okresu końcowego: ${wybranyOkresKoncowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyNettoBiezacy} <br>
+                    co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk netto ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyNettoBiezacyProcent} groszy.`;
+
+        var analizaRentownosciNettoSprzedazy = "";
+        var roznicaSprzedazyNetto = parseFloat(wskaznikRentownosciSprzedazyNettoBiezacy) - parseFloat(wskaznikRentownosciSprzedazyNettoUbiegly);
+        var roznicaSprzedazyNettoString = Math.abs(roznicaSprzedazyNetto).toString().slice(0, 5);
+        if (roznicaSprzedazyNetto > 0) {
+            analizaRentownosciNettoSprzedazy = `Wzrost wskaźnika rentowności netto sprzedaży o ${roznicaSprzedazyNettoString} w
+                stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
+                Zwiększający się wskaźnik rentowności netto sprzedaży świadczy o większej efektywności sprzedaży,
+                czyli większym zysku netto ze
+                sprzedaży przypadającym na każdą złotówkę zaangażowaną w przychody ze sprzedaży.`;
+        } else if (roznicaSprzedazyNetto < 0) {
+            analizaRentownosciNettoSprzedazy = `Spadek wskaźnika rentowności netto sprzedaży o ${roznicaSprzedazyNettoString} w
+                stosunku do roku ubiegłego jest zjawiskiem negatywnym. Zmniejszający się wskaźnik rentowności netto sprzedaży
+                świadczy o mniejszej efektywności sprzedaży, czyli mniejszym zysku netto ze sprzedaży przypadającym na
+                każdą złotówkę zaangażowaną w przychody ze sprzedaży.<br>`;
+        } else if (roznicaSprzedazyNetto == 0) {
+            analizaRentownosciNettoSprzedazy = `Wskaźnik rentowności netto sprzedaży nie zmienił się w stosunku
+                do roku ubiegłego. `;
+        }
+
+        tdRentownosciSprzedazyNettoAnaliza.innerHTML = analizaRentownosciNettoSprzedazy;
+
+        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNetto);
+        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNettoInterpretacja);
+        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNettoAnaliza);
+        tbodyAnaliza.appendChild(trRentownosciSprzedazyNetto);
+
+        var trRentownosciNettoKapitaluWlasnego = document.createElement("tr");
+        var tdRentownosciNettoKapitaluWlasnego = document.createElement("td");
+        var tdRentownosciNettoKapitaluWlasnegoInterpretacja = document.createElement("td");
+        var tdRentownosciNettoKapitaluWlasnegoAnaliza = document.createElement("td");
+
+        tdRentownosciNettoKapitaluWlasnego.innerHTML = "Wskaźnik rentowności netto kapitału własnego";
+        const wskaznikRentownosciNettoKapitaluWlasnegoUbieglyProcent = (parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly) * 100).toString().slice(0, 4);
+        const wskaznikRentownosciNettoKapitaluWlasnegoBiezacyProcent = (parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy) * 100).toString().slice(0, 4);
+        const wskaznikRentownosciNettoKapitaluWlasnegoBiezacy = parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy).toString().slice(0, 4);
+        const wskaznikRentownosciNettoKapitaluWlasnegoUbiegly = parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly).toString().slice(0, 4);
+
+        tdRentownosciNettoKapitaluWlasnegoInterpretacja.innerHTML = `Wskaźnik rentowności netto kapitału własnego z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikRentownosciNettoKapitaluWlasnegoUbiegly} <br>
+                    co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki zaangażowanego w działalność przedsiębiorstwa kapitału własnego zysk netto w wysokości ${wskaznikRentownosciNettoKapitaluWlasnegoUbieglyProcent} groszy.<br>
+                    Wskaźnik rentowności netto kapitału własnego z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikRentownosciNettoKapitaluWlasnegoBiezacy} <br>
+                        co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki zaangażowanego w działalność przedsiębiorstwa kapitału własnego zysk netto w wysokości ${wskaznikRentownosciNettoKapitaluWlasnegoBiezacyProcent} groszy.`;
+
+        var analizaRentownosciNettoKapitaluWlasnego = "";
+        var roznicaRentownosciNettoKapitaluWlasnego = parseFloat(wskaznikRentownosciNettoKapitaluWlasnegoBiezacy) - parseFloat(wskaznikRentownosciNettoKapitaluWlasnegoUbiegly);
+        var roznicaRentownosciNettoKapitaluWlasnegoString = Math.abs(roznicaRentownosciNettoKapitaluWlasnego).toString().slice(0, 5);
+        if (roznicaRentownosciNettoKapitaluWlasnego > 0) {
+            analizaRentownosciNettoKapitaluWlasnego = `Wzrost wskaźnika rentowności netto kapitału własnego
+                o ${roznicaRentownosciNettoKapitaluWlasnegoString} w
+                    stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
+                    Zwiększający się wskaźnik rentowności netto kapitału własnego świadczy o większej efektywności generowania zysku netto
+                    z każdej jednej złotówki zaangażowanej w kapitał własny.`;
+        } else if (roznicaRentownosciNettoKapitaluWlasnego < 0) {
+            analizaRentownosciNettoKapitaluWlasnego = `Spadek wskaźnika rentowności netto kapitału własnego
+                    o ${roznicaRentownosciNettoKapitaluWlasnegoString} w
+                    stosunku do roku ubiegłego jest zjawiskiem negatywnym.
+                    Zmniejszający się wskaźnik rentowności netto kapitału własnego świadczy o mniejszej efektywności generowania zysku netto
+                    z każdej jednej złotówki zaangażowanej w kapitał własny.<br>`;
+        } else if (roznicaRentownosciNettoKapitaluWlasnego == 0) {
+            analizaRentownosciNettoKapitaluWlasnego = `Wskaźnik rentowności netto kapitału własnego nie zmienił się w stosunku
+                    do roku ubiegłego. `;
+        }
+
+        tdRentownosciNettoKapitaluWlasnegoAnaliza.innerHTML = analizaRentownosciNettoKapitaluWlasnego;
+
+        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnego);
+        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnegoInterpretacja);
+        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnegoAnaliza);
+        tbodyAnaliza.appendChild(trRentownosciNettoKapitaluWlasnego);
+
+        */
+        tableAnaliza.appendChild(tbodyAnaliza);
+        charts.appendChild(tableAnaliza);
+        
     }
 
     document.addEventListener('DOMContentLoaded', function () {

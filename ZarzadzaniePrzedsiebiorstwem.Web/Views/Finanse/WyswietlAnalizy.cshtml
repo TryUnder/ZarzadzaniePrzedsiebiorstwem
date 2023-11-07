@@ -122,6 +122,10 @@
                         <input type="radio" name="typAnalizy" id="zadluzenie" value="Analiza zadłużenia">
                         <label for="zadluzenie">Analiza zadłużenia</label>
                     </div>
+                    <div class="panel-block">
+                        <input type="radio" name="typAnalizy" id="zbiorcze" value="Uproszczone zestawienie zbiorcze wskaźników" />
+                        <label for="zbiorcze">Uproszczone zestawienie zbiorcze wskaźników</label>
+                    </div>
 
                     <div class="panel-block mt-4">
                         <h3>Okres początkowy</h3>
@@ -216,7 +220,6 @@
 
         // Pokaż sekcję z wykresami
         document.querySelector('.charts-section').style.display = 'block';
-        console.log(FiltrujPoDacie(wybranyOkresKoncowy, "rachunek"));
     }
 
     function FiltrujPoDacie(data, rozliczenie) {
@@ -716,7 +719,6 @@
 
         interpretacjaSection.appendChild(interpretacjaHeader);
         interpretacjaSection.appendChild(interpretacjaText);
-
         
         var chartsSection = document.querySelector(".charts-section");
         chartsSection.appendChild(interpretacjaSection);
@@ -897,7 +899,6 @@
 		kontekst = "wskaznikRentownosciNettoKapitaluWlasnego";
 		GenerujSprawozdanie();
 			
-
         var chartsContext = document.getElementById('canvas');
         chartsContext.remove();
 
@@ -1005,7 +1006,6 @@
 
         interpretacjaSection.appendChild(interpretacjaHeader);
         interpretacjaSection.appendChild(interpretacjaText);
-
 
         var chartsSection = document.querySelector(".charts-section");
         chartsSection.appendChild(interpretacjaSection);
@@ -1170,7 +1170,6 @@
         kontekst = "wskaznikZadluzeniaKapitaluWlasnego";
         GenerujSprawozdanie();
 
-
         var chartsContext = document.getElementById('canvas');
         chartsContext.remove();
 
@@ -1286,7 +1285,6 @@
         interpretacjaSection.appendChild(interpretacjaHeader);
         interpretacjaSection.appendChild(interpretacjaText);
 
-
         var chartsSection = document.querySelector(".charts-section");
         chartsSection.appendChild(interpretacjaSection);
         
@@ -1307,37 +1305,36 @@
         var tdOgolnegoZadluzeniaInterpretacja = document.createElement("td");
         var tdOgolnegoZadluzeniaAnaliza = document.createElement("td");
         
-        tdOgolnegoZadluzenia.innerHTML = "Wskaźnik rentowności sprzedaży";
+        tdOgolnegoZadluzenia.innerHTML = "Wskaźnik ogólnego zadłużenia";
         const wskaznikOgolnegoZadluzeniaUbieglyProcent = (parseFloat(analiza.wskaznikOgolnegoZadluzeniaUbiegly) * 100).toString().slice(0, 4)
         const wskaznikOgolnegoZadluzeniaBiezacyProcent = (parseFloat(analiza.wskaznikOgolnegoZadluzeniaBiezacy) * 100).toString().slice(0, 4)
         const wskaznikOgolnegoZadluzeniaBiezacy = parseFloat(analiza.wskaznikOgolnegoZadluzeniaBiezacy).toString().slice(0, 4);
         const wskaznikOgolnegoZadluzeniaUbiegly = parseFloat(analiza.wskaznikOgolnegoZadluzeniaUbiegly).toString().slice(0, 4);
         
-        tdOgolnegoZadluzeniaInterpretacja.innerHTML = `Wskaźnik ogólnego zadłużenia z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikOgolnegoZadluzeniaUbiegly} <br>
-                co oznacza, że zobowiązania ogółem stanowiły ${wskaznikOgolnegoZadluzeniaUbieglyProcent}% całości aktywów.<br>
-                Wskaźnik ogólnego zadłużenia z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikOgolnegoZadluzeniaBiezacy} <br>
-                co oznacza, że zobowiązania ogółem stanowiły ${wskaznikOgolnegoZadluzeniaBiezacyProcent} całości aktywów.`;
+        tdOgolnegoZadluzeniaInterpretacja.innerHTML = `Wskaźnik ogólnego zadłużenia z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikOgolnegoZadluzeniaUbiegly}
+                co oznacza, że zobowiązania ogółem stanowiły ${wskaznikOgolnegoZadluzeniaUbieglyProcent}%. całości aktywów<br>
+                Wskaźnik ogólnego zadłużenia z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikOgolnegoZadluzeniaBiezacy}
+                co oznacza, że zobowiązania ogółem stanowiły ${wskaznikOgolnegoZadluzeniaBiezacyProcent}% całości aktywów.`;
         
-        var analizaRentownosciSprzedazy = "";
-        var roznicaSprzedazy = parseFloat(wskaznikRentownosciSprzedazyBiezacy) - parseFloat(wskaznikRentownosciSprzedazyUbiegly);
-        var roznicaSprzedazyString = Math.abs(roznicaSprzedazy).toString().slice(0, 5);
-        if (roznicaSprzedazy > 0) {
-            analizaRentownosciSprzedazy = `Wzrost wskaźnika rentowności sprzedaży o ${roznicaSprzedazyString} w
-                stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
-                Zwiększający się wskaźnik rentowności sprzedaży świadczy o większej efektywności sprzedaży,
-                czyli większym zysku ze
-                sprzedaży przypadającym na każdą złotówkę zaangażowaną w przychody ze sprzedaży.`;
-        } else if (roznicaSprzedazy < 0) {
-            analizaRentownosciSprzedazy = `Spadek wskaźnika rentowności sprzedaży o ${roznicaSprzedazyString} w
-                stosunku do roku ubiegłego jest zjawiskiem negatywnym. Zmniejszający się wskaźnik rentowności sprzedaży
-                świadczy o mniejszej efektywności sprzedaży, czyli mniejszym zysku ze sprzedaży przypadającym na
-                każdą złotówkę zaangażowaną w przychody ze sprzedaży.<br>`;
-        } else if (roznicaSprzedazy == 0) {
-            analizaRentownosciSprzedazy = `Wskaźnik rentowności sprzedaży nie zmienił się w stosunku
+        var analizaOgolnegoZadluzenia = "";
+        var roznicaOgolnegoZadluzenia = parseFloat(wskaznikOgolnegoZadluzeniaBiezacy) - parseFloat(wskaznikOgolnegoZadluzeniaUbiegly);
+        var roznicaOgolnegoZadluzeniaString = Math.abs(roznicaOgolnegoZadluzenia).toString().slice(0, 5);
+        if (roznicaOgolnegoZadluzenia > 0) {
+            analizaOgolnegoZadluzenia = `Wzrost wskaźnika ogólnego zadłużenia o ${roznicaOgolnegoZadluzeniaString} w
+                stosunku do roku ubiegłego jest zjawiskiem negatywnym.
+                Zwiększający się wskaźnik ogólnego zadłużenia sprawia, że przedsiębiorstwo staje się bardziej zależne od zewnętrznych
+                (obcych) źródeł finansowania. Pogarsza się również zdolność przedsiębiorstwa do spłaty zobowiązań.`;
+        } else if (roznicaOgolnegoZadluzenia < 0) {
+            analizaOgolnegoZadluzenia = `Spadek wskaźnika ogólnego zadłużenia o ${roznicaOgolnegoZadluzeniaString} w
+                stosunku do roku ubiegłego jest zjawiskiem pozytywnym. Zmniejszająca się wartość wskaźnika sprawia,
+                że przedsiębiorstwo staje się wówczas w mniejszym stopniu zależne od zewnętrznych (obcych) źródeł finansowania.
+                Dodatkowo, zwiększa się również zdolność przedsiębiorstwa do spłaty zobowiązań.`;
+        } else if (roznicaOgolnegoZadluzenia == 0) {
+            analizaOgolnegoZadluzenia = `Wskaźnik ogólnego zadłużenia nie zmienił się w stosunku
                 do roku ubiegłego. `;
         }
 
-        tdRentownosciSprzedazyAnaliza.innerHTML = analizaRentownosciSprzedazy;
+        tdOgolnegoZadluzeniaAnaliza.innerHTML = analizaOgolnegoZadluzenia;
 
         trTableHead.appendChild(thNazwa);
         trTableHead.appendChild(thInterpretacja);
@@ -1345,103 +1342,239 @@
         thead.appendChild(trTableHead);
         tableAnaliza.appendChild(thead);
 
-        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazy);
-        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazyInterpretacja);
-        trRentownosciSprzedazy.appendChild(tdRentownosciSprzedazyAnaliza);
-        tbodyAnaliza.appendChild(trRentownosciSprzedazy);
-        /*
-        var trRentownosciSprzedazyNetto = document.createElement("tr");
-        var tdRentownosciSprzedazyNetto = document.createElement("td");
-        var tdRentownosciSprzedazyNettoInterpretacja = document.createElement("td");
-        var tdRentownosciSprzedazyNettoAnaliza = document.createElement("td");
+        trOgolnegoZadluzenia.appendChild(tdOgolnegoZadluzenia);
+        trOgolnegoZadluzenia.appendChild(tdOgolnegoZadluzeniaInterpretacja);
+        trOgolnegoZadluzenia.appendChild(tdOgolnegoZadluzeniaAnaliza);
+        tbodyAnaliza.appendChild(trOgolnegoZadluzenia);
+        
+        var trUdzialuKapitalowWlasnychWFinansowaniuMajatku = document.createElement("tr");
+        var tdUdzialuKapitalowWlasnychWFinansowaniuMajatku = document.createElement("td");
+        var tdUdzialuKapitalowWlasnychWFinansowaniuMajatkuInterpretacja = document.createElement("td");
+        var tdUdzialuKapitalowWlasnychWFinansowaniuMajatkuAnaliza = document.createElement("td");
 
-        tdRentownosciSprzedazyNetto.innerHTML = "Wskaźnik rentowności netto sprzedaży";
-        const wskaznikRentownosciSprzedazyNettoUbieglyProcent = (parseFloat(analiza.wskaznikRentownosciNettoSprzedazyUbiegly) * 100).toString().slice(0, 4)
-        const wskaznikRentownosciSprzedazyNettoBiezacyProcent = (parseFloat(analiza.wskaznikRentownosciNettoSprzedazyBiezacy) * 100).toString().slice(0, 4)
-        const wskaznikRentownosciSprzedazyNettoBiezacy = parseFloat(analiza.wskaznikRentownosciNettoSprzedazyBiezacy).toString().slice(0, 4);
-        const wskaznikRentownosciSprzedazyNettoUbiegly = parseFloat(analiza.wskaznikRentownosciNettoSprzedazyUbiegly).toString().slice(0, 4);
+        tdUdzialuKapitalowWlasnychWFinansowaniuMajatku.innerHTML = "Wskaźnik udziału kapitałów własnych w finansowaniu majątku";
+        const wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuUbieglyProcent = (parseFloat(analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuUbiegly) * 100).toString().slice(0, 4)
+        const wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuBiezacyProcent = (parseFloat(analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuBiezacy) * 100).toString().slice(0, 4)
+        const wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuBiezacy = parseFloat(analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuBiezacy).toString().slice(0, 4);
+        const wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuUbiegly = parseFloat(analiza.wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatakuUbiegly).toString().slice(0, 4);
 
-        tdRentownosciSprzedazyNettoInterpretacja.innerHTML = `Wskaźnik rentowności netto sprzedaży z okresu początkowego: ${wybranyOkresPoczatkowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyNettoUbiegly} <br>
-                    co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk netto ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyNettoUbieglyProcent} groszy.<br>
-                    Wskaźnik rentowności netto sprzedaży z okresu końcowego: ${wybranyOkresKoncowyRachunek} wyniósł: ${wskaznikRentownosciSprzedazyNettoBiezacy} <br>
-                    co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki przychodów ze sprzedaży zysk netto ze sprzedaży w wysokości ${wskaznikRentownosciSprzedazyNettoBiezacyProcent} groszy.`;
+        tdUdzialuKapitalowWlasnychWFinansowaniuMajatkuInterpretacja.innerHTML = `Wskaźnik udziału kapitałów własnych w finansowaniu majątku przedsiębiorstwa z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuUbiegly}
+                    co oznacza, że kapitał własny stanowił ${wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuUbieglyProcent}% majątku przedsiębiorstwa.<br>
+                    Wskaźnik udziału kapitałów własnych w finansowaniu majątku przedsiębiorstwa z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuBiezacy}
+                    co oznacza, że kapitał własny stanowił ${wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuBiezacyProcent}% majątku przedsiębiorstwa.`;
 
-        var analizaRentownosciNettoSprzedazy = "";
-        var roznicaSprzedazyNetto = parseFloat(wskaznikRentownosciSprzedazyNettoBiezacy) - parseFloat(wskaznikRentownosciSprzedazyNettoUbiegly);
-        var roznicaSprzedazyNettoString = Math.abs(roznicaSprzedazyNetto).toString().slice(0, 5);
-        if (roznicaSprzedazyNetto > 0) {
-            analizaRentownosciNettoSprzedazy = `Wzrost wskaźnika rentowności netto sprzedaży o ${roznicaSprzedazyNettoString} w
-                stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
-                Zwiększający się wskaźnik rentowności netto sprzedaży świadczy o większej efektywności sprzedaży,
-                czyli większym zysku netto ze
-                sprzedaży przypadającym na każdą złotówkę zaangażowaną w przychody ze sprzedaży.`;
-        } else if (roznicaSprzedazyNetto < 0) {
-            analizaRentownosciNettoSprzedazy = `Spadek wskaźnika rentowności netto sprzedaży o ${roznicaSprzedazyNettoString} w
-                stosunku do roku ubiegłego jest zjawiskiem negatywnym. Zmniejszający się wskaźnik rentowności netto sprzedaży
-                świadczy o mniejszej efektywności sprzedaży, czyli mniejszym zysku netto ze sprzedaży przypadającym na
-                każdą złotówkę zaangażowaną w przychody ze sprzedaży.<br>`;
-        } else if (roznicaSprzedazyNetto == 0) {
-            analizaRentownosciNettoSprzedazy = `Wskaźnik rentowności netto sprzedaży nie zmienił się w stosunku
+        var analizaUdzialuKapitalowWlasnychWFinansowaniuMajatku = "";
+        var roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatku = parseFloat(wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuBiezacy) - parseFloat(wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuUbiegly);
+        var roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatkuString = Math.abs(roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatku).toString().slice(0, 5);
+        if (roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatku > 0) {
+            analizaUdzialuKapitalowWlasnychWFinansowaniuMajatku = `Wzrost wskaźnika udziału kapitałów własnych w finansowaniu majątku
+                    o ${roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatkuString} w stosunku do roku ubiegłego jest zjawiskiem pozytywnym.
+                Zwiększający się wskaźnik udziału kapitałów własnych w finansowaniu majątku świadczy o polepszającej się sytuacji finansowej
+                przedsiębiorstwa, ponieważ firma staje się wówczas w mniejszym stopniu zależna od zewnętrznych (obcych) źródeł finansowania.
+                Zwiększa się również sposobność jednostki co do możliwości spłaty długów.`;
+        } else if (roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatku < 0) {
+            analizaUdzialuKapitalowWlasnychWFinansowaniuMajatku = `Spadek wskaźnika udziału kapitałów własnych w finansowaniu majątku
+                    o ${roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatkuString} w stosunku do roku ubiegłego jest zjawiskiem negatywnym.
+                Zmniejszający się wskaźnik udziału kapitałów własnych w finansowaniu majątku świadczy o pogarszającej się sytuacji finansowej
+                przedsiębiorstwa, ponieważ firma staje się wówczas w większym stopniu zależna od zewnętrznych (obcych) źródeł finansowania.
+                Zmniejsza się również sposobność jednostki co do możliwości spłaty długów.`;
+        } else if (roznicaUdzialuKapitalowWlasnychWFinansowaniuMajatku == 0) {
+            analizaUdzialuKapitalowWlasnychWFinansowaniuMajatku = `Wskaźnik udziału kapitałów własnych w finansowaniu majątku przedsiębiorstwa nie zmienił się w stosunku
                 do roku ubiegłego. `;
         }
 
-        tdRentownosciSprzedazyNettoAnaliza.innerHTML = analizaRentownosciNettoSprzedazy;
+        tdUdzialuKapitalowWlasnychWFinansowaniuMajatkuAnaliza.innerHTML = analizaUdzialuKapitalowWlasnychWFinansowaniuMajatku;
 
-        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNetto);
-        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNettoInterpretacja);
-        trRentownosciSprzedazyNetto.appendChild(tdRentownosciSprzedazyNettoAnaliza);
-        tbodyAnaliza.appendChild(trRentownosciSprzedazyNetto);
+        trUdzialuKapitalowWlasnychWFinansowaniuMajatku.appendChild(tdUdzialuKapitalowWlasnychWFinansowaniuMajatku);
+        trUdzialuKapitalowWlasnychWFinansowaniuMajatku.appendChild(tdUdzialuKapitalowWlasnychWFinansowaniuMajatkuInterpretacja);
+        trUdzialuKapitalowWlasnychWFinansowaniuMajatku.appendChild(tdUdzialuKapitalowWlasnychWFinansowaniuMajatkuAnaliza);
+        tbodyAnaliza.appendChild(trUdzialuKapitalowWlasnychWFinansowaniuMajatku);
+        
+        var trZadluzeniaKapitaluWlasnego = document.createElement("tr");
+        var tdZadluzeniaKapitaluWlasnego = document.createElement("td");
+        var tdZadluzeniaKapitaluWlasnegoInterpretacja = document.createElement("td");
+        var tdZadluzeniaKapitaluWlasnegoAnaliza = document.createElement("td");
 
-        var trRentownosciNettoKapitaluWlasnego = document.createElement("tr");
-        var tdRentownosciNettoKapitaluWlasnego = document.createElement("td");
-        var tdRentownosciNettoKapitaluWlasnegoInterpretacja = document.createElement("td");
-        var tdRentownosciNettoKapitaluWlasnegoAnaliza = document.createElement("td");
+        tdZadluzeniaKapitaluWlasnego.innerHTML = "Wskaźnik zadłużenia kapitału własnego";
+        const wskaznikZadluzeniaKapitaluWlasnegoUbieglyProcent = (parseFloat(analiza.wskaznikZadluzeniaKapitaluWlasnegoUbiegly) * 100).toString().slice(0, 5);
+        const wskaznikZadluzeniaKapitaluWlasnegoBiezacyProcent = (parseFloat(analiza.wskaznikZadluzeniaKapitaluWlasnegoBiezacy) * 100).toString().slice(0, 5);
+        const wskaznikZadluzeniaKapitaluWlasnegoBiezacy = parseFloat(analiza.wskaznikZadluzeniaKapitaluWlasnegoBiezacy).toString().slice(0, 4);
+        const wskaznikZadluzeniaKapitaluWlasnegoUbiegly = parseFloat(analiza.wskaznikZadluzeniaKapitaluWlasnegoUbiegly).toString().slice(0, 4);
 
-        tdRentownosciNettoKapitaluWlasnego.innerHTML = "Wskaźnik rentowności netto kapitału własnego";
-        const wskaznikRentownosciNettoKapitaluWlasnegoUbieglyProcent = (parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly) * 100).toString().slice(0, 4);
-        const wskaznikRentownosciNettoKapitaluWlasnegoBiezacyProcent = (parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy) * 100).toString().slice(0, 4);
-        const wskaznikRentownosciNettoKapitaluWlasnegoBiezacy = parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoBiezacy).toString().slice(0, 4);
-        const wskaznikRentownosciNettoKapitaluWlasnegoUbiegly = parseFloat(analiza.wskaznikRentownosciNettoKapitaluWlasnegoUbiegly).toString().slice(0, 4);
+        tdZadluzeniaKapitaluWlasnegoInterpretacja.innerHTML = `Wskaźnik zadłużenia kapitału własnego z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikZadluzeniaKapitaluWlasnegoUbiegly}
+                    co oznacza, że zobowiązania były większe od kapitałów o ${wskaznikZadluzeniaKapitaluWlasnegoUbieglyProcent}%.<br>
+                    Wskaźnik zadłużenia kapitału własnego z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikZadluzeniaKapitaluWlasnegoBiezacy}
+                    co oznacza, że zobowiązania były większe od kapitałów o ${wskaznikZadluzeniaKapitaluWlasnegoBiezacyProcent}%.`;
 
-        tdRentownosciNettoKapitaluWlasnegoInterpretacja.innerHTML = `Wskaźnik rentowności netto kapitału własnego z okresu początkowego: ${wybranyOkresPoczatkowyBilans} wyniósł: ${wskaznikRentownosciNettoKapitaluWlasnegoUbiegly} <br>
-                    co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki zaangażowanego w działalność przedsiębiorstwa kapitału własnego zysk netto w wysokości ${wskaznikRentownosciNettoKapitaluWlasnegoUbieglyProcent} groszy.<br>
-                    Wskaźnik rentowności netto kapitału własnego z okresu końcowego: ${wybranyOkresKoncowyBilans} wyniósł: ${wskaznikRentownosciNettoKapitaluWlasnegoBiezacy} <br>
-                        co oznacza, że przedsiębiorstwo osiągnęło z 1 złotówki zaangażowanego w działalność przedsiębiorstwa kapitału własnego zysk netto w wysokości ${wskaznikRentownosciNettoKapitaluWlasnegoBiezacyProcent} groszy.`;
-
-        var analizaRentownosciNettoKapitaluWlasnego = "";
-        var roznicaRentownosciNettoKapitaluWlasnego = parseFloat(wskaznikRentownosciNettoKapitaluWlasnegoBiezacy) - parseFloat(wskaznikRentownosciNettoKapitaluWlasnegoUbiegly);
-        var roznicaRentownosciNettoKapitaluWlasnegoString = Math.abs(roznicaRentownosciNettoKapitaluWlasnego).toString().slice(0, 5);
-        if (roznicaRentownosciNettoKapitaluWlasnego > 0) {
-            analizaRentownosciNettoKapitaluWlasnego = `Wzrost wskaźnika rentowności netto kapitału własnego
-                o ${roznicaRentownosciNettoKapitaluWlasnegoString} w
-                    stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
-                    Zwiększający się wskaźnik rentowności netto kapitału własnego świadczy o większej efektywności generowania zysku netto
-                    z każdej jednej złotówki zaangażowanej w kapitał własny.`;
-        } else if (roznicaRentownosciNettoKapitaluWlasnego < 0) {
-            analizaRentownosciNettoKapitaluWlasnego = `Spadek wskaźnika rentowności netto kapitału własnego
-                    o ${roznicaRentownosciNettoKapitaluWlasnegoString} w
-                    stosunku do roku ubiegłego jest zjawiskiem negatywnym.
-                    Zmniejszający się wskaźnik rentowności netto kapitału własnego świadczy o mniejszej efektywności generowania zysku netto
-                    z każdej jednej złotówki zaangażowanej w kapitał własny.<br>`;
-        } else if (roznicaRentownosciNettoKapitaluWlasnego == 0) {
-            analizaRentownosciNettoKapitaluWlasnego = `Wskaźnik rentowności netto kapitału własnego nie zmienił się w stosunku
-                    do roku ubiegłego. `;
+        var analizaZadluzeniaKapitaluWlasnego = "";
+        var roznicaZadluzeniaKapitaluWlasnego = parseFloat(wskaznikZadluzeniaKapitaluWlasnegoBiezacy) - parseFloat(wskaznikZadluzeniaKapitaluWlasnegoUbiegly);
+        var roznicaZadluzeniaKapitaluWlasnegoString = Math.abs(roznicaZadluzeniaKapitaluWlasnego).toString().slice(0, 5);
+        if (roznicaZadluzeniaKapitaluWlasnego > 0) {
+            analizaZadluzeniaKapitaluWlasnego = `Wzrost wskaźnika zadłużenia kapitału własnego o ${roznicaZadluzeniaKapitaluWlasnegoString}
+                    w stosunku do roku ubiegłego jest zjawiskiem negatywnym.<br>
+                    Zwiększający się wskaźnik zadłużenia kapitału własnego zwiększa ryzyko finansowe, gdyż konieczne jest regulowanie odsetek
+                    i spłacanie zobowiązań, co może stwarzać presję na przepływy gotówkowe. Może również prowadzić do wyższych zwrotów dla
+                    akcjonariuszy, jeśli inwestycje generują większe zyski.`;
+        } else if (roznicaZadluzeniaKapitaluWlasnego < 0) {
+            analizaZadluzeniaKapitaluWlasnego = `Spadek wskaźnika zadłużenia kapitału własnego o ${roznicaZadluzeniaKapitaluWlasnegoString}
+                    w stosunku do roku ubiegłego jest zjawiskiem pozytywnym.<br>
+                    Zmniejszający się wskaźnik zadłużenia kapitału własnego zmniejsza ryzysko finansowe, gdyż firma może zdecydować się wówczas
+                    na spłatę zobowiązań, zmniejszając tym samym wskaźnik zadłużenia. Gromadzenie zysków może zwiększać również kapitał własny
+                    bez konieczności korzystania z długu.`;
+        } else if (roznicaZadluzeniaKapitaluWlasnego == 0) {
+            analizaZadluzeniaKapitaluWlasnego = `Wskaźnik zadłużenia kapitału własnego nie zmienił się w stosunku do roku ubiegłego. `;
         }
 
-        tdRentownosciNettoKapitaluWlasnegoAnaliza.innerHTML = analizaRentownosciNettoKapitaluWlasnego;
+        tdZadluzeniaKapitaluWlasnegoAnaliza.innerHTML = analizaZadluzeniaKapitaluWlasnego;
 
-        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnego);
-        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnegoInterpretacja);
-        trRentownosciNettoKapitaluWlasnego.appendChild(tdRentownosciNettoKapitaluWlasnegoAnaliza);
-        tbodyAnaliza.appendChild(trRentownosciNettoKapitaluWlasnego);
+        trZadluzeniaKapitaluWlasnego.appendChild(tdZadluzeniaKapitaluWlasnego);
+        trZadluzeniaKapitaluWlasnego.appendChild(tdZadluzeniaKapitaluWlasnegoInterpretacja);
+        trZadluzeniaKapitaluWlasnego.appendChild(tdZadluzeniaKapitaluWlasnegoAnaliza);
+        tbodyAnaliza.appendChild(trZadluzeniaKapitaluWlasnego);
 
-        */
         tableAnaliza.appendChild(tbodyAnaliza);
         charts.appendChild(tableAnaliza);
-        
+    }
+
+    function WygenerujZestawienieZbiorcze() {
+        var submitButton = document.getElementById("submit-button");
+        submitButton.addEventListener('click', function () {
+            var wybranaAnalizaFun = document.querySelector('input[name="typAnalizy"]:checked').value;
+            
+            if (wybranaAnalizaFun != "Uproszczone zestawienie zbiorcze wskaźników") {
+                return;
+            }
+
+            const wybranyOkresPoczatkowyBilans = document.querySelector('input[name="okresPoczatkowyBilans"]:checked').value;
+            const wybranyOkresKoncowyBilans = document.querySelector('input[name="okresKoncowyBilans"]:checked').value;
+            const wybranyOkresPoczatkowyRachunek = document.querySelector('input[name="okresPoczatkowyRachunek"]:checked').value;
+            const wybranyOkresKoncowyRachunek = document.querySelector('input[name="okresKoncowyRachunek"]:checked').value;
+
+            const bilansUbiegly = FiltrujPoDacie(wybranyOkresPoczatkowyBilans, "bilans");
+            const bilansBiezacy = FiltrujPoDacie(wybranyOkresKoncowyBilans, "bilans");
+            const rachunekUbiegly = FiltrujPoDacie(wybranyOkresPoczatkowyRachunek, "rachunek");
+            const rachunekBiezacy = FiltrujPoDacie(wybranyOkresKoncowyRachunek, "rachunek");
+
+            const wskaznikPlynnosciBiezacejUbiegly = ObliczWskaznikPlynnosciBiezacej(bilansUbiegly);
+            const wskaznikPlynnosciBiezacejBiezacy = ObliczWskaznikPlynnosciBiezacej(bilansBiezacy);
+
+            const wskaznikPlynnosciSzybkiejUbiegly = ObliczWskaznikPlynnosciSzybkiej(bilansUbiegly);
+            const wskaznikPlynnosciSzybkiejBiezacy = ObliczWskaznikPlynnosciSzybkiej(bilansBiezacy);
+
+            const wskaznikPlynnosciGotowkowejUbiegly = ObliczWskaznikPlynnosciGotowkowej(bilansUbiegly);
+            const wskaznikPlynnosciGotowkowejBiezacy = ObliczWskaznikPlynnosciGotowkowej(bilansBiezacy);
+
+            const wskaznikRentownosciSprzedazyUbiegly = ObliczWskaznikRentownosciSprzedazy(rachunekUbiegly);
+            const wskaznikRentownosciSprzedazyBiezacy = ObliczWskaznikRentownosciSprzedazy(rachunekBiezacy);
+
+            const wskaznikRentownosciNettoSprzedazyUbiegly = ObliczWskaznikRentownosciSprzedazy(rachunekUbiegly);
+            const wskaznikRentownosciNettoSprzedazyBiezacy = ObliczWskaznikRentownosciSprzedazy(rachunekBiezacy);
+
+            const wskaznikRentownosciNettoKapitaluWlasnegoUbiegly = ObliczWskaznikRentownosciNettoKapitaluWlasnego(rachunekUbiegly, bilansUbiegly);
+            const wskaznikRentownosciNettoKapitaluWlasnegoBiezacy = ObliczWskaznikRentownosciNettoKapitaluWlasnego(rachunekBiezacy, bilansBiezacy);
+
+            const wskaznikOgolnegoZadluzeniaUbiegly = ObliczWskaznikOgolnegoZadluzenia(bilansUbiegly);
+            const wskaznikOgolnegoZadluzeniaBiezacy = ObliczWskaznikOgolnegoZadluzenia(bilansBiezacy);
+
+            const wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuUbiegly = ObliczWskaznikUdzialuKapitalowWlasnychWFinansowaniuMajataku(bilansUbiegly);
+            const wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuBiezacy = ObliczWskaznikUdzialuKapitalowWlasnychWFinansowaniuMajataku(bilansBiezacy);
+
+            const wskaznikZadluzeniaKapitaluWlasnegoUbiegly = ObliczWskaznikZadluzeniaKapitaluWlasnego(bilansUbiegly);
+            const wskaznikZadluzeniaKapitaluWlasnegoBiezacy = ObliczWskaznikZadluzeniaKapitaluWlasnego(bilansBiezacy);
+
+            WyzerujWykres();
+
+            var chartsContext = document.createElement('canvas');
+            chartsContext.id = "canvas";
+            document.querySelector('.charts-section').appendChild(chartsContext);
+
+            const chartData = {
+                labels: [
+                    'Wskaźnik płynności bieżącej',
+                    'Wskaźnik płynności szybkiej',
+                    'Wskaźnik płynności gotówkowej',
+                    'Wskaźnik rentowności sprzedaży',
+                    'Wskaźnik rentowności netto ze sprzedaży',
+                    'Wskaźnik rentowności netto kapitału własnego',
+                    'Wskaźnik ogólnego zadłużenia',
+                    'Wskaźnik udziału kapitałów własnych w finansowaniu majątku',
+                    'Wskaźnik zadłużenia kapitału własnego'
+                ],
+                datasets: [{
+                    label: `Okres Rozliczeniowy: ${wybranyOkresPoczatkowyBilans}`,
+                    data: [
+                        wskaznikPlynnosciBiezacejUbiegly,
+                        wskaznikPlynnosciSzybkiejUbiegly,
+                        wskaznikPlynnosciGotowkowejUbiegly,
+                        wskaznikRentownosciSprzedazyUbiegly,
+                        wskaznikRentownosciNettoSprzedazyUbiegly,
+                        wskaznikRentownosciNettoKapitaluWlasnegoUbiegly,
+                        wskaznikOgolnegoZadluzeniaUbiegly,
+						wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuUbiegly,
+						wskaznikZadluzeniaKapitaluWlasnegoUbiegly
+                    ],
+
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }, {
+                    label: `Okres Rozliczeniowy: ${wybranyOkresKoncowyBilans}`,
+                    data: [
+                        wskaznikPlynnosciBiezacejBiezacy,
+                        wskaznikPlynnosciSzybkiejBiezacy,
+                        wskaznikPlynnosciGotowkowejBiezacy,
+                        wskaznikRentownosciSprzedazyBiezacy,
+                        wskaznikRentownosciNettoSprzedazyBiezacy,
+                        wskaznikRentownosciNettoKapitaluWlasnegoBiezacy,
+                        wskaznikOgolnegoZadluzeniaBiezacy,
+						wskaznikUdzialuKapitalowWlasnychWFinansowaniuMajatkuBiezacy,
+                        wskaznikZadluzeniaKapitaluWlasnegoBiezacy
+                    ],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                }]
+            };
+
+            const myChart = new Chart(chartsContext, {
+                type: 'radar',
+                data: chartData,
+                options: {
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    scale: {
+                        pointLabels: {
+                            fontSize: 34
+                        }
+                    }, layout: {
+                        padding: {
+                            top: 0,
+                            bottom: 0,
+                            left: 0,
+                            right: 0
+                        }
+                    }
+                },
+            });
+
+            document.querySelector('.charts-section').style.display = 'block';
+
+        });
     }
 
     document.addEventListener('DOMContentLoaded', function () {
         GenerujStartoweSprawozdanie();
+        WygenerujZestawienieZbiorcze();
 	});
 </script>

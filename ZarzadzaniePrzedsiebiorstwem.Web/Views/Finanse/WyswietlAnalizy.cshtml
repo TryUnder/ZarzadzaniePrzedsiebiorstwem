@@ -1553,19 +1553,32 @@
                             borderWidth: 3
                         }
                     },
-                    scale: {
-                        pointLabels: {
-                            fontSize: 34
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 24
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: "Zestawienie zbiorcze wskaźników",
+                            font: {
+                                size: 34
+                            }
                         }
-                    }, layout: {
-                        padding: {
-                            top: 0,
-                            bottom: 0,
-                            left: 0,
-                            right: 0
+                    },
+                    scales: {
+                        r: {
+                            pointLabels: {
+                                font: {
+                                    size: 16
+                                }
+                            }
                         }
                     }
-                },
+                }
             });
 
             document.querySelector('.charts-section').style.display = 'block';

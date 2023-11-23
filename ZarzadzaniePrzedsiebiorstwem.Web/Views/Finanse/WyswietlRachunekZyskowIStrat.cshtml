@@ -223,7 +223,9 @@
 
 <script>
     var myData = @Html.Raw(Json.Serialize(Model));
+    var input = document.getElementById("OkresRozliczeniowy");
+    input.value = myData.okresRozliczeniowy;
+    console.log(myData.okresRozliczeniowy)
 </script>
 
 <link rel="stylesheet" href="~/css/DodajRachunekZyskowIStrat.css" />
-<script src="~/js/WyswietlRachunekZyskowIStrat.js"></script>

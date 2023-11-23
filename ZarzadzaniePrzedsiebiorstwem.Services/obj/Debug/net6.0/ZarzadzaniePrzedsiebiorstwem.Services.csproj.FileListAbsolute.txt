@@ -36,3 +36,4 @@ D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Services\obj\Debug\net
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Services\obj\Debug\net6.0\refint\ZarzadzaniePrzedsiebiorstwem.Services.dll
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Services\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Services.pdb
 D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Services\obj\Debug\net6.0\ref\ZarzadzaniePrzedsiebiorstwem.Services.dll
+D:\CppVscode\Praca_Dyplomowa\ZarzadzaniePrzedsiebiorstwem.Services\obj\Debug\net6.0\ZarzadzaniePrzedsiebiorstwem.Services.sourcelink.json

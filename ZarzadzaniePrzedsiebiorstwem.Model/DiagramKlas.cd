@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ZarzadzaniePrzedsiebiorstwem.Model.Authentication.User">
+    <Position X="2.75" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AIADAAAAAIAAAAAQAAAAAAAAAAAAAAAAAAAQAQAACAA=</HashCode>
+      <FileName>Authentication\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="RachunkiZyskowIStrat" />
+      <Property Name="Bilans" />
+      <Property Name="Planners" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Subtask">
+    <Position X="7.5" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgAAAAAAAAAQAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModels\Planner\Subtask.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Planner" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Planner">
+    <Position X="4.5" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAEAgACAABAAAAAgAAAAAAGAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModels\Planner\Planner.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Subtask" />
+      <Property Name="Tags" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Planner.Tag">
+    <Position X="7.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgAAAAAAAAAQAEAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>DataModels\Planner\Tag.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Planner" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tasks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.Bilans">
+    <Position X="16.25" Y="0.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>EWGTADAAAIEIoAgCCFAEBAiQZggSgCIEEAAGmIAIkgA=</HashCode>
+      <FileName>DataModels\SprawozdaniaFinansowe\Bilans.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZarzadzaniePrzedsiebiorstwem.Model.DataModels.SprawozdaniaFinansowe.RachunekZyskowIStrat">
+    <Position X="10.75" Y="0.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AQirAEghoAAIABwAAFAFABwAKgAAQEADQAgEAAkBmAA=</HashCode>
+      <FileName>DataModels\SprawozdaniaFinansowe\RachunekZyskowIStrat.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ZarzadzaniePrzedsiebiorstwem.Model.DataModels.Przedsiebiorstwo">
+    <Position X="0.5" Y="4" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ACADAAAAAAAgAAAAAAAQAAgAACAAAIABBAAAAAAAAAI=</HashCode>
+      <FileName>DataModels\Przedsiebiorstwo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FormaPrawna" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="ZarzadzaniePrzedsiebiorstwem.Model.DataModels.FormaPrawna">
+    <Position X="0.5" Y="9" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAkAAAAAAAAAABARAAAAAAAABAAABACAAQAAAAA=</HashCode>
+      <FileName>DataModels\FormaPrawna.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

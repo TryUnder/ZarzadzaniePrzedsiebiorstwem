@@ -782,19 +782,18 @@ function LoadTagsToSelect() {
 }
 
 function CreateDynamicForm(controller) {
-    //
     var form = document.createElement("form");
     form.setAttribute("action", controller);
     form.setAttribute("method", "post");
     form.style.display = "none";
-    //
-        var menuInputTask = document.getElementById("menu-input-task");
-        menuInputTask.name = "Planner.TaskName";
+    
+    var menuInputTask = document.getElementById("menu-input-task");
+    menuInputTask.name = "Planner.TaskName";
 
-        var descriptionInput = document.getElementById("textarea-input");
-        descriptionInput.name = "Planner.Description";
+    var descriptionInput = document.getElementById("textarea-input");
+    descriptionInput.name = "Planner.Description";
 
-        var selectListTask = document.getElementById("select-list-task");
+    var selectListTask = document.getElementById("select-list-task");
 
         if (selectListTask.value != "Wybierz listę") {
             selectListTask.name = "Planner.TaskList";
@@ -808,7 +807,6 @@ function CreateDynamicForm(controller) {
         UserIdSpan.value = myData.id;
         UserIdSpan.name = "Planner.userId";
         UserIdSpan.style.display = "none";
-
 
         var subtaskNameInput = document.querySelectorAll(".subtask-name");
         subtaskNameInput.forEach((subtask, index) => {

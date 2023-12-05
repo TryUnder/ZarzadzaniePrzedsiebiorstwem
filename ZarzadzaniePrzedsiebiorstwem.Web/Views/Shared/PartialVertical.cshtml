@@ -18,8 +18,8 @@
         top: 5.5rem; /* Ustaw początkową wartość top */
         left: 0;
         width: 12%;
-        height: 100%;
-        background-color: rgba(142, 197, 252, 0.0);
+        height: 85%;
+        background-color: rgba(59, 75, 104, 0.8); /* Przyciemnione tło pasujące do layoutu */
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -28,7 +28,6 @@
         transition: top 0.3s ease-in-out; /* Dodaj przejście animacji */
     }
 
-        /* Styl dla linków w pionowym panelu */
         .vertical-panel a {
             color: #fff;
             text-decoration: none;
@@ -36,7 +35,6 @@
             padding: 10px;
         }
 
-            /* Styl dla aktywnego linku w pionowym panelu */
             .vertical-panel a.is-active {
                 font-weight: bold;
             }
@@ -48,10 +46,9 @@
             color: #fff; /* Kolor tekstu */
             padding: 12px;
             font-size: 11px;
-            height: 50px
+            height: 50px;
         }
 
-            /* Styl dla aktywnego przycisku w pionowym panelu */
             .vertical-panel .button.is-active {
                 background-color: transparent;
                 border-color: #fff; /* Białe obramowanie */
@@ -71,7 +68,9 @@
     <div class="vertical-panel">
         <a id="najedz" class="is-active button" asp-controller="Company" asp-action="ViewDashboard" asp-route-id="@Model.User.Id">Panel główny</a>
         <a id="najedz" class="is-active button" asp-controller="Company" asp-action="AddCompanyView" asp-route-id="@Model.User.Id">Dodaj przedsiębiorstwo</a>
-        <a id="najedz" class="is-active button" asp-controller="Company" asp-action="Planning" asp-route-id="@Model.User.Id">Planowanie2</a>
+        <a id="najedz" class="is-active button" asp-controller="Planner" asp-action="Index" asp-route-id="@Model.User.Id">Planowanie</a>
+        <a id="najedz" class="is-active button" asp-controller="Finanse" asp-action="WyswietlRozliczenia" asp-route-id="@Model.User.Id">Sprawozdania</a>
+        <a id="najedz" class="is-active button" asp-controller="Finanse" asp-action="WyswietlAnalizy" asp-route-id="@Model.User.Id">Analiza Finansowa</a>
         <a id="najedz" class="is-active button" asp-controller="Company" asp-action="ViewSettings" asp-route-id="@Model.User.Id">Ustawienia</a>
     </div>
 </section>
